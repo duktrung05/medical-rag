@@ -1,0 +1,37 @@
+# Configuration: Baseline 1 (Dense Multilingual Retrieval)
+experiment_name: "baseline_dense"
+
+retrieval:
+  sparse:
+    enabled: false
+  dense:
+    enabled: true
+    model_name: "BAAI/bge-m3"
+    index_path: "artifacts/dense_index"
+    index_type: "hnsw"  # "hnsw" or "ivfpq"
+    top_k: 300
+    batch_size: 32
+    normalize_embeddings: true
+
+fusion:
+  enabled: false
+
+reranker:
+  enabled: false
+
+scoring:
+  document:
+    aggregation: "max"
+    top_n_mean: 3
+
+selection:
+  chunk:
+    threshold: 0.50
+    relative_delta: 0.20
+    min_k: 1
+    max_k: 20
+  document:
+    threshold: 0.50
+    relative_delta: 0.20
+    min_k: 1
+    max_k: 10

@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Linting
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Artifacts & Outputs
+artifacts/sparse_index/*
+!artifacts/sparse_index/.gitkeep
+artifacts/dense_index/*
+!artifacts/dense_index/.gitkeep
+artifacts/embeddings/*
+!artifacts/embeddings/.gitkeep
+artifacts/cache/*
+!artifacts/cache/.gitkeep
+
+outputs/predictions/*
+!outputs/predictions/.gitkeep
+outputs/evaluations/*
+!outputs/evaluations/.gitkeep
+outputs/submissions/*
+!outputs/submissions/.gitkeep
+
+# Data (Keep directory structure and dev samples, ignore raw large files)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
