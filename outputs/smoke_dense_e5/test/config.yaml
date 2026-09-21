@@ -1,0 +1,10 @@
+experiment_name: smoke_dense_e5_locked_k5
+seed: 42
+model_name: intfloat/multilingual-e5-small
+query_prefix: 'query: '
+passage_prefix: 'passage: '
+normalize_embeddings: true
+max_length: 512
+batch_size: 32
+top_k_values:
+- 5
