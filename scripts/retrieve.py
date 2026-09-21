@@ -1,8 +1,11 @@
 """Runs retrieval pipeline given a YAML configuration file."""
 
 import argparse
-from pathlib import Path
-import yaml
+
+from src.config import load_config
+from src.data.loader import DataLoader, save_jsonl_records
+from src.data.validator import validate_queries_integrity
+from src.service import build_pipeline
 
 
 def main():
@@ -12,11 +15,14 @@ def main():
     parser.add_argument("--output", type=str, default="outputs/predictions/predictions.jsonl")
     args = parser.parse_args()
 
-    with open(args.config, "r", encoding="utf-8") as f:
-        config = yaml.safe_load(f)
-
-    print(f"Loaded config from: {args.config} (Experiment: {config.get('experiment_name')})")
-    print(f"Target output: {args.output}")
+    config = load_config(args.config)
+    queries = DataLoader.load_queries(args.queries)
+    errors = validate_queries_integrity(queries)
+    if errors:
+        raise ValueError("Invalid queries: " + "; ".join(errors))
+    pipeline = build_pipeline(config)
+    save_jsonl_records(args.output, pipeline.run_batch(queries))
+    print(f"{config.experiment_name}: wrote {len(queries)} predictions to {args.output}")
 
 
 if __name__ == "__main__":

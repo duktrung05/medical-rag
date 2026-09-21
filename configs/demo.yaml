@@ -1,0 +1,5 @@
+# Wiring demo only. No training, external API, model download, or GPU required.
+experiment_name: demo
+backend: demo
+corpus: ../data/dev/sample_chunks.jsonl
+max_chunks: 10

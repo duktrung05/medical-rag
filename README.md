@@ -2,6 +2,33 @@
 
 Hệ thống truy xuất thông tin y tế đa ngôn ngữ (Multilingual Medical Information Retrieval) phục vụ cuộc thi R2AI.
 
+## Bắt đầu với bộ khung (chưa cần training)
+
+Bản hiện tại có runtime demo chạy xuyên suốt, API tùy chọn, schema dữ liệu,
+pipeline chọn kết quả, kiểm tra submission và đánh giá. Backend demo chỉ so khớp
+từ khóa để kiểm tra luồng; BM25/dense/hybrid/reranker chưa được triển khai đầy đủ.
+Các định dạng và quy tắc bên dưới là quy ước nội bộ, cần đối chiếu đề kỹ thuật BTC.
+
+Chạy từ thư mục gốc với Python 3.11 trở lên:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -e ".[dev,api]"
+python -m pytest -q
+python -m scripts.retrieve --config configs/demo.yaml --queries data/dev/sample_queries.jsonl --output outputs/predictions/demo.jsonl
+python -m src.cli validate outputs/predictions/demo.jsonl --corpus-chunks data/dev/sample_chunks.jsonl --test-queries data/dev/sample_queries.jsonl
+python -m uvicorn src.api:create_app --factory --host 127.0.0.1 --port 8000
+```
+
+API docs: <http://127.0.0.1:8000/docs>. `GET /health` kiểm tra trạng thái;
+`POST /search` nhận `{"id":"q1","query":"tài liệu y khoa"}` và trả danh sách
+`relevant_docs`, `relevant_chunks`. Truy vấn không khớp trả danh sách rỗng.
+
+Chi tiết điểm mở rộng: [docs/architecture.md](docs/architecture.md).
+
+Kế hoạch học và tự vận hành từng bước: [docs/smoke_test_learning_plan.md](docs/smoke_test_learning_plan.md).
+
 ## 1. Tổng quan bài toán
 - **Input**: Vietnamese query và kho dữ liệu dạng chunk (`chunk_id`, `doc_id`, `chunk_index`, `language`, `text`).
 - **Kho ngữ liệu**: Đa ngôn ngữ (Vietnamese `vi`, English `en`, Chinese `zh`).

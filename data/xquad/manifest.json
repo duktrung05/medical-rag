@@ -1,0 +1,38 @@
+{
+  "source": "google/xquad",
+  "languages": [
+    "vi",
+    "en",
+    "zh"
+  ],
+  "query_language": "vi",
+  "seed": 42,
+  "ratios": {
+    "train": 0.7,
+    "dev": 0.15,
+    "test": 0.15000000000000005
+  },
+  "counts": {
+    "train": {
+      "groups": 168,
+      "chunks": 504,
+      "queries": 839,
+      "ground_truth": 839,
+      "answers": 839
+    },
+    "dev": {
+      "groups": 36,
+      "chunks": 108,
+      "queries": 178,
+      "ground_truth": 178,
+      "answers": 178
+    },
+    "test": {
+      "groups": 36,
+      "chunks": 108,
+      "queries": 173,
+      "ground_truth": 173,
+      "answers": 173
+    }
+  }
+}
