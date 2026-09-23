@@ -46,7 +46,7 @@ false positive.
 Nguồn tham chiếu ban đầu:
 
 - Resuscitation Council UK, *Emergency treatment of anaphylaxis*:
-  <https://www.resus.org.uk/library/additional-guidance/guidance-anaphylaxis/emergency-treatment-anaphylactic-reactions>
+  https://www.resus.org.uk/library/additional-guidance/guidance-anaphylaxis/emergency-treatment-anaphylactic-reactions>
 - NICE NG118, *Renal and ureteric stones: assessment and management*:
   <https://www.nice.org.uk/guidance/ng118/chapter/recommendations>
 - NICE NG28, *Type 2 diabetes in adults: management*:
