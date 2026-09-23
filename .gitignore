@@ -48,8 +48,8 @@ outputs/submissions/*
 !outputs/submissions/.gitkeep
 
 # Data (Keep directory structure and dev samples, ignore raw large files)
-data/raw/*
-!data/raw/.gitkeep
+# data/raw/*
+# !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
 
