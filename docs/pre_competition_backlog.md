@@ -39,7 +39,7 @@ và `hybrid_rerank`.
 
 Tasks:
 
-- [ ] Thiết kế config models strict cho retrieval, fusion, reranking, scoring và
+- [X] Thiết kế config models strict cho retrieval, fusion, reranking, scoring và
   selection.
 - [ ] Giữ đường chạy `demo` làm fixture không cần model.
 - [ ] Báo lỗi rõ khi index, model hoặc dependency đang bật nhưng bị thiếu.
@@ -89,22 +89,25 @@ Acceptance gate:
 
 ### PRE-004 — Chuyển exact dense smoke thành retriever production
 
-**Trạng thái:** `[ ]`
+**Trạng thái:** `[x]`
 
 Tasks:
 
-- [ ] Tái sử dụng encode, pooling và normalization từ dense smoke script.
-- [ ] Cache passage embeddings và ordered chunk IDs.
-- [ ] Pin model/tokenizer revision trong manifest.
-- [ ] Hỗ trợ exact search trước; FAISS là adapter tùy chọn cho corpus lớn.
-- [ ] Có CPU/GPU fallback và batch-size cấu hình được.
-- [ ] Phát hiện NaN, dimension mismatch và corpus/index mismatch.
+- [x] Tái sử dụng encode, pooling và normalization từ dense smoke script.
+- [x] Cache passage embeddings và ordered chunk IDs.
+- [x] Pin model/tokenizer revision trong manifest.
+- [x] Hỗ trợ exact search trước; FAISS là adapter tùy chọn cho corpus lớn.
+- [x] Có CPU/GPU fallback và batch-size cấu hình được.
+- [x] Phát hiện NaN, dimension mismatch và corpus/index mismatch.
 
 Acceptance gate:
 
 - `DenseRetriever.search()` chạy thật từ config chính.
 - Ranking có thể tái lập.
 - Có báo cáo VI query -> VI/EN/ZH positive riêng biệt.
+
+**Bằng chứng:** `outputs/baseline_dense/dev/report.md` ghi kết quả trên 178
+query XQuAD dev và xác nhận hai lượt chạy có ranking/score giống nhau.
 
 ### PRE-005 — Hoàn thiện RRF fusion
 
@@ -375,4 +378,3 @@ Acceptance gate:
 - [ ] Một command tái tạo experiment end-to-end.
 - [ ] Mọi experiment có manifest và hashes.
 - [ ] Các quyết định phụ thuộc đề vẫn được để mở, không biến thành assumption ẩn.
-

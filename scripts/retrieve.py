@@ -2,6 +2,7 @@
 
 import argparse
 
+from src.adapters import adapt_query
 from src.config import load_config
 from src.data.loader import DataLoader, save_jsonl_records
 from src.data.validator import validate_queries_integrity
@@ -21,7 +22,11 @@ def main():
     if errors:
         raise ValueError("Invalid queries: " + "; ".join(errors))
     pipeline = build_pipeline(config)
-    save_jsonl_records(args.output, pipeline.run_batch(queries))
+    adapted_queries = [adapt_query(query) for query in queries]
+    save_jsonl_records(
+        args.output,
+        pipeline.run_batch([(query.query_id, query.text) for query in adapted_queries]),
+    )
     print(f"{config.experiment_name}: wrote {len(queries)} predictions to {args.output}")
 
 

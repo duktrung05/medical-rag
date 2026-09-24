@@ -2,8 +2,7 @@
 
 from typing import Dict, List, Optional
 from src.data.loader import DocumentChunkMap
-from src.data.preprocess import normalize_text
-from src.data.schema import PredictionRecord, QueryRecord
+from src.data.schema import PredictionRecord
 from src.retrieval.bm25 import BaseRetriever
 from src.reranking.base import BaseReranker
 from src.scoring.document_score import aggregate_doc_scores
@@ -28,6 +27,11 @@ class RetrievalPipeline:
         min_k: int = 1,
         max_chunk_k: int = 20,
         max_doc_k: int = 20,
+        retrieval_top_k: Optional[int] = None,
+        reranker_top_k: int = 100,
+        chunk_min_k: Optional[int] = None,
+        doc_min_k: Optional[int] = None,
+        doc_top_n_mean: int = 3,
     ):
         self.retriever = retriever
         self.doc_map = doc_map
@@ -41,14 +45,16 @@ class RetrievalPipeline:
         self.min_k = min_k
         self.max_chunk_k = max_chunk_k
         self.max_doc_k = max_doc_k
+        self.retrieval_top_k = retrieval_top_k or max_chunk_k * 5
+        self.reranker_top_k = reranker_top_k
+        self.chunk_min_k = min_k if chunk_min_k is None else chunk_min_k
+        self.doc_min_k = min_k if doc_min_k is None else doc_min_k
+        self.doc_top_n_mean = doc_top_n_mean
 
-    def run_query(self, query_record: QueryRecord) -> PredictionRecord:
-        """Executes full pipeline for a single query."""
-        # 1. Normalize
-        norm_query = normalize_text(query_record.query, lowercase=True)
-
+    def run_query(self, query_id: str, normalized_query: str) -> PredictionRecord:
+        """Execute the retrieval core for a normalized query and external ID."""
         # 2. Retrieve candidates
-        chunk_candidates = self.retriever.search(norm_query, top_k=self.max_chunk_k * 5)
+        chunk_candidates = self.retriever.search(normalized_query, top_k=self.retrieval_top_k)
 
         # 3. Rerank if enabled
         if self.reranker and self.chunk_text_lookup:
@@ -56,14 +62,16 @@ class RetrievalPipeline:
                 (cid, self.chunk_text_lookup.get(cid, ""))
                 for cid, _ in chunk_candidates
             ]
-            chunk_candidates = self.reranker.rerank(norm_query, cand_pairs)
+            chunk_candidates = self.reranker.rerank(
+                normalized_query, cand_pairs, top_k=self.reranker_top_k
+            )
 
         # 4. Chunk selection
         selected_chunks = select_candidates(
             chunk_candidates,
             threshold=self.chunk_threshold,
             relative_delta=self.chunk_delta,
-            min_k=self.min_k,
+            min_k=self.chunk_min_k,
             max_k=self.max_chunk_k,
         )
 
@@ -72,25 +80,26 @@ class RetrievalPipeline:
         doc_scores = aggregate_doc_scores(
             chunk_scores=chunk_scores_dict,
             chunk_to_doc=self.doc_map.chunk_to_doc,
-            method="max" if self.doc_aggregation == "max" else "hybrid_mean",
+            method=self.doc_aggregation,
+            top_n=self.doc_top_n_mean,
         )
         ranked_docs = sorted(doc_scores.items(), key=lambda x: x[1], reverse=True)
         selected_docs = select_candidates(
             ranked_docs,
             threshold=self.doc_threshold,
             relative_delta=self.doc_delta,
-            min_k=self.min_k,
+            min_k=self.doc_min_k,
             max_k=self.max_doc_k,
         )
 
         # 6. Consistency check
         prediction = PredictionRecord(
-            id=query_record.id,
+            id=query_id,
             relevant_docs=selected_docs,
             relevant_chunks=selected_chunks,
         )
         return enforce_parent_consistency(prediction, self.doc_map)
 
-    def run_batch(self, queries: List[QueryRecord]) -> List[PredictionRecord]:
-        """Runs pipeline across all queries in batch."""
-        return [self.run_query(q) for q in queries]
+    def run_batch(self, queries: List[tuple[str, str]]) -> List[PredictionRecord]:
+        """Run the core over (query_id, normalized_text) pairs."""
+        return [self.run_query(query_id, text) for query_id, text in queries]

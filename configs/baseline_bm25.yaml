@@ -1,5 +1,7 @@
 # Configuration: Baseline 0 (BM25 Sparse Retrieval)
 experiment_name: "baseline_bm25"
+backend: sparse
+corpus: "../data/xquad/dev/chunks.jsonl"
 
 retrieval:
   sparse:

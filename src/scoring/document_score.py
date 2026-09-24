@@ -49,7 +49,7 @@ def aggregate_doc_scores_hybrid(
 def aggregate_doc_scores(
     chunk_scores: Dict[str, float],
     chunk_to_doc: Dict[str, str],
-    method: Literal["max", "hybrid_mean"] = "max",
+    method: Literal["max", "mean", "hybrid_mean"] = "max",
     alpha: float = 0.8,
     beta: float = 0.2,
     top_n: int = 3,
@@ -57,6 +57,13 @@ def aggregate_doc_scores(
     """Dispatches document score aggregation based on configuration."""
     if method == "max":
         return aggregate_doc_scores_max(chunk_scores, chunk_to_doc)
+    elif method == "mean":
+        grouped: Dict[str, List[float]] = {}
+        for chunk_id, score in chunk_scores.items():
+            doc_id = chunk_to_doc.get(chunk_id)
+            if doc_id:
+                grouped.setdefault(doc_id, []).append(float(score))
+        return {doc_id: float(np.mean(scores)) for doc_id, scores in grouped.items()}
     elif method == "hybrid_mean":
         return aggregate_doc_scores_hybrid(chunk_scores, chunk_to_doc, alpha=alpha, beta=beta, top_n=top_n)
     else:

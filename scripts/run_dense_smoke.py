@@ -11,16 +11,16 @@ import time
 from pathlib import Path
 
 import numpy as np
-import torch
 import yaml
+import torch
 from pydantic import BaseModel, ConfigDict, Field
-from transformers import AutoModel, AutoTokenizer
 
 from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records
 from src.data.schema import PredictionRecord
 from src.data.validator import validate_chunks_integrity, validate_queries_integrity
 from src.evaluation.evaluator import Evaluator
 from src.retrieval.exact_dense import RankedChunk, exact_search
+from src.retrieval.dense_encoding import encode_texts, load_encoder, resolve_device
 from src.submission.validate import validate_submission_file
 
 
@@ -30,6 +30,9 @@ class SmokeConfig(BaseModel):
     experiment_name: str
     seed: int = 42
     model_name: str
+    revision: str = "main"
+    tokenizer_name: str | None = None
+    tokenizer_revision: str | None = None
     query_prefix: str = "query: "
     passage_prefix: str = "passage: "
     normalize_embeddings: bool = True
@@ -44,40 +47,6 @@ def _sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
-
-
-def _mean_pool(last_hidden_state: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
-    mask = attention_mask.unsqueeze(-1).to(last_hidden_state.dtype)
-    return (last_hidden_state * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
-
-
-def encode_texts(
-    texts: list[str],
-    tokenizer,
-    model,
-    *,
-    batch_size: int,
-    max_length: int,
-    normalize: bool,
-    device: torch.device,
-) -> np.ndarray:
-    batches: list[np.ndarray] = []
-    model.eval()
-    for start in range(0, len(texts), batch_size):
-        tokens = tokenizer(
-            texts[start : start + batch_size],
-            max_length=max_length,
-            padding=True,
-            truncation=True,
-            return_tensors="pt",
-        )
-        tokens = {key: value.to(device) for key, value in tokens.items()}
-        with torch.inference_mode():
-            pooled = _mean_pool(model(**tokens).last_hidden_state, tokens["attention_mask"])
-            if normalize:
-                pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
-        batches.append(pooled.cpu().numpy().astype(np.float32))
-    return np.concatenate(batches, axis=0)
 
 
 def predictions_at_k(
@@ -101,6 +70,47 @@ def predictions_at_k(
     return predictions
 
 
+def cross_language_positive_metrics(
+    queries,
+    truths_by_id,
+    rankings: list[list[RankedChunk]],
+    chunk_languages: dict[str, str],
+    k: int,
+) -> dict[str, dict]:
+    """Report VI-query retrieval recall and first-positive rank by positive language."""
+    language_metrics: dict[str, dict] = {}
+    for language in ("vi", "en", "zh"):
+        recalls = []
+        first_ranks = []
+        hit_queries = 0
+        for query, ranking in zip(queries, rankings, strict=True):
+            positives = {
+                chunk_id
+                for chunk_id in truths_by_id[query.id].relevant_chunks
+                if chunk_languages.get(chunk_id) == language
+            }
+            if not positives:
+                continue
+            retrieved = [item.chunk_id for item in ranking[:k]]
+            recalls.append(len(positives.intersection(retrieved)) / len(positives))
+            first_rank = next(
+                (rank for rank, item in enumerate(ranking, start=1) if item.chunk_id in positives),
+                None,
+            )
+            if first_rank is not None:
+                hit_queries += 1
+                first_ranks.append(first_rank)
+        language_metrics[language] = {
+            "positive_query_count": len(recalls),
+            "recall_at_k": sum(recalls) / len(recalls) if recalls else 0.0,
+            "queries_with_positive_hit": hit_queries,
+            "mean_first_positive_rank": (
+                sum(first_ranks) / len(first_ranks) if first_ranks else None
+            ),
+        }
+    return language_metrics
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/smoke_dense_e5.yaml")
@@ -122,10 +132,7 @@ def main() -> None:
     random.seed(config.seed)
     np.random.seed(config.seed)
     torch.manual_seed(config.seed)
-    device = torch.device(
-        "cuda" if args.device == "auto" and torch.cuda.is_available() else
-        "cpu" if args.device == "auto" else args.device
-    )
+    device = resolve_device(args.device)
 
     chunk_path = split_dir / "chunks.jsonl"
     query_path = split_dir / "queries.jsonl"
@@ -141,8 +148,13 @@ def main() -> None:
 
     print(json.dumps(config.model_dump(), indent=2), flush=True)
     print(f"Loading {config.model_name} on {device}...", flush=True)
-    tokenizer = AutoTokenizer.from_pretrained(config.model_name)
-    model = AutoModel.from_pretrained(config.model_name).to(device)
+    tokenizer, model, device, model_revision, tokenizer_revision = load_encoder(
+        config.model_name,
+        revision=config.revision,
+        tokenizer_name=config.tokenizer_name,
+        tokenizer_revision=config.tokenizer_revision,
+        device=str(device),
+    )
 
     passage_embeddings = encode_texts(
         [config.passage_prefix + item.text for item in chunks],
@@ -198,6 +210,8 @@ def main() -> None:
     save_jsonl_records(output_dir / "rankings.jsonl", ranking_rows)
 
     doc_map = DocumentChunkMap.from_chunks(chunks)
+    truths_by_id = {truth.id: truth for truth in truths}
+    chunk_languages = {chunk.chunk_id: chunk.language for chunk in chunks}
     evaluator = Evaluator(beta=2.0)
     metrics: dict[str, dict] = {}
     validations: dict[str, bool] = {}
@@ -210,10 +224,16 @@ def main() -> None:
         validation = validate_submission_file(prediction_path, doc_map, query_path)
         validations[str(k)] = validation.is_valid
         metrics[str(k)] = evaluator.evaluate(truths, predictions).to_dict()
+        metrics[str(k)]["vi_query_positive_language"] = cross_language_positive_metrics(
+            queries, truths_by_id, rankings, chunk_languages, k
+        )
 
     manifest = {
         "experiment_name": config.experiment_name,
         "model_name": config.model_name,
+        "model_revision": model_revision,
+        "tokenizer_name": config.tokenizer_name or config.model_name,
+        "tokenizer_revision": tokenizer_revision,
         "device": str(device),
         "python": sys.version,
         "torch": torch.__version__,
@@ -244,4 +264,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

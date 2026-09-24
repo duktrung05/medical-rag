@@ -1,0 +1,52 @@
+{
+  "experiment_name": "smoke_sparse_char_ngram",
+  "tokenizer": "char_ngram",
+  "char_ngram_size": 3,
+  "num_chunks": 108,
+  "num_queries": 178,
+  "corpus_sha256": "d25b0adbfc139c4fa1b578a24d78e57857d0553ae39b992adec7bd82707de054",
+  "mean_first_positive_rank": 1.1348314606741574,
+  "queries_with_positive_hit": 178,
+  "query_count": 178,
+  "metrics_at_k": {
+    "10": {
+      "chunk_recall_at_k": 0.4588014981273408,
+      "evaluation": {
+        "num_queries": 178,
+        "doc_precision": 0.13764044943820228,
+        "doc_recall": 0.4588014981273408,
+        "doc_f2": 0.3128192032686413,
+        "chunk_precision": 0.13764044943820228,
+        "chunk_recall": 0.4588014981273408,
+        "chunk_f2": 0.3128192032686413,
+        "macro_f2": 0.3128192032686413
+      }
+    },
+    "50": {
+      "chunk_recall_at_k": 0.6086142322097378,
+      "evaluation": {
+        "num_queries": 178,
+        "doc_precision": 0.03839917489503428,
+        "doc_recall": 0.6086142322097378,
+        "doc_f2": 0.152380323089365,
+        "chunk_precision": 0.03839917489503428,
+        "chunk_recall": 0.6086142322097378,
+        "chunk_f2": 0.152380323089365,
+        "macro_f2": 0.152380323089365
+      }
+    },
+    "100": {
+      "chunk_recall_at_k": 0.6591760299625468,
+      "evaluation": {
+        "num_queries": 178,
+        "doc_precision": 0.03408941118027111,
+        "doc_recall": 0.6591760299625468,
+        "doc_f2": 0.13948003000530348,
+        "chunk_precision": 0.03408941118027111,
+        "chunk_recall": 0.6591760299625468,
+        "chunk_f2": 0.13948003000530348,
+        "macro_f2": 0.13948003000530348
+      }
+    }
+  }
+}

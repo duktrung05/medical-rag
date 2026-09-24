@@ -32,6 +32,10 @@ def exact_search(
         raise ValueError("Query and passage embedding dimensions do not match.")
     if passage_embeddings.shape[0] != len(chunk_ids):
         raise ValueError("Number of passage embeddings must match chunk IDs.")
+    if len(chunk_ids) != len(set(chunk_ids)):
+        raise ValueError("Chunk IDs must be unique for deterministic dense ranking.")
+    if not np.isfinite(query_embeddings).all() or not np.isfinite(passage_embeddings).all():
+        raise ValueError("Embeddings contain NaN or infinity.")
     if top_k < 1:
         raise ValueError("top_k must be at least 1.")
 
@@ -52,4 +56,3 @@ def exact_search(
             ]
         )
     return results
-
