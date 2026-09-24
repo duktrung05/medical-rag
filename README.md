@@ -29,6 +29,9 @@ Chi tiết điểm mở rộng: [docs/architecture.md](docs/architecture.md).
 
 Kế hoạch học và tự vận hành từng bước: [docs/smoke_test_learning_plan.md](docs/smoke_test_learning_plan.md).
 
+Backlog cải thiện có thể thực hiện trước khi BTC công bố đầy đủ đề kỹ thuật:
+[docs/pre_competition_backlog.md](docs/pre_competition_backlog.md).
+
 ## 1. Tổng quan bài toán
 - **Input**: Vietnamese query và kho dữ liệu dạng chunk (`chunk_id`, `doc_id`, `chunk_index`, `language`, `text`).
 - **Kho ngữ liệu**: Đa ngôn ngữ (Vietnamese `vi`, English `en`, Chinese `zh`).

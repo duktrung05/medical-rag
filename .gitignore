@@ -58,3 +58,4 @@ data/processed/*
 Thumbs.db
 .vscode/
 .idea/
+.cache/
