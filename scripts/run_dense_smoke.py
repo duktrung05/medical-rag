@@ -11,16 +11,17 @@ import time
 from pathlib import Path
 
 import numpy as np
-import yaml
 import torch
+import yaml
 from pydantic import BaseModel, ConfigDict, Field
 
+from src.adapters import adapt_query
 from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records
 from src.data.schema import PredictionRecord
 from src.data.validator import validate_chunks_integrity, validate_queries_integrity
 from src.evaluation.evaluator import Evaluator
-from src.retrieval.exact_dense import RankedChunk, exact_search
 from src.retrieval.dense_encoding import encode_texts, load_encoder, resolve_device
+from src.retrieval.exact_dense import RankedChunk, exact_search
 from src.submission.validate import validate_submission_file
 
 
@@ -166,7 +167,7 @@ def main() -> None:
         device=device,
     )
     query_embeddings = encode_texts(
-        [config.query_prefix + item.query for item in queries],
+        [config.query_prefix + adapt_query(item).text for item in queries],
         tokenizer,
         model,
         batch_size=config.batch_size,
@@ -223,7 +224,7 @@ def main() -> None:
         save_jsonl_records(prediction_path, predictions)
         validation = validate_submission_file(prediction_path, doc_map, query_path)
         validations[str(k)] = validation.is_valid
-        metrics[str(k)] = evaluator.evaluate(truths, predictions).to_dict()
+        metrics[str(k)] = evaluator.evaluate(truths, predictions, doc_map=doc_map).to_dict()
         metrics[str(k)]["vi_query_positive_language"] = cross_language_positive_metrics(
             queries, truths_by_id, rankings, chunk_languages, k
         )

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from src.adapters import adapt_query
 from src.config import PipelineConfig, load_pipeline_config
 from src.data.loader import DataLoader, DocumentChunkMap
 from src.data.schema import PredictionRecord
@@ -48,7 +49,7 @@ def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_v
         char_ngram_size=sparse.char_ngram_size,
     )
     rankings = retriever.search_batch(
-        [query.query for query in queries], top_k=max(top_k_values)
+        [adapt_query(query).text for query in queries], top_k=max(top_k_values)
     )
 
     truth_by_id = {truth.id: truth for truth in truths}
@@ -70,7 +71,7 @@ def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_v
                 calculate_recall(truth_by_id[pred.id].relevant_chunks, pred.relevant_chunks)
                 for pred in predictions
             ) / len(predictions),
-            "evaluation": evaluator.evaluate(truths, predictions).to_dict(),
+            "evaluation": evaluator.evaluate(truths, predictions, doc_map=doc_map).to_dict(),
         }
 
     output_dir.mkdir(parents=True, exist_ok=True)

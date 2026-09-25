@@ -5,10 +5,10 @@ import json
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Set, Union
+from typing import List, Optional, Set, Union
 
 from src.data.loader import DataLoader, DocumentChunkMap
-
+from src.data.validator import validate_queries_integrity
 
 if hasattr(sys.stdout, "reconfigure"):
     try:
@@ -24,6 +24,7 @@ class ValidationReport:
     expected_queries: int
     duplicate_queries: List[str] = field(default_factory=list)
     missing_queries: List[str] = field(default_factory=list)
+    extra_queries: List[str] = field(default_factory=list)
     unknown_docs: List[str] = field(default_factory=list)
     unknown_chunks: List[str] = field(default_factory=list)
     internal_duplicates: List[str] = field(default_factory=list)
@@ -40,6 +41,8 @@ class ValidationReport:
         print(f"Parent violations: {len(self.parent_violations)}")
         if self.missing_queries:
             print(f"Missing queries: {len(self.missing_queries)}")
+        if self.extra_queries:
+            print(f"Extra queries: {len(self.extra_queries)}")
         if self.internal_duplicates:
             print(f"Internal list duplicates: {len(self.internal_duplicates)}")
         print("-" * 60)
@@ -51,6 +54,8 @@ class ValidationReport:
                 print(f"  * Duplicate query IDs (first 5): {self.duplicate_queries[:5]}")
             if self.missing_queries:
                 print(f"  * Missing query IDs (first 5): {self.missing_queries[:5]}")
+            if self.extra_queries:
+                print(f"  * Extra query IDs (first 5): {self.extra_queries[:5]}")
             if self.unknown_docs:
                 print(f"  * Unknown document IDs (first 5): {self.unknown_docs[:5]}")
             if self.unknown_chunks:
@@ -67,16 +72,20 @@ def validate_submission_records(
     doc_map: DocumentChunkMap,
     expected_query_ids: Optional[Set[str]] = None,
 ) -> ValidationReport:
-    """Validates an in-memory list of submission dictionary records."""
+    """Validate raw submission IDs, query coverage, and corpus/parent references.
+
+    The evaluator separately enforces query-set integrity before computing metrics.
+    """
     seen_query_ids: Set[str] = set()
     duplicate_queries: List[str] = []
     missing_queries: List[str] = []
+    extra_queries: List[str] = []
     unknown_docs: Set[str] = set()
     unknown_chunks: Set[str] = set()
     internal_duplicates: List[str] = []
     parent_violations: List[str] = []
 
-    all_known_docs = doc_map.all_doc_ids
+    all_known_docs = doc_map.all_doc_ids | set(doc_map.chunk_to_doc.values())
     all_known_chunks = doc_map.all_chunk_ids
 
     for idx, rec in enumerate(submission_records, start=1):
@@ -117,8 +126,9 @@ def validate_submission_records(
                     f"Query {qid}: chunk '{c}' belongs to parent doc '{parent_doc}' which is missing in relevant_docs"
                 )
 
-    if expected_query_ids:
-        missing_queries = sorted(list(expected_query_ids - seen_query_ids))
+    if expected_query_ids is not None:
+        missing_queries = sorted(expected_query_ids - seen_query_ids)
+        extra_queries = sorted(seen_query_ids - expected_query_ids)
 
     expected_count = len(expected_query_ids) if expected_query_ids is not None else len(seen_query_ids)
     total_count = len(seen_query_ids)
@@ -126,6 +136,7 @@ def validate_submission_records(
     is_valid = (
         len(duplicate_queries) == 0
         and len(missing_queries) == 0
+        and len(extra_queries) == 0
         and len(unknown_docs) == 0
         and len(unknown_chunks) == 0
         and len(internal_duplicates) == 0
@@ -140,8 +151,9 @@ def validate_submission_records(
         expected_queries=expected_count,
         duplicate_queries=duplicate_queries,
         missing_queries=missing_queries,
-        unknown_docs=sorted(list(unknown_docs)),
-        unknown_chunks=sorted(list(unknown_chunks)),
+        extra_queries=extra_queries,
+        unknown_docs=sorted(unknown_docs),
+        unknown_chunks=sorted(unknown_chunks),
         internal_duplicates=internal_duplicates,
         parent_violations=parent_violations,
     )
@@ -165,11 +177,15 @@ def validate_submission_file(
                 records.append(json.loads(line_str))
 
     expected_query_ids: Optional[Set[str]] = None
-    if expected_queries_path:
+    if expected_queries_path is not None:
         q_path = Path(expected_queries_path)
-        if q_path.is_file():
-            queries = DataLoader.load_queries(q_path)
-            expected_query_ids = {q.id for q in queries}
+        if not q_path.is_file():
+            raise FileNotFoundError(f"Expected queries file does not exist: {q_path}")
+        queries = DataLoader.load_queries(q_path)
+        errors = validate_queries_integrity(queries)
+        if errors:
+            raise ValueError("Invalid expected queries: " + "; ".join(errors))
+        expected_query_ids = {q.id for q in queries}
 
     return validate_submission_records(records, doc_map, expected_query_ids)
 
@@ -190,6 +206,8 @@ def main():
         else:
             chunks = DataLoader.load_chunks(chunks_p)
             doc_map = DocumentChunkMap.from_chunks(chunks)
+        if not doc_map.all_chunk_ids:
+            raise ValueError(f"Corpus map contains no chunks: {chunks_p}")
 
     report = validate_submission_file(
         submission_path=args.submission,

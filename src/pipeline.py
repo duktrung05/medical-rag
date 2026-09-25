@@ -1,10 +1,12 @@
 """End-to-end retrieval and selection pipeline."""
 
+import math
 from typing import Dict, List, Optional
+
 from src.data.loader import DocumentChunkMap
 from src.data.schema import PredictionRecord
-from src.retrieval.bm25 import BaseRetriever
 from src.reranking.base import BaseReranker
+from src.retrieval.bm25 import BaseRetriever
 from src.scoring.document_score import aggregate_doc_scores
 from src.selection.threshold import select_candidates
 from src.submission.build import enforce_parent_consistency
@@ -52,9 +54,16 @@ class RetrievalPipeline:
         self.chunk_min_k = min_k if chunk_min_k is None else chunk_min_k
         self.doc_min_k = min_k if doc_min_k is None else doc_min_k
         self.doc_top_n_mean = doc_top_n_mean
+        if self.reranker is not None and self.reranker_top_k < self.max_chunk_k:
+            raise ValueError(
+                "reranker_top_k must be >= max_chunk_k: only reranked candidates "
+                "are eligible for selection"
+            )
 
     def run_query(self, query_id: str, normalized_query: str) -> PredictionRecord:
         """Execute the retrieval core for a normalized query and external ID."""
+        if self.reranker is not None and self.reranker_top_k < self.max_chunk_k:
+            raise ValueError("reranker_top_k must be >= max_chunk_k for reranked selection")
         # 2. Retrieve candidates
         if hasattr(self.retriever, "search_with_provenance"):
             fused = self.retriever.search_with_provenance(normalized_query, top_k=self.retrieval_top_k)
@@ -64,31 +73,65 @@ class RetrievalPipeline:
         else:
             chunk_candidates = self.retriever.search(normalized_query, top_k=self.retrieval_top_k)
             provenance = {cid: {"sources": ()} for cid, _ in chunk_candidates}
+        candidate_ids = [cid for cid, _ in chunk_candidates]
+        if len(candidate_ids) != len(set(candidate_ids)):
+            seen = set()
+            duplicates = set()
+            for cid in candidate_ids:
+                if cid in seen:
+                    duplicates.add(cid)
+                seen.add(cid)
+            raise ValueError(f"Retriever returned duplicate chunk IDs: {sorted(duplicates)}")
 
         # 3. Rerank if enabled
-        if self.reranker and self.chunk_text_lookup:
+        if self.reranker is not None:
+            if not self.chunk_text_lookup:
+                raise ValueError("Reranker requires chunk_text_lookup for candidate passages")
             raw_scores = dict(chunk_candidates)
-            head, tail = chunk_candidates[:self.reranker_top_k], chunk_candidates[self.reranker_top_k:]
+            head = chunk_candidates[:self.reranker_top_k]
             cand_pairs = []
             for cid, _ in head:
                 title, context = self.chunk_context_lookup.get(cid, (None, None))
-                text = self.chunk_text_lookup.get(cid, "")
+                if cid not in self.chunk_text_lookup:
+                    raise ValueError(f"Reranker passage text is missing for chunk ID: {cid}")
+                text = self.chunk_text_lookup[cid]
                 cand_pairs.append((cid, text, title, context) if title or context else (cid, text))
             reranked = self.reranker.rerank(normalized_query, cand_pairs, top_k=len(head))
             rerank_scores = dict(reranked)
-            reranked_ids = set(rerank_scores)
-            untouched = [(cid, score) for cid, score in chunk_candidates if cid not in reranked_ids]
-            chunk_candidates = reranked + untouched
+            if len(reranked) != len(head) or set(rerank_scores) != {cid for cid, _ in head}:
+                raise ValueError("Reranker must return each candidate in its input depth exactly once")
+            if any(not math.isfinite(score) for _, score in reranked):
+                raise ValueError("Reranker returned a non-finite score")
+            reranked = sorted(reranked, key=lambda item: (-item[1], item[0]))
+            # Keep the full retrieval pool for diagnostics. Selection and document
+            # aggregation use only cross-encoder scores from the reranked depth.
+            chunk_candidates = reranked
             self.last_candidate_scores = {
-                cid: {"raw_retrieval_score": score, "rerank_score": rerank_scores.get(cid),
-                      "provenance": provenance.get(cid, {"sources": ()})}
-                for cid, score in raw_scores.items()
+                cid: {
+                    "retrieval_score": score,
+                    "raw_retrieval_score": score,
+                    "rerank_score": rerank_scores.get(cid),
+                    "selection_score": rerank_scores.get(cid),
+                    "selection_eligible": cid in rerank_scores,
+                    "selection_exclusion_reason": None if cid in rerank_scores else "outside_reranker_top_k",
+                    "retrieval_rank": rank,
+                    "provenance": provenance.get(cid, {"sources": ()}),
+                }
+                for rank, (cid, score) in enumerate(raw_scores.items(), 1)
             }
         else:
             self.last_candidate_scores = {
-                cid: {"raw_retrieval_score": score, "rerank_score": None,
-                      "provenance": provenance.get(cid, {"sources": ()})}
-                for cid, score in chunk_candidates
+                cid: {
+                    "retrieval_score": score,
+                    "raw_retrieval_score": score,
+                    "rerank_score": None,
+                    "selection_score": score,
+                    "selection_eligible": True,
+                    "selection_exclusion_reason": None,
+                    "retrieval_rank": rank,
+                    "provenance": provenance.get(cid, {"sources": ()}),
+                }
+                for rank, (cid, score) in enumerate(chunk_candidates, 1)
             }
 
         # 4. Chunk selection
@@ -108,7 +151,7 @@ class RetrievalPipeline:
             method=self.doc_aggregation,
             top_n=self.doc_top_n_mean,
         )
-        ranked_docs = sorted(doc_scores.items(), key=lambda x: x[1], reverse=True)
+        ranked_docs = sorted(doc_scores.items(), key=lambda item: (-item[1], item[0]))
         selected_docs = select_candidates(
             ranked_docs,
             threshold=self.doc_threshold,

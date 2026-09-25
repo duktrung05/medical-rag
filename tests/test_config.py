@@ -110,6 +110,19 @@ def test_enabled_reranker_requires_model():
         )
 
 
+def test_reranker_depth_must_cover_chunk_selection_limit():
+    config = {
+        "experiment_name": "invalid-rerank-depth",
+        "backend": "sparse",
+        "corpus": "chunks.jsonl",
+        "retrieval": {"sparse": {"enabled": True, "index_path": "sparse"}},
+        "reranker": {"enabled": True, "model_name": "cross-encoder", "top_k": 2},
+        "selection": {"chunk": {"max_k": 3}},
+    }
+    with pytest.raises(ValidationError, match="reranker.top_k must be >= selection.chunk.max_k"):
+        PipelineConfig.model_validate(config)
+
+
 def test_missing_index_and_dependency_have_actionable_errors(tmp_path, monkeypatch):
     with pytest.raises(FileNotFoundError, match="Build the index first"):
         _require_index(tmp_path / "absent-index", "dense retrieval")

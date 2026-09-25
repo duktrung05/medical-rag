@@ -1,9 +1,11 @@
 """Macro evaluator computing document-level and chunk-level Precision, Recall, and F2."""
 
 from dataclasses import asdict, dataclass
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Union
+
 import numpy as np
 
+from src.data.loader import DocumentChunkMap
 from src.data.schema import GroundTruthRecord, PredictionRecord
 from src.evaluation.fbeta import calculate_query_metrics
 
@@ -60,20 +62,36 @@ class Evaluator:
         self,
         ground_truth: Union[List[GroundTruthRecord], Dict[str, GroundTruthRecord]],
         predictions: Union[List[PredictionRecord], Dict[str, PredictionRecord]],
+        *,
+        doc_map: DocumentChunkMap | None = None,
     ) -> EvaluationSummary:
-        """Evaluates a batch of predictions against ground truth annotations."""
-        if isinstance(ground_truth, list):
-            gt_map = {gt.id: gt for gt in ground_truth}
-        else:
-            gt_map = ground_truth
+        """Validate query sets before scoring; check corpus references when a map is supplied.
 
-        if isinstance(predictions, list):
-            pred_map = {pred.id: pred for pred in predictions}
-        else:
-            pred_map = predictions
+        Submission files should also pass the submission validator, which checks
+        their raw records and expected query file before this metric gate.
+        """
+        gt_map = _index_records(ground_truth, "Ground truth")
+        pred_map = _index_records(predictions, "Prediction")
 
         if not gt_map:
             raise ValueError("Ground truth dataset cannot be empty.")
+        missing = sorted(gt_map.keys() - pred_map.keys())
+        extra = sorted(pred_map.keys() - gt_map.keys())
+        if missing or extra:
+            raise ValueError(f"Prediction query IDs do not match ground truth: missing={missing}, extra={extra}")
+
+        for record in pred_map.values():
+            for label, ids in (("document", record.relevant_docs), ("chunk", record.relevant_chunks)):
+                seen = set()
+                for item in ids:
+                    if item in seen:
+                        raise ValueError(f"Prediction {record.id} has duplicate {label} IDs: {item}")
+                    seen.add(item)
+        if doc_map is not None:
+            known_docs = doc_map.all_doc_ids | set(doc_map.chunk_to_doc.values())
+            known_chunks = doc_map.all_chunk_ids
+            for record in (*gt_map.values(), *pred_map.values()):
+                _validate_references(record, doc_map, known_docs, known_chunks)
 
         doc_precisions: List[float] = []
         doc_recalls: List[float] = []
@@ -84,9 +102,9 @@ class Evaluator:
         chunk_f2s: List[float] = []
 
         for qid, gt in gt_map.items():
-            pred = pred_map.get(qid)
-            pred_docs = pred.relevant_docs if pred else []
-            pred_chunks = pred.relevant_chunks if pred else []
+            pred = pred_map[qid]
+            pred_docs = pred.relevant_docs
+            pred_chunks = pred.relevant_chunks
 
             # Document metrics
             doc_metrics = calculate_query_metrics(
@@ -129,3 +147,37 @@ class Evaluator:
             chunk_f2=mean_chunk_f2,
             macro_f2=composite_f2,
         )
+
+
+def _index_records(records: list | dict, label: str) -> dict:
+    if isinstance(records, dict):
+        for key, record in records.items():
+            if key != record.id:
+                raise ValueError(f"{label} mapping key {key!r} does not match record ID {record.id!r}")
+        return records
+    indexed = {}
+    for record in records:
+        if record.id in indexed:
+            raise ValueError(f"{label} has duplicate query ID: {record.id}")
+        indexed[record.id] = record
+    return indexed
+
+
+def _validate_references(
+    record: GroundTruthRecord | PredictionRecord,
+    doc_map: DocumentChunkMap,
+    known_docs: set[str],
+    known_chunks: set[str],
+) -> None:
+    document_ids = set(record.relevant_docs)
+    for doc_id in sorted(document_ids):
+        if doc_id not in known_docs:
+            raise ValueError(f"Query {record.id} references unknown document ID: {doc_id}")
+    for chunk_id in record.relevant_chunks:
+        if chunk_id not in known_chunks:
+            raise ValueError(f"Query {record.id} references unknown chunk ID: {chunk_id}")
+        parent = doc_map.get_parent_doc(chunk_id)
+        if parent not in document_ids:
+            raise ValueError(
+                f"Query {record.id} has parent inconsistency: chunk {chunk_id} belongs to {parent}"
+            )

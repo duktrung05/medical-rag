@@ -2,6 +2,7 @@
 
 import argparse
 from pathlib import Path
+
 from src.data.loader import DataLoader, DocumentChunkMap
 from src.submission.build import build_submission_file
 from src.submission.validate import validate_submission_file
@@ -36,6 +37,8 @@ def main():
     print("\nRunning submission verification:")
     report = validate_submission_file(out_file, doc_map=doc_map, expected_queries_path=args.queries)
     report.print_summary()
+    if not report.is_valid:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

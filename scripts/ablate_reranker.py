@@ -47,7 +47,7 @@ def main():
             started = time.perf_counter()
             predictions.append(pipeline.run_query(query.query_id, query.text))
             durations.append(time.perf_counter() - started)
-        metrics = Evaluator().evaluate(ground_truth, predictions).to_dict()
+        metrics = Evaluator().evaluate(ground_truth, predictions, doc_map=pipeline.doc_map).to_dict()
         rows.append({
             "arm": name,
             "candidate_depth": depth,

@@ -145,6 +145,11 @@ class PipelineConfig(StrictConfig):
             raise ValueError("fusion.enabled must be true when multiple retrievers are enabled")
         if self.fusion.enabled and retriever_count < 2:
             raise ValueError("fusion.enabled requires at least two enabled retrievers")
+        if self.reranker.enabled and self.reranker.top_k < self.selection.chunk.max_k:
+            raise ValueError(
+                "reranker.top_k must be >= selection.chunk.max_k: only the reranked "
+                "top_k candidates are eligible for selection"
+            )
         return self
 
 

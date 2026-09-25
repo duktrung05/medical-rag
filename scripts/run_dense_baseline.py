@@ -7,6 +7,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from scripts.run_dense_smoke import cross_language_positive_metrics, predictions_at_k
+from src.adapters import adapt_query
 from src.config import load_pipeline_config
 from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records
 from src.data.validator import validate_chunks_integrity, validate_queries_integrity
@@ -15,7 +17,6 @@ from src.indexing.sparse_index import corpus_sha256
 from src.retrieval.dense import DenseRetriever
 from src.retrieval.exact_dense import RankedChunk
 from src.submission.validate import validate_submission_file
-from scripts.run_dense_smoke import cross_language_positive_metrics, predictions_at_k
 
 
 def sha256(path: Path) -> str:
@@ -67,7 +68,7 @@ def main() -> None:
     )
     top_k_values = (1, 3, 5, 10)
     max_k = min(dense.top_k, len(chunks))
-    raw_rankings = retriever.search_batch([query.query for query in queries], top_k=max_k)
+    raw_rankings = retriever.search_batch([adapt_query(query).text for query in queries], top_k=max_k)
     rankings = [
         [RankedChunk(chunk_id, score, rank) for rank, (chunk_id, score) in enumerate(row, 1)]
         for row in raw_rankings
@@ -107,7 +108,7 @@ def main() -> None:
         validation = validate_submission_file(prediction_path, doc_map, query_path)
         if not validation.is_valid:
             raise ValueError(f"Invalid predictions at K={k}: {validation}")
-        metrics[str(k)] = evaluator.evaluate(truths, predictions).to_dict()
+        metrics[str(k)] = evaluator.evaluate(truths, predictions, doc_map=doc_map).to_dict()
         metrics[str(k)]["vi_query_positive_language"] = cross_language_positive_metrics(
             queries, truths_by_id, rankings, chunk_languages, k
         )

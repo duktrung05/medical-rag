@@ -58,16 +58,20 @@ def main() -> int:
 
 
 def run_smoke(args) -> None:
-    from src.config import DenseRetrievalConfig, SparseRetrievalConfig, load_pipeline_config
+    from src.adapters import adapt_query
+    from src.config import (
+        DenseRetrievalConfig,
+        SparseRetrievalConfig,
+        load_pipeline_config,
+    )
     from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records
-    from src.data.schema import ChunkRecord
     from src.data.validator import validate_chunks_integrity
     from src.evaluation.evaluator import Evaluator
     from src.indexing.sparse_index import corpus_sha256
+    from src.pipeline import RetrievalPipeline
     from src.retrieval.bm25 import BM25Retriever
     from src.retrieval.dense import DenseRetriever
     from src.retrieval.hybrid import HybridRetriever
-    from src.pipeline import RetrievalPipeline
 
     started = time.perf_counter()
     config = load_pipeline_config(args.config)
@@ -144,7 +148,8 @@ def run_smoke(args) -> None:
     predictions = []
     rankings = []
     for query in selected_queries:
-        predictions.append(pipeline.run_query(query.id, query.query))
+        adapted = adapt_query(query)
+        predictions.append(pipeline.run_query(adapted.query_id, adapted.text))
         candidate_details = pipeline.last_candidate_scores
         rankings.append({
             "id": query.id,
@@ -161,7 +166,7 @@ def run_smoke(args) -> None:
     # Persist predictions from the end-to-end pipeline. Candidate rankings retain provenance.
     save_jsonl_records(output / "predictions.jsonl", predictions)
     save_jsonl_records(output / "rankings.jsonl", rankings)
-    metrics = Evaluator(beta=2).evaluate(selected_truths, predictions).to_dict()
+    metrics = Evaluator(beta=2).evaluate(selected_truths, predictions, doc_map=doc_map).to_dict()
     duration = time.perf_counter() - started
     report = {
         "status": "complete",

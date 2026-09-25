@@ -1,8 +1,16 @@
 """Tests for competition submission validator."""
 
+import subprocess
+import sys
+
+import pytest
+
 from src.data.loader import DocumentChunkMap
 from src.data.schema import ChunkRecord
-from src.submission.validate import validate_submission_records
+from src.submission.validate import (
+    validate_submission_file,
+    validate_submission_records,
+)
 
 
 def setup_test_doc_map() -> DocumentChunkMap:
@@ -71,3 +79,67 @@ def test_submission_parent_consistency_violation():
     assert report.is_valid is False
     assert len(report.parent_violations) == 1
     assert "DOC_B" in report.parent_violations[0]
+
+
+def test_submission_reports_extra_query_ids():
+    report = validate_submission_records(
+        [{"id": "Q1", "relevant_docs": ["DOC_A"], "relevant_chunks": ["C1"]},
+         {"id": "Q2", "relevant_docs": [], "relevant_chunks": []}],
+        setup_test_doc_map(), expected_query_ids={"Q1"},
+    )
+    assert not report.is_valid
+    assert report.extra_queries == ["Q2"]
+
+
+def test_submitted_expected_queries_path_must_exist(tmp_path):
+    submission = tmp_path / "submission.jsonl"
+    submission.write_text('{"id":"Q1","relevant_docs":["DOC_A"],"relevant_chunks":["C1"]}\n', encoding="utf-8")
+    with pytest.raises(FileNotFoundError, match="Expected queries file does not exist"):
+        validate_submission_file(submission, setup_test_doc_map(), tmp_path / "missing.jsonl")
+
+
+def test_expected_queries_must_have_unique_ids(tmp_path):
+    submission = tmp_path / "submission.jsonl"
+    submission.write_text('{"id":"Q1","relevant_docs":["DOC_A"],"relevant_chunks":["C1"]}\n', encoding="utf-8")
+    queries = tmp_path / "queries.jsonl"
+    queries.write_text('{"id":"Q1","query":"a"}\n{"id":"Q1","query":"b"}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="Duplicate query ID: Q1"):
+        validate_submission_file(submission, setup_test_doc_map(), queries)
+
+
+@pytest.mark.parametrize(
+    ("field", "duplicated_id"),
+    [("relevant_docs", "DOC_A"), ("relevant_chunks", "C1")],
+)
+def test_submission_rejects_internal_duplicates(field, duplicated_id):
+    record = {"id": "Q1", "relevant_docs": ["DOC_A"], "relevant_chunks": ["C1"]}
+    record[field] = [duplicated_id, duplicated_id]
+    report = validate_submission_records([record], setup_test_doc_map(), expected_query_ids={"Q1"})
+    assert not report.is_valid
+    assert duplicated_id in report.internal_duplicates[0]
+
+
+def test_validation_cli_exits_nonzero_on_invalid_submission(tmp_path):
+    submission = tmp_path / "submission.jsonl"
+    submission.write_text('{"id":"Q2","relevant_docs":[],"relevant_chunks":[]}\n', encoding="utf-8")
+    queries = tmp_path / "queries.jsonl"
+    queries.write_text('{"id":"Q1","query":"question"}\n', encoding="utf-8")
+    completed = subprocess.run(
+        [sys.executable, "-m", "src.submission.validate", str(submission), "--test-queries", str(queries)],
+        capture_output=True, text=True, timeout=10, check=False,
+    )
+    assert completed.returncode != 0
+    assert "Q1" in completed.stdout and "Q2" in completed.stdout
+
+
+def test_validation_cli_rejects_requested_empty_corpus(tmp_path):
+    submission = tmp_path / "submission.jsonl"
+    submission.write_text('{"id":"Q1","relevant_docs":["DOC_A"],"relevant_chunks":["C1"]}\n', encoding="utf-8")
+    corpus = tmp_path / "chunks.jsonl"
+    corpus.write_text("", encoding="utf-8")
+    completed = subprocess.run(
+        [sys.executable, "-m", "src.submission.validate", str(submission), "--corpus-chunks", str(corpus)],
+        capture_output=True, text=True, timeout=10, check=False,
+    )
+    assert completed.returncode != 0
+    assert "Corpus map contains no chunks" in completed.stderr
