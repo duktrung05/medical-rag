@@ -82,6 +82,7 @@ class SparseBM25Index(BaseSparseIndex):
         self.b = b
         self.documents: list[dict[str, str]] = []
         self._term_freqs: list[Counter[str]] = []
+        self._doc_lengths: list[int] = []
         self._postings: dict[str, list[tuple[int, int]]] = {}
         self._avg_doc_len = 0.0
         self.corpus_hash = ""
@@ -181,6 +182,7 @@ class SparseBM25Index(BaseSparseIndex):
             for term, count in frequencies.items():
                 postings[term].append((doc_index, count))
         self._term_freqs = term_freqs
+        self._doc_lengths = lengths
         self._postings = dict(postings)
         self._avg_doc_len = sum(lengths) / len(lengths) if lengths else 0.0
 
@@ -203,7 +205,7 @@ class SparseBM25Index(BaseSparseIndex):
             doc_frequency = len(postings)
             idf = math.log1p((doc_count - doc_frequency + 0.5) / (doc_frequency + 0.5))
             for doc_index, term_frequency in postings:
-                doc_len = sum(self._term_freqs[doc_index].values())
+                doc_len = self._doc_lengths[doc_index]
                 denominator = term_frequency + self.k1 * (
                     1 - self.b + self.b * doc_len / max(self._avg_doc_len, 1e-12)
                 )

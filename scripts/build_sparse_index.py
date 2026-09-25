@@ -10,8 +10,8 @@ from src.retrieval.bm25 import BM25Retriever
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--chunks", type=str, default="data/xquad/dev/chunks.jsonl")
-    parser.add_argument("--output-index", type=str, default="artifacts/sparse_index")
+    parser.add_argument("--chunks", type=str, default="data/medquad/dev/chunks.jsonl")
+    parser.add_argument("--output-index", type=str, default="artifacts/medquad_bm25_index")
     parser.add_argument("--tokenizer", choices=("word", "char_ngram"), default="word")
     parser.add_argument("--char-ngram-size", type=int, default=3)
     parser.add_argument("--k1", type=float, default=1.5)

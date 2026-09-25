@@ -78,6 +78,8 @@ class RerankerConfig(StrictConfig):
     model_name: str | None = None
     top_k: int = Field(default=100, ge=1)
     batch_size: int = Field(default=16, ge=1)
+    max_length: int = Field(default=512, ge=8)
+    device: Literal["auto", "cpu", "cuda"] = "auto"
 
     @model_validator(mode="after")
     def require_model_when_enabled(self):

@@ -1,4 +1,4 @@
-"""Benchmark the configured production dense index on a labeled XQuAD split."""
+"""Benchmark the configured production dense index on a labeled medical split."""
 
 from __future__ import annotations
 

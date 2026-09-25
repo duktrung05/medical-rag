@@ -84,12 +84,16 @@ def create_hybrid_retriever(
     sparse_retriever: BaseRetriever,
     dense_retriever: BaseRetriever,
     config: FusionConfig,
+    *,
+    sparse_top_k: int | None = None,
+    dense_top_k: int | None = None,
 ) -> BaseRetriever:
     if not config.enabled:
         raise ValueError("Cannot create hybrid retriever: fusion.enabled is false")
     if config.method != "rrf":
         raise ValueError(f"Unsupported fusion method: {config.method}")
-    return HybridRetriever(sparse_retriever, dense_retriever, rrf_k=config.rrf_k)
+    return HybridRetriever(sparse_retriever, dense_retriever, rrf_k=config.rrf_k,
+                           sparse_top_k=sparse_top_k, dense_top_k=dense_top_k)
 
 
 def create_retriever(
@@ -108,6 +112,8 @@ def create_retriever(
                 create_sparse_retriever(config.sparse, expected_corpus_hash=expected_corpus_hash),
                 create_dense_retriever(config.dense, expected_corpus_hash=expected_corpus_hash),
                 fusion,
+                sparse_top_k=config.sparse.top_k,
+                dense_top_k=config.dense.top_k,
             ),
             fusion.top_k,
         )

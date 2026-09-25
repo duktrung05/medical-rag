@@ -33,7 +33,7 @@ evaluator, build index, calibrate trên dev và khóa cấu hình.
 
 ### PRE-001 — Mở rộng runtime config
 
-**Trạng thái:** `[ ]`  
+**Trạng thái:** `[x]`
 **Mục tiêu:** Command chính đọc được cấu hình `demo`, `bm25`, `dense`, `hybrid`
 và `hybrid_rerank`.
 
@@ -41,9 +41,9 @@ Tasks:
 
 - [X] Thiết kế config models strict cho retrieval, fusion, reranking, scoring và
   selection.
-- [ ] Giữ đường chạy `demo` làm fixture không cần model.
-- [ ] Báo lỗi rõ khi index, model hoặc dependency đang bật nhưng bị thiếu.
-- [ ] Thêm test từ chối key sai và cấu hình không hợp lệ.
+- [x] Giữ đường chạy `demo` làm fixture không cần model.
+- [x] Báo lỗi rõ khi index, model hoặc dependency đang bật nhưng bị thiếu.
+- [x] Thêm test từ chối key sai và cấu hình không hợp lệ.
 
 Acceptance gate:
 
@@ -53,16 +53,16 @@ Acceptance gate:
 
 ### PRE-002 — Composition/factory cho pipeline
 
-**Trạng thái:** `[ ]`  
+**Trạng thái:** `[x]`
 **Phụ thuộc:** PRE-001
 
 Tasks:
 
-- [ ] Tạo factory cho sparse retriever, dense retriever, hybrid retriever và
+- [x] Tạo factory cho sparse retriever, dense retriever, hybrid retriever và
   reranker.
-- [ ] Sửa `src/service.py` để dựng component theo config.
-- [ ] Tách input adapter khỏi retrieval core.
-- [ ] Thêm end-to-end fixture cho từng backend.
+- [x] Sửa `src/service.py` để dựng component theo config.
+- [x] Tách input adapter khỏi retrieval core.
+- [x] Thêm end-to-end fixture cho từng backend.
 
 Acceptance gate:
 
@@ -71,15 +71,15 @@ Acceptance gate:
 
 ### PRE-003 — Implement BM25 production baseline
 
-**Trạng thái:** `[ ]`
+**Trạng thái:** `[x]`
 
 Tasks:
 
-- [ ] Build/load sparse index cùng `chunk_id`, `doc_id`, `language` và text.
-- [ ] Hỗ trợ Unicode và deterministic tie-breaking bằng ID.
-- [ ] Lưu corpus hash và từ chối index không khớp corpus.
-- [ ] Hỗ trợ batch query và configurable `top_k`.
-- [ ] Thử word tokenization và character n-gram như hai experiment tách biệt.
+- [x] Build/load sparse index cùng `chunk_id`, `doc_id`, `language` và text.
+- [x] Hỗ trợ Unicode và deterministic tie-breaking bằng ID.
+- [x] Lưu corpus hash và từ chối index không khớp corpus.
+- [x] Hỗ trợ batch query và configurable `top_k`.
+- [x] Thử word tokenization và character n-gram như hai experiment tách biệt.
 
 Acceptance gate:
 
@@ -111,16 +111,16 @@ query XQuAD dev và xác nhận hai lượt chạy có ranking/score giống nha
 
 ### PRE-005 — Hoàn thiện RRF fusion
 
-**Trạng thái:** `[ ]`  
+**Trạng thái:** `[x]`
 **Phụ thuộc:** PRE-003, PRE-004
 
 Tasks:
 
-- [ ] Deduplicate candidate theo chunk ID.
-- [ ] Giữ rank và provenance từ từng retriever.
-- [ ] Cấu hình được sparse/dense depth, `rrf_k` và fusion depth.
-- [ ] Deterministic tie-breaking.
-- [ ] Unit test bằng các ranking nhỏ có expected result biết trước.
+- [x] Deduplicate candidate theo chunk ID.
+- [x] Giữ rank và provenance từ từng retriever.
+- [x] Cấu hình được sparse/dense depth, `rrf_k` và fusion depth.
+- [x] Deterministic tie-breaking.
+- [x] Unit test bằng các ranking nhỏ có expected result biết trước.
 
 Acceptance gate:
 
@@ -129,22 +129,31 @@ Acceptance gate:
 
 ### PRE-006 — Implement cross-encoder reranker
 
-**Trạng thái:** `[ ]`  
+**Trạng thái:** `[~]`
 **Phụ thuộc:** PRE-005
 
 Tasks:
 
-- [ ] Load model một lần và batch inference.
-- [ ] Rerank cặp `(query, chunk_text)`; title/context là field tùy chọn.
-- [ ] Cấu hình max length, batch size và candidate depth.
-- [ ] Giữ raw retrieval score, rerank score và provenance riêng biệt.
-- [ ] Profile latency, RAM và VRAM.
+- [x] Load model một lần và batch inference.
+- [x] Rerank cặp `(query, chunk_text)`; title/context là field tùy chọn.
+- [x] Cấu hình max length, batch size và candidate depth.
+- [x] Giữ raw retrieval score, rerank score và provenance riêng biệt.
+- [ ] Profile latency, RAM và VRAM trên môi trường có retrieval dependencies.
 
 Acceptance gate:
 
 - `BGEReranker.rerank()` không còn stub trả `[]`.
-- Có ablation `no-rerank` so với rerank top 50/100/150.
+- Có ablation `no-rerank` so với rerank top 50/100/150; runner đã có, cần chạy và lưu kết quả.
 - Reranker không làm mất candidate trước khi selection.
+
+**Plan gần nhất:** Hoàn tất acceptance gate PRE-006 bằng cách cài retrieval extras,
+chạy ablation trên dev và lưu bảng metric/latency/RAM/VRAM vào
+`outputs/reranker_ablation/dev/report.json`:
+
+```powershell
+pip install -e ".[retrieval]"
+python scripts/ablate_reranker.py --config configs/baseline_hybrid_rerank.yaml --queries data/xquad/dev/queries.jsonl --ground-truth data/xquad/dev/ground_truth.jsonl --output outputs/reranker_ablation/dev/report.json
+```
 
 ## 4. P0 — Benchmark và evaluator nội bộ
 

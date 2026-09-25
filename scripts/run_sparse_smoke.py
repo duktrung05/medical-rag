@@ -115,7 +115,7 @@ def _write_top_k_predictions(output_dir, queries, rankings, doc_map, k):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
-    parser.add_argument("--split-dir", default="data/xquad/dev")
+    parser.add_argument("--split-dir", default="data/medquad/dev")
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--top-k-values", default="10,50,100")
     args = parser.parse_args()

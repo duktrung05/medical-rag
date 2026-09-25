@@ -1,7 +1,7 @@
 # Configuration: Baseline 1 (Dense Multilingual Retrieval)
 experiment_name: "baseline_dense"
 backend: dense
-corpus: "../data/xquad/dev/chunks.jsonl"
+corpus: "../data/medquad/dev/chunks.jsonl"
 
 retrieval:
   sparse:
@@ -10,7 +10,7 @@ retrieval:
     enabled: true
     model_name: "BAAI/bge-m3"
     revision: "5617a9f61b028005a4858fdac845db406aefb181"
-    index_path: "../artifacts/dense_index"
+    index_path: "../artifacts/medquad_dense_index"
     index_type: "exact"  # exact by default; use faiss for large corpora
     top_k: 300
     batch_size: 32

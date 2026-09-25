@@ -2,10 +2,10 @@
 
 ## 1. Quyết định kiến trúc
 
-Hướng chính của dự án là **multilingual medical retrieval**. XQuAD được đóng
-băng và chỉ giữ vai trò regression fixture để kiểm tra schema, CLIR, evaluator,
-submission và khả năng chạy xuyên suốt pipeline. Không tiếp tục tối ưu model,
-`K` hoặc threshold dựa trên điểm XQuAD.
+Hướng chính của dự án là **multilingual medical retrieval**. Từ 2026-09-25,
+XQuAD đã được loại khỏi repository theo quyết định của project owner. MedQuAD là
+benchmark public đầu tiên để kiểm tra pipeline medical end-to-end; benchmark
+đa ngôn ngữ có clinical review vẫn là đích tiếp theo.
 
 Benchmark chính mới là `medical_smoke_v1`:
 
@@ -24,8 +24,8 @@ nguồn y khoa có kiểm chứng
 Nguyên tắc quan trọng:
 
 ```text
-XQuAD cũ:       khác paragraph group -> mặc định negative
-Medical mới:    khác group -> chưa biết; chỉ là negative sau khi được đánh giá
+MedQuAD v0:     qrel cấu trúc từ cặp question-answer
+Medical review: candidate chưa được đánh giá -> chưa biết, không mặc định negative
 ```
 
 Nhờ đó, một đoạn khác ID nhưng vẫn trả lời đúng query sẽ không tự động bị tính là
@@ -336,15 +336,15 @@ Quy tắc phải được khai báo trước:
 4. Không dùng test để chọn model, K hoặc threshold.
 5. Chỉ chạy test sau khi qrels, evaluator và config đã khóa.
 
-Không áp dụng hồi tố quy tắc mới để thay đổi kết luận của baseline XQuAD cũ.
+Không dùng kết quả benchmark đã bị loại để chọn cấu hình medical.
 
 ## 6. Thứ tự triển khai
 
-### P0 - Bảo toàn baseline
+### P0 - Baseline medical public
 
-1. Ghi kết quả XQuAD hiện tại vào experiment log.
-2. Đổi vai trò XQuAD thành regression fixture.
-3. Không chạy lại test XQuAD để tối ưu.
+1. Chuyển MedQuAD thành corpus/query/qrels tách biệt.
+2. Chia theo source document để chống leakage.
+3. Chạy BM25 trước, sau đó dense, hybrid và reranker trên cùng dev split.
 
 ### P1 - Medical Gate 0-3
 

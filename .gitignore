@@ -39,6 +39,9 @@ artifacts/embeddings/*
 !artifacts/embeddings/.gitkeep
 artifacts/cache/*
 !artifacts/cache/.gitkeep
+artifacts/medquad_bm25_index/
+artifacts/medquad_char_ngram_index/
+artifacts/medquad_dense_index/
 
 outputs/predictions/*
 !outputs/predictions/.gitkeep

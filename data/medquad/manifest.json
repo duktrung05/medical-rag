@@ -1,0 +1,55 @@
+{
+  "dataset": "MedQuAD",
+  "dataset_role": "medical_retrieval_benchmark",
+  "source_url": "https://github.com/abachaa/MedQuAD",
+  "license": "CC BY 4.0",
+  "query_language": "en",
+  "corpus_languages": [
+    "en"
+  ],
+  "label_origin": "structural_question_answer_pair",
+  "medical_validation": "Source-derived medical QA; not independently clinically validated by this project",
+  "excluded_collections": [
+    "10_MPlus_ADAM_QA",
+    "11_MPlusDrugs_QA",
+    "12_MPlusHerbsSupplements_QA"
+  ],
+  "split_policy": "source XML documents are disjoint across train/dev/test",
+  "seed": 42,
+  "ratios": {
+    "train": 0.7,
+    "dev": 0.15,
+    "test": 0.15000000000000005
+  },
+  "source_document_counts": {
+    "CDC": 59,
+    "CancerGov": 116,
+    "GARD": 2684,
+    "GHR": 1086,
+    "MPlusHealthTopics": 981,
+    "NHLBI": 88,
+    "NIDDK": 151,
+    "NIHSeniorHealth": 48,
+    "NINDS": 273
+  },
+  "counts": {
+    "train": {
+      "documents": 3840,
+      "chunks": 11555,
+      "queries": 11555,
+      "ground_truth": 11555
+    },
+    "dev": {
+      "documents": 823,
+      "chunks": 2333,
+      "queries": 2333,
+      "ground_truth": 2333
+    },
+    "test": {
+      "documents": 823,
+      "chunks": 2519,
+      "queries": 2519,
+      "ground_truth": 2519
+    }
+  }
+}

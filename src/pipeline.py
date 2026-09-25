@@ -19,6 +19,7 @@ class RetrievalPipeline:
         doc_map: DocumentChunkMap,
         reranker: Optional[BaseReranker] = None,
         chunk_text_lookup: Optional[Dict[str, str]] = None,
+        chunk_context_lookup: Optional[Dict[str, tuple[str | None, str | None]]] = None,
         doc_aggregation: str = "max",
         chunk_threshold: float = 0.50,
         chunk_delta: float = 0.30,
@@ -37,6 +38,7 @@ class RetrievalPipeline:
         self.doc_map = doc_map
         self.reranker = reranker
         self.chunk_text_lookup = chunk_text_lookup or {}
+        self.chunk_context_lookup = chunk_context_lookup or {}
         self.doc_aggregation = doc_aggregation
         self.chunk_threshold = chunk_threshold
         self.chunk_delta = chunk_delta
@@ -54,17 +56,40 @@ class RetrievalPipeline:
     def run_query(self, query_id: str, normalized_query: str) -> PredictionRecord:
         """Execute the retrieval core for a normalized query and external ID."""
         # 2. Retrieve candidates
-        chunk_candidates = self.retriever.search(normalized_query, top_k=self.retrieval_top_k)
+        if hasattr(self.retriever, "search_with_provenance"):
+            fused = self.retriever.search_with_provenance(normalized_query, top_k=self.retrieval_top_k)
+            chunk_candidates = [(item.chunk_id, item.score) for item in fused]
+            provenance = {item.chunk_id: {"bm25_rank": item.sparse_rank, "dense_rank": item.dense_rank,
+                                          "sources": item.sources} for item in fused}
+        else:
+            chunk_candidates = self.retriever.search(normalized_query, top_k=self.retrieval_top_k)
+            provenance = {cid: {"sources": ()} for cid, _ in chunk_candidates}
 
         # 3. Rerank if enabled
         if self.reranker and self.chunk_text_lookup:
-            cand_pairs = [
-                (cid, self.chunk_text_lookup.get(cid, ""))
-                for cid, _ in chunk_candidates
-            ]
-            chunk_candidates = self.reranker.rerank(
-                normalized_query, cand_pairs, top_k=self.reranker_top_k
-            )
+            raw_scores = dict(chunk_candidates)
+            head, tail = chunk_candidates[:self.reranker_top_k], chunk_candidates[self.reranker_top_k:]
+            cand_pairs = []
+            for cid, _ in head:
+                title, context = self.chunk_context_lookup.get(cid, (None, None))
+                text = self.chunk_text_lookup.get(cid, "")
+                cand_pairs.append((cid, text, title, context) if title or context else (cid, text))
+            reranked = self.reranker.rerank(normalized_query, cand_pairs, top_k=len(head))
+            rerank_scores = dict(reranked)
+            reranked_ids = set(rerank_scores)
+            untouched = [(cid, score) for cid, score in chunk_candidates if cid not in reranked_ids]
+            chunk_candidates = reranked + untouched
+            self.last_candidate_scores = {
+                cid: {"raw_retrieval_score": score, "rerank_score": rerank_scores.get(cid),
+                      "provenance": provenance.get(cid, {"sources": ()})}
+                for cid, score in raw_scores.items()
+            }
+        else:
+            self.last_candidate_scores = {
+                cid: {"raw_retrieval_score": score, "rerank_score": None,
+                      "provenance": provenance.get(cid, {"sources": ()})}
+                for cid, score in chunk_candidates
+            }
 
         # 4. Chunk selection
         selected_chunks = select_candidates(

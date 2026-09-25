@@ -45,6 +45,7 @@ def build_pipeline(config: RuntimeConfig | PipelineConfig) -> RetrievalPipeline:
         doc_map=DocumentChunkMap.from_chunks(chunks),
         reranker=reranker,
         chunk_text_lookup={chunk.chunk_id: chunk.text for chunk in chunks},
+        chunk_context_lookup={chunk.chunk_id: (chunk.title, chunk.context) for chunk in chunks},
         doc_aggregation=config.scoring.document.aggregation,
         chunk_threshold=chunk_selection.threshold,
         chunk_delta=chunk_selection.relative_delta,

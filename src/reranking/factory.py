@@ -15,4 +15,5 @@ def create_reranker(config: RerankerConfig) -> BaseReranker | None:
             "Cannot enable reranking: dependency 'sentence-transformers' is missing. "
             "Install retrieval dependencies with `pip install -e '.[retrieval]'`."
         )
-    return BGEReranker(model_name=config.model_name or "", batch_size=config.batch_size)
+    return BGEReranker(model_name=config.model_name or "", batch_size=config.batch_size,
+                       max_length=config.max_length, device=config.device)

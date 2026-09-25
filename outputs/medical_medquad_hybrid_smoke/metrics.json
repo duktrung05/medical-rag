@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "dataset": "MedQuAD dev subset",
+  "query_language": "en",
+  "num_queries": 32,
+  "num_chunks": 96,
+  "positive_chunks_in_subset": 32,
+  "device": "cpu",
+  "elapsed_seconds": 169.1829635000322,
+  "rrf_k": 60,
+  "metrics": {
+    "num_queries": 32,
+    "doc_precision": 0.05,
+    "doc_recall": 1.0,
+    "doc_f2": 0.20833333333333334,
+    "chunk_precision": 0.0484375,
+    "chunk_recall": 0.96875,
+    "chunk_f2": 0.20182291666666669,
+    "macro_f2": 0.205078125
+  },
+  "dense_index_model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "scope_note": "Time-bounded smoke run; metrics are for a sampled subset and are not full-dev results."
+}

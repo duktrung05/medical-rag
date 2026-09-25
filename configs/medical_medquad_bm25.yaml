@@ -1,0 +1,35 @@
+# Medical-first baseline: MedQuAD dev split with BM25.
+experiment_name: "medical_medquad_bm25"
+backend: sparse
+corpus: "../data/medquad/dev/chunks.jsonl"
+
+retrieval:
+  sparse:
+    enabled: true
+    engine: "bm25"
+    index_path: "../artifacts/medquad_bm25_index"
+    top_k: 100
+  dense:
+    enabled: false
+
+fusion:
+  enabled: false
+
+reranker:
+  enabled: false
+
+scoring:
+  document:
+    aggregation: "max"
+
+selection:
+  chunk:
+    threshold: 0.0
+    relative_delta: 1000000.0
+    min_k: 5
+    max_k: 5
+  document:
+    threshold: 0.0
+    relative_delta: 1000000.0
+    min_k: 5
+    max_k: 5

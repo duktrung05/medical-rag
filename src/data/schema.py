@@ -31,6 +31,8 @@ class ChunkRecord(BaseModel):
     chunk_index: int = Field(..., ge=0, description="0-indexed position within parent document")
     language: str = Field(..., min_length=2, max_length=10, description="Language code: vi, en, zh")
     text: str = Field(..., min_length=1, description="Text content of the chunk")
+    title: str | None = Field(default=None, description="Optional title")
+    context: str | None = Field(default=None, description="Optional surrounding context")
 
     @field_validator("chunk_id", "doc_id", "language", "text")
     @classmethod

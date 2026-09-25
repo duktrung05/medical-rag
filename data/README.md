@@ -1,31 +1,34 @@
 # Data Directory
 
-- `raw/`: Unmodified input files provided by BTC (`queries.jsonl`, `chunks.jsonl`).
-- `processed/`: Optimized binary representations (`queries.parquet`, `chunks.parquet`, `doc_map.parquet`).
-- `dev/`: Development splits and synthetic fixtures for threshold calibration and offline benchmarking.
+- `medquad/`: primary public medical retrieval benchmark.
+- `processed/`: optimized local representations and document/chunk maps.
+- `dev/`: small project-owned fixtures used by unit tests.
+- `raw/`: reserved for future competition data; do not mix it with benchmark labels.
 
-## XQuAD smoke-test conversion
+## MedQuAD benchmark
 
-Download `validation-00000-of-00001.parquet` from the `xquad.vi`,
-`xquad.en`, and `xquad.zh` folders into separate local directories. Convert them
-with:
+The source collection is MedQuAD, released under CC BY 4.0. Download it and
+convert the XML collection with:
 
 ```powershell
-python scripts/convert_xquad.py `
-  --vi data/raw/xquad/xquad.vi `
-  --en data/raw/xquad/xquad.en `
-  --zh data/raw/xquad/xquad.zh `
-  --output-dir data/xquad
+git clone --depth 1 https://github.com/abachaa/MedQuAD.git downloads/medquad-source
+python -m scripts.convert_medquad `
+  --input-dir downloads/medquad-source `
+  --output-dir data/medquad
 ```
 
-The converter aligns translations using the shared question IDs, deduplicates
-contexts into one chunk per language, and splits by aligned paragraph group.
-Each of `data/xquad/train`, `data/xquad/dev`, and `data/xquad/test` contains:
+The converter excludes the three collections whose answer text was removed by
+MedQuAD for MedlinePlus copyright compliance. It splits by source XML document,
+so questions about the same source document cannot leak across train, dev and
+test.
 
-- `chunks.jsonl`: retrieval corpus in Vietnamese, English, and Chinese.
-- `queries.jsonl`: Vietnamese queries.
-- `ground_truth.jsonl`: the three aligned relevant documents/chunks per query.
-- `answers.jsonl`: QA answers kept separate from retrieval input.
-- `groups.jsonl`: paragraph alignment metadata used to audit split leakage.
+Each split contains:
 
-`manifest.json` records the seed, split ratios, and output counts.
+- `documents.jsonl`: source URL, publisher, focus and original document ID.
+- `chunks.jsonl`: non-empty medical answers used as retrieval passages.
+- `queries.jsonl`: medical questions.
+- `ground_truth.jsonl`: structural question-to-answer document/chunk relevance.
+
+`manifest.json` records license, exclusions, split policy, seed and counts. These
+labels come from the source QA structure; they have not been independently
+clinically validated by this project.
