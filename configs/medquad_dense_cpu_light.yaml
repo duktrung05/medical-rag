@@ -1,0 +1,45 @@
+# Lower-memory dense baseline for MedQuAD dev on a CPU-only machine.
+# This is a separate E5 experiment; do not compare its scores as a BGE-M3 run.
+experiment_name: medquad_dense_e5_cpu_light
+backend: dense
+corpus: ../data/medquad/dev/chunks.jsonl
+
+retrieval:
+  sparse:
+    enabled: false
+  dense:
+    enabled: true
+    model_name: intfloat/multilingual-e5-small
+    revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
+    index_path: ../artifacts/medquad_dense_e5_cpu_light
+    index_type: exact
+    top_k: 100
+    batch_size: 2
+    max_length: 256
+    query_prefix: "query: "
+    passage_prefix: "passage: "
+    normalize_embeddings: true
+    device: cpu
+
+fusion:
+  enabled: false
+
+reranker:
+  enabled: false
+
+scoring:
+  document:
+    aggregation: max
+    top_n_mean: 3
+
+selection:
+  chunk:
+    threshold: 0.50
+    relative_delta: 0.20
+    min_k: 1
+    max_k: 20
+  document:
+    threshold: 0.50
+    relative_delta: 0.20
+    min_k: 1
+    max_k: 10

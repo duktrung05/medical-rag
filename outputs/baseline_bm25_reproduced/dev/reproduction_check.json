@@ -1,0 +1,46 @@
+{
+  "corpus_sha256": "aa7c831fb9493c3f393879e9a00549aab5c592f0ecf02e569d4dc5d283b1b434",
+  "repeated_run": {
+    "all_files_byte_identical": true,
+    "sha256": {
+      "manifest.json": "e19f3dbd07e739b890bbb9ec9e809697042b2898c4d878f63cb245e9b411830f",
+      "metrics.json": "50185e56cbd665f6fd29f8abf66dd88ee823b07667e94ad27c4d1824bee0ea62",
+      "predictions_k1.jsonl": "9160a6e3e0220a5e07bc8d8d8bd60d3492387af2d161a602b00cad1a6c8e52ed",
+      "predictions_k10.jsonl": "3f91c6d0723d6f43906b5142cb847393461d5ab3c20b85d10b5fb4ebb45312f7",
+      "predictions_k100.jsonl": "8953fe1ec98995bbdf2e4fb90552c2f11d370779c8b4787cad615bf234950406",
+      "predictions_k3.jsonl": "6b41baed79b0686dbc417c4799df397ec0b8c0da62f58a0dba1476abf9c87c25",
+      "predictions_k5.jsonl": "845ccca9f869fe3bc116e50dad2c8f061f9f3adea9c3574d8d3373be9af5f78b",
+      "predictions_k50.jsonl": "447588d039ca398fd919b401683b5462cc90a29836dbb2b6d85c9204f32be992",
+      "rankings.jsonl": "9912c134fa4cfaea8e33850ef951e13318538d82bdcec47f20db4d32853c996b"
+    }
+  },
+  "saved_k5_comparison": {
+    "query_count": 2333,
+    "same_query_order": true,
+    "identical_chunk_lists": 2333,
+    "identical_document_lists": 316,
+    "old_document_lists_include_new": true,
+    "old_document_list_size": 5,
+    "old_metrics": {
+      "num_queries": 2333,
+      "doc_precision": 0.19297042434633516,
+      "doc_recall": 0.964852121731676,
+      "doc_f2": 0.5360289565175976,
+      "chunk_precision": 0.15679382768966993,
+      "chunk_recall": 0.7839691384483498,
+      "chunk_f2": 0.4355384102490832,
+      "macro_f2": 0.48578368338334044
+    },
+    "new_metrics": {
+      "num_queries": 2333,
+      "doc_precision": 0.512280325760823,
+      "doc_recall": 0.9562794684954994,
+      "doc_f2": 0.7619515372944434,
+      "chunk_precision": 0.15679382768966993,
+      "chunk_recall": 0.7839691384483498,
+      "chunk_f2": 0.4355384102490832,
+      "macro_f2": 0.5987449737717633
+    },
+    "explanation": "Saved output contains five documents for every query, including documents outside the parents of its top-five chunks in 2017 queries. The reproduced runner emits only unique parents of those top-five chunks. Identical chunk lists therefore yield different document and composite metrics."
+  }
+}

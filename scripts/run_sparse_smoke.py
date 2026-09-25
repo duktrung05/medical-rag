@@ -1,12 +1,13 @@
 """Evaluate a sparse BM25 experiment on a prepared split."""
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
 from src.adapters import adapt_query
 from src.config import PipelineConfig, load_pipeline_config
-from src.data.loader import DataLoader, DocumentChunkMap
+from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records
 from src.data.schema import PredictionRecord
 from src.evaluation.evaluator import Evaluator
 from src.evaluation.recall import calculate_recall
@@ -30,7 +31,21 @@ def _predictions_at_k(query_ids, rankings, doc_map, k):
     return predictions
 
 
-def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_values: list[int]):
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def run_smoke(
+    config: PipelineConfig,
+    split_dir: Path,
+    output_dir: Path,
+    top_k_values: list[int],
+    config_path: Path | None = None,
+):
     if config.backend != "sparse":
         raise ValueError("Sparse smoke requires backend: sparse")
     sparse = config.retrieval.sparse
@@ -41,15 +56,30 @@ def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_v
         raise ValueError("Query IDs and ground-truth IDs do not match")
 
     expected_hash = corpus_sha256(chunks)
-    BM25Retriever.build_index(chunks, sparse.index_path, sparse)
     retriever = BM25Retriever(
         sparse.index_path,
         expected_corpus_hash=expected_hash,
         tokenizer=sparse.tokenizer,
         char_ngram_size=sparse.char_ngram_size,
+        k1=sparse.k1,
+        b=sparse.b,
     )
     rankings = retriever.search_batch(
         [adapt_query(query).text for query in queries], top_k=max(top_k_values)
+    )
+    output_dir.mkdir(parents=True, exist_ok=True)
+    save_jsonl_records(
+        output_dir / "rankings.jsonl",
+        [
+            {
+                "id": query.id,
+                "results": [
+                    {"rank": rank, "chunk_id": chunk_id, "score": score}
+                    for rank, (chunk_id, score) in enumerate(ranking, 1)
+                ],
+            }
+            for query, ranking in zip(queries, rankings, strict=True)
+        ],
     )
 
     truth_by_id = {truth.id: truth for truth in truths}
@@ -66,6 +96,12 @@ def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_v
     metrics = {}
     for k in top_k_values:
         predictions = _predictions_at_k([query.id for query in queries], rankings, doc_map, k)
+        prediction_path = output_dir / f"predictions_k{k}.jsonl"
+        save_jsonl_records(prediction_path, predictions)
+        validation = validate_submission_file(prediction_path, doc_map, split_dir / "queries.jsonl")
+        if not validation.is_valid:
+            validation.print_summary()
+            raise ValueError(f"Sparse predictions failed submission validation at K={k}")
         metrics[str(k)] = {
             "chunk_recall_at_k": sum(
                 calculate_recall(truth_by_id[pred.id].relevant_chunks, pred.relevant_chunks)
@@ -74,7 +110,6 @@ def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_v
             "evaluation": evaluator.evaluate(truths, predictions, doc_map=doc_map).to_dict(),
         }
 
-    output_dir.mkdir(parents=True, exist_ok=True)
     result = {
         "experiment_name": config.experiment_name,
         "tokenizer": sparse.tokenizer,
@@ -91,26 +126,34 @@ def run_smoke(config: PipelineConfig, split_dir: Path, output_dir: Path, top_k_v
     }
     metrics_path = output_dir / "metrics.json"
     metrics_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    validation = validate_submission_file(
-        _write_top_k_predictions(output_dir, queries, rankings, doc_map, max(top_k_values)),
-        doc_map,
-        split_dir / "queries.jsonl",
+    index_file = sparse.index_path / "index.json"
+    manifest = {
+        "experiment_name": config.experiment_name,
+        "config_path": str(config_path) if config_path is not None else None,
+        "index_path": str(sparse.index_path),
+        "corpus_sha256": expected_hash,
+        "num_chunks": len(chunks),
+        "num_queries": len(queries),
+        "ranking_depth": max(top_k_values),
+        "top_k_values": top_k_values,
+        "strict_validation_at_each_k": True,
+        "input_sha256": {
+            "config": _sha256(config_path) if config_path is not None else None,
+            "chunks": _sha256(split_dir / "chunks.jsonl"),
+            "queries": _sha256(split_dir / "queries.jsonl"),
+            "ground_truth": _sha256(split_dir / "ground_truth.jsonl"),
+            "index": _sha256(index_file),
+        },
+        "output_sha256": {
+            "rankings": _sha256(output_dir / "rankings.jsonl"),
+            "metrics": _sha256(metrics_path),
+            **{f"predictions_k{k}": _sha256(output_dir / f"predictions_k{k}.jsonl") for k in top_k_values},
+        },
+    }
+    (output_dir / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    if not validation.is_valid:
-        validation.print_summary()
-        raise ValueError("Sparse smoke predictions failed submission validation")
     print(json.dumps(result, ensure_ascii=False, indent=2))
-
-
-def _write_top_k_predictions(output_dir, queries, rankings, doc_map, k):
-    from src.data.loader import save_jsonl_records
-
-    path = output_dir / f"predictions_k{k}.jsonl"
-    save_jsonl_records(
-        path,
-        _predictions_at_k([query.id for query in queries], rankings, doc_map, k),
-    )
-    return path
 
 
 def main():
@@ -123,8 +166,9 @@ def main():
     top_k_values = sorted({int(value) for value in args.top_k_values.split(",") if value.strip()})
     if not top_k_values or min(top_k_values) < 1:
         raise ValueError("--top-k-values must contain positive integers")
-    config = load_pipeline_config(args.config)
-    run_smoke(config, Path(args.split_dir).resolve(), Path(args.output_dir).resolve(), top_k_values)
+    config_path = Path(args.config).resolve()
+    config = load_pipeline_config(config_path)
+    run_smoke(config, Path(args.split_dir).resolve(), Path(args.output_dir).resolve(), top_k_values, config_path)
 
 
 if __name__ == "__main__":

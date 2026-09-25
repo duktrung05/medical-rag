@@ -1,0 +1,35 @@
+{
+  "experiment_name": "baseline_bm25",
+  "config_path": "/home/trung.nguyen12/Downloads/rag/medical-rag/configs/baseline_bm25.yaml",
+  "index_path": "/home/trung.nguyen12/Downloads/rag/medical-rag/artifacts/medquad_bm25_index",
+  "corpus_sha256": "aa7c831fb9493c3f393879e9a00549aab5c592f0ecf02e569d4dc5d283b1b434",
+  "num_chunks": 2333,
+  "num_queries": 2333,
+  "ranking_depth": 100,
+  "top_k_values": [
+    1,
+    3,
+    5,
+    10,
+    50,
+    100
+  ],
+  "strict_validation_at_each_k": true,
+  "input_sha256": {
+    "config": "4408cb9d0865f63c60f70da4e18b6e84fb20d7715d8ccb85d712a8b9799bb24f",
+    "chunks": "eded9852313eb4a5695c49bb878b1dbc5fba3b36f024bbcf6f273f0553707aee",
+    "queries": "2fcff734c274466a762c58f513ccf204c84b0ab22fb754b3431ec4390ce14050",
+    "ground_truth": "cabe16516a63c7c2b9e7a9b4411918910d2a106b4e52732bfd54ab436eeca437",
+    "index": "5c78b26e6861c1a760b8c9bd66637a038e47986f4ac57c2055147eb1ed1067c3"
+  },
+  "output_sha256": {
+    "rankings": "9912c134fa4cfaea8e33850ef951e13318538d82bdcec47f20db4d32853c996b",
+    "metrics": "50185e56cbd665f6fd29f8abf66dd88ee823b07667e94ad27c4d1824bee0ea62",
+    "predictions_k1": "9160a6e3e0220a5e07bc8d8d8bd60d3492387af2d161a602b00cad1a6c8e52ed",
+    "predictions_k3": "6b41baed79b0686dbc417c4799df397ec0b8c0da62f58a0dba1476abf9c87c25",
+    "predictions_k5": "845ccca9f869fe3bc116e50dad2c8f061f9f3adea9c3574d8d3373be9af5f78b",
+    "predictions_k10": "3f91c6d0723d6f43906b5142cb847393461d5ab3c20b85d10b5fb4ebb45312f7",
+    "predictions_k50": "447588d039ca398fd919b401683b5462cc90a29836dbb2b6d85c9204f32be992",
+    "predictions_k100": "8953fe1ec98995bbdf2e4fb90552c2f11d370779c8b4787cad615bf234950406"
+  }
+}
