@@ -1,0 +1,26 @@
+{
+  "task": 1,
+  "status": "complete",
+  "tests": {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "passed": 103,
+    "failed": 0,
+    "warnings": 1
+  },
+  "pip_check": "No broken requirements found",
+  "torch_version": "2.7.1+cu128",
+  "cuda_compute_test": "passed",
+  "index_path": "artifacts/vimed_dense_bge_m3_cls",
+  "num_passages": 17955,
+  "dimension": 1024,
+  "build_elapsed_seconds": 206.85899999993853,
+  "encoding_seconds": 195.84399999992456,
+  "timeout_seconds": 1200,
+  "peak_cuda_allocated_bytes": 1196008448,
+  "peak_cuda_reserved_bytes": 1231028224,
+  "verification_status": "passed",
+  "cache_reencode_max_abs_error": 0.000244140625,
+  "reference_max_abs_error": 0.0,
+  "batch_single_consistent": true,
+  "task2_started": false
+}

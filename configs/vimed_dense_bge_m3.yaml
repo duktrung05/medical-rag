@@ -1,0 +1,37 @@
+experiment_name: vimed_dense_bge_m3_corrected
+backend: dense
+corpus: ../data/vimed/chunks.jsonl
+retrieval:
+  sparse:
+    enabled: false
+  dense:
+    enabled: true
+    model_name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    encoder_profile: bge_m3
+    pooling: cls
+    query_prefix: ""
+    passage_prefix: ""
+    index_path: ../artifacts/vimed_dense_bge_m3_cls
+    index_type: exact
+    precision: float16
+    device: cuda
+    max_length: 512
+    batch_size: 4
+    top_k: 100
+    normalize_embeddings: true
+fusion:
+  enabled: false
+reranker:
+  enabled: false
+selection:
+  chunk:
+    threshold: 0
+    relative_delta: 1000000
+    min_k: 5
+    max_k: 5
+  document:
+    threshold: 0
+    relative_delta: 1000000
+    min_k: 5
+    max_k: 5

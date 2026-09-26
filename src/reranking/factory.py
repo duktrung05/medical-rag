@@ -16,4 +16,5 @@ def create_reranker(config: RerankerConfig) -> BaseReranker | None:
             "Install retrieval dependencies with `pip install -e '.[retrieval]'`."
         )
     return BGEReranker(model_name=config.model_name or "", batch_size=config.batch_size,
-                       max_length=config.max_length, device=config.device)
+                       max_length=config.max_length, device=config.device,
+                       revision=config.revision, precision=config.precision)

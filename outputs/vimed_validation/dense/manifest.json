@@ -1,0 +1,85 @@
+{
+  "stage": "dense",
+  "corpus_sha256": "b219a1f7f55df30a759753db9f01c29397e68bd8f62125a1b5347da0781ba04a",
+  "samples_sha256": "18ee5573930b6fc8a4ffe34e94c16485441445a3028f70078851ea105511c98c",
+  "config_sha256": "533169bfb498c1f16336bb4e898be06d595b81d92600e9c7a10d6b2054da8b08",
+  "split": "validation",
+  "num_queries": 2210,
+  "probe": false,
+  "status": "complete",
+  "rankings_sha256": "88cd81f9bb3d11ce6bbd5fa64ccab4dfbbacd7761cab17951338be3cac160f05",
+  "config": "configs\\vimed_dense_bge_m3.yaml",
+  "config_snapshot": {
+    "experiment_name": "vimed_dense_bge_m3_corrected",
+    "backend": "dense",
+    "corpus": "C:\\Users\\Admin\\Downloads\\medical-rag\\data\\vimed\\chunks.jsonl",
+    "retrieval": {
+      "sparse": {
+        "enabled": false,
+        "engine": "bm25",
+        "tokenizer": "word",
+        "char_ngram_size": 3,
+        "k1": 1.5,
+        "b": 0.75,
+        "index_path": null,
+        "top_k": 200
+      },
+      "dense": {
+        "enabled": true,
+        "model_name": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+        "tokenizer_name": null,
+        "tokenizer_revision": null,
+        "index_path": "C:\\Users\\Admin\\Downloads\\medical-rag\\artifacts\\vimed_dense_bge_m3_cls",
+        "index_type": "exact",
+        "top_k": 100,
+        "batch_size": 4,
+        "max_length": 512,
+        "encoder_profile": "bge_m3",
+        "pooling": "cls",
+        "query_prefix": "",
+        "passage_prefix": "",
+        "precision": "float16",
+        "normalize_embeddings": true,
+        "device": "cuda"
+      }
+    },
+    "fusion": {
+      "enabled": false,
+      "method": "rrf",
+      "rrf_k": 60,
+      "top_k": 150
+    },
+    "reranker": {
+      "enabled": false,
+      "model_name": null,
+      "revision": "main",
+      "precision": "float32",
+      "top_k": 100,
+      "batch_size": 16,
+      "max_length": 512,
+      "device": "auto"
+    },
+    "scoring": {
+      "document": {
+        "aggregation": "max",
+        "top_n_mean": 3
+      }
+    },
+    "selection": {
+      "chunk": {
+        "threshold": 0.0,
+        "relative_delta": 1000000.0,
+        "min_k": 5,
+        "max_k": 5
+      },
+      "document": {
+        "threshold": 0.0,
+        "relative_delta": 1000000.0,
+        "min_k": 5,
+        "max_k": 5
+      }
+    }
+  },
+  "warmup_seconds": 1.053365599946119
+}

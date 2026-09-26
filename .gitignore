@@ -42,6 +42,12 @@ artifacts/cache/*
 artifacts/medquad_bm25_index/
 artifacts/medquad_char_ngram_index/
 artifacts/medquad_dense_index/
+artifacts/vimed_bm25/
+artifacts/vimed_dense_bge_m3_cls/
+artifacts/vimed_dense_probe/
+artifacts/vimed_dense_bge_m3_cls.building/
+artifacts/vimed_dense_probe.building/
+data/vimed/
 
 outputs/predictions/*
 !outputs/predictions/.gitkeep

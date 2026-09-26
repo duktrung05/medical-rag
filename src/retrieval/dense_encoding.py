@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import warnings
 import re
+import time
 
 import numpy as np
 
@@ -33,22 +34,28 @@ def load_encoder(
     tokenizer_name: str | None = None,
     tokenizer_revision: str | None = None,
     device: str = "auto",
+    precision: str = "float32",
 ):
     """Load model/tokenizer and report the resolved immutable revisions."""
     import torch
     from transformers import AutoModel, AutoTokenizer
 
     actual_device = resolve_device(device)
+    if precision not in ("float32", "float16"):
+        raise ValueError(f"Unsupported precision: {precision}")
+    if precision == "float16" and actual_device.type != "cuda":
+        raise ValueError("float16 encoder requires CUDA; use float32 for CPU")
     tokenizer_ref = tokenizer_name or model_name
     tokenizer = AutoTokenizer.from_pretrained(
         tokenizer_ref,
         revision=tokenizer_revision or revision,
     )
-    model = AutoModel.from_pretrained(model_name, revision=revision)
+    model = AutoModel.from_pretrained(model_name, revision=revision,
+                                     torch_dtype=torch.float16 if precision == "float16" else torch.float32)
     try:
         model = model.to(actual_device)
     except (RuntimeError, AssertionError) as error:
-        if actual_device.type != "cuda":
+        if actual_device.type != "cuda" or precision == "float16":
             raise
         warnings.warn(f"Could not initialize model on CUDA ({error}); falling back to CPU", RuntimeWarning)
         actual_device = torch.device("cpu")
@@ -86,12 +93,17 @@ def encode_texts(
     max_length: int,
     normalize: bool,
     device: torch.device,
+    pooling: str = "mean",
+    progress: bool = False,
 ) -> np.ndarray:
     import torch
 
     if batch_size < 1:
         raise ValueError("batch_size must be at least 1")
+    if pooling not in ("mean", "cls"):
+        raise ValueError(f"Unsupported pooling: {pooling}")
     batches: list[np.ndarray] = []
+    started = time.monotonic()
     model.eval()
     for start in range(0, len(texts), batch_size):
         tokens = tokenizer(
@@ -103,10 +115,16 @@ def encode_texts(
         )
         tokens = {key: value.to(device) for key, value in tokens.items()}
         with torch.inference_mode():
-            pooled = mean_pool(model(**tokens).last_hidden_state, tokens["attention_mask"])
+            hidden = model(**tokens).last_hidden_state
+            pooled = hidden[:, 0] if pooling == "cls" else mean_pool(hidden, tokens["attention_mask"])
             if normalize:
                 pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
-        batches.append(pooled.cpu().numpy().astype(np.float32))
+        batches.append(pooled.float().cpu().numpy())
+        if progress and ((start // batch_size) % 25 == 0 or start + batch_size >= len(texts)):
+            completed = min(start + batch_size, len(texts))
+            elapsed = time.monotonic() - started
+            print(f"Encoded {completed}/{len(texts)} passages; elapsed={elapsed:.1f}s; "
+                  f"ETA={elapsed * (len(texts) - completed) / completed:.1f}s", flush=True)
     if not batches:
         return np.empty((0, 0), dtype=np.float32)
     embeddings = np.concatenate(batches, axis=0)

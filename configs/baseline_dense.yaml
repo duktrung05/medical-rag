@@ -9,6 +9,10 @@ retrieval:
   dense:
     enabled: true
     model_name: "BAAI/bge-m3"
+    encoder_profile: bge_m3
+    pooling: cls
+    query_prefix: ""
+    passage_prefix: ""
     revision: "5617a9f61b028005a4858fdac845db406aefb181"
     index_path: "../artifacts/medquad_dense_index"
     index_type: "exact"  # exact by default; use faiss for large corpora

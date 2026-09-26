@@ -1,0 +1,85 @@
+{
+  "stage": "rerank",
+  "corpus_sha256": "b219a1f7f55df30a759753db9f01c29397e68bd8f62125a1b5347da0781ba04a",
+  "samples_sha256": "18ee5573930b6fc8a4ffe34e94c16485441445a3028f70078851ea105511c98c",
+  "config_sha256": "ebf3646a0a1208e7d05c3ff11c8b6670cc49e1f1518c789215cdb32630505ebc",
+  "split": "validation",
+  "num_queries": 2210,
+  "probe": false,
+  "status": "complete",
+  "rankings_sha256": "0d22fb865b6cb0f831184556be86cb38f82be542dffafba3a8f023ddda7d0be5",
+  "config": "configs\\vimed_hybrid_rerank.yaml",
+  "config_snapshot": {
+    "experiment_name": "vimed_hybrid_rerank_validation",
+    "backend": "hybrid",
+    "corpus": "C:\\Users\\Admin\\Downloads\\medical-rag\\data\\vimed\\chunks.jsonl",
+    "retrieval": {
+      "sparse": {
+        "enabled": true,
+        "engine": "bm25",
+        "tokenizer": "word",
+        "char_ngram_size": 3,
+        "k1": 1.5,
+        "b": 0.75,
+        "index_path": "C:\\Users\\Admin\\Downloads\\medical-rag\\artifacts\\vimed_bm25",
+        "top_k": 100
+      },
+      "dense": {
+        "enabled": true,
+        "model_name": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+        "tokenizer_name": null,
+        "tokenizer_revision": null,
+        "index_path": "C:\\Users\\Admin\\Downloads\\medical-rag\\artifacts\\vimed_dense_bge_m3_cls",
+        "index_type": "exact",
+        "top_k": 100,
+        "batch_size": 4,
+        "max_length": 512,
+        "encoder_profile": "bge_m3",
+        "pooling": "cls",
+        "query_prefix": "",
+        "passage_prefix": "",
+        "precision": "float16",
+        "normalize_embeddings": true,
+        "device": "cuda"
+      }
+    },
+    "fusion": {
+      "enabled": true,
+      "method": "rrf",
+      "rrf_k": 60,
+      "top_k": 100
+    },
+    "reranker": {
+      "enabled": true,
+      "model_name": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "precision": "float16",
+      "top_k": 100,
+      "batch_size": 8,
+      "max_length": 512,
+      "device": "cuda"
+    },
+    "scoring": {
+      "document": {
+        "aggregation": "max",
+        "top_n_mean": 3
+      }
+    },
+    "selection": {
+      "chunk": {
+        "threshold": 0.0,
+        "relative_delta": 1000000.0,
+        "min_k": 5,
+        "max_k": 5
+      },
+      "document": {
+        "threshold": 0.0,
+        "relative_delta": 1000000.0,
+        "min_k": 5,
+        "max_k": 5
+      }
+    }
+  },
+  "warmup_seconds": 14.847287800046615
+}

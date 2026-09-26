@@ -1,0 +1,9 @@
+{
+  "stage": "dense",
+  "corpus_sha256": "b219a1f7f55df30a759753db9f01c29397e68bd8f62125a1b5347da0781ba04a",
+  "samples_sha256": "18ee5573930b6fc8a4ffe34e94c16485441445a3028f70078851ea105511c98c",
+  "config_sha256": "533169bfb498c1f16336bb4e898be06d595b81d92600e9c7a10d6b2054da8b08",
+  "split": "validation",
+  "num_queries": 2210,
+  "probe": false
+}

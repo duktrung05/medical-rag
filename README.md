@@ -1,5 +1,18 @@
 # R2AI Medical Information Retrieval System
 
+## ViMedQA retrieval UI (2026-09-26)
+
+```powershell
+python -m scripts.prepare_vimed
+python -m scripts.evaluate_vimed
+python -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8000
+```
+
+Open <http://127.0.0.1:8000> to inspect test questions, ranked contexts,
+scores, source positives and Recall@k. See [current pipeline review and next steps](docs/vimed_retrieval_review_vi.md).
+BM25, dense, hybrid and reranking code is available; the original foundation
+description below predates those implementations.
+
 Hệ thống truy xuất thông tin y tế đa ngôn ngữ (Multilingual Medical Information Retrieval) phục vụ cuộc thi R2AI.
 
 ## Bắt đầu với bộ khung (chưa cần training)

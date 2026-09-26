@@ -1,0 +1,89 @@
+{
+  "num_queries": 2213,
+  "recall_at_k": {
+    "1": 0.5006778129236331,
+    "3": 0.6511522819701763,
+    "5": 0.7085404428377767,
+    "10": 0.7745142340713963,
+    "20": 0.8242205151378219,
+    "50": 0.868956168097605,
+    "100": 0.8915499322187076
+  },
+  "mrr_at_100": 0.5943299407525775,
+  "backend": "sparse",
+  "mean_latency_ms": 66.6110844541677,
+  "by_topic": {
+    "2": {
+      "num_queries": 489,
+      "recall_at_k": {
+        "1": 0.4785276073619632,
+        "3": 0.6053169734151329,
+        "5": 0.6462167689161554,
+        "10": 0.6932515337423313,
+        "20": 0.7341513292433538,
+        "50": 0.7934560327198364,
+        "100": 0.8384458077709611
+      },
+      "mrr_at_100": 0.5551983212515335
+    },
+    "3": {
+      "num_queries": 694,
+      "recall_at_k": {
+        "1": 0.4711815561959654,
+        "3": 0.6195965417867435,
+        "5": 0.6786743515850144,
+        "10": 0.7536023054755043,
+        "20": 0.8054755043227666,
+        "50": 0.840057636887608,
+        "100": 0.8631123919308358
+      },
+      "mrr_at_100": 0.5653543226290566
+    },
+    "0": {
+      "num_queries": 247,
+      "recall_at_k": {
+        "1": 0.5991902834008097,
+        "3": 0.7368421052631579,
+        "5": 0.7894736842105263,
+        "10": 0.854251012145749,
+        "20": 0.9109311740890689,
+        "50": 0.9392712550607287,
+        "100": 0.9433198380566802
+      },
+      "mrr_at_100": 0.6868461340642983
+    },
+    "1": {
+      "num_queries": 783,
+      "recall_at_k": {
+        "1": 0.5095785440613027,
+        "3": 0.6807151979565773,
+        "5": 0.7484035759897829,
+        "10": 0.8186462324393359,
+        "20": 0.8697318007662835,
+        "50": 0.9195402298850575,
+        "100": 0.933588761174968
+      },
+      "mrr_at_100": 0.6152660086526275
+    }
+  },
+  "corpus": {
+    "dataset": "local ViMedQA all",
+    "corpus_splits": [
+      "train",
+      "validation",
+      "test"
+    ],
+    "query_split": "test",
+    "num_chunks": 17955,
+    "num_docs": 1935,
+    "num_test_queries": 2213,
+    "skipped_empty_context": {
+      "train": 76,
+      "validation": 5,
+      "test": 4
+    },
+    "corpus_sha256": "b219a1f7f55df30a759753db9f01c29397e68bd8f62125a1b5347da0781ba04a",
+    "protocol": "Closed corpus context retrieval; questions and answers are not indexed. One exact deduplicated source context is the inferred positive per question. This is not an exhaustive relevance judgment or an official retrieval benchmark."
+  },
+  "note": "Recall uses one inferred source-context positive per query; no test tuning."
+}

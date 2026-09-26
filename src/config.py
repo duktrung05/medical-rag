@@ -5,6 +5,7 @@ from typing import Literal
 
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, model_validator
+from src.encoder_profile import resolve_encoder_profile
 
 
 class StrictConfig(BaseModel):
@@ -41,8 +42,11 @@ class DenseRetrievalConfig(StrictConfig):
     top_k: int = Field(default=300, ge=1)
     batch_size: int = Field(default=32, ge=1)
     max_length: int = Field(default=512, ge=8)
-    query_prefix: str = "query: "
-    passage_prefix: str = "passage: "
+    encoder_profile: Literal["auto", "bge_m3", "e5", "generic"] = "auto"
+    pooling: Literal["cls", "mean"] | None = None
+    query_prefix: str | None = None
+    passage_prefix: str | None = None
+    precision: Literal["float32", "float16"] = "float32"
     normalize_embeddings: bool = True
     device: Literal["auto", "cpu", "cuda"] = "auto"
 
@@ -52,6 +56,12 @@ class DenseRetrievalConfig(StrictConfig):
             raise ValueError("retrieval.dense.model_name is required when enabled")
         if self.enabled and self.index_path is None:
             raise ValueError("retrieval.dense.index_path is required when enabled")
+        profile = resolve_encoder_profile(self.model_name, self.encoder_profile, self.pooling,
+                                          self.query_prefix, self.passage_prefix)
+        self.encoder_profile = profile.name
+        self.pooling = profile.pooling
+        self.query_prefix = profile.query_prefix
+        self.passage_prefix = profile.passage_prefix
         return self
 
 
@@ -76,6 +86,8 @@ class FusionConfig(StrictConfig):
 class RerankerConfig(StrictConfig):
     enabled: bool = False
     model_name: str | None = None
+    revision: str = "main"
+    precision: Literal["float32", "float16"] = "float32"
     top_k: int = Field(default=100, ge=1)
     batch_size: int = Field(default=16, ge=1)
     max_length: int = Field(default=512, ge=8)

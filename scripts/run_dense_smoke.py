@@ -13,7 +13,8 @@ from pathlib import Path
 import numpy as np
 import torch
 import yaml
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+from src.encoder_profile import resolve_encoder_profile
 
 from src.adapters import adapt_query
 from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records
@@ -34,12 +35,22 @@ class SmokeConfig(BaseModel):
     revision: str = "main"
     tokenizer_name: str | None = None
     tokenizer_revision: str | None = None
-    query_prefix: str = "query: "
-    passage_prefix: str = "passage: "
+    encoder_profile: str = "auto"
+    pooling: str | None = None
+    query_prefix: str | None = None
+    passage_prefix: str | None = None
     normalize_embeddings: bool = True
     max_length: int = Field(default=512, ge=8)
     batch_size: int = Field(default=32, ge=1)
     top_k_values: list[int] = Field(default_factory=lambda: [1, 3, 5, 10])
+
+    @model_validator(mode="after")
+    def resolve_profile(self):
+        profile = resolve_encoder_profile(self.model_name, self.encoder_profile, self.pooling,
+                                          self.query_prefix, self.passage_prefix)
+        self.encoder_profile, self.pooling = profile.name, profile.pooling
+        self.query_prefix, self.passage_prefix = profile.query_prefix, profile.passage_prefix
+        return self
 
 
 def _sha256(path: Path) -> str:
@@ -165,6 +176,7 @@ def main() -> None:
         max_length=config.max_length,
         normalize=config.normalize_embeddings,
         device=device,
+        pooling=config.pooling,
     )
     query_embeddings = encode_texts(
         [config.query_prefix + adapt_query(item).text for item in queries],
@@ -174,6 +186,7 @@ def main() -> None:
         max_length=config.max_length,
         normalize=config.normalize_embeddings,
         device=device,
+        pooling=config.pooling,
     )
     if not np.isfinite(passage_embeddings).all() or not np.isfinite(query_embeddings).all():
         raise ValueError("Embeddings contain NaN or infinity.")
@@ -235,6 +248,10 @@ def main() -> None:
         "model_revision": model_revision,
         "tokenizer_name": config.tokenizer_name or config.model_name,
         "tokenizer_revision": tokenizer_revision,
+        "encoder_profile": config.encoder_profile,
+        "pooling": config.pooling,
+        "query_prefix": config.query_prefix,
+        "passage_prefix": config.passage_prefix,
         "device": str(device),
         "python": sys.version,
         "torch": torch.__version__,

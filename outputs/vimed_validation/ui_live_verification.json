@@ -1,0 +1,1345 @@
+{
+  "query": "bảo quản thuốc cafein ở nhiệt độ bao nhiêu?",
+  "mode": "live",
+  "labeled": true,
+  "comparisons": [
+    {
+      "stage": "bm25",
+      "results": [
+        {
+          "chunk_id": "ctx_26b03e09dbfdf1e3f8343160",
+          "doc_id": "doc_354535c079539624cdfc91b8",
+          "chunk_index": 5,
+          "language": "vi",
+          "text": "Bảo quản thuốc trong bao bì kín, ở nơi khô ráo, thoáng mát, tránh ánh sáng. Nhiệt độ bảo quản không quá 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/arthrorein-pharmanel/",
+          "keyword": "Arthrorein Pharmanel",
+          "topic": 2,
+          "rank": 1,
+          "score": 22.551718905146036,
+          "scores": {
+            "retrieval_score": 22.551718905146036,
+            "raw_retrieval_score": 22.551718905146036,
+            "rerank_score": null,
+            "selection_score": 22.551718905146036,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 1,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_f4730082fa8f227d6ddc3e9f",
+          "doc_id": "doc_64f0b988722ca48ca0e14d0b",
+          "chunk_index": 0,
+          "language": "vi",
+          "text": "Cách bảo quản thuốc như sau: - Thuốc nên được bảo quản trong bao bì kín.\n- Bảo quản Bagocit ở nơi khô ráo, thoáng mát và tránh tiếp xúc trực tiếp với ánh nắng mặt trời.\n- Nhiệt độ bảo quản thuốc nên dưới 30 ºC.",
+          "title": "Bảo quản thuốc Bagocit",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bagocit/",
+          "keyword": "Bagocit",
+          "topic": 2,
+          "rank": 2,
+          "score": 22.46477112039917,
+          "scores": {
+            "retrieval_score": 22.46477112039917,
+            "raw_retrieval_score": 22.46477112039917,
+            "rerank_score": null,
+            "selection_score": 22.46477112039917,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 2,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_63b5e96ed776b33fa6f06e20",
+          "doc_id": "doc_54d652488052fee1bbd1cd93",
+          "chunk_index": 4,
+          "language": "vi",
+          "text": "Cách bảo quản thuốc Amlor 5 Pfizer như sau: - Thuốc phải được bảo quản trong bao bì kín.\n- Bảo quản ở nơi khô ráo, thoáng mát và tránh tiếp xúc trực tiếp ánh nắng mặt trời.\n- Nhiệt độ bảo quản thuốc nên dưới 30 ºC.",
+          "title": "Bảo quản thuốc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/amlor-5-pfizer/",
+          "keyword": "Amlor 5 Pfizer",
+          "topic": 2,
+          "rank": 3,
+          "score": 22.379800268521837,
+          "scores": {
+            "retrieval_score": 22.379800268521837,
+            "raw_retrieval_score": 22.379800268521837,
+            "rerank_score": null,
+            "selection_score": 22.379800268521837,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 3,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_34dd03ff389ddc7f12f272c1",
+          "doc_id": "doc_e4aa32bac46eb0eada88c2a3",
+          "chunk_index": 1,
+          "language": "vi",
+          "text": "Cách bảo quản thuốc như sau: - Bảo quản trong bao bì kín, không sử dụng nếu bao bì bị rách để thuốc tiếp xúc với không khí.\n- Thuốc được để nơi thoáng mát, tránh ánh nắng mặt trời.\n- Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bequantene/",
+          "keyword": "Bequantene",
+          "topic": 2,
+          "rank": 4,
+          "score": 21.208845769045144,
+          "scores": {
+            "retrieval_score": 21.208845769045144,
+            "raw_retrieval_score": 21.208845769045144,
+            "rerank_score": null,
+            "selection_score": 21.208845769045144,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 4,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_cc20a15aa0d36c97f914a8ba",
+          "doc_id": "doc_2c6e20d386d4f648e9422107",
+          "chunk_index": 3,
+          "language": "vi",
+          "text": "Thuốc dạng viên nén được bảo quản trong bao bì kín, ở nhiệt độ không quá 30°C và tránh ánh sáng mặt trời.",
+          "title": "Cách bảo quản thuốc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cotrimstada-forte/",
+          "keyword": "Cotrimstada forte",
+          "topic": 2,
+          "rank": 5,
+          "score": 20.71785972589262,
+          "scores": {
+            "retrieval_score": 20.71785972589262,
+            "raw_retrieval_score": 20.71785972589262,
+            "rerank_score": null,
+            "selection_score": 20.71785972589262,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 5,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_cb165aae81a3c34e1b2ad85d",
+          "doc_id": "doc_47879fda5a6298f13203f878",
+          "chunk_index": 7,
+          "language": "vi",
+          "text": "Cần bảo quản trong bao bì kín, ở nhiệt độ phòng dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cosele/",
+          "keyword": "Cosele",
+          "topic": 2,
+          "rank": 6,
+          "score": 20.563739882499544,
+          "scores": {
+            "retrieval_score": 20.563739882499544,
+            "raw_retrieval_score": 20.563739882499544,
+            "rerank_score": null,
+            "selection_score": 20.563739882499544,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 6,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_d6607c299f9bc32936787b4e",
+          "doc_id": "doc_1fc6315682a5eb531b781b72",
+          "chunk_index": 2,
+          "language": "vi",
+          "text": "- Bảo quản thuốc Cefuroxim trong bao bì kín, nơi khô ráo.\n- Tránh để thuốc ở nơi ẩm vì rất dễ gây hỏng thuốc.\n- Nhiệt độ bào quản tốt nhất là < 30°C.\n- Nên cất thuốc cẩn thận, tránh xa tầm tay của trẻ em và thú cưng.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cefuroxim/",
+          "keyword": "Cefuroxim",
+          "topic": 2,
+          "rank": 7,
+          "score": 19.7981131255251,
+          "scores": {
+            "retrieval_score": 19.7981131255251,
+            "raw_retrieval_score": 19.7981131255251,
+            "rerank_score": null,
+            "selection_score": 19.7981131255251,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 7,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_9544e292d26dddd81db870fa",
+          "doc_id": "doc_d56a849cca989fddabf8c386",
+          "chunk_index": 6,
+          "language": "vi",
+          "text": "- Bảo quản thuốc ở nơi khô ráo, thoáng mát, nhiệt độ không quá 30°C, tránh ánh sáng.\n- Hạn sử dụng: 24 tháng kể từ ngày sản xuất in trên bao bì.\n- Đảm bao thuốc tránh xa tầm tay của trẻ em.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cofidec/",
+          "keyword": "Cofidec",
+          "topic": 2,
+          "rank": 8,
+          "score": 19.73174107645231,
+          "scores": {
+            "retrieval_score": 19.73174107645231,
+            "raw_retrieval_score": 19.73174107645231,
+            "rerank_score": null,
+            "selection_score": 19.73174107645231,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 8,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_f4a5cfaaf5d5c238a5909942",
+          "doc_id": "doc_e8a1f8e6dc23b635b01c82fb",
+          "chunk_index": 5,
+          "language": "vi",
+          "text": "Bảo quản thuốc ở nơi khô ráo thoáng mát, để trong hộp kính, tránh ánh sáng. Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/beprosone-ointment/",
+          "keyword": "Beprosone Ointment",
+          "topic": 2,
+          "rank": 9,
+          "score": 19.66956396992655,
+          "scores": {
+            "retrieval_score": 19.66956396992655,
+            "raw_retrieval_score": 19.66956396992655,
+            "rerank_score": null,
+            "selection_score": 19.66956396992655,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 9,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_e0d841308c9d155bec9e04ed",
+          "doc_id": "doc_5995e5b33a15f409ee4f66b4",
+          "chunk_index": 2,
+          "language": "vi",
+          "text": "- Bảo quản nơi khô ráo, thoáng mát, nhiệt độ dưới 25°C.\n- Giữ thuốc ở nơi tránh ánh sáng và ẩm.\n- Bảo quản thuốc xa tầm tay trẻ em.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cilzec/",
+          "keyword": "Cilzec",
+          "topic": 2,
+          "rank": 10,
+          "score": 19.431052824279103,
+          "scores": {
+            "retrieval_score": 19.431052824279103,
+            "raw_retrieval_score": 19.431052824279103,
+            "rerank_score": null,
+            "selection_score": 19.431052824279103,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 10,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        }
+      ],
+      "first_positive_rank": null,
+      "recall_at_k": 0.0,
+      "latency_ms": 33.10480003710836,
+      "setup_ms": 2368.655600002967,
+      "prediction": {
+        "id": "drug_6717",
+        "relevant_docs": [
+          "doc_354535c079539624cdfc91b8",
+          "doc_64f0b988722ca48ca0e14d0b",
+          "doc_54d652488052fee1bbd1cd93",
+          "doc_e4aa32bac46eb0eada88c2a3",
+          "doc_2c6e20d386d4f648e9422107"
+        ],
+        "relevant_chunks": [
+          "ctx_26b03e09dbfdf1e3f8343160",
+          "ctx_f4730082fa8f227d6ddc3e9f",
+          "ctx_63b5e96ed776b33fa6f06e20",
+          "ctx_34dd03ff389ddc7f12f272c1",
+          "ctx_cc20a15aa0d36c97f914a8ba"
+        ]
+      }
+    },
+    {
+      "stage": "dense",
+      "results": [
+        {
+          "chunk_id": "ctx_29a606562fdf032038b5ab94",
+          "doc_id": "doc_f133ca2299ba7b45dee176be",
+          "chunk_index": 6,
+          "language": "vi",
+          "text": "- Bảo quản nơi khô thoáng.\n- Tránh ánh sáng trực tiếp.\n- Nhiệt độ bảo quản dưới 30 độ C. Thuốc Caffeine có tác dụng kích thích thần kinh trung ương, sử dụng để điều trị đau nửa đầu, hen suyễn và giúp tỉnh táo. Bệnh nhân cần tham khảo ý kiến bác sĩ trước khi sử dụng. Chỉ nên dùng với liều lượng được khuyến cáo. Tranh việc sử dụng quá liều, có thể gây ra tác dụng phụ và ảnh hưởng đến sức khoẻ. Trong trường hợp có bất kỳ dấu hiệu nào bất thường, bạn hãy ngừng sử dụng và liên hệ với bác sĩ để được hỗ trợ xử lý kịp thời và đúng cách.",
+          "title": "Cách bảo quản thuốc Cafein",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/thuoc-cafein/",
+          "keyword": "Cafein",
+          "topic": 2,
+          "rank": 1,
+          "score": 0.7420092821121216,
+          "scores": {
+            "retrieval_score": 0.7420092821121216,
+            "raw_retrieval_score": 0.7420092821121216,
+            "rerank_score": null,
+            "selection_score": 0.7420092821121216,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 1,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": true,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_ae14493abce93db82a64dd91",
+          "doc_id": "doc_8482a296e03ed4699147f5be",
+          "chunk_index": 1,
+          "language": "vi",
+          "text": "- Thuốc nên được bảo quản ở nhiệt độ không quá 30°C.\n- Tránh ánh sáng.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/calcium-corbiere-extra/",
+          "keyword": "Calcium Corbiere Extra",
+          "topic": 2,
+          "rank": 2,
+          "score": 0.6787801384925842,
+          "scores": {
+            "retrieval_score": 0.6787801384925842,
+            "raw_retrieval_score": 0.6787801384925842,
+            "rerank_score": null,
+            "selection_score": 0.6787801384925842,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 2,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_912de904ace88bf24cc882a3",
+          "doc_id": "doc_38601af1eafab77a6597d898",
+          "chunk_index": 0,
+          "language": "vi",
+          "text": "Để đảm bảo chất lượng thuốc, cần bảo quản thuốc ở nơi thoáng mát, tránh ánh nắng trực tiếp. Để thuốc ở nơi có nhiệt độ không quá 30ºC.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bentarcin/",
+          "keyword": "Bentarcin",
+          "topic": 2,
+          "rank": 3,
+          "score": 0.6722421646118164,
+          "scores": {
+            "retrieval_score": 0.6722421646118164,
+            "raw_retrieval_score": 0.6722421646118164,
+            "rerank_score": null,
+            "selection_score": 0.6722421646118164,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 3,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_26b03e09dbfdf1e3f8343160",
+          "doc_id": "doc_354535c079539624cdfc91b8",
+          "chunk_index": 5,
+          "language": "vi",
+          "text": "Bảo quản thuốc trong bao bì kín, ở nơi khô ráo, thoáng mát, tránh ánh sáng. Nhiệt độ bảo quản không quá 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/arthrorein-pharmanel/",
+          "keyword": "Arthrorein Pharmanel",
+          "topic": 2,
+          "rank": 4,
+          "score": 0.6686224937438965,
+          "scores": {
+            "retrieval_score": 0.6686224937438965,
+            "raw_retrieval_score": 0.6686224937438965,
+            "rerank_score": null,
+            "selection_score": 0.6686224937438965,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 4,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_34dd03ff389ddc7f12f272c1",
+          "doc_id": "doc_e4aa32bac46eb0eada88c2a3",
+          "chunk_index": 1,
+          "language": "vi",
+          "text": "Cách bảo quản thuốc như sau: - Bảo quản trong bao bì kín, không sử dụng nếu bao bì bị rách để thuốc tiếp xúc với không khí.\n- Thuốc được để nơi thoáng mát, tránh ánh nắng mặt trời.\n- Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bequantene/",
+          "keyword": "Bequantene",
+          "topic": 2,
+          "rank": 5,
+          "score": 0.6631795167922974,
+          "scores": {
+            "retrieval_score": 0.6631795167922974,
+            "raw_retrieval_score": 0.6631795167922974,
+            "rerank_score": null,
+            "selection_score": 0.6631795167922974,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 5,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_e49ddbb9b7a77fc42ec30cc2",
+          "doc_id": "doc_4485e7be2f9e0f78bf445a9e",
+          "chunk_index": 7,
+          "language": "vi",
+          "text": "- Để thuốc tránh xa tầm tay của trẻ em và thú cưng trong nhà.\n- Bảo quản thuốc ở nơi khô ráo thoáng mát. Tránh tiếp xúc trực tiếp với ánh sáng hoặc để thuốc ở những nơi ẩm ướt.\n- Nhiệt độ bảo quản tốt nhất là từ 15 – 30°C.",
+          "title": "Cách bảo quản thuốc Betaserc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/thuoc-betaserc-betahistine/",
+          "keyword": "Betaserc",
+          "topic": 2,
+          "rank": 6,
+          "score": 0.6614928245544434,
+          "scores": {
+            "retrieval_score": 0.6614928245544434,
+            "raw_retrieval_score": 0.6614928245544434,
+            "rerank_score": null,
+            "selection_score": 0.6614928245544434,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 6,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_ed3bab4be5ad277c956a233c",
+          "doc_id": "doc_1921e961e92a1fb6789da98a",
+          "chunk_index": 9,
+          "language": "vi",
+          "text": "Đọc kỹ thông tin bảo quản và hạn sử dụng ghi trên tờ hướng dẫn sử dụng thuốc. Thông thường, thuốc được bảo quản ở nhiệt độ phòng, tránh ẩm và ánh nắng trực tiếp.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/atocib/",
+          "keyword": "Atocib 90",
+          "topic": 2,
+          "rank": 7,
+          "score": 0.6590245962142944,
+          "scores": {
+            "retrieval_score": 0.6590245962142944,
+            "raw_retrieval_score": 0.6590245962142944,
+            "rerank_score": null,
+            "selection_score": 0.6590245962142944,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 7,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_6b98d98d06a6bd258bd92117",
+          "doc_id": "doc_cce3e0fa8009b4ac854f89f2",
+          "chunk_index": 8,
+          "language": "vi",
+          "text": "Bảo quản thuốc nơi khô ráo, thoáng mát, tránh ánh sáng. Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/belaf/",
+          "keyword": "Belaf",
+          "topic": 2,
+          "rank": 8,
+          "score": 0.6584281921386719,
+          "scores": {
+            "retrieval_score": 0.6584281921386719,
+            "raw_retrieval_score": 0.6584281921386719,
+            "rerank_score": null,
+            "selection_score": 0.6584281921386719,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 8,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_cb165aae81a3c34e1b2ad85d",
+          "doc_id": "doc_47879fda5a6298f13203f878",
+          "chunk_index": 7,
+          "language": "vi",
+          "text": "Cần bảo quản trong bao bì kín, ở nhiệt độ phòng dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cosele/",
+          "keyword": "Cosele",
+          "topic": 2,
+          "rank": 9,
+          "score": 0.6581943035125732,
+          "scores": {
+            "retrieval_score": 0.6581943035125732,
+            "raw_retrieval_score": 0.6581943035125732,
+            "rerank_score": null,
+            "selection_score": 0.6581943035125732,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 9,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_2a68af994fbba27048b52deb",
+          "doc_id": "doc_08a36d6b44b475423ceecc9a",
+          "chunk_index": 3,
+          "language": "vi",
+          "text": "Để thuốc ở nơi khô ráo, thoáng mát và nhiệt độ không quá 30 °C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/a-t-ascorbic-syrup/",
+          "keyword": "A.t Ascorbic Syrup",
+          "topic": 2,
+          "rank": 10,
+          "score": 0.6562821865081787,
+          "scores": {
+            "retrieval_score": 0.6562821865081787,
+            "raw_retrieval_score": 0.6562821865081787,
+            "rerank_score": null,
+            "selection_score": 0.6562821865081787,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 10,
+            "provenance": {
+              "sources": []
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        }
+      ],
+      "first_positive_rank": 1,
+      "recall_at_k": 1.0,
+      "latency_ms": 808.5072999820113,
+      "setup_ms": 14715.172600001097,
+      "prediction": {
+        "id": "drug_6717",
+        "relevant_docs": [
+          "doc_f133ca2299ba7b45dee176be",
+          "doc_8482a296e03ed4699147f5be",
+          "doc_38601af1eafab77a6597d898",
+          "doc_354535c079539624cdfc91b8",
+          "doc_e4aa32bac46eb0eada88c2a3"
+        ],
+        "relevant_chunks": [
+          "ctx_29a606562fdf032038b5ab94",
+          "ctx_ae14493abce93db82a64dd91",
+          "ctx_912de904ace88bf24cc882a3",
+          "ctx_26b03e09dbfdf1e3f8343160",
+          "ctx_34dd03ff389ddc7f12f272c1"
+        ]
+      }
+    },
+    {
+      "stage": "hybrid",
+      "results": [
+        {
+          "chunk_id": "ctx_26b03e09dbfdf1e3f8343160",
+          "doc_id": "doc_354535c079539624cdfc91b8",
+          "chunk_index": 5,
+          "language": "vi",
+          "text": "Bảo quản thuốc trong bao bì kín, ở nơi khô ráo, thoáng mát, tránh ánh sáng. Nhiệt độ bảo quản không quá 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/arthrorein-pharmanel/",
+          "keyword": "Arthrorein Pharmanel",
+          "topic": 2,
+          "rank": 1,
+          "score": 0.032018442622950824,
+          "scores": {
+            "retrieval_score": 0.032018442622950824,
+            "raw_retrieval_score": 0.032018442622950824,
+            "rerank_score": null,
+            "selection_score": 0.032018442622950824,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 1,
+            "provenance": {
+              "bm25_rank": 1,
+              "dense_rank": 4,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_34dd03ff389ddc7f12f272c1",
+          "doc_id": "doc_e4aa32bac46eb0eada88c2a3",
+          "chunk_index": 1,
+          "language": "vi",
+          "text": "Cách bảo quản thuốc như sau: - Bảo quản trong bao bì kín, không sử dụng nếu bao bì bị rách để thuốc tiếp xúc với không khí.\n- Thuốc được để nơi thoáng mát, tránh ánh nắng mặt trời.\n- Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bequantene/",
+          "keyword": "Bequantene",
+          "topic": 2,
+          "rank": 2,
+          "score": 0.031009615384615385,
+          "scores": {
+            "retrieval_score": 0.031009615384615385,
+            "raw_retrieval_score": 0.031009615384615385,
+            "rerank_score": null,
+            "selection_score": 0.031009615384615385,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 2,
+            "provenance": {
+              "bm25_rank": 4,
+              "dense_rank": 5,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_cb165aae81a3c34e1b2ad85d",
+          "doc_id": "doc_47879fda5a6298f13203f878",
+          "chunk_index": 7,
+          "language": "vi",
+          "text": "Cần bảo quản trong bao bì kín, ở nhiệt độ phòng dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cosele/",
+          "keyword": "Cosele",
+          "topic": 2,
+          "rank": 3,
+          "score": 0.02964426877470356,
+          "scores": {
+            "retrieval_score": 0.02964426877470356,
+            "raw_retrieval_score": 0.02964426877470356,
+            "rerank_score": null,
+            "selection_score": 0.02964426877470356,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 3,
+            "provenance": {
+              "bm25_rank": 6,
+              "dense_rank": 9,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_912de904ace88bf24cc882a3",
+          "doc_id": "doc_38601af1eafab77a6597d898",
+          "chunk_index": 0,
+          "language": "vi",
+          "text": "Để đảm bảo chất lượng thuốc, cần bảo quản thuốc ở nơi thoáng mát, tránh ánh nắng trực tiếp. Để thuốc ở nơi có nhiệt độ không quá 30ºC.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bentarcin/",
+          "keyword": "Bentarcin",
+          "topic": 2,
+          "rank": 4,
+          "score": 0.029571646010002173,
+          "scores": {
+            "retrieval_score": 0.029571646010002173,
+            "raw_retrieval_score": 0.029571646010002173,
+            "rerank_score": null,
+            "selection_score": 0.029571646010002173,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 4,
+            "provenance": {
+              "bm25_rank": 13,
+              "dense_rank": 3,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_ae14493abce93db82a64dd91",
+          "doc_id": "doc_8482a296e03ed4699147f5be",
+          "chunk_index": 1,
+          "language": "vi",
+          "text": "- Thuốc nên được bảo quản ở nhiệt độ không quá 30°C.\n- Tránh ánh sáng.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/calcium-corbiere-extra/",
+          "keyword": "Calcium Corbiere Extra",
+          "topic": 2,
+          "rank": 5,
+          "score": 0.02878726010616578,
+          "scores": {
+            "retrieval_score": 0.02878726010616578,
+            "raw_retrieval_score": 0.02878726010616578,
+            "rerank_score": null,
+            "selection_score": 0.02878726010616578,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 5,
+            "provenance": {
+              "bm25_rank": 19,
+              "dense_rank": 2,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_ed3bab4be5ad277c956a233c",
+          "doc_id": "doc_1921e961e92a1fb6789da98a",
+          "chunk_index": 9,
+          "language": "vi",
+          "text": "Đọc kỹ thông tin bảo quản và hạn sử dụng ghi trên tờ hướng dẫn sử dụng thuốc. Thông thường, thuốc được bảo quản ở nhiệt độ phòng, tránh ẩm và ánh nắng trực tiếp.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/atocib/",
+          "keyword": "Atocib 90",
+          "topic": 2,
+          "rank": 6,
+          "score": 0.027912386121341344,
+          "scores": {
+            "retrieval_score": 0.027912386121341344,
+            "raw_retrieval_score": 0.027912386121341344,
+            "rerank_score": null,
+            "selection_score": 0.027912386121341344,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 6,
+            "provenance": {
+              "bm25_rank": 17,
+              "dense_rank": 7,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_cc20a15aa0d36c97f914a8ba",
+          "doc_id": "doc_2c6e20d386d4f648e9422107",
+          "chunk_index": 3,
+          "language": "vi",
+          "text": "Thuốc dạng viên nén được bảo quản trong bao bì kín, ở nhiệt độ không quá 30°C và tránh ánh sáng mặt trời.",
+          "title": "Cách bảo quản thuốc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cotrimstada-forte/",
+          "keyword": "Cotrimstada forte",
+          "topic": 2,
+          "rank": 7,
+          "score": 0.027730294396961064,
+          "scores": {
+            "retrieval_score": 0.027730294396961064,
+            "raw_retrieval_score": 0.027730294396961064,
+            "rerank_score": null,
+            "selection_score": 0.027730294396961064,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 7,
+            "provenance": {
+              "bm25_rank": 5,
+              "dense_rank": 21,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_f4a5cfaaf5d5c238a5909942",
+          "doc_id": "doc_e8a1f8e6dc23b635b01c82fb",
+          "chunk_index": 5,
+          "language": "vi",
+          "text": "Bảo quản thuốc ở nơi khô ráo thoáng mát, để trong hộp kính, tránh ánh sáng. Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/beprosone-ointment/",
+          "keyword": "Beprosone Ointment",
+          "topic": 2,
+          "rank": 8,
+          "score": 0.027479766610201392,
+          "scores": {
+            "retrieval_score": 0.027479766610201392,
+            "raw_retrieval_score": 0.027479766610201392,
+            "rerank_score": null,
+            "selection_score": 0.027479766610201392,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 8,
+            "provenance": {
+              "bm25_rank": 9,
+              "dense_rank": 17,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_6b98d98d06a6bd258bd92117",
+          "doc_id": "doc_cce3e0fa8009b4ac854f89f2",
+          "chunk_index": 8,
+          "language": "vi",
+          "text": "Bảo quản thuốc nơi khô ráo, thoáng mát, tránh ánh sáng. Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/belaf/",
+          "keyword": "Belaf",
+          "topic": 2,
+          "rank": 9,
+          "score": 0.02690100430416069,
+          "scores": {
+            "retrieval_score": 0.02690100430416069,
+            "raw_retrieval_score": 0.02690100430416069,
+            "rerank_score": null,
+            "selection_score": 0.02690100430416069,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 9,
+            "provenance": {
+              "bm25_rank": 22,
+              "dense_rank": 8,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_e49ddbb9b7a77fc42ec30cc2",
+          "doc_id": "doc_4485e7be2f9e0f78bf445a9e",
+          "chunk_index": 7,
+          "language": "vi",
+          "text": "- Để thuốc tránh xa tầm tay của trẻ em và thú cưng trong nhà.\n- Bảo quản thuốc ở nơi khô ráo thoáng mát. Tránh tiếp xúc trực tiếp với ánh sáng hoặc để thuốc ở những nơi ẩm ướt.\n- Nhiệt độ bảo quản tốt nhất là từ 15 – 30°C.",
+          "title": "Cách bảo quản thuốc Betaserc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/thuoc-betaserc-betahistine/",
+          "keyword": "Betaserc",
+          "topic": 2,
+          "rank": 10,
+          "score": 0.026387470207694927,
+          "scores": {
+            "retrieval_score": 0.026387470207694927,
+            "raw_retrieval_score": 0.026387470207694927,
+            "rerank_score": null,
+            "selection_score": 0.026387470207694927,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 10,
+            "provenance": {
+              "bm25_rank": 29,
+              "dense_rank": 6,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        }
+      ],
+      "first_positive_rank": 36,
+      "recall_at_k": 0.0,
+      "latency_ms": 78.9624999742955,
+      "setup_ms": 349.20890000648797,
+      "prediction": {
+        "id": "drug_6717",
+        "relevant_docs": [
+          "doc_354535c079539624cdfc91b8",
+          "doc_e4aa32bac46eb0eada88c2a3",
+          "doc_47879fda5a6298f13203f878",
+          "doc_38601af1eafab77a6597d898",
+          "doc_8482a296e03ed4699147f5be"
+        ],
+        "relevant_chunks": [
+          "ctx_26b03e09dbfdf1e3f8343160",
+          "ctx_34dd03ff389ddc7f12f272c1",
+          "ctx_cb165aae81a3c34e1b2ad85d",
+          "ctx_912de904ace88bf24cc882a3",
+          "ctx_ae14493abce93db82a64dd91"
+        ]
+      }
+    },
+    {
+      "stage": "rerank",
+      "results": [
+        {
+          "chunk_id": "ctx_29a606562fdf032038b5ab94",
+          "doc_id": "doc_f133ca2299ba7b45dee176be",
+          "chunk_index": 6,
+          "language": "vi",
+          "text": "- Bảo quản nơi khô thoáng.\n- Tránh ánh sáng trực tiếp.\n- Nhiệt độ bảo quản dưới 30 độ C. Thuốc Caffeine có tác dụng kích thích thần kinh trung ương, sử dụng để điều trị đau nửa đầu, hen suyễn và giúp tỉnh táo. Bệnh nhân cần tham khảo ý kiến bác sĩ trước khi sử dụng. Chỉ nên dùng với liều lượng được khuyến cáo. Tranh việc sử dụng quá liều, có thể gây ra tác dụng phụ và ảnh hưởng đến sức khoẻ. Trong trường hợp có bất kỳ dấu hiệu nào bất thường, bạn hãy ngừng sử dụng và liên hệ với bác sĩ để được hỗ trợ xử lý kịp thời và đúng cách.",
+          "title": "Cách bảo quản thuốc Cafein",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/thuoc-cafein/",
+          "keyword": "Cafein",
+          "topic": 2,
+          "rank": 1,
+          "score": 6.21484375,
+          "scores": {
+            "retrieval_score": 0.01639344262295082,
+            "raw_retrieval_score": 0.01639344262295082,
+            "rerank_score": 6.21484375,
+            "selection_score": 6.21484375,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 36,
+            "provenance": {
+              "bm25_rank": null,
+              "dense_rank": 1,
+              "sources": [
+                "dense"
+              ]
+            }
+          },
+          "is_positive": true,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_ae14493abce93db82a64dd91",
+          "doc_id": "doc_8482a296e03ed4699147f5be",
+          "chunk_index": 1,
+          "language": "vi",
+          "text": "- Thuốc nên được bảo quản ở nhiệt độ không quá 30°C.\n- Tránh ánh sáng.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/calcium-corbiere-extra/",
+          "keyword": "Calcium Corbiere Extra",
+          "topic": 2,
+          "rank": 2,
+          "score": -0.1636962890625,
+          "scores": {
+            "retrieval_score": 0.02878726010616578,
+            "raw_retrieval_score": 0.02878726010616578,
+            "rerank_score": -0.1636962890625,
+            "selection_score": -0.1636962890625,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 5,
+            "provenance": {
+              "bm25_rank": 19,
+              "dense_rank": 2,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_7a3bab2381daedc1211ae9f8",
+          "doc_id": "doc_f8bb2f61d826b5c110696d79",
+          "chunk_index": 11,
+          "language": "vi",
+          "text": "Bảo quản thuốc nơi khô ráo, thoáng mát, nhiệt độ không quá 25°C, tránh ánh sáng trực tiếp. Giữ thuốc tránh xa tầm tay trẻ em.",
+          "title": "Cách bảo quản thuốc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/thuoc-cerebrolysin-co-cong-dung-gi-cach-dung-va-lieu-dung/",
+          "keyword": "Cerebrolysin",
+          "topic": 2,
+          "rank": 3,
+          "score": -0.267822265625,
+          "scores": {
+            "retrieval_score": 0.019151138716356108,
+            "raw_retrieval_score": 0.019151138716356108,
+            "rerank_score": -0.267822265625,
+            "selection_score": -0.267822265625,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 25,
+            "provenance": {
+              "bm25_rank": 78,
+              "dense_rank": 24,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_bca1a59d843a7dbb35a071a1",
+          "doc_id": "doc_3091fdc11d2762b05cc5479c",
+          "chunk_index": 6,
+          "language": "vi",
+          "text": "Nên bảo quản thuốc ở nơi khô ráo, thoáng mát, nhiệt độ < 30°C và tránh ánh sáng trực tiếp.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/a-t-desloratadin/",
+          "keyword": "A.T Desloratadin",
+          "topic": 2,
+          "rank": 4,
+          "score": -0.348388671875,
+          "scores": {
+            "retrieval_score": 0.025195618153364633,
+            "raw_retrieval_score": 0.025195618153364633,
+            "rerank_score": -0.348388671875,
+            "selection_score": -0.348388671875,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 14,
+            "provenance": {
+              "bm25_rank": 30,
+              "dense_rank": 11,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_6b98d98d06a6bd258bd92117",
+          "doc_id": "doc_cce3e0fa8009b4ac854f89f2",
+          "chunk_index": 8,
+          "language": "vi",
+          "text": "Bảo quản thuốc nơi khô ráo, thoáng mát, tránh ánh sáng. Nhiệt độ bảo quản dưới 30°C.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/belaf/",
+          "keyword": "Belaf",
+          "topic": 2,
+          "rank": 5,
+          "score": -0.59130859375,
+          "scores": {
+            "retrieval_score": 0.02690100430416069,
+            "raw_retrieval_score": 0.02690100430416069,
+            "rerank_score": -0.59130859375,
+            "selection_score": -0.59130859375,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 9,
+            "provenance": {
+              "bm25_rank": 22,
+              "dense_rank": 8,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": true
+        },
+        {
+          "chunk_id": "ctx_850171430a27cd61a43ee747",
+          "doc_id": "doc_52eb57613fd741baec8c8f37",
+          "chunk_index": 5,
+          "language": "vi",
+          "text": "- Để thuốc Berberin tránh xa tầm tay của trẻ em và thú cưng trong nhà.\n- Bảo quản thuốc ở nơi khô ráo thoáng mát. Tránh tiếp xúc trực tiếp với ánh sáng hoặc tránh để ở những nơi ẩm ướt.\n- Nhiệt độ bảo quản tốt nhất là < 30 ºC.\n- Không dùng thuốc nếu đã hết hạn dùng. Thông tin được trình bày rõ ràng trên bao bì sản phẩm.\n- Ngoài ra, đối với thuốc không sử dụng nữa, cần phải xử trí cẩn thận (hỏi bác sĩ/ dược sĩ) trước khi thải ra ngoài để giúp bảo vệ môi trường. Bên trên là những thông tin sử dụng thuốc Berberin. Hãy gọi ngay cho bác sĩ nếu xuất hiện bất kỳ một triệu chứng nào bất thường để có thể được xử trí và hỗ trợ kịp thời nhé!",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/nhung-dieu-can-biet-ve-thuoc-berberin/",
+          "keyword": "Berberin",
+          "topic": 2,
+          "rank": 6,
+          "score": -0.6005859375,
+          "scores": {
+            "retrieval_score": 0.015252676413030965,
+            "raw_retrieval_score": 0.015252676413030965,
+            "rerank_score": -0.6005859375,
+            "selection_score": -0.6005859375,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 43,
+            "provenance": {
+              "bm25_rank": 86,
+              "dense_rank": 59,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_cc20a15aa0d36c97f914a8ba",
+          "doc_id": "doc_2c6e20d386d4f648e9422107",
+          "chunk_index": 3,
+          "language": "vi",
+          "text": "Thuốc dạng viên nén được bảo quản trong bao bì kín, ở nhiệt độ không quá 30°C và tránh ánh sáng mặt trời.",
+          "title": "Cách bảo quản thuốc",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cotrimstada-forte/",
+          "keyword": "Cotrimstada forte",
+          "topic": 2,
+          "rank": 7,
+          "score": -0.607421875,
+          "scores": {
+            "retrieval_score": 0.027730294396961064,
+            "raw_retrieval_score": 0.027730294396961064,
+            "rerank_score": -0.607421875,
+            "selection_score": -0.607421875,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 7,
+            "provenance": {
+              "bm25_rank": 5,
+              "dense_rank": 21,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_912de904ace88bf24cc882a3",
+          "doc_id": "doc_38601af1eafab77a6597d898",
+          "chunk_index": 0,
+          "language": "vi",
+          "text": "Để đảm bảo chất lượng thuốc, cần bảo quản thuốc ở nơi thoáng mát, tránh ánh nắng trực tiếp. Để thuốc ở nơi có nhiệt độ không quá 30ºC.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/bentarcin/",
+          "keyword": "Bentarcin",
+          "topic": 2,
+          "rank": 8,
+          "score": -0.6416015625,
+          "scores": {
+            "retrieval_score": 0.029571646010002173,
+            "raw_retrieval_score": 0.029571646010002173,
+            "rerank_score": -0.6416015625,
+            "selection_score": -0.6416015625,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 4,
+            "provenance": {
+              "bm25_rank": 13,
+              "dense_rank": 3,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_9085b0f280ed9785f2161e98",
+          "doc_id": "doc_0ff1134eee2bf3849726ae82",
+          "chunk_index": 0,
+          "language": "vi",
+          "text": "- Bảo quản thuốc ở nơi khô ráo, thoáng mát, nhiệt độ không quá 30°C, tránh ánh sáng.\n- Hạn sử dụng: 24 tháng kể từ ngày sản xuất in trên bao bì.\n- Để thuốc tránh xa tầm tay của trẻ em.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cloviracinob/",
+          "keyword": "Cloviracinob",
+          "topic": 2,
+          "rank": 9,
+          "score": -0.68115234375,
+          "scores": {
+            "retrieval_score": 0.021464646464646464,
+            "raw_retrieval_score": 0.021464646464646464,
+            "rerank_score": -0.68115234375,
+            "selection_score": -0.68115234375,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 20,
+            "provenance": {
+              "bm25_rank": 12,
+              "dense_rank": 72,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        },
+        {
+          "chunk_id": "ctx_e0d841308c9d155bec9e04ed",
+          "doc_id": "doc_5995e5b33a15f409ee4f66b4",
+          "chunk_index": 2,
+          "language": "vi",
+          "text": "- Bảo quản nơi khô ráo, thoáng mát, nhiệt độ dưới 25°C.\n- Giữ thuốc ở nơi tránh ánh sáng và ẩm.\n- Bảo quản thuốc xa tầm tay trẻ em.",
+          "title": "Cách bảo quản",
+          "context": null,
+          "article_url": "https://youmed.vn/tin-tuc/cilzec/",
+          "keyword": "Cilzec",
+          "topic": 2,
+          "rank": 10,
+          "score": -0.7685546875,
+          "scores": {
+            "retrieval_score": 0.025274725274725275,
+            "raw_retrieval_score": 0.025274725274725275,
+            "rerank_score": -0.7685546875,
+            "selection_score": -0.7685546875,
+            "selection_eligible": true,
+            "selection_exclusion_reason": null,
+            "retrieval_rank": 13,
+            "provenance": {
+              "bm25_rank": 10,
+              "dense_rank": 31,
+              "sources": [
+                "bm25",
+                "dense"
+              ]
+            }
+          },
+          "is_positive": false,
+          "selected": false
+        }
+      ],
+      "first_positive_rank": 1,
+      "recall_at_k": 1.0,
+      "latency_ms": 6962.880300008692,
+      "setup_ms": 326.28830010071397,
+      "prediction": {
+        "id": "drug_6717",
+        "relevant_docs": [
+          "doc_f133ca2299ba7b45dee176be",
+          "doc_8482a296e03ed4699147f5be",
+          "doc_f8bb2f61d826b5c110696d79",
+          "doc_3091fdc11d2762b05cc5479c",
+          "doc_cce3e0fa8009b4ac854f89f2"
+        ],
+        "relevant_chunks": [
+          "ctx_29a606562fdf032038b5ab94",
+          "ctx_ae14493abce93db82a64dd91",
+          "ctx_7a3bab2381daedc1211ae9f8",
+          "ctx_bca1a59d843a7dbb35a071a1",
+          "ctx_6b98d98d06a6bd258bd92117"
+        ]
+      }
+    }
+  ],
+  "gold": [
+    {
+      "chunk_id": "ctx_29a606562fdf032038b5ab94",
+      "doc_id": "doc_f133ca2299ba7b45dee176be",
+      "chunk_index": 6,
+      "language": "vi",
+      "text": "- Bảo quản nơi khô thoáng.\n- Tránh ánh sáng trực tiếp.\n- Nhiệt độ bảo quản dưới 30 độ C. Thuốc Caffeine có tác dụng kích thích thần kinh trung ương, sử dụng để điều trị đau nửa đầu, hen suyễn và giúp tỉnh táo. Bệnh nhân cần tham khảo ý kiến bác sĩ trước khi sử dụng. Chỉ nên dùng với liều lượng được khuyến cáo. Tranh việc sử dụng quá liều, có thể gây ra tác dụng phụ và ảnh hưởng đến sức khoẻ. Trong trường hợp có bất kỳ dấu hiệu nào bất thường, bạn hãy ngừng sử dụng và liên hệ với bác sĩ để được hỗ trợ xử lý kịp thời và đúng cách.",
+      "title": "Cách bảo quản thuốc Cafein",
+      "context": null,
+      "article_url": "https://youmed.vn/tin-tuc/thuoc-cafein/",
+      "keyword": "Cafein",
+      "topic": 2
+    }
+  ],
+  "answer": "Bảo quản thuốc Cafein ở nhiệt độ dưới 30 độ C."
+}

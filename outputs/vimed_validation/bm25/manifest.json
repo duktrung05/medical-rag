@@ -1,0 +1,85 @@
+{
+  "stage": "bm25",
+  "corpus_sha256": "b219a1f7f55df30a759753db9f01c29397e68bd8f62125a1b5347da0781ba04a",
+  "samples_sha256": "18ee5573930b6fc8a4ffe34e94c16485441445a3028f70078851ea105511c98c",
+  "config_sha256": "a60c91bd976821e58ce38c48ccc8409ef43183bb743eb767f246daeb6f124f66",
+  "split": "validation",
+  "num_queries": 2210,
+  "probe": false,
+  "status": "complete",
+  "rankings_sha256": "cf0f1ca3d6f78ab0012d0a20c2dcf9c48fb03718843c1b84b3ded01776d311e4",
+  "config": "configs\\vimed_bm25.yaml",
+  "config_snapshot": {
+    "experiment_name": "vimed_bm25",
+    "backend": "sparse",
+    "corpus": "C:\\Users\\Admin\\Downloads\\medical-rag\\data\\vimed\\chunks.jsonl",
+    "retrieval": {
+      "sparse": {
+        "enabled": true,
+        "engine": "bm25",
+        "tokenizer": "word",
+        "char_ngram_size": 3,
+        "k1": 1.5,
+        "b": 0.75,
+        "index_path": "C:\\Users\\Admin\\Downloads\\medical-rag\\artifacts\\vimed_bm25",
+        "top_k": 100
+      },
+      "dense": {
+        "enabled": false,
+        "model_name": null,
+        "revision": "main",
+        "tokenizer_name": null,
+        "tokenizer_revision": null,
+        "index_path": null,
+        "index_type": "exact",
+        "top_k": 300,
+        "batch_size": 32,
+        "max_length": 512,
+        "encoder_profile": "generic",
+        "pooling": "mean",
+        "query_prefix": "",
+        "passage_prefix": "",
+        "precision": "float32",
+        "normalize_embeddings": true,
+        "device": "auto"
+      }
+    },
+    "fusion": {
+      "enabled": false,
+      "method": "rrf",
+      "rrf_k": 60,
+      "top_k": 150
+    },
+    "reranker": {
+      "enabled": false,
+      "model_name": null,
+      "revision": "main",
+      "precision": "float32",
+      "top_k": 100,
+      "batch_size": 16,
+      "max_length": 512,
+      "device": "auto"
+    },
+    "scoring": {
+      "document": {
+        "aggregation": "max",
+        "top_n_mean": 3
+      }
+    },
+    "selection": {
+      "chunk": {
+        "threshold": 0.0,
+        "relative_delta": 1000000.0,
+        "min_k": 5,
+        "max_k": 5
+      },
+      "document": {
+        "threshold": 0.0,
+        "relative_delta": 1000000.0,
+        "min_k": 5,
+        "max_k": 5
+      }
+    }
+  },
+  "warmup_seconds": 0.050342799979262054
+}

@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "passages": 17955,
+  "dimension": 1024,
+  "encoder_profile": "bge_m3",
+  "pooling": "cls",
+  "query_prefix": "",
+  "passage_prefix": "",
+  "precision": "float16",
+  "device": "cuda",
+  "model_parameter_dtype": "torch.float16",
+  "finite": true,
+  "normalized": true,
+  "cache_reencode_max_abs_error": 0.000244140625,
+  "reference_max_abs_error": 0.0,
+  "batch_single_consistent": true,
+  "verification_seconds": 12.891000000061467,
+  "queries": [
+    {
+      "query": "đau đầu kéo dài",
+      "results": [
+        [
+          "ctx_cd7ca037c564328cfd42193c",
+          0.6865813136100769
+        ],
+        [
+          "ctx_7a8bbca4bb874af769bf35bc",
+          0.6634089946746826
+        ],
+        [
+          "ctx_c702ce8991aad52fb3ce6c95",
+          0.6625759601593018
+        ],
+        [
+          "ctx_53191eeb37792f4323c42d08",
+          0.6341275572776794
+        ],
+        [
+          "ctx_e21e6f349eb2aff4bb79b3f4",
+          0.6230284571647644
+        ]
+      ]
+    },
+    {
+      "query": "tác dụng phụ của thuốc",
+      "results": [
+        [
+          "ctx_7b1901c029f38ee23f2bf7f6",
+          0.72246253490448
+        ],
+        [
+          "ctx_0b63215ca41116cad1823ad8",
+          0.7214298844337463
+        ],
+        [
+          "ctx_c4fda04b14ea07ffe415d300",
+          0.7197974920272827
+        ],
+        [
+          "ctx_d762921bdbe855d01ff4b184",
+          0.7190226912498474
+        ],
+        [
+          "ctx_1ca6c730b67eb1d7be9a01b9",
+          0.7177895307540894
+        ]
+      ]
+    },
+    {
+      "query": "heart disease",
+      "results": [
+        [
+          "ctx_31d3f056cadd1949be3087e9",
+          0.6064719557762146
+        ],
+        [
+          "ctx_8a3b272eb7bf51c719c7ca90",
+          0.6018416285514832
+        ],
+        [
+          "ctx_e4db1de4b4f08c8a42b0d3d8",
+          0.5976892113685608
+        ],
+        [
+          "ctx_6ace74125e2d411cdc75d444",
+          0.5959681272506714
+        ],
+        [
+          "ctx_6e3699d97e47c41581867d54",
+          0.5956199169158936
+        ]
+      ]
+    }
+  ]
+}

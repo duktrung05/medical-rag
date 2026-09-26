@@ -10,7 +10,7 @@ from src.reranking.factory import create_reranker
 from src.indexing.sparse_index import corpus_sha256
 
 
-def build_pipeline(config: RuntimeConfig | PipelineConfig) -> RetrievalPipeline:
+def build_pipeline(config: RuntimeConfig | PipelineConfig, *, retriever_override=None) -> RetrievalPipeline:
     chunks = DataLoader.load_chunks(config.corpus)
     errors = validate_chunks_integrity(chunks)
     if not chunks:
@@ -31,10 +31,8 @@ def build_pipeline(config: RuntimeConfig | PipelineConfig) -> RetrievalPipeline:
             max_doc_k=config.max_chunks,
         )
 
-    retriever, retrieval_top_k = create_retriever(
-        config.backend,
-        config.retrieval,
-        config.fusion,
+    retriever, retrieval_top_k = retriever_override or create_retriever(
+        config.backend, config.retrieval, config.fusion,
         expected_corpus_hash=corpus_sha256(chunks),
     )
     reranker = create_reranker(config.reranker)

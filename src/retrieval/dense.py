@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import hashlib
 import warnings
+import time
 from pathlib import Path
 from typing import Sequence
 
@@ -15,6 +16,7 @@ from src.data.schema import ChunkRecord
 from src.indexing.sparse_index import corpus_sha256
 from src.retrieval.bm25 import BaseRetriever
 from src.retrieval.dense_encoding import encode_texts, load_encoder
+from src.encoder_profile import resolve_encoder_profile
 from src.retrieval.exact_dense import RankedChunk, exact_search
 
 
@@ -31,8 +33,11 @@ class DenseRetriever(BaseRetriever):
         tokenizer_revision: str | None = None,
         batch_size: int = 32,
         max_length: int = 512,
-        query_prefix: str = "query: ",
-        passage_prefix: str = "passage: ",
+        query_prefix: str | None = None,
+        passage_prefix: str | None = None,
+        encoder_profile: str = "auto",
+        pooling: str | None = None,
+        precision: str = "float32",
         normalize_embeddings: bool = True,
         expected_corpus_hash: str | None = None,
         index_type: str = "exact",
@@ -45,8 +50,12 @@ class DenseRetriever(BaseRetriever):
         self.tokenizer_revision = tokenizer_revision or revision
         self.batch_size = batch_size
         self.max_length = max_length
-        self.query_prefix = query_prefix
-        self.passage_prefix = passage_prefix
+        profile = resolve_encoder_profile(model_name, encoder_profile, pooling, query_prefix, passage_prefix)
+        self.encoder_profile = profile.name
+        self.pooling = profile.pooling
+        self.query_prefix = profile.query_prefix
+        self.passage_prefix = profile.passage_prefix
+        self.precision = precision
         self.normalize_embeddings = normalize_embeddings
         self.index_type = index_type
         if index_type not in {"exact", "faiss"}:
@@ -61,6 +70,7 @@ class DenseRetriever(BaseRetriever):
             tokenizer_name=self.tokenizer_name,
             tokenizer_revision=self.tokenizer_revision,
             device=device,
+            precision=precision,
         )
         self.model_revision = model_revision
         self.tokenizer_revision_resolved = tokenizer_revision_resolved
@@ -80,6 +90,7 @@ class DenseRetriever(BaseRetriever):
         config: DenseRetrievalConfig,
         *,
         device: str | None = None,
+        progress: bool = False,
     ) -> dict:
         if not chunks:
             raise ValueError("Cannot build dense index from an empty corpus")
@@ -93,7 +104,9 @@ class DenseRetriever(BaseRetriever):
             tokenizer_name=config.tokenizer_name,
             tokenizer_revision=config.tokenizer_revision,
             device=device or config.device,
+            precision=config.precision,
         )
+        encoding_started = time.monotonic()
         try:
             passage_embeddings = encode_texts(
                 [config.passage_prefix + chunk.text for chunk in ordered_chunks],
@@ -103,9 +116,11 @@ class DenseRetriever(BaseRetriever):
                 max_length=config.max_length,
                 normalize=config.normalize_embeddings,
                 device=actual_device,
+                pooling=config.pooling,
+                progress=progress,
             )
         except RuntimeError as error:
-            if actual_device.type != "cuda":
+            if actual_device.type != "cuda" or config.precision == "float16":
                 raise
             import torch
 
@@ -121,11 +136,14 @@ class DenseRetriever(BaseRetriever):
                 max_length=config.max_length,
                 normalize=config.normalize_embeddings,
                 device=actual_device,
+                pooling=config.pooling,
+                progress=progress,
             )
         if passage_embeddings.shape[0] != len(chunk_ids):
             raise ValueError("Passage embedding count does not match ordered chunk IDs")
         if passage_embeddings.shape[1] < 1 or not np.isfinite(passage_embeddings).all():
             raise ValueError("Passage embeddings have invalid dimensions or contain NaN/infinity")
+        encoding_seconds = time.monotonic() - encoding_started
 
         index_dir = Path(config.index_path)
         index_dir.mkdir(parents=True, exist_ok=True)
@@ -134,7 +152,7 @@ class DenseRetriever(BaseRetriever):
             json.dumps(chunk_ids, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         manifest = {
-            "format_version": 1,
+            "format_version": 2,
             "model_name": config.model_name,
             "model_revision": model_revision,
             "tokenizer_name": config.tokenizer_name or config.model_name,
@@ -153,9 +171,13 @@ class DenseRetriever(BaseRetriever):
             "query_prefix": config.query_prefix,
             "passage_prefix": config.passage_prefix,
             "normalize_embeddings": config.normalize_embeddings,
-            "pooling": "attention_mask_mean",
+            "pooling": "cls" if config.pooling == "cls" else "attention_mask_mean",
+            "encoder_profile": config.encoder_profile,
+            "precision": config.precision,
             "index_type": config.index_type,
             "device": str(actual_device),
+            "encoding_seconds": encoding_seconds,
+            "passages_per_second": len(chunk_ids) / max(encoding_seconds, 1e-9),
         }
         manifest_tmp = index_dir / "manifest.json.tmp"
         manifest_tmp.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -175,7 +197,7 @@ class DenseRetriever(BaseRetriever):
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         chunk_ids = json.loads(ids_path.read_text(encoding="utf-8"))
         vectors = np.load(vectors_path, allow_pickle=False)
-        if manifest.get("format_version") != 1:
+        if manifest.get("format_version") not in (1, 2):
             raise ValueError(f"Unsupported dense index format version: {manifest.get('format_version')}")
         if chunk_ids != manifest.get("ordered_chunk_ids"):
             raise ValueError("Dense index chunk_ids.json does not match ordered_chunk_ids in manifest")
@@ -199,6 +221,12 @@ class DenseRetriever(BaseRetriever):
                 "Dense index does not match the configured corpus "
                 f"(index={manifest.get('corpus_sha256')}, corpus={expected_corpus_hash}); rebuild the index"
             )
+        expected_pooling = "cls" if self.pooling == "cls" else "attention_mask_mean"
+        if manifest.get("pooling") != expected_pooling:
+            raise ValueError("Dense index pooling mismatch; rebuild the index with the model-specific encoder profile")
+        cached_precision = "float32" if manifest.get("format_version") == 1 else manifest.get("precision")
+        if cached_precision != self.precision:
+            raise ValueError("Dense index precision mismatch; rebuild the index with the configured precision")
         return manifest, chunk_ids, np.asarray(vectors, dtype=np.float32)
 
     def _validate_model_manifest(self) -> None:
@@ -211,13 +239,17 @@ class DenseRetriever(BaseRetriever):
             "query_prefix": self.query_prefix,
             "passage_prefix": self.passage_prefix,
             "normalize_embeddings": self.normalize_embeddings,
-            "pooling": "attention_mask_mean",
+            "pooling": "cls" if self.pooling == "cls" else "attention_mask_mean",
         }
         mismatches = [
             f"{key}: index={self.manifest.get(key)!r}, runtime={value!r}"
             for key, value in expected.items()
             if self.manifest.get(key) != value
         ]
+        if self.manifest.get("format_version") == 2:
+            for key, value in (("encoder_profile", self.encoder_profile), ("precision", self.precision)):
+                if self.manifest.get(key) != value:
+                    mismatches.append(f"{key}: index={self.manifest.get(key)!r}, runtime={value!r}")
         if mismatches:
             raise ValueError("Dense index/model config mismatch: " + "; ".join(mismatches))
 
@@ -231,9 +263,10 @@ class DenseRetriever(BaseRetriever):
                 max_length=self.max_length,
                 normalize=self.normalize_embeddings,
                 device=self.device,
+                pooling=self.pooling,
             )
         except RuntimeError as error:
-            if self.device.type != "cuda":
+            if self.device.type != "cuda" or self.precision == "float16":
                 raise
             warnings.warn(f"Dense encoding failed on CUDA ({error}); retrying on CPU", RuntimeWarning)
             import torch
@@ -249,6 +282,7 @@ class DenseRetriever(BaseRetriever):
                 max_length=self.max_length,
                 normalize=self.normalize_embeddings,
                 device=self.device,
+                pooling=self.pooling,
             )
         if vectors.ndim != 2 or vectors.shape[1] != self.passage_embeddings.shape[1]:
             raise ValueError(

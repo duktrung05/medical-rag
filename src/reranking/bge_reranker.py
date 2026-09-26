@@ -9,18 +9,26 @@ class BGEReranker(BaseReranker):
     """Batched cross-encoder; the model is loaded once at construction."""
 
     def __init__(self, model_name="BAAI/bge-reranker-v2-m3", batch_size=16,
-                 max_length=512, device="auto", model=None):
+                 max_length=512, device="auto", model=None, revision="main", precision="float32"):
         self.model_name = model_name
         self.batch_size = batch_size
         self.max_length = max_length
         self.device = device
         self.model = model
+        self.revision = revision
+        self.precision = precision
 
     def _load_model(self):
         if self.model is None:
             from sentence_transformers import CrossEncoder
+            import torch
+            if self.precision == "float16" and (self.device == "cpu" or not torch.cuda.is_available()):
+                raise RuntimeError("FP16 reranker requires CUDA")
             self.model = CrossEncoder(self.model_name, max_length=self.max_length,
-                                      device=None if self.device == "auto" else self.device)
+                                      device=None if self.device == "auto" else self.device,
+                                      revision=self.revision,
+                                      model_kwargs={"torch_dtype": torch.float16 if self.precision == "float16" else torch.float32},
+                                      activation_fn=torch.nn.Identity())
         return self.model
 
     def rerank(self, query: str, candidates: List[Tuple], top_k: int = 100) -> List[Tuple[str, float]]:

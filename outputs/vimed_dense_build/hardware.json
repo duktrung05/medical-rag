@@ -1,0 +1,15 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 4806 MiB, 591.66",
+  "ram_total_bytes": 16849264640,
+  "ram_available_bytes": 3471417344,
+  "disk_free_bytes": 203003879424,
+  "cpu_logical": 8,
+  "cpu_physical": 4,
+  "initial_torch": "2.14.0+cpu",
+  "planned_precision": "float16",
+  "planned_batch_size": 4,
+  "planned_max_length": 512,
+  "installed_torch": "2.7.1+cu128",
+  "cuda_compute_test": "passed",
+  "pip_check": "passed"
+}
