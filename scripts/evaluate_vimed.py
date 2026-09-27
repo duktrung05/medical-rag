@@ -25,7 +25,11 @@ def main():
         for i, sample in enumerate(samples):
             query = adapt_query(QueryRecord(id=sample['id'], query=sample['query']))
             start = time.perf_counter()
-            results = pipeline.retriever.search(query.text, top_k=100)
+            pipeline.run_query(query.query_id, query.text)
+            results = sorted(
+                [(cid, scores['selection_score']) for cid, scores in pipeline.last_candidate_scores.items()
+                 if scores['selection_eligible']], key=lambda item: (-item[1], item[0]),
+            )[:100]
             latencies.append((time.perf_counter() - start) * 1000)
             positives = set(sample['relevant_chunks'])
             rank = next((i for i, (cid, _) in enumerate(results, 1) if cid in positives), None)

@@ -1,11 +1,13 @@
-﻿import hashlib,json
+import hashlib,json
 from pathlib import Path
 import pytest,yaml
 from fastapi.testclient import TestClient
 from src.inspector import create_app,CONFIGS
+from src.data.loader import DataLoader
+from src.indexing.sparse_index import corpus_sha256
 
 class Engine:
-    def __init__(self,root):pass
+    def __init__(self,root):self.root=root
     def search(self,stage,qid,text):
         return dict(results=[('b',2),('a',1)],prediction=dict(id=qid,relevant_chunks=['b'],relevant_docs=['doc']),latency_ms=3,setup_ms=0,scores={})
 
@@ -25,7 +27,7 @@ def client(tmp_path):
         directory=tmp_path/'outputs/vimed_validation'/name;directory.mkdir(parents=True)
         row=dict(id='q',query='câu hỏi',results=[['a',2],['b',1]],first_positive_rank=1,prediction=dict(id='q',relevant_chunks=['a'],relevant_docs=['doc']),total_latency_ms=12)
         rankings=directory/'rankings.jsonl';rankings.write_text(json.dumps(row)+'\n')
-        (directory/'manifest.json').write_text(json.dumps(dict(status='complete',rankings_sha256=hashlib.sha256(rankings.read_bytes()).hexdigest(),config_sha256=hashlib.sha256(path.read_bytes()).hexdigest())))
+        (directory/'manifest.json').write_text(json.dumps(dict(split='validation',corpus_sha256=corpus_sha256(DataLoader.load_chunks(corpus)),samples_sha256=hashlib.sha256(json.dumps(samples,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),status='complete',rankings_sha256=hashlib.sha256(rankings.read_bytes()).hexdigest(),config_sha256=hashlib.sha256(path.read_bytes()).hexdigest())))
         (directory/'metrics.json').write_text(json.dumps(dict(num_queries=1,recall_at_k={'10':1})))
     with TestClient(create_app(tmp_path,Engine)) as c:yield c
 
@@ -64,3 +66,14 @@ def test_labels_persist_latest_and_do_not_alter_gold(client):
     body['chunk_id']='unknown'
     assert client.post('/inspector/labels',json=body).status_code==404
     assert client.get('/inspector/benchmark').json()['samples'][0]['ranks']['rerank']==1
+
+
+
+def test_startup_rejects_changed_validation_content(client):
+    root=client.app.state.engine.root
+    path=root/'data/vimed/validation/samples.jsonl'
+    sample=json.loads(path.read_text(encoding='utf-8'))
+    sample['query']='changed query with same ID'
+    path.write_text(json.dumps(sample)+'\n',encoding='utf-8')
+    with pytest.raises(ValueError,match='Benchmark data changed'):
+        with TestClient(create_app(root,Engine)):pass

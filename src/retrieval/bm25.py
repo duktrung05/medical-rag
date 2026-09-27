@@ -1,7 +1,6 @@
 """Deterministic, Unicode-aware BM25 sparse retrieval."""
 
 from abc import ABC, abstractmethod
-from collections import Counter
 from pathlib import Path
 from typing import List, Sequence, Tuple
 

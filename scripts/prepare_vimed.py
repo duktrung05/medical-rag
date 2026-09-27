@@ -38,7 +38,8 @@ def main():
         frame = pd.concat([pd.read_parquet(p) for p in files], ignore_index=True)
         skipped[split] = 0
         for row in frame.to_dict('records'):
-            context = unicodedata.normalize('NFC', str(row.get('context') or '')).strip()
+            value = row.get('context')
+            context = '' if pd.isna(value) else unicodedata.normalize('NFC', str(value)).strip()
             if not context:
                 skipped[split] += 1
                 continue

@@ -68,3 +68,4 @@ Thumbs.db
 .vscode/
 .idea/
 .cache/
+outputs/cleanup_review/

@@ -1,6 +1,7 @@
 """Optional HTTP interface: install the project's api extra before serving."""
 
 import os
+import threading
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -12,6 +13,7 @@ from src.service import build_pipeline
 
 
 def create_app(config_path: str | None = None) -> FastAPI:
+    lock = threading.Lock()
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         config = load_config(config_path or os.environ.get("R2AI_CONFIG", "configs/demo.yaml"))
@@ -28,6 +30,7 @@ def create_app(config_path: str | None = None) -> FastAPI:
     @app.post("/search", response_model=PredictionRecord)
     def search(query: QueryRecord) -> PredictionRecord:
         adapted = adapt_query(query)
-        return app.state.pipeline.run_query(adapted.query_id, adapted.text)
+        with lock:
+            return app.state.pipeline.run_query(adapted.query_id, adapted.text)
 
     return app

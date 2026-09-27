@@ -23,8 +23,6 @@ api = [
     "httpx>=0.27.0",
 ]
 retrieval = [
-    "rank-bm25>=0.2.2",
-    "tantivy>=0.22.0",
     "sentence-transformers>=3.0.0",
     "torch>=2.2.0",
     "faiss-cpu>=1.8.0",

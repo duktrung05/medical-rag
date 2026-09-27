@@ -10,7 +10,6 @@ import numpy as np
 
 
 def mean_pool(last_hidden_state: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
-    import torch
 
     mask = attention_mask.unsqueeze(-1).to(last_hidden_state.dtype)
     return (last_hidden_state * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)

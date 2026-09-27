@@ -1,0 +1,2 @@
+# Preserve the CUDA Torch already installed in the official base image.
+torch==2.7.1

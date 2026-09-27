@@ -16,6 +16,7 @@ from src.data.loader import DataLoader
 from src.data.schema import QueryRecord
 from src.service import build_pipeline
 from src.retrieval.hybrid import HybridRetriever
+from src.indexing.sparse_index import corpus_sha256
 
 STAGES = ('bm25', 'dense', 'hybrid', 'rerank')
 CONFIGS = dict(zip(STAGES, ('vimed_bm25.yaml','vimed_dense_bge_m3.yaml','vimed_hybrid.yaml','vimed_hybrid_rerank.yaml')))
@@ -69,8 +70,13 @@ def create_app(root=None, engine_factory=LiveEngine):
     @asynccontextmanager
     async def lifespan(app):
         config=load_pipeline_config(root/'configs/vimed_hybrid_rerank.yaml')
-        app.state.chunks={c.chunk_id:c.model_dump() for c in DataLoader.load_chunks(config.corpus)}
-        app.state.samples={s['id']:s for s in read_rows(data/'samples.jsonl')}
+        chunks=DataLoader.load_chunks(config.corpus)
+        app.state.chunks={c.chunk_id:c.model_dump() for c in chunks}
+        samples=read_rows(data/'samples.jsonl')
+        app.state.samples={s['id']:s for s in samples}
+        if len(app.state.samples)!=len(samples):raise ValueError('Duplicate validation sample IDs')
+        corpus_hash=corpus_sha256(chunks)
+        samples_hash=hashlib.sha256(json.dumps(samples,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
         metadata=root/'data/vimed/metadata.json'
         app.state.metadata=json.loads(metadata.read_text(encoding='utf-8')) if metadata.exists() else {}
         app.state.cache={};app.state.metrics={}
@@ -78,6 +84,8 @@ def create_app(root=None, engine_factory=LiveEngine):
             directory=output/stage
             if not (directory/'manifest.json').exists():continue
             manifest=json.loads((directory/'manifest.json').read_text(encoding='utf-8'))
+            if manifest.get('split')!='validation' or manifest.get('corpus_sha256')!=corpus_hash or manifest.get('samples_sha256')!=samples_hash:
+                raise ValueError(f'Benchmark data changed: {stage}')
             path=directory/'rankings.jsonl'
             if manifest['status']!='complete' or hashlib.sha256(path.read_bytes()).hexdigest()!=manifest['rankings_sha256']:
                 raise ValueError(f'Invalid benchmark cache: {stage}')

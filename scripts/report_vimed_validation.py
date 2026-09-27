@@ -59,7 +59,7 @@ def main():
     lines=['# Benchmark retrieval ViMed — task 2','',f'Đã đo đủ **{len(samples)} câu validation**; 5 câu thiếu context bị loại. Corpus cố định 17.955 chunks; không chạy lại test split.','',
     '| Cấu hình | Recall@1 | Recall@5 | Recall@10 | Recall@100 | MRR@100 |','|---|---:|---:|---:|---:|---:|']
     for s,m in metrics.items():
-        lines.append('| '+s+' | '+' | '.join(f"{m["recall_at_k"][str(k)]*100:.2f}%" for k in (1,5,10,100))+f" | {m['mrr_at_100']:.4f} |")
+        lines.append('| '+s+' | '+' | '.join(f"{m['recall_at_k'][str(k)]*100:.2f}%" for k in (1,5,10,100))+f" | {m['mrr_at_100']:.4f} |")
     lines+=['',f'## Cấu hình được chọn: {winner}','', 'Tiêu chí đã đặt trước: Recall@10, sau đó MRR@100, sau đó độ trễ. Cấu hình đóng băng ở `configs/vimed_selected_validation.yaml`.', '',
     '## Giao thức và giới hạn','', 'BM25 và dense lấy 100 candidates mỗi nhánh; RRF k=60 giữ 100; reranker xếp lại đủ 100. BGE-M3 dùng CLS, FP16, max_length=512; reranker BGE v2 M3 dùng raw logits, FP16, batch=8, max_length=512. Revision của cả hai model được khóa trong config.', '',
     'Ground truth là context nguồn của từng câu QA, chưa phải nhãn relevance đầy đủ. Context khác có thể đúng nhưng chưa được gán nhãn. Corpus gồm context từ các split, phù hợp đánh giá retrieval trong corpus đóng; không thể suy ra chất lượng tổng quát ngoài corpus. Không dùng câu hỏi/đáp án làm nội dung index.', '',

@@ -17,7 +17,7 @@ from src.indexing.sparse_index import corpus_sha256
 from src.retrieval.bm25 import BaseRetriever
 from src.retrieval.dense_encoding import encode_texts, load_encoder
 from src.encoder_profile import resolve_encoder_profile
-from src.retrieval.exact_dense import RankedChunk, exact_search
+from src.retrieval.exact_dense import exact_search
 
 
 class DenseRetriever(BaseRetriever):
