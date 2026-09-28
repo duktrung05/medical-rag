@@ -7,7 +7,7 @@
   "num_queries": 2210,
   "probe": false,
   "status": "complete",
-  "rankings_sha256": "cf0f1ca3d6f78ab0012d0a20c2dcf9c48fb03718843c1b84b3ded01776d311e4",
+  "rankings_sha256": "c65b25f65aa4a7d943552a4ea925bb7b356d3159c2c853b9a1964cc30d78c16b",
   "config": "configs\\vimed_bm25.yaml",
   "config_snapshot": {
     "experiment_name": "vimed_bm25",

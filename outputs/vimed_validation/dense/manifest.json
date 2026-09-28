@@ -7,7 +7,7 @@
   "num_queries": 2210,
   "probe": false,
   "status": "complete",
-  "rankings_sha256": "88cd81f9bb3d11ce6bbd5fa64ccab4dfbbacd7761cab17951338be3cac160f05",
+  "rankings_sha256": "1b365c4f8a669e6dd8d4ccbb06ef64118179f04a8260f7a65e120c043e846316",
   "config": "configs\\vimed_dense_bge_m3.yaml",
   "config_snapshot": {
     "experiment_name": "vimed_dense_bge_m3_corrected",
