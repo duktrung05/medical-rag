@@ -7,14 +7,10 @@ Current workflow: prepare context-only corpus -> BM25 / BGE-M3 -> RRF -> BGE rer
 From the repository root, using the existing CUDA environment and prepared data:
 
 ```powershell
+#cd C:\Users\Admin\Downloads\medical-rag
 $env:HF_HOME = Join-Path (Get-Location) '.cache/huggingface'
 $env:HF_HUB_OFFLINE = '1'
-.venv/Scripts/python.exe -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
-```
-
-Open **http://localhost:8001**. The UI compares BM25, dense, hybrid and hybrid + reranker; supports benchmark replay, live GPU queries, source-context labels, miss filters and human relevance labels.
-
-Human labels are stored in `outputs/vimed_validation/human_labels.jsonl`.
+.venv\Scripts\python.exe -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
 
 ## Docker
 

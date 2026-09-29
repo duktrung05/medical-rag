@@ -3,7 +3,6 @@
 import json
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Set, Type, TypeVar, Union
-import pandas as pd
 from pydantic import BaseModel
 
 from src.data.schema import ChunkRecord, GroundTruthRecord, PredictionRecord, QueryRecord
@@ -97,6 +96,8 @@ class DocumentChunkMap:
 
     def save_parquet(self, output_path: Union[str, Path]) -> None:
         """Saves the chunk-to-doc mapping table to Parquet."""
+        import pandas as pd
+
         path = Path(output_path)
         path.parent.mkdir(parents=True, exist_ok=True)
         df = pd.DataFrame(
@@ -107,6 +108,8 @@ class DocumentChunkMap:
     @classmethod
     def load_parquet(cls, parquet_path: Union[str, Path]) -> "DocumentChunkMap":
         """Loads the mapping from a Parquet file."""
+        import pandas as pd
+
         df = pd.read_parquet(parquet_path)
         chunk_to_doc = dict(zip(df["chunk_id"], df["doc_id"]))
         doc_to_chunks: Dict[str, List[str]] = {}
