@@ -17,7 +17,7 @@ Document Recall@K và số zero-hit ở mọi cutoff nằm trong `outputs/baseli
 Replay metrics và kiểm tra checksum snapshot bằng CPU:
 
 ```bash
-python -m scripts.replay_baseline --baseline baseline_20260930
+python -m scripts.experiments.vimedqa.replay_baseline --baseline baseline_20260930
 ```
 
 Năm cấu hình gốc được sao lưu nguyên văn trong `configs/archive/baseline_20260930/`. Rankings, metrics, manifest và run identity được sao lưu riêng theo stage.

@@ -14,8 +14,8 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
-from scripts.prepare_vibiomir import prepare, sha256_file
-from scripts.sample_vibiomir_urls import allocate_quotas, sample_urls, selection_hash
+from scripts.workflows.vibiomir.prepare_vibiomir import prepare, sha256_file
+from scripts.workflows.vibiomir.sample_vibiomir_urls import allocate_quotas, sample_urls, selection_hash
 
 
 @pytest.fixture
@@ -123,7 +123,7 @@ def test_repeat_run_is_byte_identical_for_parquet_and_summary(dataset):
 
 def test_python_hash_seed_does_not_affect_selection(dataset):
     paths = dataset()
-    command = [sys.executable, "-m", "scripts.sample_vibiomir_urls", "--corpus-file", str(paths[0]),
+    command = [sys.executable, "-m", "scripts.workflows.vibiomir.sample_vibiomir_urls", "--corpus-file", str(paths[0]),
                "--inventory-file", str(paths[1]), "--output-file", str(paths[2]),
                "--summary-file", str(paths[3]), "--sample-size", "8",
                "--per-domain-base", "2", "--batch-size", "2"]

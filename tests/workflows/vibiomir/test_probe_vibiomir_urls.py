@@ -9,9 +9,9 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
-from scripts.prepare_vibiomir import sha256_file
-from scripts.probe_vibiomir_urls import RESULT_SCHEMA, probe, select_probe_urls
-from scripts.sample_vibiomir_urls import SAMPLE_SCHEMA, selection_hash
+from scripts.workflows.vibiomir.prepare_vibiomir import sha256_file
+from scripts.workflows.vibiomir.probe_vibiomir_urls import RESULT_SCHEMA, probe, select_probe_urls
+from scripts.workflows.vibiomir.sample_vibiomir_urls import SAMPLE_SCHEMA, selection_hash
 
 
 @pytest.fixture

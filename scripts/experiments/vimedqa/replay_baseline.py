@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from scripts.benchmark_vimed_validation import read_rows
+from scripts.workflows.vimedqa.benchmark_vimed_validation import read_rows
 from src.evaluation.ranking_metrics import summarize_rankings
 
 

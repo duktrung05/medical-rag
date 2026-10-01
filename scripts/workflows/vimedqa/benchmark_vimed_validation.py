@@ -70,7 +70,7 @@ def main():
     if args.limit and args.output == Path('outputs/vimed_validation'):
         parser.error('Resource probes require a separate --output directory')
     if not args.worker:
-        command = [sys.executable, '-m', 'scripts.benchmark_vimed_validation', *sys.argv[1:], '--worker']
+        command = [sys.executable, '-m', 'scripts.workflows.vimedqa.benchmark_vimed_validation', *sys.argv[1:], '--worker']
         print(f'Starting {args.stage}; timeout={args.timeout_seconds}s', flush=True)
         try:
             completed = subprocess.run(command, timeout=args.timeout_seconds)

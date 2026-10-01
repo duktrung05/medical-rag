@@ -6,8 +6,8 @@ import json
 import subprocess
 from pathlib import Path
 
-from scripts.benchmark_vimed_validation import CONFIGS, load_dependency, read_rows
-from scripts.run_metadata import write_run_manifest
+from scripts.workflows.vimedqa.benchmark_vimed_validation import CONFIGS, load_dependency, read_rows
+from scripts.tooling.run_metadata import write_run_manifest
 from src.data.loader import DataLoader, DocumentChunkMap
 from src.data.schema import PredictionRecord
 from src.evaluation.evaluator import Evaluator

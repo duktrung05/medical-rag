@@ -8,7 +8,7 @@ import httpx
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from scripts.crawl_vibiomir_batch import (
+from scripts.workflows.vibiomir.crawl_vibiomir_batch import (
     crawl_batch,
     detect_file_type,
     interleave_by_domain,

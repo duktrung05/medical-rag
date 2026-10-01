@@ -2,7 +2,7 @@ from pathlib import Path
 import math
 import pytest
 from src.evaluation.ranking_metrics import summarize_rankings, validate_ranking
-from scripts.benchmark_vimed_validation import CachedRetriever
+from scripts.workflows.vimedqa.benchmark_vimed_validation import CachedRetriever
 from src.reranking.bge_reranker import BGEReranker
 
 
@@ -55,8 +55,8 @@ def test_reranker_loader_pins_revision_and_raw_logits(monkeypatch):
 
 def test_validation_maps_existing_corpus_and_rejects_test_overlap(tmp_path):
     import json,pandas as pd
-    from scripts.prepare_vimed import digest
-    from scripts.prepare_vimed_validation import prepare
+    from scripts.workflows.vimedqa.prepare_vimed import digest
+    from scripts.workflows.vimedqa.prepare_vimed_validation import prepare
     raw=tmp_path/'raw';raw.mkdir()
     corpus=tmp_path/'chunks.jsonl'
     cid='ctx_'+digest('context')
@@ -73,7 +73,7 @@ def test_validation_maps_existing_corpus_and_rejects_test_overlap(tmp_path):
 
 def test_dependency_rejects_modified_rankings(tmp_path):
     import json,hashlib
-    from scripts.benchmark_vimed_validation import load_dependency, file_hash, CONFIGS
+    from scripts.workflows.vimedqa.benchmark_vimed_validation import load_dependency, file_hash, CONFIGS
     directory=tmp_path/'bm25';directory.mkdir()
     path=directory/'rankings.jsonl'
     path.write_text(json.dumps(dict(id='a',results=[]))+'\n')

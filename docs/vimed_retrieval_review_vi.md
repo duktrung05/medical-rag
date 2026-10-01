@@ -35,8 +35,8 @@
 Từ thư mục gốc, dùng Python có pandas, pyarrow, pydantic, yaml, fastapi, uvicorn:
 
 ```powershell
-python -m scripts.prepare_vimed
-python -m scripts.evaluate_vimed
+python -m scripts.workflows.vimedqa.prepare_vimed
+python -m scripts.workflows.vimedqa.evaluate_vimed
 python -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8000
 ```
 

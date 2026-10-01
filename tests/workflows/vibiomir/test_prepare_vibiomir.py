@@ -9,7 +9,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
-from scripts.prepare_vibiomir import REPORT_FILES, main, prepare, sha256_file
+from scripts.workflows.vibiomir.prepare_vibiomir import REPORT_FILES, main, prepare, sha256_file
 
 INT64 = pa.int64()
 STRING = pa.string()

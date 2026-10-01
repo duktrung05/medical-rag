@@ -2,7 +2,7 @@
 
 from src.data.schema import GroundTruthRecord, QueryRecord
 from src.retrieval.exact_dense import RankedChunk
-from scripts.run_dense_smoke import cross_language_positive_metrics
+from scripts.runtime.run_dense_smoke import cross_language_positive_metrics
 
 
 def test_reports_positive_recall_separately_for_vi_en_zh():

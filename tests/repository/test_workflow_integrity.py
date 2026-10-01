@@ -3,7 +3,7 @@ import ast,re
 from pathlib import Path
 import yaml
 from src.config import load_config
-from scripts.run_dense_smoke import SmokeConfig
+from scripts.runtime.run_dense_smoke import SmokeConfig
 
 
 def test_sources_parse_on_supported_python311_and_local_imports_resolve():

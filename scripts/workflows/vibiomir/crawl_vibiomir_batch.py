@@ -18,7 +18,7 @@ import httpx
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from scripts.prepare_vibiomir import sha256_file
+from scripts.workflows.vibiomir.prepare_vibiomir import sha256_file
 from src.collection.fetcher import BatchFetcher, BatchFetchState
 
 DEFAULT_INPUT = Path("data/vibiomir/sample_urls.parquet")

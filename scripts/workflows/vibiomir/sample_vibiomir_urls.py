@@ -16,7 +16,7 @@ from tempfile import mkstemp
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from scripts.prepare_vibiomir import (
+from scripts.workflows.vibiomir.prepare_vibiomir import (
     CORPUS_PATH,
     OUTPUT_DIR,
     classify_url,

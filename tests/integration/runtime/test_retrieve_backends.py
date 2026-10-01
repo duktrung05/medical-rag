@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-import scripts.retrieve as retrieve_script
+import scripts.runtime.retrieve as retrieve_script
 from src.config import PipelineConfig, RuntimeConfig, load_config
 from src.config import SparseRetrievalConfig
 from src.data.loader import DataLoader
@@ -119,7 +119,7 @@ def test_retrieve_cli_uses_selected_backend(
     monkeypatch.setattr(
         "sys.argv",
         [
-            "scripts.retrieve",
+            "scripts.runtime.retrieve",
             "--config",
             str(config_path),
             "--queries",

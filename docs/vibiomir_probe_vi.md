@@ -1,6 +1,6 @@
 # ViBioMIR — HTTP probe 20 URL
 
-Ngày: 2026-10-01. Lệnh: `python -m scripts.probe_vibiomir_urls` và một lượt `--retry-failed` sau khi bổ sung xử lý robots redirect HTTP→HTTPS cùng hostname.
+Ngày: 2026-10-01. Lệnh: `python -m scripts.workflows.vibiomir.probe_vibiomir_urls` và một lượt `--retry-failed` sau khi bổ sung xử lý robots redirect HTTP→HTTPS cùng hostname.
 
 Selection được ghi vào `data/vibiomir/probe/selected_urls.json` trước network request. Chọn 8 domain lớn nhất, 6 domain quanh trung vị và 6 domain nhỏ nhất theo `domain_url_count`; trong mỗi domain lấy mẫu có `selection_hash` nhỏ nhất. Có đúng 20 domain khác nhau.
 

@@ -7,7 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from scripts.run_dense_smoke import cross_language_positive_metrics, predictions_at_k
+from scripts.runtime.run_dense_smoke import cross_language_positive_metrics, predictions_at_k
 from src.adapters import adapt_query
 from src.config import load_pipeline_config
 from src.data.loader import DataLoader, DocumentChunkMap, save_jsonl_records

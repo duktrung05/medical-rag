@@ -4,7 +4,7 @@ import subprocess
 
 import pytest
 
-from scripts import build_dense_index
+from scripts.runtime import build_dense_index
 
 
 def test_build_timeout_uses_process_deadline(monkeypatch):

@@ -1,5 +1,5 @@
-from scripts.ablate_fusion import ordered_union, weighted_rrf
-from scripts.analyze_failures import analyze_query, classify_candidate_positive
+from scripts.experiments.vimedqa.ablate_fusion import ordered_union, weighted_rrf
+from scripts.experiments.vimedqa.analyze_failures import analyze_query, classify_candidate_positive
 
 
 def test_error_taxonomy_tracks_candidate_fusion_rerank_and_selection():

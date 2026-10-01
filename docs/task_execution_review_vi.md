@@ -4,7 +4,7 @@ Ngày thực hiện: 2026-09-30. Nguồn baseline: commit `8a20eef4b8be44e20f644
 
 ## Task 01 — Baseline
 
-Đã sao lưu năm config vào `configs/archive/baseline_20260930/`; bốn stage có rankings, metrics, manifest và run identity riêng trong `outputs/baseline_reference/baseline_20260930/`. Replay CPU qua `python -m scripts.replay_baseline --baseline baseline_20260930` kiểm tra checksum và khớp metrics cả bốn stage.
+Đã sao lưu năm config vào `configs/archive/baseline_20260930/`; bốn stage có rankings, metrics, manifest và run identity riêng trong `outputs/baseline_reference/baseline_20260930/`. Replay CPU qua `python -m scripts.experiments.vimedqa.replay_baseline --baseline baseline_20260930` kiểm tra checksum và khớp metrics cả bốn stage.
 
 | Stage | Recall@5 | Recall@10 | Recall@100 | MRR@100 | p95 latency ms | Zero hit @10 |
 |---|---:|---:|---:|---:|---:|---:|

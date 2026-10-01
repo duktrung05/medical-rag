@@ -14,7 +14,7 @@ import httpx
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from scripts.prepare_vibiomir import OUTPUT_DIR, sha256_file
+from scripts.workflows.vibiomir.prepare_vibiomir import OUTPUT_DIR, sha256_file
 from src.collection.fetcher import PoliteFetcher
 
 SAMPLE_PATH = OUTPUT_DIR / "sample_urls.parquet"

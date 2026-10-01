@@ -6,7 +6,7 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from scripts.benchmark_vimed_validation import CONFIGS, read_rows
+from scripts.workflows.vimedqa.benchmark_vimed_validation import CONFIGS, read_rows
 from src.data.loader import DataLoader
 from src.evaluation.ranking_metrics import summarize_rankings
 from src.indexing.sparse_index import corpus_sha256

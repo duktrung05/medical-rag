@@ -2,7 +2,7 @@ import numpy as np
 
 from src.data.loader import DocumentChunkMap
 from src.retrieval.exact_dense import exact_search
-from scripts.run_dense_smoke import predictions_at_k
+from scripts.runtime.run_dense_smoke import predictions_at_k
 
 
 def test_exact_search_is_score_sorted_and_breaks_ties_by_id():

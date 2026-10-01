@@ -6,7 +6,7 @@ import json
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from scripts.extract_vibiomir_probe import extract_probe
+from scripts.workflows.vibiomir.extract_vibiomir_probe import extract_probe
 
 
 def _probe_row(official_id, raw_file, raw=None, status="success"):

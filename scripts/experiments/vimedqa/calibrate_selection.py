@@ -10,8 +10,8 @@ from pathlib import Path
 
 import numpy as np
 
-from scripts.benchmark_vimed_validation import read_rows
-from scripts.run_metadata import write_run_manifest
+from scripts.workflows.vimedqa.benchmark_vimed_validation import read_rows
+from scripts.tooling.run_metadata import write_run_manifest
 from src.data.loader import DataLoader, DocumentChunkMap
 from src.evaluation.evaluator import Evaluator
 from src.selection.prediction import select_prediction

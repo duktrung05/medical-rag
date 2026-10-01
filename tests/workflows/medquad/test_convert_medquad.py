@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from scripts.convert_medquad import convert_medquad
+from scripts.workflows.medquad.convert_medquad import convert_medquad
 
 
 def _write_document(root: Path, number: int, *, with_answer: bool = True) -> None:

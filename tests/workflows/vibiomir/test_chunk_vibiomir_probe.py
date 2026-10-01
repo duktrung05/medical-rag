@@ -5,7 +5,7 @@ import json
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from scripts.chunk_vibiomir_probe import chunk_probe
+from scripts.workflows.vibiomir.chunk_vibiomir_probe import chunk_probe
 from src.chunking import ChunkingConfig
 
 

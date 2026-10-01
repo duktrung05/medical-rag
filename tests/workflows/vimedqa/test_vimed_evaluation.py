@@ -1,6 +1,6 @@
-﻿"""Regression coverage for the full ViMed evaluation pipeline."""
+"""Regression coverage for the full ViMed evaluation pipeline."""
 import json
-from scripts import evaluate_vimed
+from scripts.workflows.vimedqa import evaluate_vimed
 
 def test_vimed_evaluator_uses_reranked_candidates(tmp_path,monkeypatch):
     data=tmp_path/'data';data.mkdir()
@@ -22,7 +22,7 @@ def test_vimed_evaluator_uses_reranked_candidates(tmp_path,monkeypatch):
     assert metrics['mrr_at_100']==1
 def test_prepare_vimed_skips_nan_contexts(tmp_path,monkeypatch):
     import pandas as pd
-    from scripts import prepare_vimed
+    from scripts.workflows.vimedqa import prepare_vimed
     raw=tmp_path/'raw';raw.mkdir()
     for split in ['train','validation','test']:
         pd.DataFrame([dict(question_idx=split,question='query',answer='answer',topic=1,context='context',article_url='url',title='title'),dict(question_idx=split+'_empty',question='query',answer='answer',topic=1,context=float('nan'),article_url='',title='')]).to_parquet(raw/(split+'-0.parquet'))

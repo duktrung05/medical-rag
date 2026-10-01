@@ -5,7 +5,7 @@ Ngày thực hiện: 2026-10-01. Dataset: `AIGuruTinix/ViBioMIR`.
 Chạy từ thư mục gốc repository:
 
 ```bash
-python -m scripts.prepare_vibiomir
+python -m scripts.workflows.vibiomir.prepare_vibiomir
 python -m pytest -q tests/workflows/vibiomir/test_prepare_vibiomir.py
 ```
 

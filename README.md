@@ -31,7 +31,13 @@ configs/      Cấu hình pipeline
 data/         Dữ liệu thô và dữ liệu đã chuẩn hóa
 artifacts/    BM25/dense indexes
 outputs/      Predictions, metrics và benchmark
-scripts/      Chuẩn bị dữ liệu, build index, evaluate
+scripts/
+  workflows/vibiomir/       Dataset chính thức
+  workflows/vimedqa/        Benchmark lịch sử/regression
+  workflows/medquad/        Regression tiếng Anh
+  experiments/vimedqa/      Ablation và analysis
+  runtime/                  Build index, retrieve, evaluate
+  tooling/                  Submission và helpers
 src/          Pipeline, API và Inspector UI
 tests/
   unit/                     Data, retrieval và ranking dùng chung
@@ -101,12 +107,12 @@ docker compose down
 ## Batch retrieval và evaluation
 
 ```bash
-python -m scripts.retrieve \
+python -m scripts.runtime.retrieve \
   --config configs/vimed_selected_validation.yaml \
   --queries data/vimed/validation/queries.jsonl \
   --output outputs/predictions/vimed.jsonl
 
-python -m scripts.evaluate \
+python -m scripts.runtime.evaluate \
   --prediction outputs/predictions/vimed.jsonl \
   --ground-truth data/vimed/validation/ground_truth.jsonl \
   --corpus-chunks data/vimed/chunks.jsonl
@@ -115,7 +121,7 @@ python -m scripts.evaluate \
 Tạo và kiểm tra submission:
 
 ```bash
-python -m scripts.make_submission \
+python -m scripts.tooling.make_submission \
   --predictions outputs/predictions/vimed.jsonl \
   --chunks data/vimed/chunks.jsonl \
   --queries data/vimed/validation/queries.jsonl \
@@ -168,3 +174,4 @@ Chi tiết từng luồng: [`tests/README.md`](tests/README.md).
 - [Đánh giá dự án hiện tại](docs/tong-quat.md)
 - [Review workflow](docs/workflow_review_vi.md)
 - [Review ViMed retrieval](docs/vimed_retrieval_review_vi.md)
+- [Cấu trúc scripts](scripts/README.md)

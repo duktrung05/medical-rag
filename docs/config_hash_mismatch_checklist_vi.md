@@ -46,7 +46,7 @@ print('CRLF SHA256:', digest(crlf))
 print('Confirmed: line-ending difference explains the config hash mismatch')
 PY
 
-python -m scripts.replay_baseline --baseline baseline_20260930
+python -m scripts.experiments.vimedqa.replay_baseline --baseline baseline_20260930
 ```
 
 **Ảnh hưởng và giới hạn kết luận**

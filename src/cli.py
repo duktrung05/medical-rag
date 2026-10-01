@@ -43,7 +43,7 @@ def main():
             sys.argv.extend(["--test-queries", args.test_queries])
         val_main()
     elif args.command == "evaluate":
-        from scripts.evaluate import main as eval_main
+        from scripts.runtime.evaluate import main as eval_main
         sys.argv = [sys.argv[0], "--prediction", args.prediction, "--ground-truth", args.ground_truth]
         eval_main()
     elif args.command == "validate-config":
@@ -51,7 +51,7 @@ def main():
         config = load_config(args.config)
         print(f"Valid {type(config).__name__}: {config.experiment_name}")
     elif args.command == "retrieve":
-        from scripts.retrieve import main as retrieve_main
+        from scripts.runtime.retrieve import main as retrieve_main
         sys.argv = [sys.argv[0], "--config", args.config, "--queries", args.queries, "--output", args.output]
         retrieve_main()
     else:

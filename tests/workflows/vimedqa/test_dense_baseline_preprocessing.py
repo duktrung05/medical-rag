@@ -2,7 +2,7 @@
 
 import json
 
-from scripts import run_dense_baseline
+from scripts.runtime import run_dense_baseline
 
 
 def test_dense_baseline_adapts_queries_before_search(tmp_path, monkeypatch):

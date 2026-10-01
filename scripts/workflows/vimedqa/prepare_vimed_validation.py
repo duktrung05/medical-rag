@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from scripts.prepare_vimed import digest, write_rows
+from scripts.workflows.vimedqa.prepare_vimed import digest, write_rows
 from src.data.loader import DataLoader
 from src.indexing.sparse_index import corpus_sha256
 

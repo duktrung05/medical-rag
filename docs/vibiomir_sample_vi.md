@@ -1,6 +1,6 @@
 # ViBioMIR — kết quả chọn 500 URL mẫu
 
-Ngày thực hiện: 2026-10-01. Chạy `python -m scripts.sample_vibiomir_urls` từ thư mục gốc repository.
+Ngày thực hiện: 2026-10-01. Chạy `python -m scripts.workflows.vibiomir.sample_vibiomir_urls` từ thư mục gốc repository.
 
 Script kiểm SHA256 corpus trước khi chọn; dùng `domain_stats.csv` để chia quota và quét Parquet theo batch. Trong mỗi domain, chọn các SHA256 nhỏ nhất của chuỗi official ID, ký tự NUL và URL gốc. Không gửi HTTP request.
 

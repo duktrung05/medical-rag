@@ -26,7 +26,7 @@ def main():
     if args.timeout_seconds <= 0 or (args.limit is not None and args.limit <= 0):
         parser.error("timeout-seconds and limit must be positive")
     if not args.worker:
-        command = [sys.executable, "-m", "scripts.build_dense_index", *sys.argv[1:], "--worker"]
+        command = [sys.executable, "-m", "scripts.runtime.build_dense_index", *sys.argv[1:], "--worker"]
         started = time.monotonic()
         print(f"Starting supervised build; hard timeout={args.timeout_seconds}s", flush=True)
         try:
