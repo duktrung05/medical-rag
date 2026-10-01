@@ -18,6 +18,14 @@ def test_demo_config_remains_runtime_config():
     assert config.corpus.is_absolute()
 
 
+def test_vimed_dynamic_selection_config_has_independent_cardinality_bounds():
+    config = load_pipeline_config("configs/vimed_dynamic_selection.yaml")
+    assert config.selection.chunk.min_k == 0
+    assert config.selection.chunk.max_k == 20
+    assert config.selection.document.min_k == 0
+    assert config.selection.document.max_k == 10
+
+
 @pytest.mark.parametrize(
     "path",
     [

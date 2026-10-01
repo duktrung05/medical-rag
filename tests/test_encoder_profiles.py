@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import numpy as np
 import pytest
-import torch
+torch = pytest.importorskip("torch")
 from pydantic import ValidationError
 
 from src.config import DenseRetrievalConfig

@@ -1,0 +1,35 @@
+{
+  "task": "offline_fusion_ablation",
+  "source_commit_sha": "8a20eef4b8be44e20f644075f1c39494ea87d9f5",
+  "input_sha256": {
+    "bm25_rankings": "c65b25f65aa4a7d943552a4ea925bb7b356d3159c2c853b9a1964cc30d78c16b",
+    "dense_rankings": "1b365c4f8a669e6dd8d4ccbb06ef64118179f04a8260f7a65e120c043e846316",
+    "hybrid_rankings": "d4943f8549e920bdaa67ae507b54e64c555b06aad2affd01d9d23cfb3fdcd815",
+    "samples": "9ba18dd5851987050212e94e8fa0865ba1eab38f4f23beb525486021e9ce3484"
+  },
+  "parameters": {
+    "rrf_k": [
+      10,
+      20,
+      40,
+      60,
+      80,
+      100
+    ],
+    "depths": [
+      50,
+      100,
+      150,
+      200
+    ],
+    "weighted_rrf_bm25_weights": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "cache_depth_limit": 100,
+    "reranker_run": false
+  }
+}

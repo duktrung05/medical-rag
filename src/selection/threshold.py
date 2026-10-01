@@ -1,5 +1,6 @@
 """Dynamic thresholding and selection rules (absolute threshold + relative delta)."""
 
+import math
 from typing import List, Tuple
 
 
@@ -16,7 +17,15 @@ def select_candidates(
     2. score >= top_score - relative_delta (relative margin from highest-scoring item)
     Bounded by [min_k, max_k].
     """
-    if not ranked_candidates:
+    if min_k < 0 or max_k < 0 or min_k > max_k:
+        raise ValueError("selection bounds must satisfy 0 <= min_k <= max_k")
+    if not math.isfinite(threshold) or not math.isfinite(relative_delta) or relative_delta < 0:
+        raise ValueError("threshold must be finite and relative_delta finite and nonnegative")
+    # Python's stable sort preserves the retriever's deterministic order for ties.
+    ranked_candidates = sorted(ranked_candidates, key=lambda item: -item[1])
+    if any(not math.isfinite(score) for _, score in ranked_candidates):
+        raise ValueError("candidate scores must be finite")
+    if not ranked_candidates or max_k == 0:
         return []
 
     top_score = ranked_candidates[0][1]
@@ -33,6 +42,9 @@ def select_candidates(
             selected.append(item_id)
         elif len(selected) < min_k:
             selected.append(item_id)
+        else:
+            # Candidates are sorted by descending score, so no later item can pass.
+            break
 
     # Ensure min_k constraint is satisfied if enough candidates exist
     if len(selected) < min_k and len(ranked_candidates) >= min_k:

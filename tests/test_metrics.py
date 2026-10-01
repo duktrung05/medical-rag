@@ -92,8 +92,10 @@ def test_evaluator_rejects_duplicate_and_mismatched_query_ids():
         evaluator.evaluate([_truth(), _truth()], [_prediction()])
     with pytest.raises(ValueError, match="Prediction has duplicate query ID: Q1"):
         evaluator.evaluate([_truth()], [_prediction(), _prediction()])
-    with pytest.raises(ValueError, match="missing=\\['Q1'\\], extra=\\[\\]"):
-        evaluator.evaluate([_truth()], [])
+    missing = evaluator.evaluate([_truth()], [])
+    assert missing.doc_f2 == missing.chunk_f2 == missing.internal_macro_f2 == 0
+    assert "internal_macro_f2" in missing.to_dict()
+    assert missing.to_dict()["macro_f2"] == missing.to_dict()["internal_macro_f2"]
     with pytest.raises(ValueError, match="extra=\\['Q2'\\]"):
         evaluator.evaluate([_truth()], [_prediction(), _prediction("Q2")])
     with pytest.raises(ValueError, match="mapping key"):

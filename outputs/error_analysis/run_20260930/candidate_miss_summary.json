@@ -1,0 +1,10 @@
+{
+  "candidate_miss_queries": 166,
+  "gold_positive_rows": 166,
+  "BM25_only": 10,
+  "Dense_only": 35,
+  "Fusion_dropped": 0,
+  "Both_miss_within_cache": 121,
+  "unknown_beyond_cache_depth_positive_rows": 166,
+  "note": "A BOTH_MISS row means absent from the available top-depth caches; ranks beyond cache are unknown."
+}

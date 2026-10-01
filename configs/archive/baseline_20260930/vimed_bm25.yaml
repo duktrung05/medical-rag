@@ -1,0 +1,25 @@
+experiment_name: vimed_bm25
+backend: sparse
+corpus: ../data/vimed/chunks.jsonl
+retrieval:
+  sparse:
+    enabled: true
+    index_path: ../artifacts/vimed_bm25
+    top_k: 100
+  dense:
+    enabled: false
+fusion:
+  enabled: false
+reranker:
+  enabled: false
+selection:
+  chunk:
+    threshold: 0
+    relative_delta: 1000000
+    min_k: 5
+    max_k: 5
+  document:
+    threshold: 0
+    relative_delta: 1000000
+    min_k: 5
+    max_k: 5

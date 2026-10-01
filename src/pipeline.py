@@ -7,9 +7,7 @@ from src.data.loader import DocumentChunkMap
 from src.data.schema import PredictionRecord
 from src.reranking.base import BaseReranker
 from src.retrieval.bm25 import BaseRetriever
-from src.scoring.document_score import aggregate_doc_scores
-from src.selection.threshold import select_candidates
-from src.submission.build import enforce_parent_consistency
+from src.selection.prediction import select_prediction
 
 
 class RetrievalPipeline:
@@ -54,6 +52,8 @@ class RetrievalPipeline:
         self.chunk_min_k = min_k if chunk_min_k is None else chunk_min_k
         self.doc_min_k = min_k if doc_min_k is None else doc_min_k
         self.doc_top_n_mean = doc_top_n_mean
+        self.last_candidate_scores = {}
+        self.last_selection_diagnostics = {}
         if self.reranker is not None and self.reranker_top_k < self.max_chunk_k:
             raise ValueError(
                 "reranker_top_k must be >= max_chunk_k: only reranked candidates "
@@ -134,39 +134,16 @@ class RetrievalPipeline:
                 for rank, (cid, score) in enumerate(chunk_candidates, 1)
             }
 
-        # 4. Chunk selection
-        selected_chunks = select_candidates(
-            chunk_candidates,
-            threshold=self.chunk_threshold,
-            relative_delta=self.chunk_delta,
-            min_k=self.chunk_min_k,
-            max_k=self.max_chunk_k,
+        prediction, self.last_selection_diagnostics = select_prediction(
+            query_id, chunk_candidates, self.doc_map,
+            doc_aggregation=self.doc_aggregation,
+            chunk_threshold=self.chunk_threshold, chunk_delta=self.chunk_delta,
+            doc_threshold=self.doc_threshold, doc_delta=self.doc_delta,
+            chunk_min_k=self.chunk_min_k, chunk_max_k=self.max_chunk_k,
+            doc_min_k=self.doc_min_k, doc_max_k=self.max_doc_k,
+            doc_top_n_mean=self.doc_top_n_mean,
         )
-
-        # 5. Document aggregation & selection
-        chunk_scores_dict = dict(chunk_candidates)
-        doc_scores = aggregate_doc_scores(
-            chunk_scores=chunk_scores_dict,
-            chunk_to_doc=self.doc_map.chunk_to_doc,
-            method=self.doc_aggregation,
-            top_n=self.doc_top_n_mean,
-        )
-        ranked_docs = sorted(doc_scores.items(), key=lambda item: (-item[1], item[0]))
-        selected_docs = select_candidates(
-            ranked_docs,
-            threshold=self.doc_threshold,
-            relative_delta=self.doc_delta,
-            min_k=self.doc_min_k,
-            max_k=self.max_doc_k,
-        )
-
-        # 6. Consistency check
-        prediction = PredictionRecord(
-            id=query_id,
-            relevant_docs=selected_docs,
-            relevant_chunks=selected_chunks,
-        )
-        return enforce_parent_consistency(prediction, self.doc_map)
+        return prediction
 
     def run_batch(self, queries: List[tuple[str, str]]) -> List[PredictionRecord]:
         """Run the core over (query_id, normalized_text) pairs."""

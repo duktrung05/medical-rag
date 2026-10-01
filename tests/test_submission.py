@@ -7,6 +7,8 @@ import pytest
 
 from src.data.loader import DocumentChunkMap
 from src.data.schema import ChunkRecord
+from src.data.schema import PredictionRecord
+from src.submission.build import enforce_parent_consistency
 from src.submission.validate import (
     validate_submission_file,
     validate_submission_records,
@@ -79,6 +81,22 @@ def test_submission_parent_consistency_violation():
     assert report.is_valid is False
     assert len(report.parent_violations) == 1
     assert "DOC_B" in report.parent_violations[0]
+
+
+def test_parent_fix_obeys_cap_and_records_cardinality():
+    mapping = setup_test_doc_map()
+    diagnostics = {}
+    fixed = enforce_parent_consistency(
+        PredictionRecord(id="Q1", relevant_docs=["DOC_A", "DOC_B"], relevant_chunks=["C1"]),
+        mapping, max_doc_k=1, diagnostics=diagnostics,
+    )
+    assert fixed.relevant_docs == ["DOC_A"]
+    assert diagnostics["documents_dropped_for_cap"] == ["DOC_B"]
+    with pytest.raises(ValueError, match="more unique parents"):
+        enforce_parent_consistency(
+            PredictionRecord(id="Q1", relevant_docs=[], relevant_chunks=["C1", "C2"]),
+            mapping, max_doc_k=1,
+        )
 
 
 def test_submission_reports_extra_query_ids():

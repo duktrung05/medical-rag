@@ -1,0 +1,14 @@
+{
+  "task": "offline_selection_calibration",
+  "source_commit_sha": "8a20eef4b8be44e20f644075f1c39494ea87d9f5",
+  "input_sha256": {
+    "rankings": "3afc111b0f95c225df3e6165a0c06ec2ff7771248202b46c481f37fe4be1f4be",
+    "ground_truth": "5b2561aad105918e6dc173666a76027757d10c25ea21b4535ef24936f33a59f7",
+    "chunks": "975d8869d4ed83f2b7577d42cf2c63acdcfb4db97091f4850c2dc90fa5caa019",
+    "dynamic_config": "2bc0683362b6574f17823bdc185010c2690b1d68d5c2e98d85f847a13b4ca4bc"
+  },
+  "parameters": {
+    "objective": "internal_macro_f2",
+    "model_inference": false
+  }
+}

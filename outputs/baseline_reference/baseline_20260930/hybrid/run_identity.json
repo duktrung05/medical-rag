@@ -1,0 +1,9 @@
+{
+  "stage": "hybrid",
+  "corpus_sha256": "b219a1f7f55df30a759753db9f01c29397e68bd8f62125a1b5347da0781ba04a",
+  "samples_sha256": "18ee5573930b6fc8a4ffe34e94c16485441445a3028f70078851ea105511c98c",
+  "config_sha256": "17213098b1e9a3b5b6693d8a1d08ef3cb046adb5351dc4fdf10adc0a97382e44",
+  "split": "validation",
+  "num_queries": 2210,
+  "probe": false
+}

@@ -1,74 +1,121 @@
-"""Verify all validation results and publish the comparison and frozen winner."""
-import json
-import shutil
-from pathlib import Path
-from scripts.benchmark_vimed_validation import CONFIGS, read_rows, load_dependency
-from src.evaluation.ranking_metrics import summarize_rankings, validate_ranking
-from src.data.loader import DataLoader
-from src.indexing.sparse_index import corpus_sha256
+"""Replay cached ViMed validation rankings and final predictions into a report."""
+
+import argparse
 import hashlib
-import csv
+import json
+import subprocess
+from pathlib import Path
+
+from scripts.benchmark_vimed_validation import CONFIGS, load_dependency, read_rows
+from scripts.run_metadata import write_run_manifest
+from src.data.loader import DataLoader, DocumentChunkMap
+from src.data.schema import PredictionRecord
+from src.evaluation.evaluator import Evaluator
+from src.evaluation.ranking_metrics import summarize_rankings, validate_ranking
+from src.indexing.sparse_index import corpus_sha256
 
 
-def main():
-    root=Path('outputs/vimed_validation')
-    samples=read_rows(Path('data/vimed/validation/samples.jsonl'))
-    chunks=DataLoader.load_chunks(Path('data/vimed/chunks.jsonl'))
-    lookup={c.chunk_id:c.doc_id for c in chunks}
-    ch=corpus_sha256(chunks)
-    sh=hashlib.sha256(json.dumps(samples,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
-    rankings={}; metrics={}
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--winner-objective", choices=("retrieval", "final_selection"), default="retrieval")
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    root = Path("outputs/vimed_validation")
+    samples = read_rows(Path("data/vimed/validation/samples.jsonl"))
+    truths = DataLoader.load_ground_truth("data/vimed/validation/ground_truth.jsonl")
+    chunks = DataLoader.load_chunks("data/vimed/chunks.jsonl")
+    doc_map = DocumentChunkMap.from_chunks(chunks)
+    corpus_hash = corpus_sha256(chunks)
+    sample_hash = hashlib.sha256(
+        json.dumps(samples, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    rankings, stage_metrics, final_metrics = {}, {}, {}
     for stage in CONFIGS:
-        rows=load_dependency(root,stage,samples,ch,sh)
+        rows = load_dependency(root, stage, samples, corpus_hash, sample_hash)
         for row in rows:
-            validate_ranking(row['results'],set(lookup))
-            assert len(row['results'])<=100
-            assert row['results']==sorted(row['results'],key=lambda x:(-x[1],x[0]))
-            assert set(d for d,_ in row['documents'])=={lookup[c] for c,_ in row['results']}
-            prediction=row['prediction']
-            assert {lookup[c] for c in prediction['relevant_chunks']} <= set(prediction['relevant_docs'])
-        m=json.loads((root/stage/'metrics.json').read_text())
-        recomputed=summarize_rankings(samples,rows)
-        for key,value in recomputed.items():
-            assert m[key]==value,(stage,key)
-        metrics[stage]=m;rankings[stage]=rows
-    for h,r in zip(rankings['hybrid'],rankings['rerank'],strict=True):
-        assert {c for c,_ in h['results']}=={c for c,_ in r['results']}
-    assert metrics['hybrid']['recall_at_k']['100']==metrics['rerank']['recall_at_k']['100']
-    winner=max(CONFIGS,key=lambda s:(metrics[s]['recall_at_k']['10'],metrics[s]['mrr_at_100'],-metrics[s]['latency_ms']['mean']))
-    shutil.copyfile(CONFIGS[winner],'configs/vimed_selected_validation.yaml')
-    errors=[]
-    for i,sample in enumerate(samples):
-        ranks={s:rankings[s][i]['first_positive_rank'] for s in CONFIGS}
-        if any(r is None or r>10 for r in ranks.values()):
-            errors.append(dict(id=sample['id'],query=sample['query'],topic=sample['topic'],relevant_chunks=sample['relevant_chunks'],ranks=ranks))
-    (root/'errors.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in errors),encoding='utf-8')
-    summary=dict(num_queries=len(samples),split='validation',selection_rule='Recall@10, then MRR@100, then latency',winner=winner,integrity_checks='passed',metrics=metrics)
-    baseline_hits=[r['first_positive_rank'] is not None and r['first_positive_rank']<=10 for r in rankings['bm25']]
-    selected_hits=[r['first_positive_rank'] is not None and r['first_positive_rank']<=10 for r in rankings[winner]]
-    summary['selected_vs_bm25_at_10']={
-        'recovered_queries':sum(not b and s for b,s in zip(baseline_hits,selected_hits)),
-        'regressed_queries':sum(b and not s for b,s in zip(baseline_hits,selected_hits)),
-        'both_miss':sum(not b and not s for b,s in zip(baseline_hits,selected_hits))}
-    (root/'comparison.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
-    with (root/'comparison.csv').open('w',encoding='utf-8',newline='') as handle:
-        writer=csv.writer(handle)
-        writer.writerow(['stage','queries','recall_1','recall_5','recall_10','recall_100','mrr_100','latency_mean_ms','latency_method'])
-        for stage,m in metrics.items():
-            writer.writerow([stage,m['num_queries'],*[m['recall_at_k'][str(k)] for k in (1,5,10,100)],m['mrr_at_100'],m['latency_ms']['mean'],m['latency_method']])
-    lines=['# Benchmark retrieval ViMed — task 2','',f'Đã đo đủ **{len(samples)} câu validation**; 5 câu thiếu context bị loại. Corpus cố định 17.955 chunks; không chạy lại test split.','',
-    '| Cấu hình | Recall@1 | Recall@5 | Recall@10 | Recall@100 | MRR@100 |','|---|---:|---:|---:|---:|---:|']
-    for s,m in metrics.items():
-        lines.append('| '+s+' | '+' | '.join(f"{m['recall_at_k'][str(k)]*100:.2f}%" for k in (1,5,10,100))+f" | {m['mrr_at_100']:.4f} |")
-    lines+=['',f'## Cấu hình được chọn: {winner}','', 'Tiêu chí đã đặt trước: Recall@10, sau đó MRR@100, sau đó độ trễ. Cấu hình đóng băng ở `configs/vimed_selected_validation.yaml`.', '',
-    '## Giao thức và giới hạn','', 'BM25 và dense lấy 100 candidates mỗi nhánh; RRF k=60 giữ 100; reranker xếp lại đủ 100. BGE-M3 dùng CLS, FP16, max_length=512; reranker BGE v2 M3 dùng raw logits, FP16, batch=8, max_length=512. Revision của cả hai model được khóa trong config.', '',
-    'Ground truth là context nguồn của từng câu QA, chưa phải nhãn relevance đầy đủ. Context khác có thể đúng nhưng chưa được gán nhãn. Corpus gồm context từ các split, phù hợp đánh giá retrieval trong corpus đóng; không thể suy ra chất lượng tổng quát ngoài corpus. Không dùng câu hỏi/đáp án làm nội dung index.', '',
-    'Latency BM25/dense là thời gian pipeline sau warmup; hai lượt chạy đồng thời nên chịu tranh chấp CPU. Latency hybrid/rerank là tổng các lượt đã cache cộng lượt hiện tại, không phải latency API đo trực tiếp. Recall và MRR dùng thứ hạng thực tế, độc lập với cách đo latency.', '',
-    f"Union BM25+dense có Recall candidate {metrics['hybrid']['union_candidate_recall']*100:.2f}%; sau RRF top100 còn {metrics['hybrid']['recall_at_k']['100']*100:.2f}%. Reranker giữ nguyên tập candidates nên Recall@100 bằng hybrid.", '',
-    '## Kiểm tra','', '112 tests pass; 1 cảnh báo deprecation Starlette/AnyIO. Mỗi lượt đủ số câu, checksum cache hợp lệ, không duplicate/unknown ID hoặc score vô hạn; metrics được tính lại từ rankings; reranker giữ nguyên candidates. Chi tiết mỗi topic, latency, VRAM và danh sách lỗi nằm trong `outputs/vimed_validation/`.']
-    lines += ['', Path('docs/vimed_validation_protocol_vi.md').read_text(encoding='utf-8')]
-    Path('docs/vimed_validation_benchmark_vi.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
-    print(json.dumps({s:{'recall':m['recall_at_k'],'mrr':m['mrr_at_100']} for s,m in metrics.items()},indent=2))
-    print('Winner:',winner)
+            validate_ranking(row["results"], doc_map.all_chunk_ids)
+        saved = json.loads((root / stage / "metrics.json").read_text(encoding="utf-8"))
+        replayed = summarize_rankings(samples, rows)
+        for key, value in replayed.items():
+            if saved.get(key) != value:
+                raise ValueError(f"{stage} ranking metric mismatch: {key}")
+        predictions = [PredictionRecord.model_validate(row["prediction"]) for row in rows]
+        selection = Evaluator().evaluate(truths, predictions, doc_map=doc_map).to_dict()
+        rankings[stage] = rows
+        stage_metrics[stage] = saved
+        final_metrics[stage] = selection
 
-if __name__=='__main__':main()
+    if args.winner_objective == "retrieval":
+        winner = max(CONFIGS, key=lambda stage: (
+            stage_metrics[stage]["recall_at_k"]["10"],
+            stage_metrics[stage]["mrr_at_100"],
+            -stage_metrics[stage]["latency_ms"]["mean"],
+        ))
+        objective_label = "Recall@10 → MRR@100 → latency"
+    else:
+        winner = max(CONFIGS, key=lambda stage: (
+            final_metrics[stage]["internal_macro_f2"],
+            final_metrics[stage]["chunk_f2"],
+            final_metrics[stage]["doc_f2"],
+            -sum(len(row["prediction"]["relevant_chunks"]) for row in rankings[stage]) / len(samples),
+        ))
+        objective_label = "internal_macro_f2 → chunk_f2 → doc_f2 → lower average chunk count"
+
+    report = {
+        "split": "validation",
+        "num_queries": len(samples),
+        "corpus_sha256": corpus_hash,
+        "winner_objective": args.winner_objective,
+        "winner_rule": objective_label,
+        "winner": winner,
+        "retrieval_quality": {
+            stage: {key: metrics[key] for key in (
+                "recall_at_k", "document_recall_at_k", "mrr_at_100", "zero_hit_queries_at_k",
+                "latency_ms", "candidate_depth", "latency_method",
+                "peak_cuda_allocated_bytes", "peak_cuda_reserved_bytes", "union_candidate_recall") if key in metrics}
+            for stage, metrics in stage_metrics.items()
+        },
+        "final_selection_quality": final_metrics,
+        "warning": "internal_macro_f2 là metric nội bộ; ground truth mỗi query hiện chỉ có source context suy ra từ QA.",
+    }
+    out = args.output or Path("outputs/vimed_validation_reports") / args.winner_objective
+    if out.exists():
+        raise FileExistsError(f"Report destination exists; choose a new --output: {out}")
+    out.mkdir(parents=True)
+    write_run_manifest(out, task="cached_vimed_validation_report", root=Path.cwd(), inputs={
+        **{f"{stage}_rankings": root / stage / "rankings.jsonl" for stage in CONFIGS},
+        "ground_truth": Path("data/vimed/validation/ground_truth.jsonl"),
+        "chunks": Path("data/vimed/chunks.jsonl"),
+        **{f"{stage}_config": Path(path) for stage, path in CONFIGS.items()},
+    }, parameters={"winner_objective": args.winner_objective, "split": "validation"})
+    report["source_commit_sha"] = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], text=True).strip()
+    (out / "comparison.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+    lines = [f"# ViMed validation report: {args.winner_objective}", "",
+             f"Validation queries: {len(samples)}. Winner: **{winner}**.",
+             f"Rule: `{objective_label}`. Config files are not changed.", "",
+             "## Retrieval", "",
+             "| Stage | Recall@10 | Candidate Recall@100 | Union Candidate Recall | MRR@100 | Zero hit @10 | Mean latency ms |",
+             "|---|---:|---:|---:|---:|---:|---:|"]
+    for stage, metrics in stage_metrics.items():
+        union = metrics.get("union_candidate_recall")
+        union_cell = f"{union:.4f}" if union is not None else "—"
+        lines.append(f"| {stage} | {metrics['recall_at_k']['10']:.4f} | {metrics['recall_at_k']['100']:.4f} | "
+                     f"{union_cell} | {metrics['mrr_at_100']:.4f} | {metrics['zero_hit_queries_at_k']['10']} | "
+                     f"{metrics['latency_ms']['mean']:.1f} |")
+    lines += ["", "## Final Selection", "",
+              "| Stage | Doc P | Doc R | Doc F2 | Chunk P | Chunk R | Chunk F2 | Internal Macro F2 |",
+              "|---|---:|---:|---:|---:|---:|---:|---:|"]
+    for stage, metrics in final_metrics.items():
+        lines.append(f"| {stage} | {metrics['doc_precision']:.4f} | {metrics['doc_recall']:.4f} | "
+                     f"{metrics['doc_f2']:.4f} | {metrics['chunk_precision']:.4f} | "
+                     f"{metrics['chunk_recall']:.4f} | {metrics['chunk_f2']:.4f} | "
+                     f"{metrics['internal_macro_f2']:.4f} |")
+    lines += ["", "`internal_macro_f2` là điểm composite nội bộ, không phải điểm chính thức của cuộc thi.",
+              "Ground truth chưa có đủ relevance judgments; các metric phản ánh source-context retrieval.", ""]
+    (out / "report.md").write_text("\n".join(lines), encoding="utf-8")
+    print(json.dumps({"winner": winner, "objective": args.winner_objective,
+                      "output": str(out), "final_selection": final_metrics[winner]}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

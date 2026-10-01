@@ -1,4 +1,4 @@
-"""Macro evaluator computing document-level and chunk-level Precision, Recall, and F2."""
+"""Internal macro evaluator for document and chunk precision, recall, and F2."""
 
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Union
@@ -30,10 +30,18 @@ class EvaluationSummary:
     chunk_precision: float
     chunk_recall: float
     chunk_f2: float
-    macro_f2: float  # (doc_f2 + chunk_f2) / 2
+    macro_f2: float  # Internal composite: mean of per-query doc/chunk macro F2.
+
+    @property
+    def internal_macro_f2(self) -> float:
+        return self.macro_f2
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        result = asdict(self)
+        # Keep macro_f2 as a compatibility alias for existing experiment artifacts.
+        # New reports should use the explicitly named internal_macro_f2 field.
+        result["internal_macro_f2"] = result["macro_f2"]
+        return result
 
     def format_table(self, title: str = "EVALUATION RESULTS") -> str:
         lines = [
@@ -46,14 +54,14 @@ class EvaluationSummary:
             f"{'Recall':<18} | {self.doc_recall:<18.4f} | {self.chunk_recall:<18.4f}",
             f"{'Macro F2':<18} | {self.doc_f2:<18.4f} | {self.chunk_f2:<18.4f}",
             "----------------------------------------------------------------",
-            f"Composite Macro F2 (Doc & Chunk Mean): {self.macro_f2:.4f}",
+            f"Internal Macro F2 (mean per-query document/chunk F2): {self.macro_f2:.4f}",
             "================================================================",
         ]
         return "\n".join(lines)
 
 
 class Evaluator:
-    """Evaluates IR predictions against ground truth using competition Macro P, R, F2 rules."""
+    """Evaluate predictions using the project's internal per-query macro contract."""
 
     def __init__(self, beta: float = 2.0):
         self.beta = beta
@@ -77,8 +85,10 @@ class Evaluator:
             raise ValueError("Ground truth dataset cannot be empty.")
         missing = sorted(gt_map.keys() - pred_map.keys())
         extra = sorted(pred_map.keys() - gt_map.keys())
-        if missing or extra:
+        if extra:
             raise ValueError(f"Prediction query IDs do not match ground truth: missing={missing}, extra={extra}")
+        for qid in missing:
+            pred_map[qid] = PredictionRecord(id=qid)
 
         for record in pred_map.values():
             for label, ids in (("document", record.relevant_docs), ("chunk", record.relevant_chunks)):

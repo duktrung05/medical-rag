@@ -11,7 +11,6 @@ import time
 from pathlib import Path
 
 import numpy as np
-import torch
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from src.encoder_profile import resolve_encoder_profile
@@ -124,6 +123,8 @@ def cross_language_positive_metrics(
 
 
 def main() -> None:
+    import torch
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/smoke_dense_e5.yaml")
     parser.add_argument("--split-dir", required=True, help="Directory containing chunks/queries/ground_truth JSONL")

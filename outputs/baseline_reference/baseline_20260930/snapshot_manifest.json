@@ -1,0 +1,30 @@
+{
+  "baseline_id": "baseline_20260930",
+  "source_commit_sha": "8a20eef4b8be44e20f644075f1c39494ea87d9f5",
+  "files_sha256": {
+    "outputs/baseline_reference/baseline_20260930/baseline_metrics.json": "0531cbdc137f7ad0f57e3a285ddabe1fd0ddd5e39bed63116989496c1419b81b",
+    "outputs/baseline_reference/baseline_20260930/bm25/manifest.json": "e3df3062c2ea0edc4b4340247dc442add4810154edc73afccd15431d207a1c75",
+    "outputs/baseline_reference/baseline_20260930/bm25/metrics.json": "e5c3b2ad371bd7ad17824036696a919f58ea64bfa5a576d2529a98b316679ead",
+    "outputs/baseline_reference/baseline_20260930/bm25/rankings.jsonl": "c65b25f65aa4a7d943552a4ea925bb7b356d3159c2c853b9a1964cc30d78c16b",
+    "outputs/baseline_reference/baseline_20260930/bm25/run_identity.json": "267d3b1edba3f3e047b6d7682b56afcd78c649040844509c0cb5335f11b65b14",
+    "outputs/baseline_reference/baseline_20260930/dense/manifest.json": "6483a19260e03bb8fc50241a18659c3b40954a53bb0790e206bb4a7ab1e1987c",
+    "outputs/baseline_reference/baseline_20260930/dense/metrics.json": "dd5127d5077e0cfa4e3caad584014b40ae44f7f75fac3acde88d333b57bba601",
+    "outputs/baseline_reference/baseline_20260930/dense/rankings.jsonl": "1b365c4f8a669e6dd8d4ccbb06ef64118179f04a8260f7a65e120c043e846316",
+    "outputs/baseline_reference/baseline_20260930/dense/run_identity.json": "7dd3a1bb77b5c855e23bb0833b06698d571fe49ed4a4e94de2d7dd7c62ce29e7",
+    "outputs/baseline_reference/baseline_20260930/hybrid/manifest.json": "d1079956daa45c29290e1d9c5c628f032e3604285ece71efe4728db5a6cfe988",
+    "outputs/baseline_reference/baseline_20260930/hybrid/metrics.json": "d85d2358a6b8f9885bdb1e45c01ad7c81d6feaf70f8cb9fee79c368517859990",
+    "outputs/baseline_reference/baseline_20260930/hybrid/rankings.jsonl": "d4943f8549e920bdaa67ae507b54e64c555b06aad2affd01d9d23cfb3fdcd815",
+    "outputs/baseline_reference/baseline_20260930/hybrid/run_identity.json": "e8d78cfbfd64aee5bcd647dfbbd8dd74b5e1bd8aa20c8f3324443da21e4eee5a",
+    "outputs/baseline_reference/baseline_20260930/rerank/manifest.json": "0dc1ab91b268f91ecfd49d6fa1f7113633e4a87e0e3d60587c9a259c03009705",
+    "outputs/baseline_reference/baseline_20260930/rerank/metrics.json": "ab0fded3dc970106b1426428cd2ab310e03baaeb2588d6fb13887032d66afebd",
+    "outputs/baseline_reference/baseline_20260930/rerank/rankings.jsonl": "3afc111b0f95c225df3e6165a0c06ec2ff7771248202b46c481f37fe4be1f4be",
+    "outputs/baseline_reference/baseline_20260930/rerank/run_identity.json": "493fe9d4680fd45410fdc1b7d3beb14c596643326b97bbd2eb9a7dc658fd0e0d"
+  },
+  "config_archive_files_sha256": {
+    "configs/archive/baseline_20260930/vimed_bm25.yaml": "a60c91bd976821e58ce38c48ccc8409ef43183bb743eb767f246daeb6f124f66",
+    "configs/archive/baseline_20260930/vimed_dense_bge_m3.yaml": "533169bfb498c1f16336bb4e898be06d595b81d92600e9c7a10d6b2054da8b08",
+    "configs/archive/baseline_20260930/vimed_hybrid.yaml": "1cf7c943e53c647ba6ab4f059e0a1bf133c5b685ffb952525ee3d9d237a08d27",
+    "configs/archive/baseline_20260930/vimed_hybrid_rerank.yaml": "84626175616a6c0d20ee057f4c8cc31121c0f1ff6f1b7b5a84449cb6937aa1c8",
+    "configs/archive/baseline_20260930/vimed_selected_validation.yaml": "84626175616a6c0d20ee057f4c8cc31121c0f1ff6f1b7b5a84449cb6937aa1c8"
+  }
+}

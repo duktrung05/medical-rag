@@ -58,7 +58,8 @@ class LiveEngine:
         elapsed=(time.perf_counter()-start)*1000
         ranking=sorted([(cid,s['selection_score']) for cid,s in pipeline.last_candidate_scores.items() if s['selection_eligible']],key=lambda x:(-x[1],x[0]))
         return dict(results=ranking,prediction=prediction.model_dump(),latency_ms=elapsed,setup_ms=load_ms,
-                    scores={cid:dict(s) for cid,s in pipeline.last_candidate_scores.items()})
+                    scores={cid:dict(s) for cid,s in pipeline.last_candidate_scores.items()},
+                    selection_diagnostics=dict(pipeline.last_selection_diagnostics))
 
 def read_rows(path):
     return [json.loads(x) for x in path.read_text(encoding='utf-8').splitlines() if x.strip()]
@@ -121,7 +122,7 @@ def create_app(root=None, engine_factory=LiveEngine):
                 if request.mode=='benchmark':
                     cached=app.state.cache.get(stage,{}).get(request.sample_id)
                     if cached is None:raise HTTPException(409,f'No completed benchmark for {stage}')
-                    result=dict(results=cached['results'],prediction=cached['prediction'],latency_ms=cached['total_latency_ms'],setup_ms=0,scores={})
+                    result=dict(results=cached['results'],prediction=cached['prediction'],latency_ms=cached['total_latency_ms'],setup_ms=0,scores={},selection_diagnostics={})
                 else:
                     try:result=app.state.engine.search(stage,query.query_id,query.text)
                     except Exception as exc:raise HTTPException(503,f'{stage} could not run: {type(exc).__name__}: {exc}') from exc
@@ -133,7 +134,8 @@ def create_app(root=None, engine_factory=LiveEngine):
                 positive_rank=next((i for i,(cid,_) in enumerate(ranking,1) if cid in positives),None)
                 recall=len({cid for cid,_ in ranking[:request.top_k]}&positives)/len(positives) if positives else None
                 comparisons.append(dict(stage=stage,results=rows,first_positive_rank=positive_rank,recall_at_k=recall,
-                                        latency_ms=result['latency_ms'],setup_ms=result['setup_ms'],prediction=result['prediction']))
+                                        latency_ms=result['latency_ms'],setup_ms=result['setup_ms'],prediction=result['prediction'],
+                                        selection_diagnostics=result.get('selection_diagnostics',{})))
         return dict(query=query.text,mode=request.mode,labeled=labeled,comparisons=comparisons,
                     gold=[dict(**app.state.chunks[cid],**app.state.metadata.get(cid,{})) for cid in sorted(positives)],answer=sample['answer'] if labeled else None)
     labels_path=output/'human_labels.jsonl'

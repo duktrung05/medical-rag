@@ -1,0 +1,17 @@
+{
+  "task": "validation_error_analysis",
+  "source_commit_sha": "8a20eef4b8be44e20f644075f1c39494ea87d9f5",
+  "input_sha256": {
+    "bm25_rankings": "c65b25f65aa4a7d943552a4ea925bb7b356d3159c2c853b9a1964cc30d78c16b",
+    "dense_rankings": "1b365c4f8a669e6dd8d4ccbb06ef64118179f04a8260f7a65e120c043e846316",
+    "hybrid_rankings": "d4943f8549e920bdaa67ae507b54e64c555b06aad2affd01d9d23cfb3fdcd815",
+    "rerank_rankings": "3afc111b0f95c225df3e6165a0c06ec2ff7771248202b46c481f37fe4be1f4be",
+    "samples": "9ba18dd5851987050212e94e8fa0865ba1eab38f4f23beb525486021e9ce3484",
+    "ground_truth": "5b2561aad105918e6dc173666a76027757d10c25ea21b4535ef24936f33a59f7",
+    "chunks": "975d8869d4ed83f2b7577d42cf2c63acdcfb4db97091f4850c2dc90fa5caa019"
+  },
+  "parameters": {
+    "ranking_k": 10,
+    "candidate_miss_cache_depth": 100
+  }
+}

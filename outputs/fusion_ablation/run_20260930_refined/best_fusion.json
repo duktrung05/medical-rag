@@ -1,0 +1,59 @@
+{
+  "current_rrf_k60_top100": {
+    "candidate_recall": 0.9248868778280543,
+    "query_hit_rate": 0.9248868778280543,
+    "lost_positive_count": 166,
+    "mean_returned_candidates": 100.0
+  },
+  "best_by_depth": {
+    "50": {
+      "config": "rrf_k40_top50",
+      "strategy": "rrf",
+      "rrf_k": 40,
+      "depth": 50,
+      "candidate_recall": 0.9031674208144796,
+      "query_hit_rate": 0.9031674208144796,
+      "lost_positive_count": 214,
+      "mean_returned_candidates": 50.0
+    },
+    "100": {
+      "config": "union_min_rank_top100",
+      "strategy": "union_min_rank_then_rank_sum",
+      "depth": 100,
+      "candidate_recall": 0.9253393665158371,
+      "query_hit_rate": 0.9253393665158371,
+      "lost_positive_count": 165,
+      "mean_returned_candidates": 100.0
+    },
+    "150": {
+      "config": "weighted_rrf_bm0.50_de150",
+      "strategy": "weighted_rrf",
+      "rrf_k": 60,
+      "bm25_weight": 0.5,
+      "dense_weight": 0.5,
+      "depth": 150,
+      "candidate_recall": 0.9420814479638009,
+      "query_hit_rate": 0.9420814479638009,
+      "lost_positive_count": 128,
+      "mean_returned_candidates": 149.68280542986426
+    },
+    "200": {
+      "config": "weighted_rrf_bm0.75_de200",
+      "strategy": "weighted_rrf",
+      "rrf_k": 60,
+      "bm25_weight": 0.75,
+      "dense_weight": 0.25,
+      "depth": 200,
+      "candidate_recall": 0.9452488687782805,
+      "query_hit_rate": 0.9452488687782805,
+      "lost_positive_count": 121,
+      "mean_returned_candidates": 173.3266968325792
+    }
+  },
+  "best_top100_config": "union_min_rank_top100",
+  "candidate_pool_limits": {
+    "sparse_cache_depth": 100,
+    "dense_cache_depth": 100
+  },
+  "reranker_not_run": true
+}

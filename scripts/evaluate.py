@@ -59,7 +59,7 @@ def main():
                     "chunk_p",
                     "chunk_r",
                     "chunk_f2",
-                    "macro_f2",
+                    "internal_macro_f2",
                 ])
             writer.writerow([
                 args.experiment_name,

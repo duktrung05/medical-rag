@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 import numpy as np
 import pytest
-import torch
+torch = pytest.importorskip("torch")
 
 from src.config import DenseRetrievalConfig, PipelineConfig
 from src.data.loader import save_jsonl_records

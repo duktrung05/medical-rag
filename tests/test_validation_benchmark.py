@@ -38,7 +38,8 @@ def test_cached_retrieval_and_reranker_change_rank():
 
 
 def test_reranker_loader_pins_revision_and_raw_logits(monkeypatch):
-    import sys, types, torch
+    import sys, types
+    torch = pytest.importorskip("torch")
     seen={}
     def fake(*args,**kwargs):
         seen.update(kwargs)
