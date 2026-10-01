@@ -48,6 +48,8 @@ artifacts/vimed_dense_probe/
 artifacts/vimed_dense_bge_m3_cls.building/
 artifacts/vimed_dense_probe.building/
 data/vimed/
+data/raw/vibiomir/*.parquet
+data/vibiomir/
 
 outputs/predictions/*
 !outputs/predictions/.gitkeep
