@@ -1,0 +1,49 @@
+experiment_name: vimed_hybrid_rerank_validation
+backend: hybrid
+corpus: ../data/vimed/chunks.jsonl
+retrieval:
+  sparse:
+    enabled: true
+    index_path: ../artifacts/vimed_bm25
+    top_k: 100
+  dense:
+    enabled: true
+    model_name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    encoder_profile: bge_m3
+    pooling: cls
+    query_prefix: ''
+    passage_prefix: ''
+    index_path: ../artifacts/vimed_dense_bge_m3_cls
+    index_type: exact
+    precision: float16
+    device: cuda
+    max_length: 512
+    batch_size: 4
+    top_k: 100
+    normalize_embeddings: true
+fusion:
+  enabled: true
+  method: rrf
+  rrf_k: 60
+  top_k: 100
+reranker:
+  enabled: true
+  model_name: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  precision: float16
+  top_k: 100
+  batch_size: 8
+  max_length: 512
+  device: cuda
+selection:
+  chunk:
+    threshold: 0
+    relative_delta: 1000000
+    min_k: 5
+    max_k: 5
+  document:
+    threshold: 0
+    relative_delta: 1000000
+    min_k: 5
+    max_k: 5

@@ -1,0 +1,18 @@
+{
+  "doc_aggregation": "max",
+  "doc_top_n_mean": 3,
+  "chunk_threshold": -3.419921875,
+  "chunk_delta": 4.8372436523437505,
+  "chunk_min_k": 0,
+  "chunk_max_k": 1,
+  "doc_threshold": -3.419921875,
+  "doc_delta": 4.8372436523437505,
+  "doc_min_k": 0,
+  "doc_max_k": 1,
+  "objective": "internal_macro_f2",
+  "internal_macro_f2": 0.8169683257918552,
+  "chunk_f2": 0.7493212669683258,
+  "doc_f2": 0.8846153846153846,
+  "split": "validation",
+  "num_queries": 2210
+}

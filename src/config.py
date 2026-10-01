@@ -1,6 +1,7 @@
 """Validated runtime settings. Paths are relative to the configuration file."""
 
 from pathlib import Path
+import math
 from typing import Literal
 
 import yaml
@@ -110,10 +111,17 @@ class ScoringConfig(StrictConfig):
 
 
 class SelectionStageConfig(StrictConfig):
-    threshold: float = Field(default=0.5, ge=0)
+    threshold: float = Field(default=0.5)
     relative_delta: float = Field(default=0.3, ge=0)
     min_k: int = Field(default=1, ge=0)
     max_k: int = Field(default=20, ge=1)
+
+    @model_validator(mode="after")
+    def validate_finite_scores(self):
+        if not math.isfinite(self.threshold) or not math.isfinite(self.relative_delta):
+            raise ValueError("selection thresholds and deltas must be finite")
+        return self
+
     @model_validator(mode="after")
     def validate_bounds(self):
         if self.min_k > self.max_k:

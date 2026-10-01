@@ -1,0 +1,46 @@
+{
+  "total_validation_queries": 2210,
+  "ranking_k": 10,
+  "candidate_depth": {
+    "bm25": 100,
+    "dense": 100,
+    "hybrid": 100,
+    "rerank": 100
+  },
+  "query_counts_by_error_type": {
+    "BM25_ONLY_HIT": 51,
+    "BOTH_HIT": 1902,
+    "BOTH_MISS": 121,
+    "CANDIDATE_MISS": 166,
+    "DENSE_ONLY_HIT": 136,
+    "DOC_AND_CHUNK_MISS": 72,
+    "DOC_HIT_CHUNK_MISS": 179,
+    "FUSION_DROPPED": 45,
+    "RERANKER_MISS": 41,
+    "SELECTION_MISS": 85
+  },
+  "primary_failure_stage_counts": {
+    "hit_at_evaluated_cutoff": 1959,
+    "retrieval_or_fusion": 166,
+    "reranker": 41,
+    "selection": 44
+  },
+  "overlapping_error_types": true,
+  "interpretation": "Ranks outside cached top depth are unknown; candidate misses mean absent from cached pool.",
+  "candidate_miss_analysis": {
+    "candidate_miss_queries": 166,
+    "gold_positive_rows": 166,
+    "BM25_only": 10,
+    "Dense_only": 35,
+    "Fusion_dropped": 0,
+    "Both_miss_within_cache": 121,
+    "unknown_beyond_cache_depth_positive_rows": 166,
+    "note": "A BOTH_MISS row means absent from the available top-depth caches; ranks beyond cache are unknown."
+  },
+  "input_files": {
+    "bm25": "outputs/vimed_validation/bm25/rankings.jsonl",
+    "dense": "outputs/vimed_validation/dense/rankings.jsonl",
+    "hybrid": "outputs/vimed_validation/hybrid/rankings.jsonl",
+    "rerank": "outputs/vimed_validation/rerank/rankings.jsonl"
+  }
+}

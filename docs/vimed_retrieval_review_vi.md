@@ -17,7 +17,7 @@
 
 ## Đã bổ sung
 
-1. `scripts/prepare_vimed.py`: đọc config `all` để tránh gộp trùng các thư mục topic;
+1. `scripts/preparevimed.py`: đọc config `all` để tránh gộp trùng các thư mục topic;
    lấy context từ train, validation, test; loại trùng bằng context NFC; gom bài theo URL.
 2. Chỉ index context; không index câu hỏi, answer hoặc keyword. Title được giữ để
    hiển thị, không đưa vào BM25 text. Một context là một chunk; chưa tái chunking.

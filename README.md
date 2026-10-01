@@ -1,79 +1,170 @@
-﻿# Medical Retrieval — ViMedQA
+# R2AI Medical Retrieval
 
-Current workflow: prepare context-only corpus -> BM25 / BGE-M3 -> RRF -> BGE reranker -> selection -> source-context evaluation -> comparison UI.
+Hệ thống truy xuất thông tin y khoa cho câu hỏi tiếng Việt. Pipeline kết hợp **BM25**, **BGE-M3 dense retrieval**, **RRF fusion** và **BGE reranker**, sau đó trả về danh sách document/chunk liên quan. Dự án không sinh câu trả lời y khoa.
 
-## Run the UI
+> Dự án phục vụ nghiên cứu retrieval. Kết quả không phải chẩn đoán, chỉ định điều trị hoặc tư vấn y khoa.
 
-From the repository root, using the existing CUDA environment and prepared data:
+## Tổng quan
+
+```text
+Dữ liệu thô → chuẩn hóa corpus → BM25 index + dense index
+                                      ↓
+Query → BM25 + dense → RRF → reranker → chunk/document selection
+                                      ↓
+                         JSONL / API / Inspector UI
+```
+
+Tính năng chính:
+
+- BM25, exact/FAISS dense retrieval và hybrid RRF.
+- BGE cross-encoder reranking.
+- Scoring và selection ở cấp chunk/document.
+- Parent consistency và submission validator.
+- Batch CLI, JSON API và giao diện phân tích retrieval.
+- Recall@K, MRR, Precision, Recall và Macro F2.
+- Manifest, checksum và model revision để tái lập thí nghiệm.
+
+## Cấu trúc dự án
+
+```text
+configs/      Cấu hình pipeline
+data/         Dữ liệu thô và dữ liệu đã chuẩn hóa
+artifacts/    BM25/dense indexes
+outputs/      Predictions, metrics và benchmark
+scripts/      Chuẩn bị dữ liệu, build index, evaluate
+src/          Pipeline, API và Inspector UI
+tests/
+  unit/                     Data, retrieval và ranking dùng chung
+  integration/              Runtime, API và tooling
+  workflows/vibiomir/       Dataset chính thức
+  workflows/vimedqa/        Benchmark lịch sử/regression
+  workflows/medquad/        Regression tiếng Anh
+  repository/               Kiểm tra cấu trúc repository
+docs/         Thiết kế và báo cáo kỹ thuật
+```
+
+**Dataset chính thức:** ViBioMIR. ViMedQA và MedQuAD được giữ làm benchmark regression/đối chứng.
+
+## Chạy nhanh không cần GPU
+
+Demo dùng dữ liệu nhỏ trong `data/dev/` và không tải model.
+
+```bash
+cd medical-rag
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[api,dev]"
+
+R2AI_CONFIG=configs/demo.yaml \
+python -m uvicorn src.api:create_app --factory --host 127.0.0.1 --port 8000
+```
+
+Windows PowerShell dùng `.venv\Scripts\Activate.ps1` và:
 
 ```powershell
-#cd C:\Users\Admin\Downloads\medical-rag
 $env:HF_HOME = Join-Path (Get-Location) '.cache/huggingface'
 $env:HF_HUB_OFFLINE = '1'
-.venv\Scripts\python.exe -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
+.venv/Scripts/python.exe -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
+```
+
+Open **http://localhost:8001**. The UI compares BM25, dense, hybrid and hybrid + reranker; supports benchmark replay, live GPU queries, source-context labels, miss filters and human relevance labels.
+
+Human labels are stored in `outputs/vimed_validation/human_labels.jsonl`.
 
 ## Docker
 
-With Docker Desktop's Linux/WSL2 engine and NVIDIA GPU support enabled:
+Docker hiện dành cho **NVIDIA GPU**, CUDA 12.8 và `linux/amd64`. Máy ARM hoặc máy không có NVIDIA không chạy được cấu hình này nếu không điều chỉnh.
 
-```powershell
-docker compose up -d --build
+Compose mount các thư mục `data/`, `artifacts/`, `outputs/` và `.cache/huggingface/`. Các thư mục và artifact ViMed cần được chuẩn bị trước.
+
+```bash
+mkdir -p data artifacts outputs .cache/huggingface
+HF_HUB_OFFLINE=1 docker compose up -d --build
+
+docker compose logs -f ui
+curl http://127.0.0.1:8001/health
 ```
 
-If port 8001 is busy, set `$env:UI_PORT = '8002'` first. Use one GPU server at a time to avoid loading both models twice. See [Docker guide](docs/docker_vi.md).
+Cho phép tải model ở lần đầu:
 
-## Prepare data and indexes
-
-```powershell
-.venv/Scripts/python.exe -m scripts.prepare_vimed
-.venv/Scripts/python.exe -m scripts.prepare_vimed_validation
-.venv/Scripts/python.exe -m scripts.build_dense_index --config configs/vimed_dense_bge_m3.yaml --timeout-seconds 1200
-.venv/Scripts/python.exe -m scripts.verify_dense_index
+```bash
+HF_HUB_OFFLINE=0 docker compose up -d --build
 ```
 
-The preparation command requires local raw parquets in `data/raw/vimedaqa/all`. It prepares the corpus and BM25 index. Dense build refuses to overwrite an existing index; skip the build if the verified index is already present. The current BGE-M3 index uses CLS pooling, FP16 CUDA and a pinned model revision.
+Đổi cổng hoặc dừng service:
 
-## Validation benchmark
-
-Run stages in this order:
-
-```powershell
-.venv/Scripts/python.exe -m scripts.benchmark_vimed_validation --stage bm25 --timeout-seconds 1200
-.venv/Scripts/python.exe -m scripts.benchmark_vimed_validation --stage dense --timeout-seconds 1200
-.venv/Scripts/python.exe -m scripts.benchmark_vimed_validation --stage hybrid --timeout-seconds 600
-.venv/Scripts/python.exe -m scripts.benchmark_vimed_validation --stage rerank --timeout-seconds 7200
-.venv/Scripts/python.exe -m scripts.report_vimed_validation
+```bash
+UI_PORT=8002 docker compose up -d
+docker compose down
 ```
 
-Completed compatible stages are reused. When changing data/config, use a new `--output` directory. The benchmark uses 2,210 validation questions and 17,955 deduplicated chunks. Positives are inferred source contexts, not exhaustive relevance judgments.
+## Batch retrieval và evaluation
 
-| Configuration | Recall@5 | Recall@10 | Recall@100 |
+```bash
+python -m scripts.retrieve \
+  --config configs/vimed_selected_validation.yaml \
+  --queries data/vimed/validation/queries.jsonl \
+  --output outputs/predictions/vimed.jsonl
+
+python -m scripts.evaluate \
+  --prediction outputs/predictions/vimed.jsonl \
+  --ground-truth data/vimed/validation/ground_truth.jsonl \
+  --corpus-chunks data/vimed/chunks.jsonl
+```
+
+Tạo và kiểm tra submission:
+
+```bash
+python -m scripts.make_submission \
+  --predictions outputs/predictions/vimed.jsonl \
+  --chunks data/vimed/chunks.jsonl \
+  --queries data/vimed/validation/queries.jsonl \
+  --output outputs/submissions/submission.jsonl
+
+python -m src.cli validate outputs/submissions/submission.jsonl \
+  --corpus-chunks data/vimed/chunks.jsonl \
+  --test-queries data/vimed/validation/queries.jsonl
+```
+
+## Cấu hình chính
+
+| Cấu hình | Pipeline |
+|---|---|
+| `configs/demo.yaml` | Demo CPU không cần model |
+| `configs/vimed_bm25.yaml` | BM25 |
+| `configs/vimed_dense_bge_m3.yaml` | BGE-M3 dense |
+| `configs/vimed_hybrid.yaml` | BM25 + dense + RRF |
+| `configs/vimed_hybrid_rerank.yaml` | Hybrid + BGE reranker |
+| `configs/vimed_selected_validation.yaml` | Cấu hình được chọn trên validation |
+
+## Kết quả validation
+
+Benchmark gồm 2.210 câu và 17.955 context tiếng Việt:
+
+| Pipeline | Recall@5 | Recall@10 | Recall@100 |
 |---|---:|---:|---:|
-| BM25 | 69.19% | 75.25% | 88.37% |
-| BGE-M3 dense | 76.61% | 81.63% | 92.22% |
-| Hybrid RRF | 77.19% | 82.26% | 92.49% |
-| Hybrid + reranker | 88.64% | 90.63% | 92.49% |
+| BM25 | 69,19% | 75,25% | 88,37% |
+| BGE-M3 dense | 76,61% | 81,63% | 92,22% |
+| Hybrid RRF | 77,19% | 82,26% | 92,49% |
+| Hybrid + reranker | 88,64% | 90,63% | 92,49% |
 
-Selected configuration: `configs/vimed_selected_validation.yaml`. Report: [validation benchmark](docs/vimed_validation_benchmark_vi.md).
+Ground truth là context nguồn suy ra từ dữ liệu QA, chưa phải relevance judgment đầy đủ. Kết quả dùng để so sánh nội bộ và không chứng minh độ an toàn lâm sàng hay khả năng retrieval đa ngôn ngữ.
 
-## Batch retrieval, evaluation and submission
-
-```powershell
-.venv/Scripts/python.exe -m scripts.retrieve --config configs/vimed_selected_validation.yaml --queries data/vimed/validation/queries.jsonl --output outputs/predictions/vimed.jsonl
-.venv/Scripts/python.exe -m scripts.evaluate --prediction outputs/predictions/vimed.jsonl --ground-truth data/vimed/validation/ground_truth.jsonl
-.venv/Scripts/python.exe -m scripts.make_submission --predictions outputs/predictions/vimed.jsonl --chunks data/vimed/chunks.jsonl --queries data/vimed/validation/queries.jsonl
-```
-
-`src.api` provides a separate JSON API; set `R2AI_CONFIG` to the chosen config when using it. Demo fixtures and MedQuAD utilities remain for regression tests and optional retrieval experiments. They are not the default ViMed workflow.
-
-## Tests and review
+## Kiểm thử
 
 ```powershell
-.venv/Scripts/python.exe -m pytest -q
+python -m pytest -q tests/workflows/vibiomir
+python -m pytest -q tests/unit
+python -m pytest -q tests/integration
+python -m pytest -q tests/workflows/vimedqa tests/workflows/medquad
+python -m pytest -q tests
+make lint
 ```
 
-- [Code workflow review and cleanup](docs/workflow_review_vi.md)
-- [Encoder profile and dense verification](docs/encoder_profiles_vi.md)
-- [Historical retrieval review](docs/vimed_retrieval_review_vi.md)
+Chi tiết từng luồng: [`tests/README.md`](tests/README.md).
 
-Model caches, raw data, indexes, benchmark rankings and labels are local artifacts; keep them when transferring this workspace. `.venv` and model downloads are not bundled inside the Docker build context.
+## Tài liệu
+
+- [Đánh giá dự án hiện tại](docs/tong-quat.md)
+- [Review workflow](docs/workflow_review_vi.md)
+- [Review ViMed retrieval](docs/vimed_retrieval_review_vi.md)
