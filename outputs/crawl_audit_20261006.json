@@ -1,0 +1,520 @@
+{
+  "corpus": {
+    "urls": 4394718,
+    "max_doc_id": 4420561
+  },
+  "crawl": {
+    "manifest_files": 1098,
+    "manifest_attempt_rows": 5474847,
+    "unique_processed_docs": 4216152,
+    "successful_docs": 3544629,
+    "failed_docs_latest": 671523,
+    "untouched_docs": 178566,
+    "coverage_percent": 80.6566,
+    "page_files": 1364233,
+    "compressed_page_bytes": 25958678472,
+    "latest_manifest_status_counts": {
+      "ok": 3543095,
+      "http_error": 4732,
+      "circuit_open": 665235,
+      "blocked": 315,
+      "robots_denied": 120,
+      "network_error": 400,
+      "timeout": 724
+    },
+    "processed_percent": 95.9368,
+    "failed_percent": 15.2802,
+    "untouched_percent": 4.0632
+  },
+  "extraction": {
+    "chunk_rows": 17639623,
+    "documents_with_chunks": 3245947,
+    "success_docs_without_chunks": 300841,
+    "extracted_share_of_success_percent": 91.5128
+  },
+  "candidate_pools": {
+    "fused_candidates.parquet": {
+      "unique_docs": 244715,
+      "crawled_ok": 244634,
+      "failed_latest": 0,
+      "untouched": 81,
+      "extracted_docs": 244715
+    },
+    "docidx4_candidates.parquet": {
+      "unique_docs": 228215,
+      "crawled_ok": 228087,
+      "failed_latest": 0,
+      "untouched": 128,
+      "extracted_docs": 228215
+    },
+    "bm25idx_candidates.parquet": {
+      "unique_docs": 143555,
+      "crawled_ok": 143555,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 143555
+    }
+  },
+  "candidate_union": {
+    "unique_docs": 313278,
+    "crawled_ok": 313150,
+    "failed_latest": 0,
+    "untouched": 128,
+    "extracted_docs": 313278,
+    "needs_successful_crawl": 128
+  },
+  "top_domains_by_untouched": [
+    {
+      "domain": "zysjonline.com",
+      "total": 243347,
+      "ok": 0,
+      "failed_latest": 67271,
+      "untouched": 176076,
+      "extracted_docs": 0,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "cnkang.com",
+      "total": 963438,
+      "ok": 962238,
+      "failed_latest": 144,
+      "untouched": 1056,
+      "extracted_docs": 963189,
+      "candidate_docs_not_ok": 32
+    },
+    {
+      "domain": "120ask.com",
+      "total": 918479,
+      "ok": 917203,
+      "failed_latest": 274,
+      "untouched": 1002,
+      "extracted_docs": 918141,
+      "candidate_docs_not_ok": 91
+    },
+    {
+      "domain": "a-hospital.com",
+      "total": 169339,
+      "ok": 169158,
+      "failed_latest": 3,
+      "untouched": 178,
+      "extracted_docs": 169336,
+      "candidate_docs_not_ok": 5
+    },
+    {
+      "domain": "familydoctor.com.cn",
+      "total": 451307,
+      "ok": 450882,
+      "failed_latest": 375,
+      "untouched": 50,
+      "extracted_docs": 230007,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "zydcd.com",
+      "total": 78680,
+      "ok": 78637,
+      "failed_latest": 0,
+      "untouched": 43,
+      "extracted_docs": 78605,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "zhongyibaodian.net",
+      "total": 146700,
+      "ok": 146660,
+      "failed_latest": 0,
+      "untouched": 40,
+      "extracted_docs": 146635,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "39.net",
+      "total": 496479,
+      "ok": 22337,
+      "failed_latest": 474103,
+      "untouched": 39,
+      "extracted_docs": 20919,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "suckhoedoisong.vn",
+      "total": 85823,
+      "ok": 85785,
+      "failed_latest": 0,
+      "untouched": 38,
+      "extracted_docs": 85759,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "suckhoecongdongonline.vn",
+      "total": 154503,
+      "ok": 154468,
+      "failed_latest": 0,
+      "untouched": 35,
+      "extracted_docs": 76116,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "vov.vn",
+      "total": 16683,
+      "ok": 16678,
+      "failed_latest": 0,
+      "untouched": 5,
+      "extracted_docs": 16677,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "giadinhonline.vn",
+      "total": 44306,
+      "ok": 40975,
+      "failed_latest": 3327,
+      "untouched": 4,
+      "extracted_docs": 40970,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "vietnamplus.vn",
+      "total": 3698,
+      "ok": 3698,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 3698,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "bachmai.gov.vn",
+      "total": 2783,
+      "ok": 2783,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 2781,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baoangiang.com.vn",
+      "total": 10738,
+      "ok": 10738,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 10738,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baocantho.com.vn",
+      "total": 12016,
+      "ok": 12016,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 12016,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baochinhphu.vn",
+      "total": 2302,
+      "ok": 2301,
+      "failed_latest": 1,
+      "untouched": 0,
+      "extracted_docs": 2301,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baodanang.vn",
+      "total": 14500,
+      "ok": 14500,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 14500,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baogialai.com.vn",
+      "total": 3290,
+      "ok": 3287,
+      "failed_latest": 3,
+      "untouched": 0,
+      "extracted_docs": 3287,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baohaiphong.vn",
+      "total": 16286,
+      "ok": 16286,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 16286,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baolangson.vn",
+      "total": 1981,
+      "ok": 0,
+      "failed_latest": 1981,
+      "untouched": 0,
+      "extracted_docs": 0,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baonghean.vn",
+      "total": 15941,
+      "ok": 15941,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 15941,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baophutho.vn",
+      "total": 1288,
+      "ok": 1288,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 1288,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baoquangninh.vn",
+      "total": 2912,
+      "ok": 2912,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 2912,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baoquangtri.vn",
+      "total": 5483,
+      "ok": 5483,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 5483,
+      "candidate_docs_not_ok": 0
+    }
+  ],
+  "top_domains_by_candidate_need": [
+    {
+      "domain": "120ask.com",
+      "total": 918479,
+      "ok": 917203,
+      "failed_latest": 274,
+      "untouched": 1002,
+      "extracted_docs": 918141,
+      "candidate_docs_not_ok": 91
+    },
+    {
+      "domain": "cnkang.com",
+      "total": 963438,
+      "ok": 962238,
+      "failed_latest": 144,
+      "untouched": 1056,
+      "extracted_docs": 963189,
+      "candidate_docs_not_ok": 32
+    },
+    {
+      "domain": "a-hospital.com",
+      "total": 169339,
+      "ok": 169158,
+      "failed_latest": 3,
+      "untouched": 178,
+      "extracted_docs": 169336,
+      "candidate_docs_not_ok": 5
+    },
+    {
+      "domain": "vietnamplus.vn",
+      "total": 3698,
+      "ok": 3698,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 3698,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "bachmai.gov.vn",
+      "total": 2783,
+      "ok": 2783,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 2781,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baoangiang.com.vn",
+      "total": 10738,
+      "ok": 10738,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 10738,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baocantho.com.vn",
+      "total": 12016,
+      "ok": 12016,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 12016,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baochinhphu.vn",
+      "total": 2302,
+      "ok": 2301,
+      "failed_latest": 1,
+      "untouched": 0,
+      "extracted_docs": 2301,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baodanang.vn",
+      "total": 14500,
+      "ok": 14500,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 14500,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baogialai.com.vn",
+      "total": 3290,
+      "ok": 3287,
+      "failed_latest": 3,
+      "untouched": 0,
+      "extracted_docs": 3287,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baohaiphong.vn",
+      "total": 16286,
+      "ok": 16286,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 16286,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baolangson.vn",
+      "total": 1981,
+      "ok": 0,
+      "failed_latest": 1981,
+      "untouched": 0,
+      "extracted_docs": 0,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baonghean.vn",
+      "total": 15941,
+      "ok": 15941,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 15941,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baophutho.vn",
+      "total": 1288,
+      "ok": 1288,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 1288,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baoquangninh.vn",
+      "total": 2912,
+      "ok": 2912,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 2912,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baoquangtri.vn",
+      "total": 5483,
+      "ok": 5483,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 5483,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baotayninh.vn",
+      "total": 1198,
+      "ok": 1198,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 1198,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baothanhhoa.vn",
+      "total": 782,
+      "ok": 782,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 782,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "baovinhlong.com.vn",
+      "total": 5113,
+      "ok": 5113,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 5113,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "benhviennhitrunguong.gov.vn",
+      "total": 1200,
+      "ok": 1200,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 1200,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "benhvienvietduc.org",
+      "total": 425,
+      "ok": 425,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 425,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "dantri.com.vn",
+      "total": 2063,
+      "ok": 319,
+      "failed_latest": 1744,
+      "untouched": 0,
+      "extracted_docs": 319,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "giadinhonline.vn",
+      "total": 44306,
+      "ok": 40975,
+      "failed_latest": 3327,
+      "untouched": 4,
+      "extracted_docs": 40970,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "hanoimoi.vn",
+      "total": 1283,
+      "ok": 1283,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 1283,
+      "candidate_docs_not_ok": 0
+    },
+    {
+      "domain": "hellobacsi.com",
+      "total": 11747,
+      "ok": 11747,
+      "failed_latest": 0,
+      "untouched": 0,
+      "extracted_docs": 11735,
+      "candidate_docs_not_ok": 0
+    }
+  ]
+}

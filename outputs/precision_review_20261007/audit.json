@@ -1,0 +1,876 @@
+{
+  "reviewed_at_vietnam": "2026-10-07T10:40:45.835792+07:00",
+  "official_score_recomputed": false,
+  "screenshot_zip_checksum_available": false,
+  "submissions": {
+    "baseline": {
+      "path": "outputs/submissions/vibiomir_test_best_20261006.zip",
+      "sha256": "4be6b6118a7aaa705e0663256d8af41a9351910fedfceee3ff36e763c961c7c0",
+      "mtime_vietnam": "2026-10-06T14:26:50.868691+07:00",
+      "zip_bytes": 44163471,
+      "members": [
+        "predictions.json"
+      ],
+      "bad_crc": null,
+      "queries": 1200,
+      "doc_total": 240000,
+      "chunk_total": 144000,
+      "doc_counts": {
+        "200": 1200
+      },
+      "chunk_counts": {
+        "min": 120.0,
+        "p05": 120.0,
+        "p25": 120.0,
+        "p50": 120.0,
+        "p75": 120.0,
+        "p95": 120.0,
+        "p99": 120.0,
+        "max": 120.0
+      },
+      "average_docs": 200.0,
+      "average_chunks": 120.0,
+      "chunk_characters": {
+        "min": 85.0,
+        "p05": 234.0,
+        "p25": 654.0,
+        "p50": 854.0,
+        "p75": 947.0,
+        "p95": 1143.0,
+        "p99": 1427.0,
+        "max": 30848.0
+      },
+      "documents_without_evidence": 96000,
+      "chunks_without_parent": 0,
+      "duplicate_doc_text_pairs": 0,
+      "cross_document_duplicate_text_occurrences": 12249,
+      "validation_errors": []
+    },
+    "taxonomy": {
+      "path": "outputs/submissions/vibiomir_taxonomy_test_20261006.zip",
+      "sha256": "3272a0edb349748094e952dcf5dd7007ec9ef9cb6e7b1d4183c0ada82b8ea2c2",
+      "mtime_vietnam": "2026-10-06T15:36:22.666191+07:00",
+      "zip_bytes": 44052545,
+      "members": [
+        "predictions.json"
+      ],
+      "bad_crc": null,
+      "queries": 1200,
+      "doc_total": 240000,
+      "chunk_total": 144000,
+      "doc_counts": {
+        "200": 1200
+      },
+      "chunk_counts": {
+        "min": 120.0,
+        "p05": 120.0,
+        "p25": 120.0,
+        "p50": 120.0,
+        "p75": 120.0,
+        "p95": 120.0,
+        "p99": 120.0,
+        "max": 120.0
+      },
+      "average_docs": 200.0,
+      "average_chunks": 120.0,
+      "chunk_characters": {
+        "min": 85.0,
+        "p05": 234.0,
+        "p25": 654.0,
+        "p50": 854.0,
+        "p75": 947.0,
+        "p95": 1143.0,
+        "p99": 1427.0,
+        "max": 30848.0
+      },
+      "documents_without_evidence": 96000,
+      "chunks_without_parent": 0,
+      "duplicate_doc_text_pairs": 0,
+      "cross_document_duplicate_text_occurrences": 12249,
+      "validation_errors": []
+    },
+    "submission": {
+      "path": "outputs/evidence/test_20261006/selected/submission.zip",
+      "sha256": "ccf612d647bfd466b871e2c7d9a575c5c429888f2a5ad7143186699c4a89c083",
+      "mtime_vietnam": "2026-10-06T16:57:51.046041+07:00",
+      "zip_bytes": 39312564,
+      "members": [
+        "predictions.json"
+      ],
+      "bad_crc": null,
+      "queries": 1200,
+      "doc_total": 240000,
+      "chunk_total": 120262,
+      "doc_counts": {
+        "200": 1200
+      },
+      "chunk_counts": {
+        "min": 19.0,
+        "p05": 63.0,
+        "p25": 91.0,
+        "p50": 104.0,
+        "p75": 115.0,
+        "p95": 119.0,
+        "p99": 120.0,
+        "max": 120.0
+      },
+      "average_docs": 200.0,
+      "average_chunks": 100.21833333333333,
+      "chunk_characters": {
+        "min": 85.0,
+        "p05": 256.0,
+        "p25": 725.0,
+        "p50": 873.0,
+        "p75": 954.0,
+        "p95": 1182.0,
+        "p99": 1444.0,
+        "max": 30848.0
+      },
+      "documents_without_evidence": 119738,
+      "chunks_without_parent": 0,
+      "duplicate_doc_text_pairs": 0,
+      "cross_document_duplicate_text_occurrences": 0,
+      "validation_errors": []
+    },
+    "exact80": {
+      "path": "outputs/submissions/vibiomir_probes_20261007/vibiomir_rerank80_exact_20261007.zip",
+      "sha256": "31263528cb4b665d5ead3639f860cf3cea36111279201e9cf326ee8e7c4b40ab",
+      "mtime_vietnam": "2026-10-07T07:23:27.315327+07:00",
+      "zip_bytes": 21345911,
+      "members": [
+        "predictions.json"
+      ],
+      "bad_crc": null,
+      "queries": 1200,
+      "doc_total": 96000,
+      "chunk_total": 71891,
+      "doc_counts": {
+        "80": 1200
+      },
+      "chunk_counts": {
+        "min": 25.0,
+        "p05": 60.0,
+        "p25": 60.0,
+        "p50": 60.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "average_docs": 80.0,
+      "average_chunks": 59.909166666666664,
+      "chunk_characters": {
+        "min": 85.0,
+        "p05": 236.0,
+        "p25": 661.0,
+        "p50": 862.0,
+        "p75": 952.0,
+        "p95": 1179.0,
+        "p99": 1455.1000000000058,
+        "max": 27308.0
+      },
+      "documents_without_evidence": 24109,
+      "chunks_without_parent": 0,
+      "duplicate_doc_text_pairs": 0,
+      "cross_document_duplicate_text_occurrences": 6175,
+      "validation_errors": []
+    },
+    "window80": {
+      "path": "outputs/submissions/vibiomir_probes_20261007/vibiomir_rerank80_window1_20261007.zip",
+      "sha256": "30efa5ce2d6aa88a840018f3c716f3277d4a47500f7dd5152f3bed8f7570d32a",
+      "mtime_vietnam": "2026-10-07T07:23:42.907685+07:00",
+      "zip_bytes": 44940084,
+      "members": [
+        "predictions.json"
+      ],
+      "bad_crc": null,
+      "queries": 1200,
+      "doc_total": 96000,
+      "chunk_total": 71891,
+      "doc_counts": {
+        "80": 1200
+      },
+      "chunk_counts": {
+        "min": 25.0,
+        "p05": 60.0,
+        "p25": 60.0,
+        "p50": 60.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "average_docs": 80.0,
+      "average_chunks": 59.909166666666664,
+      "chunk_characters": {
+        "min": 85.0,
+        "p05": 448.0,
+        "p25": 1482.0,
+        "p50": 2135.0,
+        "p75": 2625.0,
+        "p95": 2903.0,
+        "p99": 3192.100000000006,
+        "max": 27824.0
+      },
+      "documents_without_evidence": 24109,
+      "chunks_without_parent": 0,
+      "duplicate_doc_text_pairs": 0,
+      "cross_document_duplicate_text_occurrences": 5959,
+      "validation_errors": []
+    }
+  },
+  "comparisons": {
+    "baseline_vs_submission": {
+      "queries_with_changed_document_sets": 0,
+      "queries_with_changed_document_order": 0,
+      "queries_with_changed_evidence_sets": 1149,
+      "queries_with_changed_chunk_parents": 1200,
+      "added_evidence": 0,
+      "removed_evidence": 23738
+    },
+    "baseline_vs_taxonomy": {
+      "queries_with_changed_document_sets": 0,
+      "queries_with_changed_document_order": 692,
+      "queries_with_changed_evidence_sets": 0,
+      "queries_with_changed_chunk_parents": 692,
+      "added_evidence": 0,
+      "removed_evidence": 0
+    },
+    "exact80_vs_window80": {
+      "queries_with_changed_document_sets": 0,
+      "queries_with_changed_document_order": 0,
+      "queries_with_changed_evidence_sets": 1200,
+      "queries_with_changed_chunk_parents": 0,
+      "added_evidence": 69452,
+      "removed_evidence": 69452
+    }
+  },
+  "cache_metadata": {
+    "inputs": {
+      "baseline": {
+        "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_test_best_20261006.zip",
+        "bytes": 44163471,
+        "sha256": "4be6b6118a7aaa705e0663256d8af41a9351910fedfceee3ff36e763c961c7c0"
+      },
+      "chunks": {
+        "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/vibiomir/chunks_v4.parquet",
+        "bytes": 3803641445,
+        "sha256": "069afab495a7d4b34f0e9859d4ae5e8d09726a403cb8ddb74a430aaa92dfc368"
+      },
+      "queries": {
+        "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/raw/vibiomir/query.parquet",
+        "bytes": 81826,
+        "sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08"
+      }
+    },
+    "candidate_source": "existing baseline retrieval evidence, verified exact corpus text",
+    "retrieval_scores": "unavailable in baseline ZIP; null",
+    "reranker": {
+      "enabled": true,
+      "model": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "activation": "identity",
+      "precision": "float16",
+      "max_length": 512,
+      "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+    },
+    "verified_unique_chunks": 121508,
+    "corpus_rows_scanned": 17639623,
+    "prepare_seconds": 36.6753609823063,
+    "runtime": {
+      "torch": "2.6.0+cu126",
+      "sentence_transformers": "5.1.2",
+      "transformers": "4.55.4",
+      "device": "cuda:1"
+    },
+    "priority": "descending authentic cross-encoder score",
+    "batch": 16,
+    "threshold_calibrated": false
+  },
+  "cache": {
+    "path": "outputs/evidence/test_20261006/rankings.jsonl.gz",
+    "sha256": "9f13209e3714ca97b9e26b76166dc50655a819d07930e7c50d404335ed318751",
+    "pairs": 144000,
+    "pool_documents_per_query": {
+      "min": 120.0,
+      "p05": 120.0,
+      "p25": 120.0,
+      "p50": 120.0,
+      "p75": 120.0,
+      "p95": 120.0,
+      "p99": 120.0,
+      "max": 120.0
+    },
+    "unscored_baseline_documents_per_query": {
+      "min": 80.0,
+      "p05": 80.0,
+      "p25": 80.0,
+      "p50": 80.0,
+      "p75": 80.0,
+      "p95": 80.0,
+      "p99": 80.0,
+      "max": 80.0
+    },
+    "chunks_per_document_in_pool": {
+      "min": 1.0,
+      "p05": 1.0,
+      "p25": 1.0,
+      "p50": 1.0,
+      "p75": 1.0,
+      "p95": 1.0,
+      "p99": 1.0,
+      "max": 1.0
+    },
+    "score_quantiles": {
+      "min": -11.03125,
+      "p05": -7.06640625,
+      "p25": -3.458984375,
+      "p50": -1.181640625,
+      "p75": 0.83740234375,
+      "p95": 3.5665039062499773,
+      "p99": 5.40234375,
+      "max": 10.78125
+    },
+    "selected_score_quantiles": {
+      "min": -6.0,
+      "p05": -5.07421875,
+      "p25": -2.73046875,
+      "p50": -0.755859375,
+      "p75": 1.125,
+      "p95": 3.767578125,
+      "p99": 5.56640625,
+      "max": 10.78125
+    },
+    "selected_chunks_below_zero": 72799,
+    "selected_chunks_below_minus2": 40231,
+    "cross_document_duplicate_text_occurrences": 12249,
+    "baseline_selector_replay_mismatched_queries": 0
+  },
+  "raw_threshold_counts": {
+    "-6": {
+      "average": 109.66416666666667,
+      "empty_queries": 0,
+      "counts": {
+        "min": 25.0,
+        "p05": 81.0,
+        "p25": 105.0,
+        "p50": 115.0,
+        "p75": 119.0,
+        "p95": 120.0,
+        "p99": 120.0,
+        "max": 120.0
+      }
+    },
+    "-4": {
+      "average": 95.5475,
+      "empty_queries": 0,
+      "counts": {
+        "min": 7.0,
+        "p05": 51.0,
+        "p25": 81.75,
+        "p50": 101.0,
+        "p75": 115.0,
+        "p95": 120.0,
+        "p99": 120.0,
+        "max": 120.0
+      }
+    },
+    "-2": {
+      "average": 71.95166666666667,
+      "empty_queries": 1,
+      "counts": {
+        "min": 0.0,
+        "p05": 19.0,
+        "p25": 48.0,
+        "p50": 73.0,
+        "p75": 100.0,
+        "p95": 118.0,
+        "p99": 120.0,
+        "max": 120.0
+      }
+    },
+    "0": {
+      "average": 42.03333333333333,
+      "empty_queries": 24,
+      "counts": {
+        "min": 0.0,
+        "p05": 3.0,
+        "p25": 16.0,
+        "p50": 34.0,
+        "p75": 64.25,
+        "p95": 103.0,
+        "p99": 116.0,
+        "max": 119.0
+      }
+    },
+    "1": {
+      "average": 27.903333333333332,
+      "empty_queries": 73,
+      "counts": {
+        "min": 0.0,
+        "p05": 0.0,
+        "p25": 6.0,
+        "p50": 18.0,
+        "p75": 43.0,
+        "p95": 89.0,
+        "p99": 108.0,
+        "max": 118.0
+      }
+    },
+    "2": {
+      "average": 16.7125,
+      "empty_queries": 177,
+      "counts": {
+        "min": 0.0,
+        "p05": 0.0,
+        "p25": 2.0,
+        "p50": 7.0,
+        "p75": 22.0,
+        "p95": 70.0,
+        "p99": 93.0,
+        "max": 114.0
+      }
+    }
+  },
+  "selection_ablation_without_labels": {
+    "keep200_threshold-6": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 200,
+        "max_chunks": 120,
+        "chunks_per_doc": 1,
+        "chunk_threshold": -6,
+        "chunk_delta": null,
+        "document_mode": "baseline",
+        "doc_threshold": null,
+        "doc_delta": null
+      },
+      "empty_chunks": 0,
+      "empty_docs": 0,
+      "document_order": "original fused ranking",
+      "average_docs": 200.0,
+      "average_chunks": 100.21833333333333,
+      "doc_counts": {
+        "min": 200.0,
+        "p05": 200.0,
+        "p25": 200.0,
+        "p50": 200.0,
+        "p75": 200.0,
+        "p95": 200.0,
+        "p99": 200.0,
+        "max": 200.0
+      },
+      "chunk_counts": {
+        "min": 19.0,
+        "p05": 63.0,
+        "p25": 91.0,
+        "p50": 104.0,
+        "p75": 115.0,
+        "p95": 119.0,
+        "p99": 120.0,
+        "max": 120.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "reranked_docs_threshold-6": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": -6,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": -6,
+        "doc_delta": null
+      },
+      "empty_chunks": 0,
+      "empty_docs": 0,
+      "document_order": "descending maximum authentic reranker score",
+      "average_docs": 79.5275,
+      "average_chunks": 59.515,
+      "doc_counts": {
+        "min": 25.0,
+        "p05": 80.0,
+        "p25": 80.0,
+        "p50": 80.0,
+        "p75": 80.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 19.0,
+        "p05": 57.0,
+        "p25": 60.0,
+        "p50": 60.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "reranked_docs_threshold-4": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": -4,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": -4,
+        "doc_delta": null
+      },
+      "empty_chunks": 0,
+      "empty_docs": 0,
+      "document_order": "descending maximum authentic reranker score",
+      "average_docs": 75.6875,
+      "average_chunks": 57.568333333333335,
+      "doc_counts": {
+        "min": 7.0,
+        "p05": 51.0,
+        "p25": 80.0,
+        "p50": 80.0,
+        "p75": 80.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 5.0,
+        "p05": 40.0,
+        "p25": 60.0,
+        "p50": 60.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "reranked_docs_threshold-2": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": -2,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": -2,
+        "doc_delta": null
+      },
+      "empty_chunks": 1,
+      "empty_docs": 1,
+      "document_order": "descending maximum authentic reranker score",
+      "average_docs": 62.54083333333333,
+      "average_chunks": 49.729166666666664,
+      "doc_counts": {
+        "min": 0.0,
+        "p05": 19.0,
+        "p25": 48.0,
+        "p50": 73.0,
+        "p75": 80.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 0.0,
+        "p05": 16.0,
+        "p25": 42.0,
+        "p50": 60.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "reranked_docs_threshold0": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": 0,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": 0,
+        "doc_delta": null
+      },
+      "empty_chunks": 24,
+      "empty_docs": 24,
+      "document_order": "descending maximum authentic reranker score",
+      "average_docs": 39.280833333333334,
+      "average_chunks": 33.44,
+      "doc_counts": {
+        "min": 0.0,
+        "p05": 3.0,
+        "p25": 16.0,
+        "p50": 34.0,
+        "p75": 64.25,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 0.0,
+        "p05": 2.950000000000003,
+        "p25": 14.0,
+        "p50": 32.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "reranked_docs_threshold1": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": 1,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": 1,
+        "doc_delta": null
+      },
+      "empty_chunks": 73,
+      "empty_docs": 73,
+      "document_order": "descending maximum authentic reranker score",
+      "average_docs": 26.781666666666666,
+      "average_chunks": 23.615833333333335,
+      "doc_counts": {
+        "min": 0.0,
+        "p05": 0.0,
+        "p25": 6.0,
+        "p50": 18.0,
+        "p75": 43.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 0.0,
+        "p05": 0.0,
+        "p25": 6.0,
+        "p50": 16.0,
+        "p75": 41.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "reranked_docs_threshold2": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": 2,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": 2,
+        "doc_delta": null
+      },
+      "empty_chunks": 177,
+      "empty_docs": 177,
+      "document_order": "descending maximum authentic reranker score",
+      "average_docs": 16.3925,
+      "average_chunks": 14.881666666666666,
+      "doc_counts": {
+        "min": 0.0,
+        "p05": 0.0,
+        "p25": 2.0,
+        "p50": 7.0,
+        "p75": 22.0,
+        "p95": 70.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 0.0,
+        "p05": 0.0,
+        "p25": 2.0,
+        "p50": 7.0,
+        "p75": 21.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    },
+    "filtered_original_doc_order_threshold-2": {
+      "config": {
+        "mode": "threshold",
+        "max_docs": 80,
+        "max_chunks": 60,
+        "chunks_per_doc": 1,
+        "chunk_threshold": -2,
+        "chunk_delta": null,
+        "document_mode": "threshold",
+        "doc_threshold": -2,
+        "doc_delta": null
+      },
+      "empty_chunks": 1,
+      "empty_docs": 1,
+      "document_order": "original fused ranking",
+      "average_docs": 62.54083333333333,
+      "average_chunks": 49.740833333333335,
+      "doc_counts": {
+        "min": 0.0,
+        "p05": 19.0,
+        "p25": 48.0,
+        "p50": 73.0,
+        "p75": 80.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80.0
+      },
+      "chunk_counts": {
+        "min": 0.0,
+        "p05": 16.0,
+        "p25": 42.0,
+        "p50": 60.0,
+        "p75": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60.0
+      },
+      "precision": null,
+      "recall": null,
+      "f2": null
+    }
+  },
+  "reranker_token_length_sample": {
+    "tokenizer_path": "/data_hdd_16t/trungnguyen12/.cache-evidence-hf/hub/models--BAAI--bge-reranker-v2-m3/snapshots/953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e/tokenizer.json",
+    "tokenizer_sha256": "69564b696052886ed0ac63fa393e928384e0f8caada38c1f4864a9bfbf379c15",
+    "seed": 42,
+    "sample_strategy": "five random candidates per query; full query/title/chunk pair",
+    "pairs": 6000,
+    "lengths": {
+      "min": 108.0,
+      "p05": 189.0,
+      "p25": 243.0,
+      "p50": 280.0,
+      "p75": 312.0,
+      "p95": 388.0,
+      "p99": 476.0,
+      "max": 1169.0
+    },
+    "pairs_above_512": 33,
+    "pairs_above_512_fraction": 0.0055,
+    "selected_pairs": 5039,
+    "selected_pairs_above_512": 28,
+    "cjk_pairs": 1092,
+    "cjk_pairs_above_512": 5
+  },
+  "qualitative_examples_not_official_judgments": [
+    {
+      "query_id": 2,
+      "query": "Răng có lỗ chấm đen, chảy máu khi thức dậy là sao?",
+      "highest_score": {
+        "doc_id": 519001,
+        "chunk_index": 1,
+        "chunk_text": "một số bệnh về gan, ăn uống thiếu chất, thiếu vitamin, dinh dưỡng kém... Bạn nên đi khám răng miệng, làm các xét nghiệm tổng quát như công thức máu, máu đông máu chảy và xét nghiệm chức năng gan. Để có hàm răng khỏe, nên vệ sinh răng miệng tốt và đúng, như: đánh răng trước khi đi ngủ và lúc mới ngủ dậy (lưu ý đánh răng cũng phải đúng kỹ thuật: dọc theo các chân răng từ trên xuống và từ dưới lên, dùng bàn chải mềm không đánh răng quá mạnh làm xây xước, tổn thương niêm mạc lợi); súc miệng bằng nước muối sinh lý 0,9%...; ngoài ra nên bổ sung trong",
+        "rerank_score": 1.1513671875,
+        "retrieval_score": null,
+        "title": "Hay chảy máu chân răng, bệnh gì?"
+      },
+      "lowest_selected": {
+        "doc_id": 995187,
+        "chunk_index": 0,
+        "chunk_text": "保密 | 0个月 2025-12-09 09:06:26 1人回复 来自 健康咨询描述： 画圈那里有两个白色的，像泡的，很痛，是口腔溃疡吗。然后另外一个圈里下嘴唇里面很多血丝正常吗 用药 药品库 疾病用药 药品心得 用药安全 药品资讯 用药方案 品牌药企 明星药品 有问必答 内科 外科 儿科 药品 遗传 美容 检查 减肥 中医科 五官科 传染科 体检科 妇产科 肿瘤科 康复科 子女教育 心理健康 整形美容 家居环境 皮肤性病 营养保健 其他科室 保健养生 医院在线 对医师的追问 赠送医生锦旗：赠送医生锦旗是对医生回复的一个认可及鼓励！ 赠送不赠送 返回",
+        "rerank_score": -5.9609375,
+        "retrieval_score": null,
+        "title": "牙齿下面有两个白色的像泡一样的，很痛"
+      }
+    },
+    {
+      "query_id": 10,
+      "query": "Em có dùng một loại thuốc tăng cân nhanh lúc dùng thì ăn cơm ngon thật như mà khi em dùng hết em cảm thấy rất chán ăn không ăn nổi một bát cố ăn nhưng lại buồn nôn vậy cho em hỏi em có bị làm sao không",
+      "highest_score": {
+        "doc_id": 552636,
+        "chunk_index": 6,
+        "chunk_text": "phù như corticoid mà có tác dụng gián tiếp trị chứng chán ăn, làm cho người dùng thuốc ăn nhiều hơn. Tuy nhiên, cyproheptadin chỉ kích thích sự thèm ăn tạm thời khi ngưng thuốc sẽ chán ăn trở lại. Các loại thuốc trên đều là thuốc kê đơn, dùng theo chỉ định của thầy thuốc, có chống chỉ định với nhiều trường hợp và có rất nhiều tác dụng phụ nguy hiểm. Người dùng thuốc cần lưu ý: không có chế phẩm nào giúp tăng cân thần tốc và bền vững. Cách tăng cân tốt nhất là ăn uống khoa học, đầy đủ dinh dưỡng và luyện tập thể lực. Tuyệt đối không được tự ý dù",
+        "rerank_score": 2.44140625,
+        "retrieval_score": null,
+        "title": "Thuốc tăng cân “xách tay” - Sự thật và nguy cơ"
+      },
+      "lowest_selected": {
+        "doc_id": 423316,
+        "chunk_index": 5,
+        "chunk_text": "với bạn bè mà chả ai hỏi han tra vấn. Được thả tự do anh về nhà lúc 12 giờ đêm và leo lên phòng làm việc ngủ luôn. Sáng mai dậy đi làm, cuộc đời thật quá sung sướng. 1 tháng trôi qua hôm ấy anh về sớm vì thấy thèm cơm nhà. Ăn linh tinh bên ngoài lúc đầu khoái sau thấy chán. Nhưng 6 giờ tối mà bếp vẫn lạnh. 2 đứa con chơi ngoài sân chưa vào tắm rửa. Đúng là cả tháng anh mới nhìn chúng kĩ càng. Trời… sao con anh lại gầy Ƭʜȇ Ƭʜảм như vậy: – Mẹ đâu con?? – Mẹ ở trên phòng ạ?? – Sao giờ này mẹ chưa tắm rửa và nấu cơm cho 2 đứa ăn. – Mẹ nói chúng con",
+        "rerank_score": -5.703125,
+        "retrieval_score": null,
+        "title": "Phụ nữ càng dễ nổi nóng càng yêu chồng, đến khi im lặng thì coi như đã hết"
+      }
+    },
+    {
+      "query_id": 100,
+      "query": "Con tôi 10 tháng bị sốt hết rồi giờ phát ban khắp người có sao không",
+      "highest_score": {
+        "doc_id": 749712,
+        "chunk_index": 0,
+        "chunk_text": "Bài viết được tham vấn chuyên môn cùng Bác sĩ chuyên khoa II Cao Thị Thanh - Bác sĩ Nhi - Khoa Nhi - Sơ sinh - Bệnh viện Đa khoa Quốc tế Vinmec Hải Phòng. Phát ban sau sốt là triệu chứng rất thường gặp ở trẻ em, nhất là trẻ thuộc nhóm tuổi từ 6 - 36 tháng tuổi. Nguyên nhân là do đây là giai đoạn trẻ có sức đề kháng rất kém vì lượng kháng thể tự nhiên của mẹ truyền cho trẻ đã giảm xuống đáng kể mà hệ miễn dịch của trẻ lúc này chưa hoàn thiện. 1. Phát ban là gì? Bệnh phát ban hay còn gọi là sốt phát ban là tình trạng da của bé xuất hiện những tha",
+        "rerank_score": 3.30859375,
+        "retrieval_score": null,
+        "title": "Phát ban sau sốt ở trẻ có là bất thường?"
+      },
+      "lowest_selected": {
+        "doc_id": 204223,
+        "chunk_index": 0,
+        "chunk_text": "Niềm vui bên phòng bệnh H. bị ung thư phổi giai đoạn 3, đã cắt bỏ một phần phổi, cắt một khối u ở giữa phổi và vẫn còn khối u sau phổi chưa xử lý. Chị Đỗ Thị H. (Khánh Hội, Ninh Bình) -mẹ bệnh nhi cho biết, nửa tháng qua, những tháng nằm viện triền miên khiến gia đình chị kiệt quệ, vay mượn khắp nơi để mong con có thể trở thành cô bé khỏe mạnh bình thường. Đứng bên cạnh con chờ tò he, chị H. tâm sự, từ cuối năm 2025 thấy con sốt nhưng gia đình hoàn cảnh không cho con đi khám xét. Tình trạng sốt không dứt nên gia đình cho con lên bệnh viện tỉnh ",
+        "rerank_score": -5.859375,
+        "retrieval_score": null,
+        "title": "Xua tan mệt mỏi, đau đớn cho các bệnh nhi với bữa tiệc Trung thu yêu thương"
+      }
+    },
+    {
+      "query_id": 410,
+      "query": "Chỉ số sinh hóa trong máu: glucose là 6,5 mmol/L, HbA1c là 6,8%, triglyceride 2,6 mmol/L so với bình thường thì ở mức nào và cần làm gì?",
+      "highest_score": {
+        "doc_id": 198501,
+        "chunk_index": 6,
+        "chunk_text": "và theo dõi điều trị bệnh tiểu đường hay chứng hạ đường huyết. Chỉ số Glucose ở mức bình thường sẽ nằm trong khoảng từ 3,9 - 6,4 mmol/l, còn HbA1C là từ 4 - 5,6%. Xét nghiệm Acid Uric Khi có sự nghi ngờ bệnh nhân bị Gout hoặc gặp phải một số bệnh lý liên quan đến chức năng của thận, khớp xương,... thì bệnh nhân sẽ được bác sĩ chỉ định làm xét nghiệm Acid Uric. Chỉ số xét nghiệm sinh hóa máu này sẽ ở ngưỡng khác nhau đối với nam và nữ. Thông thường, ở nam giới, chỉ số này trong khoảng 180 - 420 mmol/l và khoảng 150 - 360 mmol/l ở nữ giới. Xét ng",
+        "rerank_score": 3.365234375,
+        "retrieval_score": null,
+        "title": "Xét nghiệm sinh hóa máu Sơn Tây ở đơn vị nào uy tín?"
+      },
+      "lowest_selected": {
+        "doc_id": 738887,
+        "chunk_index": 4,
+        "chunk_text": "nhịn ăn từ 22 giờ hoặc cần ngưng bổ sung calo trong ít nhất 8 giờ trước khi lấy máu xét nghiệm. Thực hiện nghiệm pháp: - Bước 1: Lấy máu lần đầu tiên và đo glucose máu lúc đói. - Bước 2: Pha 75g trong 200 ml nước và uống trong thời gian 3 – 5 phút. Lưu ý trong thời gian làm xét nghiệm, người làm xét nghiệm không được hút thuốc, ăn hay uống các loại nước ngọt. - Bước 3: Đo glucose máu sau 1 giờ uống nước glucose - Bước 4: Đo glucose máu sau 2 giờ uống nước glucose Kết quả glucose máu bình thường: - Lúc đói: ≤ 92 mg/dl (5,1 mmol/L) - Sau 1 giờ ≤ ",
+        "rerank_score": -3.623046875,
+        "retrieval_score": null,
+        "title": "Chỉ số đường huyết thai kỳ sau ăn 2 giờ"
+      }
+    }
+  ],
+  "corpus": {
+    "old_chunk_rows": 17639623,
+    "old_index_documents": 3245947,
+    "official_documents": 4394718,
+    "running_extraction_not_read": "data/vibiomir/chunks_crawl_20261007.parquet"
+  }
+}

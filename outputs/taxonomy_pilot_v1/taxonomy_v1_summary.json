@@ -1,0 +1,62 @@
+{
+  "taxonomy_version": "v1",
+  "config_sha256": "91e7bc6dad048fc4d21bb4e83d35f7f655b6fd3d5a92f76825446a07f696feee",
+  "input_chunks": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/vibiomir/chunks_v4.parquet",
+  "input_corpus": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/raw/vibiomir/links_corpus.parquet",
+  "max_docs": 1000,
+  "documents": 1000,
+  "chunks": 6014,
+  "concept_chunk_counts": {
+    "disease.hpv": 51,
+    "condition.pregnancy": 602,
+    "symptom.bleeding": 464,
+    "symptom.fever": 355,
+    "anatomy.heart": 756,
+    "anatomy.liver": 531,
+    "disease.diabetes": 564,
+    "disease.hypertension": 243,
+    "symptom.abdominal_pain": 144,
+    "vital.blood_pressure": 390,
+    "disease.hiv": 94,
+    "anatomy.tooth": 413,
+    "test.blood_glucose": 235,
+    "symptom.chest_pain": 56,
+    "symptom.cough": 53,
+    "symptom.headache": 148,
+    "disease.dengue": 56,
+    "disease.covid19": 276,
+    "anatomy.stomach": 410,
+    "disease.peptic_ulcer": 102,
+    "test.beta_hcg": 340,
+    "symptom.dizziness": 91,
+    "disease.anemia": 193,
+    "drug.aspirin": 42,
+    "condition.menstruation": 68,
+    "test.complete_blood_count": 27,
+    "disease.gastritis": 36,
+    "disease.gastroesophageal_reflux": 21,
+    "drug.paracetamol": 18
+  },
+  "intent_chunk_counts": {
+    "symptoms": 1740,
+    "causes": 1041,
+    "prevention": 637,
+    "prognosis": 790,
+    "definition": 272,
+    "treatment": 2266,
+    "diagnosis": 908,
+    "test_interpretation": 446
+  },
+  "language_chunk_counts": {
+    "vi": 5505,
+    "zh": 506,
+    "en": 3
+  },
+  "source_type_doc_counts": {
+    "other": 622,
+    "news": 297,
+    "hospital": 40,
+    "government": 38,
+    "qa": 3
+  }
+}

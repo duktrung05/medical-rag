@@ -1,0 +1,52 @@
+{
+  "peer": {
+    "shards": 1000,
+    "files": 3547124,
+    "unique_valid_doc_ids": 3547124,
+    "bad_names": 0,
+    "bad_shard_layout": 0,
+    "out_of_range": 0
+  },
+  "local": {
+    "shards": 385,
+    "files": 1364233,
+    "unique_valid_doc_ids": 1364233,
+    "bad_names": 0,
+    "bad_shard_layout": 0,
+    "out_of_range": 0
+  },
+  "overlap": 1364233,
+  "peer_only": 2182891,
+  "local_only": 0,
+  "union": 3547124,
+  "corpus_identity": {
+    "links_corpus_sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+    "query_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+    "peer_and_local_match": true
+  },
+  "manifests": {
+    "peer": 1099,
+    "local": 1098,
+    "same_name_size_mismatches": 0,
+    "peer_only": [
+      "manifest_1790927947_00504.parquet"
+    ]
+  },
+  "chunks": {
+    "peer_chunks_v5": {
+      "rows": 14689995,
+      "documents": 3053554
+    },
+    "local_chunks_v4": {
+      "rows": 17639623,
+      "documents": 3245947
+    },
+    "recommendation": "merge raw pages; do not replace local chunks_v4 with peer chunks_v5"
+  },
+  "copy_state": {
+    "peer_pack_active": true,
+    "completed_tars_observed": 504,
+    "expected_tars": 1000,
+    "temporary_tars_observed": 4
+  }
+}

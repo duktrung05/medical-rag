@@ -90,7 +90,6 @@ Phân biệt: Cây ngấy hương trong bài viết này khác với:
 
 - Cây ngấy ba hoa (hay còn gọi là đụm ba hoa, Rubus trianthus), cả cây được dùng làm thuốc điều trị đòn ngã tổn thương.
 
-- Cây ngấy hoa trắng (hay còn gọi là ngấy tr
 
 ## ID 565962 — suckhoeviet.org.vn
 

@@ -1,0 +1,345 @@
+{
+  "total_target": 4394718,
+  "success": 3546600,
+  "failed": 2461,
+  "skipped": 669581,
+  "dead": 176076,
+  "remaining_pending": 0,
+  "success_rate_percent": 80.7014,
+  "manifest_files": 1102,
+  "manifest_unique_docs": 4218642,
+  "page_without_manifest_added": 241,
+  "raw_manifest_status_counts": {
+    "ok": 3558152,
+    "http_error": 17157,
+    "circuit_open": 1838413,
+    "blocked": 78197,
+    "robots_denied": 530,
+    "network_error": 1021,
+    "timeout": 1238
+  },
+  "known_dead_hosts": [
+    "iiyi.com",
+    "pharmacity.io",
+    "qdnd.vn",
+    "zysjonline.com"
+  ],
+  "top_failed_domains": [
+    {
+      "domain": "www.qdnd.vn",
+      "total": 3700,
+      "success": 0,
+      "failed": 394,
+      "skipped": 3306,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "TooManyRedirects",
+          394
+        ]
+      ]
+    },
+    {
+      "domain": "cancer.39.net",
+      "total": 8415,
+      "success": 1671,
+      "failed": 313,
+      "skipped": 6431,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "verification page",
+          313
+        ]
+      ]
+    },
+    {
+      "domain": "pmc-ecm-healthblog.beta.pharmacity.io",
+      "total": 5333,
+      "success": 0,
+      "failed": 249,
+      "skipped": 5084,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          249
+        ]
+      ]
+    },
+    {
+      "domain": "zysjonline.com",
+      "total": 243347,
+      "success": 0,
+      "failed": 241,
+      "skipped": 67030,
+      "dead": 176076,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          241
+        ]
+      ]
+    },
+    {
+      "domain": "bingli.iiyi.com",
+      "total": 24990,
+      "success": 0,
+      "failed": 185,
+      "skipped": 24805,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          185
+        ]
+      ]
+    },
+    {
+      "domain": "www.familydoctor.com.cn",
+      "total": 447436,
+      "success": 447012,
+      "failed": 175,
+      "skipped": 249,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          151
+        ],
+        [
+          "SocketTimeoutError",
+          23
+        ],
+        [
+          "ConnectionTimeoutError",
+          1
+        ]
+      ]
+    },
+    {
+      "domain": "www.cnkang.com",
+      "total": 963415,
+      "success": 962256,
+      "failed": 130,
+      "skipped": 1029,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          129
+        ],
+        [
+          "SocketTimeoutError",
+          1
+        ]
+      ]
+    },
+    {
+      "domain": "dantri.com.vn",
+      "total": 2063,
+      "success": 695,
+      "failed": 96,
+      "skipped": 1272,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          96
+        ]
+      ]
+    },
+    {
+      "domain": "giadinhonline.vn",
+      "total": 16729,
+      "success": 13396,
+      "failed": 90,
+      "skipped": 3243,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          88
+        ],
+        [
+          "http_error",
+          2
+        ]
+      ]
+    },
+    {
+      "domain": "baolangson.vn",
+      "total": 1981,
+      "success": 0,
+      "failed": 84,
+      "skipped": 1897,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          84
+        ]
+      ]
+    },
+    {
+      "domain": "www.youlai.cn",
+      "total": 46119,
+      "success": 46021,
+      "failed": 82,
+      "skipped": 16,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          82
+        ]
+      ]
+    },
+    {
+      "domain": "www.baidu.com",
+      "total": 2631,
+      "success": 0,
+      "failed": 80,
+      "skipped": 2551,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "robots_denied",
+          80
+        ]
+      ]
+    },
+    {
+      "domain": "www.msdmanuals.cn",
+      "total": 6173,
+      "success": 4411,
+      "failed": 80,
+      "skipped": 1682,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          80
+        ]
+      ]
+    },
+    {
+      "domain": "www.120ask.com",
+      "total": 918451,
+      "success": 918384,
+      "failed": 67,
+      "skipped": 0,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          67
+        ]
+      ]
+    },
+    {
+      "domain": "nhathuoclongchau.com.vn",
+      "total": 79598,
+      "success": 1523,
+      "failed": 60,
+      "skipped": 78015,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          60
+        ]
+      ]
+    },
+    {
+      "domain": "medlatec.vn",
+      "total": 24762,
+      "success": 24715,
+      "failed": 47,
+      "skipped": 0,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          47
+        ]
+      ]
+    },
+    {
+      "domain": "suckhoecongdongonline.vn",
+      "total": 154503,
+      "success": 154468,
+      "failed": 35,
+      "skipped": 0,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          35
+        ]
+      ]
+    },
+    {
+      "domain": "article.iiyi.com",
+      "total": 5641,
+      "success": 0,
+      "failed": 30,
+      "skipped": 5611,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "http_error",
+          30
+        ]
+      ]
+    },
+    {
+      "domain": "tiemchunglongchau.com.vn",
+      "total": 13281,
+      "success": 13277,
+      "failed": 4,
+      "skipped": 0,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          4
+        ]
+      ]
+    },
+    {
+      "domain": "www.pharmacity.vn",
+      "total": 69,
+      "success": 65,
+      "failed": 4,
+      "skipped": 0,
+      "dead": 0,
+      "pending": 0,
+      "reasons": [
+        [
+          "ClientResponseError",
+          4
+        ]
+      ]
+    }
+  ]
+}

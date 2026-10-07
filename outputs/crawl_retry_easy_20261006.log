@@ -1,0 +1,23 @@
+nohup: ignoring input
+targets=4,394,718 done=3,544,629 todo=850,089
+excluded ['39.net', 'nhathuoclongchau.com.vn']: removed 552,217 urls
+skipping 283,011 urls on 4 known-dead hosts
+effective todo after domain filters: 14,861
+per-domain budgets (top): [('baochinhphu.vn', 4), ('baogialai.com.vn', 4), ('baolangson.vn', 4), ('dantri.com.vn', 4), ('giadinhonline.vn', 4)]
+  circuit open: skipping baidu.com after 80 consecutive failures
+  circuit open: skipping msdmanuals.cn after 80 consecutive failures
+  circuit open: skipping baolangson.vn after 80 consecutive failures
+  circuit open: skipping youlai.cn after 80 consecutive failures
+  circuit open: skipping giadinhonline.vn after 80 consecutive failures
+  circuit open: skipping cnkang.com after 80 consecutive failures
+  circuit open: skipping familydoctor.com.cn after 80 consecutive failures
+  2,000/14,861  3.4/s  {'ok': 742, 'http_error': 327, 'robots_denied': 80, 'network_error': 316, 'circuit_open': 522, 'timeout': 13}
+  4,000/14,861  6.2/s  {'ok': 1117, 'http_error': 446, 'robots_denied': 80, 'network_error': 325, 'circuit_open': 2018, 'timeout': 14}
+  circuit open: skipping dantri.com.vn after 80 consecutive failures
+  6,000/14,861  8.5/s  {'ok': 1401, 'http_error': 466, 'robots_denied': 80, 'network_error': 325, 'circuit_open': 3714, 'timeout': 14}
+  8,000/14,861  10.3/s  {'ok': 1680, 'http_error': 466, 'robots_denied': 80, 'network_error': 333, 'circuit_open': 5426, 'timeout': 15}
+  10,000/14,861  12.0/s  {'ok': 1888, 'http_error': 466, 'robots_denied': 80, 'network_error': 376, 'circuit_open': 7174, 'timeout': 16}
+  12,000/14,861  14.5/s  {'ok': 1888, 'http_error': 466, 'robots_denied': 80, 'network_error': 376, 'circuit_open': 9174, 'timeout': 16}
+  14,000/14,861  16.9/s  {'ok': 1888, 'http_error': 466, 'robots_denied': 80, 'network_error': 376, 'circuit_open': 11174, 'timeout': 16}
+DONE {'ok': 1935, 'http_error': 488, 'robots_denied': 80, 'network_error': 396, 'circuit_open': 11940, 'timeout': 22} in 879s
+hosts skipped by circuit breaker: ['baidu.com', 'baolangson.vn', 'cnkang.com', 'dantri.com.vn', 'familydoctor.com.cn', 'giadinhonline.vn', 'msdmanuals.cn', 'youlai.cn']

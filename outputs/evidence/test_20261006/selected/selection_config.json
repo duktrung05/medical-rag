@@ -1,0 +1,11 @@
+{
+  "mode": "threshold",
+  "max_docs": 200,
+  "max_chunks": 120,
+  "chunks_per_doc": 1,
+  "chunk_threshold": -6.0,
+  "chunk_delta": null,
+  "document_mode": "baseline",
+  "doc_threshold": null,
+  "doc_delta": null
+}

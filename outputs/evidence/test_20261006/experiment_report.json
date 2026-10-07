@@ -1,0 +1,61 @@
+{
+  "status": "validated",
+  "submission": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/evidence/test_20261006/selected/submission.zip",
+  "zip_bytes": 39312564,
+  "queries": 1200,
+  "documents_per_query": 200,
+  "document_predictions_unchanged": true,
+  "all_selected_texts_preserved_from_baseline": true,
+  "all_candidate_chunks_reranked": true,
+  "baseline_chunks": 144000,
+  "selected_chunks": 120262,
+  "removed_chunks": 23738,
+  "removed_fraction": 0.16484722222222226,
+  "average_chunks_per_query": 100.21833333333333,
+  "median_chunks_per_query": 104.0,
+  "min_chunks_per_query": 19,
+  "max_chunks_per_query": 120,
+  "empty_chunk_queries": 0,
+  "decisions": {
+    "selected": 120262,
+    "duplicate_text": 11335,
+    "below_chunk_threshold": 12403
+  },
+  "config": {
+    "mode": "threshold",
+    "max_docs": 200,
+    "max_chunks": 120,
+    "chunks_per_doc": 1,
+    "chunk_threshold": -6.0,
+    "chunk_delta": null,
+    "document_mode": "baseline",
+    "doc_threshold": null,
+    "doc_delta": null
+  },
+  "inference_batch_query_counts": {
+    "16": 1100,
+    "8": 100
+  },
+  "model": {
+    "enabled": true,
+    "model": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "activation": "identity",
+    "precision": "float16",
+    "max_length": 512,
+    "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+  },
+  "validator": {
+    "valid": true,
+    "errors": [],
+    "zip": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/evidence/test_20261006/selected/submission.zip",
+      "bytes": 39312564,
+      "sha256": "ccf612d647bfd466b871e2c7d9a575c5c429888f2a5ad7143186699c4a89c083"
+    }
+  },
+  "leaderboard_score": null,
+  "threshold_calibrated": false,
+  "pool_source": "existing baseline ZIP evidence; checked against original corpus",
+  "tests_passed": 43
+}

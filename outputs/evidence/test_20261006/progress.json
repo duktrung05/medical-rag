@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "queries_scored": 1200,
+  "chunks_before": 144000,
+  "chunks_after": 120262,
+  "reasons": {
+    "selected": 120262,
+    "duplicate_text": 11335,
+    "below_chunk_threshold": 12403
+  }
+}

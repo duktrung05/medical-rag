@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "errors": [],
+  "zip": {
+    "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/evidence/test_20261006/selected/submission.zip",
+    "bytes": 39312564,
+    "sha256": "ccf612d647bfd466b871e2c7d9a575c5c429888f2a5ad7143186699c4a89c083"
+  }
+}
