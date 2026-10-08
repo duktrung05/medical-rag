@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "complete": true,
+  "repo_id": "duktrung/med-rag",
+  "scope": [
+    "data/vibiomir",
+    "data/raw/vibiomir"
+  ],
+  "temporary_files_excluded": true,
+  "archives": [],
+  "files": [
+    {
+      "path": "data/raw/vibiomir/links_corpus.parquet",
+      "size": 35111121,
+      "sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+      "source_signature": [
+        35111121,
+        1791270198561315179
+      ]
+    },
+    {
+      "path": "data/raw/vibiomir/query.parquet",
+      "size": 81826,
+      "sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+      "source_signature": [
+        81826,
+        1791270194493224725
+      ]
+    },
+    {
+      "path": "data/vibiomir/chunks_crawl_20261007.parquet",
+      "size": 4434396743,
+      "sha256": "7580d46bb839ac694312a7a4e24b7afc00a052cdf64da254a4f11edd4ee98be8",
+      "source_signature": [
+        4434396743,
+        1791373750579647268
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25_crawl_20261007_candidates.parquet",
+      "size": 4773863,
+      "sha256": "b2c74ed9cc98f86dc86e81580a470ff09c2b16a0f6b3030f7fb7bbf52b1dba03",
+      "source_signature": [
+        4773863,
+        1791375809202495104
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007_ids.npy",
+      "size": 28367632,
+      "sha256": "c2a57db461a0e87a53644ec8df37ad99c2502a6910e6b37fcc1de1d6a641cf26",
+      "source_signature": [
+        28367632,
+        1791375746049063660
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007_vocab.json",
+      "size": 103762229,
+      "sha256": "957475f9aa2346e08d856f15886d0164eb5e89709aa6b35384c95de5d9916ad2",
+      "source_signature": [
+        103762229,
+        1791375747749102194
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007/data.csc.index.npy",
+      "size": 5224927896,
+      "sha256": "eaff075ce2bc0c3b2226e3867cbfff729456accb0e7a3a8e96c07d4c6187b5f7",
+      "source_signature": [
+        5224927896,
+        1791375737284865002
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007/indices.csc.index.npy",
+      "size": 5224927896,
+      "sha256": "50bda35ce9731e61f02ad299911bdccac33f7969343e02635430322474a90945",
+      "source_signature": [
+        5224927896,
+        1791375743377003091
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007/indptr.csc.index.npy",
+      "size": 30535208,
+      "sha256": "cea34a04e42a86b01e409ce9061c757f373d709e46115907246dc326911ba7d4",
+      "source_signature": [
+        30535208,
+        1791375743453004815
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007/params.index.json",
+      "size": 226,
+      "sha256": "4ac1b194165c360319fab7a43b821688135da4e163c91f9c8f6d9504cd9a1fe6",
+      "source_signature": [
+        226,
+        1791375746001062571
+      ]
+    },
+    {
+      "path": "data/vibiomir/bm25idx_crawl_20261007/vocab.index.json",
+      "size": 84666471,
+      "sha256": "309f380875b296fba7bbacab0e8434d29d2fb0b2460bf98e5bd346f9e9fc4767",
+      "source_signature": [
+        84666471,
+        1791375745925060848
+      ]
+    }
+  ]
+}

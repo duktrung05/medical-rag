@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "source": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data",
+  "regular_files": [
+    {
+      "path": "raw/vibiomir/links_corpus.parquet",
+      "size": 35111121
+    },
+    {
+      "path": "raw/vibiomir/query.parquet",
+      "size": 81826
+    },
+    {
+      "path": "vibiomir/chunks_crawl_20261007.parquet",
+      "size": 4434396743
+    },
+    {
+      "path": "vibiomir/bm25_crawl_20261007_candidates.parquet",
+      "size": 4773863
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007_ids.npy",
+      "size": 28367632
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007_vocab.json",
+      "size": 103762229
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007/data.csc.index.npy",
+      "size": 5224927896
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007/indices.csc.index.npy",
+      "size": 5224927896
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007/indptr.csc.index.npy",
+      "size": 30535208
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007/params.index.json",
+      "size": 226
+    },
+    {
+      "path": "vibiomir/bm25idx_crawl_20261007/vocab.index.json",
+      "size": 84666471
+    }
+  ],
+  "page_groups": [],
+  "created_at": 1791370000,
+  "estimated_bytes": 15171551111
+}

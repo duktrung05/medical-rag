@@ -63,3 +63,10 @@ docs to extract: 3,547,374
   3,100,000/3,547,374 docs -> 17,770,899 chunks
   3,150,000/3,547,374 docs -> 18,064,408 chunks
   3,200,000/3,547,374 docs -> 18,297,539 chunks
+  3,250,000/3,547,374 docs -> 18,533,741 chunks
+  3,300,000/3,547,374 docs -> 18,735,189 chunks
+  3,350,000/3,547,374 docs -> 19,001,456 chunks
+  3,400,000/3,547,374 docs -> 19,372,800 chunks
+  3,450,000/3,547,374 docs -> 19,715,443 chunks
+  3,500,000/3,547,374 docs -> 20,149,068 chunks
+wrote /data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/vibiomir/chunks_crawl_20261007.parquet: 20,523,261 chunks over 3,545,938 docs
