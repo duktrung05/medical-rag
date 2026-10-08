@@ -64,12 +64,15 @@ class SelectionConfig:
     document_mode: str = "parents"
     doc_threshold: float | None = None
     doc_delta: float | None = None
+    chunk_order: str = "document"
 
     def __post_init__(self):
         if self.mode not in {"topk", "threshold"}:
             raise ValueError("mode must be topk or threshold")
         if self.document_mode not in {"parents", "baseline", "threshold"}:
             raise ValueError("document_mode must be parents, baseline or threshold")
+        if self.chunk_order not in {"document", "rerank_score"}:
+            raise ValueError("chunk_order must be document or rerank_score")
         for name in ("max_docs", "max_chunks", "chunks_per_doc"):
             value = getattr(self, name)
             if type(value) is not int or value < 0:
@@ -101,7 +104,17 @@ def select_evidence(ranking: QueryRanking, config: SelectionConfig) -> tuple[dic
     relative_cutoff = (top_score - config.chunk_delta
                        if top_score is not None and config.chunk_delta is not None else None)
     doc_scores: dict[int, float] = {}
-    for candidate in ranking.candidates:
+    candidates = ranking.candidates
+    if config.chunk_order == "rerank_score":
+        # Python's sort is stable, so equal scores retain the cache priority.
+        # Unreranked candidates remain last and cannot pass threshold mode.
+        candidates = sorted(
+            candidates,
+            key=lambda candidate: (
+                -candidate.rerank_score if candidate.rerank_score is not None else math.inf
+            ),
+        )
+    for candidate in candidates:
         if candidate.rerank_score is not None:
             doc_scores[candidate.doc_id] = max(doc_scores.get(candidate.doc_id, -math.inf),
                                                candidate.rerank_score)
@@ -125,7 +138,7 @@ def select_evidence(ranking: QueryRanking, config: SelectionConfig) -> tuple[dic
     selected: list[EvidenceCandidate] = []
     decisions = []
     reasons: Counter = Counter()
-    for candidate in ranking.candidates:
+    for candidate in candidates:
         reason = None
         if config.mode == "threshold":
             if candidate.rerank_score is None:

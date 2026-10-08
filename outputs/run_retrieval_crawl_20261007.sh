@@ -4,6 +4,7 @@ set -euo pipefail
 PROJECT=/data_hdd_16t/trungnguyen12/medical-rag/medical-rag
 PY=/data_hdd_16t/trungnguyen12/.venv-evidence-20261006/bin/python
 CHUNKS=chunks_crawl_20261007.parquet
+SELECTION_CONFIG=configs/vibiomir/evidence_selector_best_20261008.json
 EXTRACT_PID_FILE="$PROJECT/outputs/retrieval_extract_20261007.pid"
 LOG="$PROJECT/outputs/retrieval_pipeline_crawl_20261007.log"
 GPU=${RETRIEVAL_GPU:-cuda:0}
@@ -69,8 +70,7 @@ $PY -u r2ai/rank.py \
   --chunks-file "$CHUNKS" \
   --candidates fused_crawl_20261007.parquet \
   --pool 200 --rerank-top 200 --device "$GPU" --batch 32 \
-  --k-docs 80 --k-chunks 60 --chunks-per-doc 1 \
-  --selector threshold --chunk-threshold 0 --document-mode threshold \
+  --selection-config "$SELECTION_CONFIG" \
   --out vibiomir_crawl_20261007 \
   --ranking-cache outputs/evidence/retrieval_crawl_20261007/rankings.jsonl.gz
 

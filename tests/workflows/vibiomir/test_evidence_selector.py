@@ -70,6 +70,22 @@ def test_caps_deduplication_and_original_unicode_text():
     assert diag["reasons"]["document_cap"] == 1
 
 
+def test_global_rerank_order_prevents_a_weaker_second_chunk_taking_the_last_slot():
+    row = QueryRanking(1, [1, 2], [candidate(1, 0, 10), candidate(1, 1, 1),
+                                  candidate(2, 0, 9)])
+    document_order, _ = select_evidence(
+        row, threshold(document_mode="threshold", max_docs=2, max_chunks=2,
+                       chunks_per_doc=2)
+    )
+    score_order, diagnostics = select_evidence(
+        row, threshold(document_mode="threshold", max_docs=2, max_chunks=2,
+                       chunks_per_doc=2, chunk_order="rerank_score")
+    )
+    assert [chunk["doc_id"] for chunk in document_order["relevant_chunks"]] == [1, 1]
+    assert [chunk["doc_id"] for chunk in score_order["relevant_chunks"]] == [1, 2]
+    assert diagnostics["config"]["chunk_order"] == "rerank_score"
+
+
 def test_chunk_only_ablation_preserves_baseline_documents():
     row = QueryRanking(1, [1, 2], [candidate(1, 0, -5), candidate(2, 0, 3)])
     prediction, _ = select_evidence(row, threshold(document_mode="baseline", max_docs=2))
@@ -131,7 +147,8 @@ def test_topk_matches_existing_submission_emitter(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize("kwargs", [{"chunk_threshold": float("nan")}, {"chunk_delta": -1},
-                                    {"max_docs": -1}, {"max_chunks": True}, {"doc_threshold": 1}])
+                                    {"max_docs": -1}, {"max_chunks": True}, {"doc_threshold": 1},
+                                    {"chunk_order": "unknown"}])
 def test_invalid_configuration_is_rejected(kwargs):
     with pytest.raises(ValueError):
         replace(threshold(), **kwargs)

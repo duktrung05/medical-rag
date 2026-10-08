@@ -1,0 +1,14 @@
+{
+  "source": "User-provided leaderboard result recorded in docs/vibiomir_chunk_precision_recall_plan_20261008_vi.md; official scorer unavailable locally",
+  "upload_name": "vibiomir_threshold_neg2_20261008/submission.zip",
+  "date_recorded": "2026-10-08",
+  "metrics": {
+    "FINAL_SCORE": 0.1681,
+    "DOCS_F2MACRO": 0.2802,
+    "CHUNKS_F2MACRO": 0.0560,
+    "DOCS_PRECISION": 0.2665,
+    "DOCS_RECALL": 0.3190,
+    "CHUNKS_PRECISION": 0.0675,
+    "CHUNKS_RECALL": 0.0618
+  }
+}

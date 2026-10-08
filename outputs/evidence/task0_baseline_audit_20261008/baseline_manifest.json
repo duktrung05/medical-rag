@@ -1,0 +1,112 @@
+{
+  "task": "ViBioMIR score improvement P0 baseline freeze and error audit",
+  "score_provenance": "User-provided leaderboard result recorded in docs/vibiomir_chunk_precision_recall_plan_20261008_vi.md; official scorer unavailable locally",
+  "scorer_status": "official aggregate metric names verified from public competition page; exact chunk matching implementation unavailable",
+  "artifacts": {
+    "ranking_cache": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/evidence/retrieval_crawl_rerank80_20261008/rankings.jsonl.gz",
+      "bytes": 67274436,
+      "sha256": "04a9f7bf64fc4bfc702bab756180a5f744bc3cf3fbd08b3d2620e058e31bb84c"
+    },
+    "baseline_submission": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2_20261008/submission.zip",
+      "bytes": 20025258,
+      "sha256": "7eeacdd8273502fe5d9ba1dcb76d0689d9c3ba9c737749c4b39bc3c0e89a6e20"
+    },
+    "baseline_selection_config": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2_20261008/selection_config.json",
+      "bytes": 216,
+      "sha256": "0198ea25da0550b95ffda41ddaa20035c3534dfbd056369c1bc26a3867129499"
+    },
+    "candidate_submission": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_20261008/submission.zip",
+      "bytes": 20821505,
+      "sha256": "886494b95fa8339b3afe26e56c432027dd3d7ddb89492e47deb51ee80929d7ed"
+    },
+    "candidate_selection_config": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_20261008/selection_config.json",
+      "bytes": 216,
+      "sha256": "a59682ba6b584593e924b038c85f476ae3c35b96d3775217da03067767d1c1dd"
+    },
+    "candidate_diagnostics": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_20261008/diagnostics.jsonl",
+      "bytes": 23690829,
+      "sha256": "e1ae098bd7e7bea89d86ded643f515a981ab653f1f046ad6ac1dcd4f6468d4a0"
+    },
+    "leaderboard_feedback": {
+      "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/evidence/task0_feedback_threshold_neg2_20261008.json",
+      "bytes": 480,
+      "sha256": "cb20ed9e4b9829c49fdefbeb6c399ae30a55c14623655fab77ab93f9df7afa5a"
+    }
+  },
+  "ranking_metadata": {
+    "inputs": {
+      "chunks": {
+        "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/vibiomir/chunks_crawl_20261007.parquet",
+        "bytes": 4434396743,
+        "sha256": "7580d46bb839ac694312a7a4e24b7afc00a052cdf64da254a4f11edd4ee98be8"
+      },
+      "queries": {
+        "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/raw/vibiomir/query.parquet",
+        "bytes": 81826,
+        "sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08"
+      },
+      "candidates": {
+        "path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/data/vibiomir/fused_crawl_20261007.parquet",
+        "bytes": 3049262,
+        "sha256": "a2d186e797a42da960bceebb1478ae33415c23be93ae722a2f3c069be921b83b"
+      }
+    },
+    "encoder": {
+      "model": "BAAI/bge-m3",
+      "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+      "max_length": 512,
+      "normalize": true,
+      "title_prefix": true,
+      "precision": "float16"
+    },
+    "reranker": {
+      "model": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "activation": "identity",
+      "precision": "float16",
+      "max_length": 512,
+      "enabled": true,
+      "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+    },
+    "pool": 200,
+    "rerank_top": 200,
+    "taxonomy_weight": 0.0,
+    "priority": "document rank, then within-document chunk rank",
+    "score_semantics": "raw cross-encoder logits; null means not reranked"
+  },
+  "effective_configs": {
+    "baseline_threshold_neg2": {
+      "mode": "threshold",
+      "max_docs": 200,
+      "max_chunks": 60,
+      "chunks_per_doc": 1,
+      "chunk_threshold": -2.0,
+      "chunk_delta": null,
+      "document_mode": "threshold",
+      "doc_threshold": null,
+      "doc_delta": null
+    },
+    "candidate_threshold_neg2p5": {
+      "mode": "threshold",
+      "max_docs": 200,
+      "max_chunks": 60,
+      "chunks_per_doc": 1,
+      "chunk_threshold": -2.5,
+      "chunk_delta": null,
+      "document_mode": "threshold",
+      "doc_threshold": null,
+      "doc_delta": null
+    }
+  },
+  "notes": [
+    "A null doc_threshold means the selector uses chunk_threshold as the effective document threshold.",
+    "The -2.5 candidate has no linked leaderboard feedback in the workspace.",
+    "Unjudged templates measure candidate-pool recall only after every relevant field is filled."
+  ]
+}
