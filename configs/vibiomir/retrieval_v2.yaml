@@ -1,0 +1,36 @@
+corpus:
+  repository: duktrung/med-rag
+  revision: bcb5a08fcff00385d7dabd0ac1807441630890c1
+  extracted_path: data/vibiomir/chunks_crawl_20261007.parquet
+  expected_sha256: 7580d46bb839ac694312a7a4e24b7afc00a052cdf64da254a4f11edd4ee98be8
+  pilot_row_groups: [0, 51, 102]
+  pilot_rows_per_group: 64
+  pilot_query_count: 50
+chunking:
+  target_words: 192
+  overlap_ratio: 0.15
+  experiment_sizes: [192, 256, 384]
+retrieval:
+  document_bm25_top_k: 200
+  passage_bm25_top_k: 500
+  passage_dense_top_k: 500
+  fusion_method: weighted_rrf
+  rrf_k: 60
+  candidate_budget: 200
+  candidate_allocation: document_diverse_first_then_global
+dense:
+  model: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  normalized: true
+  metric: inner_product
+  pilot_index: IndexFlatIP
+reranker:
+  model: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  activation: identity
+  max_length: 384
+  pilot_cpu_budget_per_query: 4
+output:
+  max_documents: 10
+  max_evidence: 10
+  official_format: json_array_with_doc_id_and_verbatim_chunk_text

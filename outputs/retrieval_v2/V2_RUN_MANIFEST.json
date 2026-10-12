@@ -1,0 +1,11 @@
+{
+  "status": "V2_PILOT_RUNNING",
+  "pilot_source_sha256": "567a061e2f2d800801812890eff9f5ebead7709d3621252d8477eefafa82ac68",
+  "sparse_index_sha256": "0f68b4d5486f3b75fe18d6ca7cd36ac0fcd2949649137cc392f88395c44380b6",
+  "dense_index_sha256": "3f639fc7cc757600972ef2b502f7cd23d5d280565db9ca1534f08369f3fa275f",
+  "predictions_sha256": "a0afa828d920677f8701865f46a423c6740b88b92a7b016476dca70a95bd6de5",
+  "config_sha256": "c0aa70130fd325bcb11ecacd38b3168fa6d03ed5dd56f13efbe38c4f8e17ad1c",
+  "query_count": 50,
+  "schema_validation_errors": 0,
+  "official_scoring": "PENDING_OFFICIAL_SCORING"
+}

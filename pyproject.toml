@@ -21,6 +21,12 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+vibiomir = [
+    "bm25s==0.2.14",
+    "huggingface_hub>=0.30.0",
+    "ijson>=3.3.0",
+]
+
 api = [
     "fastapi>=0.115.0",
     "uvicorn>=0.30.0",

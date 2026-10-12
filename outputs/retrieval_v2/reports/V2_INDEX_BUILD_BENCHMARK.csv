@@ -1,0 +1,4 @@
+pilot,index,rows,bytes,build_seconds
+smoke,sqlite_fts5,229,1564672,not_instrumented
+smoke,faiss_flat_ip,229,938029,not_instrumented
+full_docs_sample,sqlite_fts5,1080,7573504,not_instrumented
