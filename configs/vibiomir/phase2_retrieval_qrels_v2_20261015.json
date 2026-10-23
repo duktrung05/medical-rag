@@ -1,0 +1,1073 @@
+{
+  "format": "vibiomir-phase2-retrieval-qrels-v2",
+  "label_policy": "manual_query_relevance_with_unique_exact_phase1_evidence",
+  "language_counts": {
+    "en": 10,
+    "vi": 87,
+    "zh": 10
+  },
+  "queries": [
+    {
+      "doc_id": 559612,
+      "evidence_text": "Nếu dạ dày tăng toan nhiều (bệnh nhân bị ợ chua, nôn nao, cảm thấy nóng ruột, ăn nhiều nhưng dễ đói) có thể ăn thêm rau xanh nhiều xơ, bánh bích quy...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em bị viêm xung huyết 1/3 dưới thực quản, viêm dạ dày trợt xung huyết mạn tính, sẹo loét hành tá tràng. Cho em hỏi các bệnh này của em có nặng và có thể khỏi được không. Em vừa uống xong đợt thuốc được 1 2 ngày thì giờ em lại thấy triệu chứng bị nghẹn ở cổ và hơi buồn nôn. không biết có phải bệnh nặng lên hay do sao.",
+      "query_id": 1,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 313055,
+      "evidence_text": "Để phòng lây lan bệnh lao phụ thuộc rất nhiều vào ý thức của người bệnh, ví dụ như mang khẩu trang khi đến những nơi đông người. Người mắc lao sau một tháng điều trị đúng cách thì không còn là nguồn lây nhiễm.",
+      "notes": "Directly supports prevention of tuberculosis transmission; not specific to every multidrug-resistant regimen.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 5,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 534483,
+      "evidence_text": "Uống nhiều rượu có thể làm giảm số lượng tinh trùng, nhưng tác hại chính của rượu là làm tổn thương tới sự chế tiết testosterol, do rượu làm tăng quá trình phân hủy hormone này và biến đổi ngược lại thành estrogen và làm giảm ham muốn tình dục.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Sử dụng rượu bia có phải là nguyên nhân chính khiến tinh trùng không di động và tiến tới?",
+      "query_id": 18,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 15293,
+      "evidence_text": "* Trả lời: - Phụ nữ sau sanh thường có một số thay đổi, trong đó có rụng tóc, nguyên nhân là do mất máu khá nhiều khi sanh.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Thưa bác sĩ, em sinh em bé được 22 tháng, em vẫn đang cho bé bú. Nhưng gần đây tóc em rụng rất nhiều, càng ngày càng nhiều, thêm vào đó thỉnh thoảng em có cảm giác ớn lạnh, bốc hỏa, người rất dễ mệt mỏi, xương khớp rất dễ nhức mỏi. Có phải em bị mất cân bằng nội tiết sau sinh không ạ? Nếu phải thì em nên làm thế nào để cải thiện sức khỏe ạ?",
+      "query_id": 23,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 559493,
+      "evidence_text": "Theo thời gian, những tác động kể trên khiến đĩa đệm - có chức năng như một chiếc giảm xóc cho cột sống sẽ dần bị mất nước, co lại, rạn nứt hoặc thoát vị, chèn ép vào các dây thần kinh và gây ra các cơn đau.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi bị đau lưng khi cúi xuống và bị tức thăn hai bên thận mà tiền sử tôi bị thoát vị đĩa đệm, tôi tập thể dục thường xuyên như thế tôi có vấn đề gì về thận không bác sĩ nay tôi 48 tuổi.",
+      "query_id": 43,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 626607,
+      "evidence_text": "Theo Chương trình Tiêm chủng mở rộng quốc gia, sau tiêm chủng, nếu người được tiêm có các dấu hiệu như sốt từ 38,5 độ C hoặc đau mỏi người, đau tại chỗ tiêm thì có thể sử dụng thuốc hạ sốt, giảm đau thông thường như Paracetamol theo đúng chỉ định về liều lượng, khoảng cách giữa các liều của cán bộ y tế.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi có huyết áp trung bình khoảng 140/90 mmHg, trước tiêm có ngậm viên thuốc hạ huyết áp, sau đó đo lại thì huyết áp trong mức cho phép và được tiêm vaccine. Sau tiêm 12 giờ, tôi có phản ứng ớn lạnh, sốt 37,4 độ C, khó ngủ đêm đầu tiên, chỗ tiêm hơi đau, sáng hôm sau thì hết hẳn. Huyết áp theo dõi các ngày sau đó vẫn ở mức trung bình 140/90 mmHg. Xin hỏi tôi có cần phải uống thuốc huyết áp không? Ngoài ra, tôi có thể sử dụng thực phẩm chức năng để ổn định huyết áp, ngừa cục máu đông không?",
+      "query_id": 49,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 487926,
+      "evidence_text": "Không hiểu bác có bệnh gì trước đó hay đang bị bệnh về hô hấp hoặc tim mạch, hiện tượng khó thở, đau ngực của bác đã lâu chưa, ngoài khó thở có ho (có đờm hay ho khan), hoặc sốt...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Khó thở, đau tức ngực là biểu hiện của bệnh gì?",
+      "query_id": 53,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 26727,
+      "evidence_text": "Đại diện Cục Y tế dự phòng, Bộ Y tế khẳng định, tiêm vaccine AstraZeneca là an toàn và hiệu quả. Đến thời điểm hiện tại, người dân đã tiêm vaccine này, không cần thực hiện xét nghiệm D-dimer hay bất kỳ xét nghiệm đông máu nào.",
+      "notes": "Direct answer to whether coagulation testing is needed after AstraZeneca vaccination.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 62,
+      "query_language": "vi",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 298699,
+      "evidence_text": "Nhiệt độ bình thường của cơ thể con người là 37 độ C.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Thân nhiệt 37.4 độ C trong chu kỳ kinh có phải là sốt không?",
+      "query_id": 65,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 311495,
+      "evidence_text": "Táo bón rất dễ gây nên bệnh trĩ, nứt kẽ hậu môn cho nên mỗi lần đi ngoài NCT rất sợ vì phải rặn mạnh sẽ gây đau và chảy máu. Chính vì các lý do đó mà táo bón càng ngày càng nặng thêm gây đau quặn bụng, nhất là vùng bụng dưới và 2 hố chậu dễ nhầm lẫn với bệnh tiết niệu (viêm hoặc sỏi) hoặc viêm ruột thừa (hố chậu phải).",
+      "notes": "Explains the query's constipation, fissure, hemorrhoid, pain, and bleeding relationship.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 71,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 546076,
+      "evidence_text": "Ngoài ra, tắc ống lệ ở trẻ sơ sinh còn do tuyến lệ ở trẻ bị viêm nhiễm, làm cho nước mắt không lưu thông từ mắt xuống mũi của trẻ.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Con tôi được 1 tháng rồi. Từ lúc mới sinh cháu bị ra ghèn vàng ở mắt. Các bác sĩ ở khoa sản có hướng dẫn tôi về rửa nước muối sinh lý cho cháu nhưng vẫn không khỏi. Tôi cho cháu đi khám thì bác sĩ bảo bị viêm kết mạc và cho nước muối sinh lý, thuốc Bralcib về trả mắt cho cháu. Tôi về trả thuốc như hướng dẫn của bác sĩ được 1 ngày thì thấy mắt cháu hơi đỏ khi trả thuốc, mắt lúc nào cũng ướt như vừa khóc xong, và vẫn bị ra ghèn vàng. Bác sĩ cho tôi hỏi có phải con tôi bị tắc tuyến lệ không ạ. Nếu đúng thì cháu chữa trị như thế nào và bệnh này có ảnh hưởng đến khả năng nhìn của mắt cháu sau này không",
+      "query_id": 130,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 313301,
+      "evidence_text": "* Tiến sĩ có khuyến cáo gì đối với những bệnh nhân đã được tái tưới máu mạch vành bằng kỹ thuật can thiệp đặt stent?\n- Bệnh nhân phải tuân thủ chế độ điều trị sau khi đặt stent, đó là kiểm soát chặt chẽ các yếu tố nguy cơ và uống thuốc đầy đủ theo y lệnh, đặc biệt là phải uống thuốc kháng kết tập tiểu cầu kép sau khi đặt stent thuốc, thời gian trung bình là 12 tháng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi bị mạch vành đã đặt stent, sau đó bác sĩ khám cho biết thêm bị tăng hồng cầu vô căn đã điều trị 12 tháng, nay thấy khỏe có cần tái khám và uống thuốc tiếp không ạ, uống thuốc nhiều có ảnh hưởng gì không ạ?",
+      "query_id": 135,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 73263,
+      "evidence_text": "Sự kết hợp đúng đắn giữa chế độ ăn uống, tập thể dục và thuốc có thể giúp hạ nồng độ axit uric cao và ngăn ngừa các triệu chứng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Nay sáng em có xét nghiệm máu về nồng độ axit uric và của em lên 510 thì giờ em phải làm sao, uống loại thuốc gì ạ?",
+      "query_id": 141,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 535722,
+      "evidence_text": "Hiện nay, khoa học chưa tìm ra nguyên nhân cụ thể gây ra chứng nhiệt miệng, chỉ có thể xác định đây là một trong những bệnh có liên quan đến môi trường, chế độ dinh dưỡng, nhiễm trùng hoặc do thiếu hụt vi chất.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Hiện tại, hàng tháng tôi bị nhiệt miệng từ 1–2 lần. Mỗi lần bị thì sau khi uống thuốc từ 5–7 ngày khỏi. Lúc bị nhiệt trên lưỡi, lúc bị ở vùng quanh miệng, 1 hoặc 2 nốt. Xin hỏi cái này có sao không ạ?",
+      "query_id": 171,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 161261,
+      "evidence_text": "Để phát hiện sớm biến chứng, cần theo dõi sát sao các triệu chứng của tình trạng nặng như: sốt cao liên tục, quấy khóc dai dẳng, giật mình, ngủ nhiều, nôn khan… Tốt nhất khi trẻ có dấu hiệu mắc bệnh cần đưa đến cơ sở y tế để được khám, tư vấn, điều trị kịp thời.",
+      "notes": "Direct warning-sign and escalation guidance for a child with hand-foot-mouth disease.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 245,
+      "query_language": "vi",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 606025,
+      "evidence_text": "- Cho đến nay chưa có bằng chứng khoa học nào xác minh rằng người bệnh ung thư đang điều trị nếu ăn uống đầy đủ thì khối u sẽ phát triển nhanh hơn.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "An uống đầy đủ có làm khối u ung thư phát triển nhanh hơn và thực phẩm an toàn cho bệnh nhân ung thư",
+      "query_id": 246,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 507467,
+      "evidence_text": "Ngược lại, kết quả sẽ rất tốt nếu bệnh được điều trị sớm, tích cực, lâu dài, đúng hướng, dù bệnh không thể chữa khỏi hoàn toàn.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Bệnh lupus ban đỏ hệ thống kèm hội chứng thận hư có thể chữa khỏi hoàn toàn không?",
+      "query_id": 248,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 541272,
+      "evidence_text": "Các triệu chứng điển hình ban đầu của cảm lạnh thông thường là ho, chảy nước mũi, nghẹt mũi và đau họng, đôi khi kèm theo đau cơ, mệt mỏi, đau đầu và mất cảm giác ngon miệng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Cho em hỏi em mới sinh được 3 tháng mà bị cảm lạnh, biểu hiện là nước mắt nước mũi chảy nhiều, ngơ ngác, ngạt mũi thì làm cách nào để khỏi ạ?",
+      "query_id": 263,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 620787,
+      "evidence_text": "Lưu ý thứ ba là bệnh nhân đã lớn tuổi có bệnh nền nên việc tiêm ngừa vắc xin Covid-19 nên được thực hiện tại bệnh viện.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi 44 tuổi, có tiền sử hen suyễn, hở van tim đã được chữa khỏi, tôi có nên tiêm vắc xin Covid-19 không?",
+      "query_id": 277,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 502376,
+      "evidence_text": "Chẳng hạn các trường hợp viêm họng mà không có sưng amidan như: viêm họng do cảm lạnh, do dị ứng với thời tiết, viêm họng trong bệnh cúm.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "A-mi-đan sưng là tình trạng của viêm a-mi-đan hay bệnh da liễu?",
+      "query_id": 327,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 300162,
+      "evidence_text": "Co giật mí mắt đột ngột là vô hại, có thể do chế độ ăn uống và lối sống.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Khi nhai thức ăn hoặc há miệng to, mắt bị co giật là do đâu?",
+      "query_id": 328,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 559175,
+      "evidence_text": "Nếu vàng da mà nước tiểu trong thì thường là do huyết tán (bệnh tan huyết bẩm sinh), vàng da kèm nước tiểu vàng đậm là dấu hiệu các bệnh gan mật.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi bị vàng da tôi đã đi khám xét nghiệm máu và chụp x-quang gan tất cả đều bình thường mà da tôi vàng.",
+      "query_id": 329,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 492230,
+      "evidence_text": "Trường hợp của bố bạn nếu đã chẩn đoán chắc chắn bệnh phổi tắc nghẽn cần tuân thủ phác đồ điều trị.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Sử dụng thuốc nào để điều trị bệnh phổi tắc nghẽn?",
+      "query_id": 334,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 521244,
+      "evidence_text": "Có thể gây ra hội chứng quá kích buồng trứng, hội chứng buồng trứng đa nang, hoặc làm teo buồng trứng, suy buồng trứng, thậm chí có thể gây nguy cơ ung thư buồng trứng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Cho tôi hỏi chích thuốc kích trứng mà trứng không lớn hoặc lớn chậm thì có nên chích tiếp không, và chích nhiều có ảnh hưởng đến buồng trứng không.",
+      "query_id": 344,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 766288,
+      "evidence_text": "Không chỉ định xét nghiệm máu để chẩn đoán ung thư tuyến giáp. Xét nghiệm máu chỉ có thể cho biết chức năng hoạt động của tuyến giáp có bình thường không. Dựa vào kết quả này bác sĩ có thể quyết định các xét nghiệm khác để theo dõi một số bệnh ung thư. Trong đó có ung thư tuyến giáp.",
+      "notes": "Explains why normal T3/T4/TSH does not by itself resolve structural thyroid-nodule follow-up.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 349,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 536580,
+      "evidence_text": "Những người bị bệnh gan nhiễm mỡ nên giảm cân, ăn uống lành mạnh, tăng cường hoạt động thể chất và tránh uống rượu.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Người cao tuổi bị béo phì, cao huyết áp, gan nhiễm mỡ có nên uống thực phẩm chức năng hỗ trợ giảm cân không?",
+      "query_id": 353,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 612615,
+      "evidence_text": "Đã 3 tuổi nhưng bé chưa nói rõ, từ ngữ nghèo nàn, phát âm khó khăn, thờ ơ và có những hành vi lạ lùng như chỉ chơi một mình, tự hủy hoại bản thân...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Trẻ 10 tuổi hay làm tổn thương bản thân, nói chuyện 1 mình, la hét, ghét trêu đùa và cầm dao kéo có dấu hiệu của bệnh tự kỷ không?",
+      "query_id": 366,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 492475,
+      "evidence_text": "Hạch do các nguyên nhân khác như ung thư, hạch thường to, đơn độc, sờ thấy rắn chắc, ban đầu hạch còn di động, về sau hạch phát triển to nhanh, thường xâm lấn sang các tổ chức xung quanh nên hạch sẽ không di động.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Các hạch di động ở gáy, sau tai, cổ có kích thước to dần liệu bình thường không?",
+      "query_id": 367,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 123570,
+      "evidence_text": "Khi nào mẹ bầu nên đi khám bác sĩ?\nNếu có thai ra máu màu hơi nâu và chỉ là một đốm đỏ, bạn không cần quá lo lắng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em đang có bầu 6 tuần. Hôm qua em đi khám thì có kết luận là tụ dịch màng nuôi. Hôm nay em bị ra một ít máu nâu. Cho em hỏi là có ảnh hưởng gì đến thai không ạ?",
+      "query_id": 385,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 641295,
+      "evidence_text": "Đối với ung thư gan di căn, mặc dù được xem là giai đoạn trễ, tuy nhiên một số bệnh nhân đã được điều trị có hiệu quả tốt với giải pháp phẫu thuật và trong vài trường hợp được kết hợp giữa hóa trị và phẫu thuật.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tỷ lệ điều trị thành công ung thư thực quản di căn đến gan cao không?",
+      "query_id": 396,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 519606,
+      "evidence_text": "Để chẩn đoán xác định cần xét nghiệm đờm tìm vi khuẩn lao, chụp Xquang phổi...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Xét nghiệm đờm có ý nghĩa gì trong chẩn đoán lao?",
+      "query_id": 398,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 609026,
+      "evidence_text": "Thường sẩy thai trong 3 tháng đầu, đa số là do thai có vấn đề nên không thể phát triển tiếp tục được.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em bị thai ngừng phát triển khi mới được 5,6 tuần. Em có xét nghiệm chỉ số NK của em là 10744, trong khi đó chỉ số bình thường em biết là 200-5000. Vậy trường hợp của em có thể có bầu sinh con bình thường được không ạ? Em phải làm gì để giảm chỉ số NK để quá trình mang thai được tốt không ạ? Phương pháp IVF có thể giúp em có một thai kỳ khỏe mạnh không ạ?",
+      "query_id": 441,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 515906,
+      "evidence_text": "Các biện pháp mát-xa, vật lý trị liệu bằng hồng ngoại, sóng ngắn, điện xung, tập phục hồi chức năng là các biện pháp áp dụng tốt, không có hại.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Cháu bị gù lưng (lưng tôm) giờ cháu phải điều trị bằng phương pháp nào để hết gù trong thời gian ngắn?",
+      "query_id": 457,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 513178,
+      "evidence_text": "Ngoài ra, thay đổi trong lối sống lành mạnh cũng có thể một phần giúp bạn kiểm soát được viêm gan B bằng cách: Ăn uống hợp lý: tốt nhất chỉ chứa vừa đủ chất dinh dưỡng và năng lượng thiết.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Cách đây hơn năm em đã không còn đi khám lại viêm gan B do công việc quá bận rộn. Ngày mới phát hiện em có virus trong người, em đi khám được bác sĩ thông báo virus viêm gan B không hoạt động. Em sẽ đi khám lại trong thời gian sớm nhất khi công việc không quá nhiều. Em muốn hỏi bác sĩ khi viêm gan B hoạt động thì triệu chứng trong người như thế nào, có phải suy thận dẫn đến nửa đêm đi vệ sinh nhiều lần không, riêng em một đêm cứ 2-3 lần đi vệ sinh, ăn uống kém sút cân và thiếu máu. Với lại trong ăn uống đối với người bị viêm gan B nên cần bổ sung gì nhiều nhất?",
+      "query_id": 471,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 512373,
+      "evidence_text": "Uống rượu bia và hút thuốc cũng là nhân tố chính gây đau dạ dày.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Chồng em hay bị đau dạ dày mỗi khi uống rượu, và gần đây hay đau bụng giữa, ợ chua là bị làm sao và có thuốc gì ạ?",
+      "query_id": 502,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 542114,
+      "evidence_text": "Bạn có thể không cần phải phẫu thuật cắt bỏ túi mật, thay vào đó, theo dõi thường xuyên bằng cách khám, siêu âm định kỳ 3-6 tháng trong ít nhất 2 năm để tái đánh giá bất kỳ sự thay đổi nào có thể cho thấy nguy cơ ung thư túi mật.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi là nam, 36 tuổi. Đợt vừa qua tôi có căng thẳng xung đột trong gia đình khoảng 2 tháng. Sau đó tôi thường xuyên thấy hồi hộp trống ngực trong ngày, không thấy khó thở gì cả. tôi đi khám bác sĩ chỉ kết luận nhịp nhanh xoang. tôi đã làm xét nghiệm máu, men gan, thận bình thường. Siêu âm ổ bụng có polyp túi mật. Điện tâm đồ có nhịp nhanh xoang. Bác sĩ chỉ kê thuốc bổ và bảo không cần thuốc điều trị. Sau 2 tháng thì 10 phần tôi đỡ được 2-3 phần. Bác sĩ cho hỏi tôi có cần đi khám lại không?",
+      "query_id": 511,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 615022,
+      "evidence_text": "Chi phí một ca phẫu thuật điều trị giãn tĩnh mạch nông chi bằng phương pháp laser nội mạch khoảng 5,5 triệu đồng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Giãn tĩnh mạch có điều trị được bằng phương pháp phẫu thuật và laser không?",
+      "query_id": 517,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 71416,
+      "evidence_text": "Việc điều trị thoái hóa khớp gối nhằm mục đích làm giảm nhẹ triệu chứng đau, sửa chữa các rối loạn về hình thái học của bệnh và phục hồi được tương đối chức năng bình thường của chi đau.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Bà nội em hơn 70 tuổi mấy năm nay đau vùng khớp gối 2 bên, đi lại khó khăn, thỉnh thoảng có uống thuốc nam thì đỡ nhưng ko khỏi hẳn, bác sĩ cho em hỏi bà em bị bệnh gì và điều trị như thế nào , có đỡ được không.",
+      "query_id": 535,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 534784,
+      "evidence_text": "Rò hậu môn là một nhiễm khuẩn mạn tính vùng hậu môn trực tràng, là hậu quả của một áp-xe quanh hậu môn trực tràng không được điều trị, vỡ ra tạo thành đường rò.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Áp xe hậu môn tự vỡ liệu có bị rò hậu môn không?",
+      "query_id": 545,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 573260,
+      "evidence_text": "Và không chỉ dự trữ buồng trứng ‘thấp chạm đáy’, đáp ứng buồng trứng kém, buồng trứng đa nang, tử cung dị dạng mà kể cả các trường hợp không có tinh trùng, tinh trùng dị dạng 100%… đều có thể mang thai và sinh con khỏe mạnh bằng trứng/tinh trùng ‘chính chủ’.”, PGS.TS.BS Lê Hoàng tự tin nói.",
+      "notes": "Supports the possibility of pregnancy with PCOS under assisted-reproduction care; does not promise natural conception.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 566,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 509297,
+      "evidence_text": "Da mặt có mảng sần, đỏ có thể là biểu hiện của một số bệnh như eczema (có nguyên nhân dị ứng), bệnh vảy nến, bệnh dày sừng ánh sáng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Cách đây 1 năm, sau 1 lần đi cắt tóc cạo mặt thì da mặt em sưng đỏ và xuất hiện các lớp da chết bong tróc. Sau đó em mua mỡ về bôi thì đỡ hẳn. Nhưng thời gian sau ở 2 bên gò má của em hay bị mẩn đỏ và có các lớp da chết, da khô như vảy, đặc biệt là vào mùa đông. Cho đến bây giờ vẫn bị đỏ hồng 2 bên gò má. Em bị bệnh gì về da không và phương pháp điều trị là gì?",
+      "query_id": 579,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 494445,
+      "evidence_text": "Biến chứng thường gặp nhất sau cắt amidan là xuất huyết, khoảng 2-3% người cắt amidan bị chảy máu.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Chảy máu, có đờm sau cắt a-mi-đan là bị làm sao?",
+      "query_id": 586,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 573260,
+      "evidence_text": "Vì thế, nếu vợ chồng sau một năm chung sống, quan hệ tình dục trung bình 2-3 lần/tuần, không sử dụng bất kỳ biện pháp tránh thai nào mà người vợ vẫn chưa có thai thì cả hai cần đi khám sớm tại các cơ sở uy tín để tìm ra nguyên nhân và điều trị kịp thời.",
+      "notes": "Directly supports evaluation after more than one year without conception.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 594,
+      "query_language": "vi",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 535712,
+      "evidence_text": "Như thư bạn nói thì bạn là người lành mang mầm bệnh nên chưa cần điều trị mà nên có một chế độ ăn uống, sinh hoạt lành mạnh như: chế độ ăn hợp lý, nhiều rau xanh và quả tươi, ít mỡ động vật, không uống rượu, không hút thuốc lá...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em có virut viêm gan B đang ở thể tĩnh thì cần chế độ ăn uống, sinh hoạt như thế nào thì tốt ạ? Và em có cần uống thêm thuốc bổ gan không? Dùng loại gì thì tốt ?",
+      "query_id": 609,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 305379,
+      "evidence_text": "Bị tê hai chân thường là dấu hiệu rối loạn ngoại vi hệ thần kinh, đa phần gây ra bởi bệnh tiểu đường, chứng nghiện rượu mãn tính hoặc hiệu ứng của hóa trị.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Đau chân, teo cơ là dấu hiệu của bệnh lý gì? Điều trị thế nào?",
+      "query_id": 610,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 562916,
+      "evidence_text": "Nhiều trường hợp bị vẹo vách ngăn mũi mà không cần can thiệp điều trị.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Phương pháp điều trị vẹo vách ngăn mũi không cần phẫu thuật",
+      "query_id": 615,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 430605,
+      "evidence_text": "Để điều trị các trường hợp viêm tuyến vú chủ yếu là dùng kháng sinh, những trường hợp nặng có thể phải phẫu thuật.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Các hạt nhỏ xung quanh quầng vú bị sưng đau và có hạt dưới da thì có phải tắc tuyến sữa hay phải điều trị kháng sinh không ạ? Có thể tự khắc phục bằng việc cho con bú thường xuyên không ạ?",
+      "query_id": 629,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 573260,
+      "evidence_text": "Ở những nơi khác, khi bệnh nhân có chỉ số AMH quá thấp thì bác sĩ sẽ khuyên nên đi xin trứng. Tuy nhiên, tại BVĐK Tâm Anh, phác đồ mới kích thích nhẹ buồng trứng được áp dụng hiệu quả, mang đến cơ hội có con từ “trứng chính chủ” cho bệnh nhân có AMH thấp.",
+      "notes": "Directly addresses treatment options for low AMH while attempting conception with the patient's own oocytes.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 653,
+      "query_language": "vi",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 557864,
+      "evidence_text": "Trường hợp u nang chân răng thường do răng bị nhiễm khuẩn, sâu hoặc chấn thương gây nên.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Có khối u ở chân răng vừa trám là do đâu?",
+      "query_id": 661,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 504074,
+      "evidence_text": "Không phải mọi nguyên nhân gây hạ canxi máu đều có thể ngăn ngừa được nhưng việc cung cấp nguồn dinh dưỡng tốt nhất rất quan trọng với người có nguy cơ hạ canxi máu, đặc biệt là với trẻ em để trẻ có được khởi đầu khỏe mạnh trong cuộc sống.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Làm thế nào để em có thể trị dứt điểm bệnh hạ canxi và nhu cầu dinh dưỡng như thế nào cho phù hợp",
+      "query_id": 672,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 565870,
+      "evidence_text": "Theo các bác sĩ nhãn khoa, hiện có hai phương pháp chính điều trị lác mắt, đó là chỉnh kính và phẫu thuật.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Bị lác tái phát có thể phẫu thuật điều trị không?",
+      "query_id": 692,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 379454,
+      "evidence_text": "Xác định đây có thể là nguyên nhân chính dẫn đến tình trạng vô sinh thứ phát của chị, bác sĩ đã chỉ định phẫu thuật nội soi thăm dò, tạo hình hai vòi tử cung.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em mổ thăm dò kẹp 1 bên buồng trứng. Mổ xong có khả năng chửa tự nhiên không ạ? Em bị vô sinh thứ phát.",
+      "query_id": 696,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 514076,
+      "evidence_text": "Trong Đông y ngay từ thời cổ cũng đã có những phương thuốc trị liệu hiệu quả chứng bệnh này và gọi là Tửu tra tỵ hay Tra tỵ (bệnh mũi đỏ), đặc biệt trong kho tàng các phương thuốc bí truyền của cung đình Trung Hoa cũng có nhiều phương thuốc hay sử dụng trị chứng mũi đỏ để làm đẹp cho các vua quan cùng giới quý tộc xưa.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Mũi và hai bên má đỏ, nóng rát mỗi khi thời tiết thay đổi là bị làm sao và điều trị như thế nào?",
+      "query_id": 736,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 547505,
+      "evidence_text": "Do vậy bác vẫn nên tiếp tục dùng thuốc đều đặn theo chỉ định của bác sĩ, thường xuyên đi khám định kỳ để bác sĩ có thể thay đổi các dạng thuốc điều trị tăng huyết áp để tránh những tác dụng phụ không mong muốn của thuốc.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Huyết áp 1 tháng trước của tôi là trên 150, sau khi đi khám, uống thuốc thì không có dấu hiệu giảm, vậy tôi có nên đi khám lại không?",
+      "query_id": 743,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 51610,
+      "evidence_text": "Tuy nhiên, điều này rất khó thực hiện, nên chỉ có thể điều trị triệu chứng sớm bằng các thuốc chống dị ứng như các kháng histamine H1 có tác dụng giảm sự giãn mạch và giảm sự kích thích của các nhánh thần kinh cảm giác ở mũi, họng, các steroid dạng xịt tại chỗ hoặc uống toàn thân tuỳ mức độ của bệnh.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Phẫu thuật điều trị viêm mũi dị ứng có hết không?",
+      "query_id": 747,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 519606,
+      "evidence_text": "Đặc điểm ho máu tươi, sủi bọt hồng, cũng có thể ho ra máu ít nhưng có khi ho nhiều (ộc ra máu làm người bệnh hoảng hốt - từ y học gọi ho ra máu sét đánh).",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Ho ra máu kèm chảy máu cam là bệnh lý gì?",
+      "query_id": 749,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 524506,
+      "evidence_text": "Vì vỏ của liên cầu khuẩn này có cấu trúc gần giống cấu tạo của màng thận, tim và khớp, do đó khi mắc bệnh và không được điều trị kịp thời, cơ thể tự sinh ra kháng thể chống lại loại liên cầu này, đồng thời tấn công cả vào thận, tim và khớp gây viêm khớp, viêm cầu thận, thấp tim để lại hậu quả nặng nề.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Vì sao vi khuẩn gây viêm tai mũi họng lại gây ra bệnh viêm cầu thận?",
+      "query_id": 796,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 651862,
+      "evidence_text": "Với các triệu chứng ở hô hấp và viêm họng, thì tình trạng trào ngược dịch vị vào thực quản làm bệnh nặng thêm.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Hiện tại, tôi luôn trong tình trạng mệt mỏi và buồn ngủ vào ban ngày. Ngoài ra, tôi còn bị đau họng. Tôi đang mắc bệnh gì và cách điều trị ra sao?",
+      "query_id": 834,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 510403,
+      "evidence_text": "Do đó, khi thoái hóa đốt sống cổ sẽ có biểu hiện rất đa dạng như: đau vùng gáy cấp tính (vẹo cổ cấp), đau vùng gáy mạn tính, nhức đầu, hội chứng đau thần kinh cổ cánh tay...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi bị đau gáy bên trái, đau tức rất khó chịu, nhất khi khi ăn thức ăn như lòng lợn, uống bia, rượu nếp... Tôi đã đi chụp X-quang, tôi bị thoái hóa đốt sống lưng nên bị chèn ép. Tư vấn giúp tôi có phải bị thế không? Cách chữa như thế nào, có khỏi được không?",
+      "query_id": 847,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 628650,
+      "evidence_text": "Các bác sĩ chuẩn đoán, trái thận thứ ba quấn ốp lấy trái thận phải nên gây tác hại lên sức khỏe bệnh nhân, khiến thận phải không hoạt động được làm nước ứ đọng, đi tiểu bị đau buốt…",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Kết quả siêu âm chẩn đoán thận trái có 2 quả, vì sao?",
+      "query_id": 883,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 560215,
+      "evidence_text": "Viêm âm đạo xảy ra khi vi khuẩn thường trú âm đạo bị biến đổi do tác nhân bên ngoài đưa vào (nhiễm vi sinh từ ngoài) hay do thay đổi môi trường âm đạo tạo điều kiện thuận lợi cho tác nhân gây bệnh hoạt động.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em có đi khám và bác sĩ nói rằng em bị viêm âm đạo do cầu khuẩn Gram dương (+) và trực khuẩn Gram âm (+). Cho em hỏi trường hợp của em thế này có bị nặng không, và có khả năng lây sang người có quan hệ với em không? Em có nên đưa người có quan hệ với em đi thăm khám hay không, và có nên làm các xét nghiệm về các bệnh lây qua đường tình dục như lậu, HPV, giang mai hay không?",
+      "query_id": 885,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 557859,
+      "evidence_text": "Nhưng nếu là u nang kích thước lớn, cuống dài hoặc ác tính, nếu không được phát hiện kịp thời, có thể gây ra những biến chứng nặng nề cho sức khỏe, tước đi khả năng làm mẹ, thậm chí đe dọa đến tính mạng của người bệnh.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em năm nay 27 tuổi có đi siêu âm thì phát hiện có nang dạng lac nội mạc tử cung buồng trứng trái kích thước 28×31mm, cho em hỏi bị như này sẽ ảnh hưởng đến khả năng sinh con nhiều không? Kích thước nang có bị lớn không? Với lại em tính mua dùng Nga Phụ Khang được không ?",
+      "query_id": 893,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 499089,
+      "evidence_text": "Nguyên nhân gây bệnh liên quan đến tuổi già, tiếp xúc với tia tử ngoại hoặc cũng có thể gặp sau chấn thương mắt, sau một số bệnh ở mắt, sau dùng một số thuốc hoặc ở những người bị đái tháo đường.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi bị tai nạn giao thông chấn thương mắt mổ cách đây 10 năm nay mắt đục thuỷ tinh thể nhưng bác sĩ chuẩn đoán bệnh do sẹo giác mạc, theo bác sỹ có cách nào giải quyết không",
+      "query_id": 910,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 522543,
+      "evidence_text": "Chỉ bất thường khi sự bất trị của “thằng nhỏ” lại đi kèm với tật đái rắt (nước tiểu ít, sau khi đi vẫn có cảm giác căng tức hoặc khó chịu ở bàng quang).",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Căng tức bàng quang vào buổi sáng có bất thường không?",
+      "query_id": 913,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 125111,
+      "evidence_text": "Tuy nhiên, nếu ngực xuất hiện thêm những biểu hiện như dưới đây thì nên đến gặp bác sĩ để được thăm khám:\n- Chảy dịch đầu ti\n- Ngực có cảm giác đau, căng tức\n- Đầu ngực có hình dáng lạ thường\n- Tuyến vú xuất hiện các nốt u lạ",
+      "notes": "Supports examination when breast pain/tightness is present, though the article context is breastfeeding asymmetry.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 918,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 17726,
+      "evidence_text": "Kết quả thăm khám, xét nghiệm chẩn đoán: BN bị choáng nhiễm trùng do sỏi đoạn cuối ống mật chủ, biến chứng rối loạn đông máu, suy đa cơ quan.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Nhiễm trùng máu, hạ huyết áp ảnh hưởng đến mổ sỏi mật tụy ngược dòng?",
+      "query_id": 940,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 561088,
+      "evidence_text": "Có rất nhiều người đột nhiên bị giảm thị lực mà không biết nguyên nhân đó là do bệnh viêm xoang gây ra.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Khoảng một tuần trở lại đây, mình cảm thấy thị lực giảm một cách rõ rệt nhưng không rõ nguyên nhân vì sao. Mắt luôn có cảm giác cộm và nhức. Mình có tiền sử bị bệnh xoang. Nhờ bác sĩ tư vấn giúp mình nguyên nhân có thể là gì?",
+      "query_id": 947,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 487929,
+      "evidence_text": "Đau đầu kèm theo ít nhất 1 trong các dấu hiệu sau ở cùng bên đầu đau: sung huyết kết mạc, chảy nước mắt, chảy nước mũi, chảy mồ hôi mặt và trán, phù nề mi mắt.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Nữ giới đau nửa bên đầu là dấu hiệu bệnh gì?",
+      "query_id": 967,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 528284,
+      "evidence_text": "Khi mỡ máu cao, bạn nên ăn nhiều rau củ quả tươi và nếu có điều kiện thì ép nước uống.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Nay em vừa nhận được kết quả xét nghiệm máu thấy lượng mỡ máu của em đang vượt ngưỡng. Hiện tại em mang thai tuần 30. Không biết có ảnh hưởng gì đến mẹ và bé không ạ? Có biện pháp nào giảm không ạ? Và cần ăn kiêng gì không ạ?",
+      "query_id": 991,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 524383,
+      "evidence_text": "Thực hiện chế độ ăn hợp lý kết hợp việc tập luyện thường xuyên sau một thời gian không hiệu quả thì cần điều trị bằng thuốc hạ mỡ máu theo chỉ định của bác sĩ.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Chỉ số của em triglycerid 5,0 và cholesterol 6,8 đã phải dùng thuốc chưa ạ?",
+      "query_id": 1013,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 542114,
+      "evidence_text": "Bạn có thể không cần phải phẫu thuật cắt bỏ túi mật, thay vào đó, theo dõi thường xuyên bằng cách khám, siêu âm định kỳ 3-6 tháng trong ít nhất 2 năm để tái đánh giá bất kỳ sự thay đổi nào có thể cho thấy nguy cơ ung thư túi mật.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Có thuốc kìm hãm sự phát triển của polyp túi mật không? Chỉ định phẫu thuật polyp túi mật khi nào?",
+      "query_id": 1023,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 555538,
+      "evidence_text": "Có rất nhiều nguyên nhân gây táo bón, phình đại tràng bẩm sinh là nguyên nhân gây táo bón ở trẻ sơ sinh nhưng táo bón kéo dài ở trẻ nhỏ lại là nguyên nhân gây phình đại tràng (phình đại tràng mắc phải).",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Trẻ bị táo bón kéo dài là do đâu, có thể chuyển thành mãn tính không?",
+      "query_id": 1031,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 297200,
+      "evidence_text": "Việc châm 10 đầu ngón tay cũng phải chuyên ngành và do bác sĩ đảm nhiệm chứ không phải là người nhà bệnh nhân nên người nhà bệnh khi thấy có biểu hiện của đột quỵ không nên can thiệp quá sâu vào châm cứu người bệnh mà nên gọi điện tới 115 để cấp cứu sớm nhất.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tại sao không nên bấm huyệt nhân trung với bệnh nhân đột quỵ?",
+      "query_id": 1032,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 546970,
+      "evidence_text": "Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ cho biết, vaccine COVID-19 an toàn và hiệu quả trong thời kỳ mang thai.\nTheo khuyến cáo của Bộ Y tế, phụ nữ mang thai có thể được chỉ định tiêm chủng các loại vaccine COVID-19 được Bộ Y tế cấp phép là Astrazeneca, Modena, Pfizer BioNTech; chống chỉ định tiêm chủng đối với Sputnik V.",
+      "notes": "Supports the pregnancy-safety part of the query; it does not answer the male conception-timing subquestion.",
+      "provenance": "manual_pilot_qrel",
+      "query_id": 1035,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 737668,
+      "evidence_text": "Người chồng cần tránh quan hệ tình dục hoặc xuất tinh trong vòng 5 ngày trước khi khám để đảm bảo kết quả xét nghiệm tinh dịch đồ đạt độ chính xác cao.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Vợ chồng e đang định làm xét nghiệm cho chồng, tinh dịch đồ và đứt gãy tinh trùng. Vậy trước khi đi làm xét nghiệm cần chuẩn bị gì k ạ?",
+      "query_id": 1046,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 8765,
+      "evidence_text": "Theo công văn hướng dẫn của Bộ Y tế và tài liệu của Tổ chức Y tế Thế giới (WHO), khoảng cách giữa 2 mũi tiêm đối với vaccine AstraZeneca là từ 8 đến 12 tuần.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Tôi sắp đi công tác trong tháng này và đã tiêm một mũi vaccine AstraZeneca vào cuối tháng trước. Vậy khoảng cách giữa 2 mũi tiêm sớm nhất là sau bao nhiêu ngày để đạt hiệu quả của vaccine?",
+      "query_id": 1068,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 292120,
+      "evidence_text": "Thường răng khôn sẽ xuất hiện ở độ tuổi 17 đến 25, tuy nhiên nếu trường hợp 14, 15 tuổi đã mọc răng khôn thì cũng không có gì lo lắng.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Thường là 18 tuổi mới mọc răng khôn nhưng sao em 14 tuổi đã mọc 1 cái và đến nay 15 tuổi vừa mới mọc thêm 1 cái nữa tổng cộng là 2 cái, vậy là có vấn đề gì không",
+      "query_id": 1076,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 526800,
+      "evidence_text": "Đầu tiên khi thấy trẻ đi ngoài phân sống (nghĩa là ăn gì đi nguyên cả thức ăn đó) thì phải xem lại cách chế biến bữa ăn đã phù hợp theo lứa tuổi của bé chưa.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Đại tiện phân sống, khó tăng cân phải làm sao?",
+      "query_id": 1098,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 725908,
+      "evidence_text": "Theo bác sĩ Vũ Chí Dũng, Giám đốc Trung tâm Nội tiết, chuyển hóa, di truyền và liệu pháp phân tử, Bệnh viện Nhi Trung ương, thời gian qua, để điều trị một số bệnh hiếm gặp, trong đó có bệnh teo cơ tủy, Bệnh viện Trung ương đã tham gia việc thử nghiệm lâm sàng thuốc Zolgensma do Tập đoàn Dược phẩm Novartis (Thụy Sĩ) nghiên cứu phát triển.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Có thể điều trị bệnh thoái hóa cơ tủy do mất đoạn gen không?",
+      "query_id": 1126,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 638887,
+      "evidence_text": "Hạch cổ nổi được cho là lành tính nếu nguyên nhân đến từ các bệnh viêm thông thường của đường hô hấp trên như viêm loét amiđan, viêm họng, viêm tấy nướu (lợi) răng, viêm loét lớp lót của miệng, viêm tuyến nước bọt...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Uống nhiều nước lạnh là nguyên nhân mọc hạch cổ?",
+      "query_id": 1148,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 313233,
+      "evidence_text": "* Theo phó giáo sư, làm thế nào để có một trái tim khỏe mạnh và ngăn ngừa nguy cơ mắc bệnh mạch vành?\n- Điều quan trọng để có một trái tim khỏe mạnh, phòng ngừa bệnh lý mạch vành cũng như các bệnh không lây nhiễm là có lối sống lành mạnh, không hút thuốc lá.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Phòng ngừa bệnh mạch vành như thế nào?",
+      "query_id": 1150,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 409401,
+      "evidence_text": "Nghiên cứu này thử nghiệm kết hợp điều hòa thần kinh tủy sống không xâm lấn và liệu pháp phục hồi chức năng thần kinh dựa trên hoạt động ở trẻ em bị bại não.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Trẻ bại não nên điều trị thế nào?",
+      "query_id": 1155,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 386229,
+      "evidence_text": "Thứ hai cần khám sức khỏe tổng thể định kỳ để phát hiện và điều trị kịp thời các bệnh lý răng miệng, chỉ cần tìm ra được nguyên nhân gây hôi miệng thì tình trạng hôi miệng mới giảm được.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Hôi miệng lâu năm là do đâu và cách điều trị như thế nào?",
+      "query_id": 1156,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 106723,
+      "evidence_text": "Cường giáp gây ra nhiều triệu chứng khó chịu như mệt mỏi, sụt cân, hồi hộp, lo lắng, nhịp tim nhanh,...",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Nam giới có khả năng bị cường giáp không? Gần đây tôi thấy bị tim đập nhanh không rõ nguyên nhân, hồi hộp.",
+      "query_id": 1157,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 514656,
+      "evidence_text": "Nếu bạn thấy nước tiểu có màu khác, đi tiểu khó, tiểu rắt, bụng ậm ạch khó chịu thì đừng chủ quan, rất có thể bạn đã bị viêm đường tiết niệu.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Em hay thường bị đi tiểu nhiều và khó đi tiểu và cứ cảm giác có hòn sỏi chăn đường nước tiếu ở dưới háng không biết em bị mắc bệnh gì và có ảnh hưởng gì không?",
+      "query_id": 1159,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 560246,
+      "evidence_text": "Điều trị triệu chứng: dùng các thuốc kháng viêm, giảm đau, hạ sốt, thuốc làm lỏng chất nhầy, giảm ho.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Phát hiện bị viêm amidan khi đang điều trị bệnh lao thì phải làm sao?",
+      "query_id": 1165,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 511006,
+      "evidence_text": "cũng có thể đau nhức mắt là triệu chứng quá căng mắt khi đọc, nhìn nhiều, nhưng nguyên nhân hay gặp nhất là viêm mi hoặc kết mạc và những dị vật nhỏ: một số bệnh đau đầu do những nguyên nhân khác nhau lan truyền tới mắt như: đau đầu từng chuỗi gây đau nửa đầu dữ dội kèm theo đau mặt thường ở một bên kèm theo là có chảy nước mắt, mắt nề, sa mi mắt và co đồng tử, chảy nước mũi.",
+      "notes": "Manually accepted after query-to-source evidence inspection.",
+      "provenance": "official_query_manual_source_alignment",
+      "query": "Nguyên nhân gây đau hốc mắt thường xuyên.",
+      "query_id": 1181,
+      "query_language": "vi",
+      "relevance_grade": 2
+    },
+    {
+      "doc_id": 5844719,
+      "evidence_text": "Predictors of non-disclosure included lack of correct knowledge about HIV and no knowledge of sex partners' HIV serostatus. Among females, recent alcohol consumption also predicted non-disclosure.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "What factors predicted non-disclosure of HIV status to sexual partners?",
+      "query_id": 2000001,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 6924031,
+      "evidence_text": "As previously recommended, children who need 2 doses (children aged 6 months through 8 years who have never received influenza vaccine or who have not previously received a lifetime total of ≥2 doses) should receive their first dose as soon as possible after vaccine becomes available to allow the second dose (which must be administered ≥4 weeks later) to be received by the end of October.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "When should children who need two influenza vaccine doses receive them?",
+      "query_id": 2000002,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 5996753,
+      "evidence_text": "Twenty one volunteers were randomly assigned to orally receive 100 mg of mixed tocotrienols daily while 17 volunteers were assigned to receive placebo capsule orally.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "What daily tocotrienol dose was tested for hair growth?",
+      "query_id": 2000003,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 7294391,
+      "evidence_text": "Additionally, altered liver function tests were remarkable for high serum levels of AST (SGOT) (105 IU/L) and ALT(SGPT) (355 IU/L), while the total bilirubin and alkaline phosphatase were within normal limits.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "Which liver enzymes were elevated and what were their measured values?",
+      "query_id": 2000004,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 6091701,
+      "evidence_text": "Counselor-initiated PITC significantly increased HIV testing by 79% (643/2957 vs. 1228/3154), resulting in an almost 2-fold increase in patients with known HIV status (2447/3154 vs. 1249/3154) (both P < 0.0001), with 18.4% of those tested receiving a new diagnosis of HIV.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "How much did counselor-initiated testing increase HIV testing?",
+      "query_id": 2000005,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 6887513,
+      "evidence_text": "SUMMARY ANSWER: An estradiol level >100 pg/ml for ≤4 days including the LH surge day is associated with worse pregnancy and live birth outcomes; however, the total length of the follicular phase is not associated with pregnancy and live birth outcomes.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "Does a follicular phase longer than 15 days affect live birth outcomes?",
+      "query_id": 2000006,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 5884216,
+      "evidence_text": "Chronic venous disease, reviewed herein, is manifested by a spectrum of signs and symptoms, including cosmetic spider veins, asymptomatic varicosities, large painful varicose veins, edema, hyperpigmentation and lipodermatosclerosis of skin, and ulceration.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "What signs and symptoms can chronic venous disease cause?",
+      "query_id": 2000007,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 7147941,
+      "evidence_text": "Characteristics not varying in pregnancy associated with increased risk of preterm birth were maternal age less than 18 years (adjusted risk ratio=1.13, 95% CI: 1.02 to 1.26); being Muslim (1.53, 1.16 to 2.01); first pregnancy (1.15, 1.04 to 1.28); multiple births (4.91, 4.20 to 5.75) and male child (1.10, 1.02 to 1.17).",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "Which pregnancy characteristics were associated with spontaneous preterm birth?",
+      "query_id": 2000008,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 6165181,
+      "evidence_text": "We deemed only one study to be at low risk of bias in all domains other than blinding.Two RCTs (801 participants) reported at least one bleeding episode within 30 days of the start of the study. We were unable to perform a meta-analysis due to considerable statistical heterogeneity between studies.",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "Why could bleeding outcomes from the two RCTs not be pooled?",
+      "query_id": 2000009,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 5493174,
+      "evidence_text": "There was a highly significant correlation between the percentage of normal sperm used for ICSI and fertilization rates (P = 0.007).",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "Was normal sperm morphology associated with ICSI fertilization rates?",
+      "query_id": 2000010,
+      "query_language": "en",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 848604,
+      "evidence_text": "肝癌的发生，很大一部分跟乙肝有关。有关专家指出，90%的肝癌患者有乙肝病史，乙肝病毒的持续感染是患肝癌的主要原因之一。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "乙肝病毒持续感染与肝癌有什么关系？",
+      "query_id": 2000011,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 1494285,
+      "evidence_text": "而降主动脉与左肺动脉分流术（Pott手术）和升主动脉与右肺动脉分流术（Waterston手术）已被临床上弃用[3]。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "哪些体肺分流术已经在临床上弃用？",
+      "query_id": 2000012,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 2132134,
+      "evidence_text": "老年人的口干阴虚者是因为津液不足所致，阳虚者是因为津液不能上承所致。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "老年人口干常见的阴虚和阳虚机制分别是什么？",
+      "query_id": 2000013,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 794254,
+      "evidence_text": "适度饮酒。大量饮酒可导致精子质量下降，男性应严格按照每日14-28个标准杯（含酒精8-9克），女性减半的推荐量来执行。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "大量饮酒会怎样影响精子质量？",
+      "query_id": 2000014,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 877312,
+      "evidence_text": "痛风症者应减少到150mg ②限制蛋白质，每日每公斤体重0．8g，热量要较正常低10～15%",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "痛风患者每天应限制多少蛋白质？",
+      "query_id": 2000015,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 4024465,
+      "evidence_text": "控制血压、血糖、血脂。\n2、动脉狭窄介入手术治疗后，都有再次复发的风险，手术后并不是一劳永逸，需要患者规律复查，遵医嘱吃好口服药，如再次出现下肢动脉缺血症状，需要及时到医院来处理。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "下肢动脉狭窄介入术后应如何随访和控制风险？",
+      "query_id": 2000016,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 785929,
+      "evidence_text": "实验室血常规检查：132例中血红蛋白<60g/L的为11例，61～90g/L的为55例，91～110 g/L的为66例。白细胞>10x109/L的为47例.>20x10/L的为8例。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "这组患儿的血红蛋白和白细胞检查结果如何？",
+      "query_id": 2000017,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 840214,
+      "evidence_text": "中国居民膳食指南推荐，每天摄入40~75克红肉，只要控制在这个范围内，是不会带来这种危险的。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "每天摄入多少红肉通常不会增加文中所述风险？",
+      "query_id": 2000018,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 2538681,
+      "evidence_text": "该患者既往有长期吸食海洛因的历史，就诊当天表现为昏迷，体温、血压降低，脉搏、呼吸减慢，听诊肺部呼吸音及肠鸣音均较弱，双侧瞳孔均为缩小（针尖样改变），四肢肌肉松弛，这些临床表现特点都比较符合典型的阿片类药物中毒。因此，现在接诊医生的诊断考虑为（问题4的有效答案为）阿片类药物中毒较为合适。\n经过血、尿等毒理学检查，临床上确诊为阿片类药物吸食过量中毒。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "昏迷、呼吸慢、针尖样瞳孔的患者最终诊断是什么？",
+      "query_id": 2000019,
+      "query_language": "zh",
+      "relevance_grade": 3
+    },
+    {
+      "doc_id": 3982492,
+      "evidence_text": "在继发性血小板增多症中，血小板计数通常为 < 1,000,000 个/μL（< 1000 × 109/L），其病因常可通过病史与体格检查明确，并在必要时通过确证性检测加以验证。全血细胞计数和外周血涂片检查结果可能有助于诊断缺铁或溶血。\n如果继发性血小板增多症的原因不明显，应对患者进行骨髓增殖性肿瘤的评估。此类评估应包括检测骨髓增生性肿瘤驱动突变、细胞遗传学检查（包括费城染色体或BCR-ABL检测），可能还需要进行骨髓检查。\n治疗潜在疾病通常可使血小板计数恢复正常。",
+      "notes": "Natural question and exact evidence manually authored from a reviewed semantic case.",
+      "provenance": "manual_multilingual_holdout",
+      "query": "继发性血小板增多症如何评估病因并治疗？",
+      "query_id": 2000020,
+      "query_language": "zh",
+      "relevance_grade": 3
+    }
+  ],
+  "query_count": 107,
+  "reviewed_by": "Codex manual inspection; no automatic accept-all"
+}

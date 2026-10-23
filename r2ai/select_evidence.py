@@ -21,6 +21,8 @@ def add_selection_arguments(parser):
     parser.add_argument("--document-mode", choices=("parents", "baseline", "threshold"), default="parents")
     parser.add_argument("--doc-threshold", type=float)
     parser.add_argument("--doc-delta", type=float)
+    parser.add_argument("--chunk-order", choices=("document", "rerank_score"), default="document",
+                        help="Candidate priority for final chunk selection")
     parser.add_argument("--selection-config", type=Path, help="Load all selector settings, including limits, from JSON")
 
 
@@ -30,7 +32,8 @@ def config_from_args(args, *, max_docs: int, max_chunks: int, chunks_per_doc: in
     return SelectionConfig(mode=args.selector, max_docs=max_docs, max_chunks=max_chunks,
                            chunks_per_doc=chunks_per_doc, chunk_threshold=args.chunk_threshold,
                            chunk_delta=args.chunk_delta, document_mode=args.document_mode,
-                           doc_threshold=args.doc_threshold, doc_delta=args.doc_delta)
+                           doc_threshold=args.doc_threshold, doc_delta=args.doc_delta,
+                           chunk_order=args.chunk_order)
 
 
 def replay(rankings, metadata, config, output: Path) -> dict:

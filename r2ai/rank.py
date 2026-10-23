@@ -54,26 +54,61 @@ def _embedder(device: str):
     )
 
 
-def embed_chunks(texts: list[str], titles: list[str], batch: int, device: str) -> np.ndarray:
+def _resolved_model_revision(model_name: str, revision: str) -> str:
+    """Resolve a pinned model revision from the local HF cache without network access."""
+    from huggingface_hub import snapshot_download
+
+    snapshot = Path(snapshot_download(model_name, revision=revision, local_files_only=True))
+    resolved = snapshot.name
+    if resolved != revision:
+        raise ValueError(f"Expected cached revision {revision}, resolved {resolved} at {snapshot}")
+    return resolved
+
+
+def embed_chunks(
+    texts: list[str], titles: list[str], batch: int, device: str,
+    encode_devices: list[str] | None = None,
+    model_metadata: dict | None = None,
+) -> np.ndarray:
     import torch
 
-    model = _embedder(device)
+    # SentenceTransformers can shard encoding over several local GPUs. Keep the
+    # parent model on CPU in that mode; worker processes move their own copy to
+    # the assigned device.
+    model = _embedder("cpu" if encode_devices else device)
+    if model_metadata is not None:
+        first = model._first_module()
+        auto_model = getattr(first, "auto_model", None)
+        reported = getattr(getattr(auto_model, "config", None), "_commit_hash", None)
+        resolved = _resolved_model_revision(EMBED_MODEL, EMBED_REVISION)
+        if reported is not None and reported != resolved:
+            raise ValueError(f"Loaded embedding commit {reported} differs from cached snapshot {resolved}")
+        model_metadata["resolved_revision"] = resolved
     model.max_seq_length = 512
     # Prepending the title gives short chunks the topical anchor they otherwise lack.
     payload = [f"{t}\n{c}" if t else c for t, c in zip(titles, texts)]
     vecs = model.encode(
         payload, batch_size=batch, normalize_embeddings=True,
         convert_to_numpy=True, show_progress_bar=True,
+        device=encode_devices,
     )
     del model
     torch.cuda.empty_cache()
     return vecs.astype(np.float32)
 
 
-def embed_queries(queries: list[str], device: str) -> np.ndarray:
+def embed_queries(queries: list[str], device: str, model_metadata: dict | None = None) -> np.ndarray:
     import torch
 
     model = _embedder(device)
+    if model_metadata is not None:
+        first = model._first_module()
+        auto_model = getattr(first, "auto_model", None)
+        reported = getattr(getattr(auto_model, "config", None), "_commit_hash", None)
+        resolved = _resolved_model_revision(EMBED_MODEL, EMBED_REVISION)
+        if reported is not None and reported != resolved:
+            raise ValueError(f"Loaded embedding commit {reported} differs from cached snapshot {resolved}")
+        model_metadata["resolved_revision"] = resolved
     model.max_seq_length = 512
     vecs = model.encode(queries, batch_size=32, normalize_embeddings=True,
                         convert_to_numpy=True, show_progress_bar=True)
@@ -185,7 +220,11 @@ def cross_encoder_rerank(
     reranker = CrossEncoder(RERANK_MODEL, device=device, max_length=512, revision=revision,
                             model_kwargs={"torch_dtype": torch.float16}, activation_fn=torch.nn.Identity())
     if model_metadata is not None:
-        model_metadata["resolved_revision"] = getattr(reranker.model.config, "_commit_hash", None)
+        reported = getattr(reranker.model.config, "_commit_hash", None)
+        resolved = _resolved_model_revision(RERANK_MODEL, revision)
+        if reported is not None and reported != resolved:
+            raise ValueError(f"Loaded reranker commit {reported} differs from cached snapshot {resolved}")
+        model_metadata["resolved_revision"] = resolved
     try:
         flat = np.asarray(reranker.predict(pairs, batch_size=batch, show_progress_bar=True)).reshape(-1)
     finally:
@@ -221,6 +260,7 @@ def main(
     taxonomy_weight: float = 0.0,
     selection_configs: list[SelectionConfig] | None = None,
     ranking_cache: Path | None = None, reranker_revision: str = RERANK_REVISION,
+    embed_devices: list[str] | None = None,
 ) -> None:
     if not k_docs_sweep or any(k < 0 for k in k_docs_sweep) or k_chunks < 0 or chunks_per_doc < 0:
         raise ValueError("Cutoffs must be nonnegative and k_docs_sweep nonempty")
@@ -313,7 +353,7 @@ def main(
         print(f"loaded embeddings from {cache.name}", flush=True)
     else:
         if texts:
-            chunk_vecs = embed_chunks(texts, titles, batch, device)
+            chunk_vecs = embed_chunks(texts, titles, batch, device, embed_devices)
             query_vecs = embed_queries(qtexts, device)
         else:
             chunk_vecs = np.empty((0, 0), dtype=np.float32)
@@ -504,6 +544,8 @@ if __name__ == "__main__":
     ap.add_argument("--out", default="submission")
     ap.add_argument("--ranking-cache", type=Path, help="Write self-contained JSONL or .jsonl.gz for CPU replay")
     ap.add_argument("--reranker-revision", default=RERANK_REVISION, help="Pin a Hugging Face revision for score calibration")
+    ap.add_argument("--embed-devices",
+                    help="comma-separated local devices for parallel chunk encoding, e.g. cuda:0,cuda:1")
     add_selection_arguments(ap)
     a = ap.parse_args()
     sweep = [int(x) for x in str(a.k_docs).split(",") if x.strip()]
@@ -515,4 +557,6 @@ if __name__ == "__main__":
     main(a.chunks_file, sweep, a.k_chunks, a.chunks_per_doc, a.pool,
          not a.no_rerank, a.device, a.out, a.batch, a.doc_id_as_string,
          a.candidates, a.rerank_top, a.taxonomy_docs, a.taxonomy_chunks,
-         a.taxonomy_config, a.taxonomy_weight, configs, a.ranking_cache, a.reranker_revision)
+         a.taxonomy_config, a.taxonomy_weight, configs, a.ranking_cache, a.reranker_revision,
+         [item.strip() for item in a.embed_devices.split(",") if item.strip()]
+         if a.embed_devices else None)

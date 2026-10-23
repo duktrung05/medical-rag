@@ -1,0 +1,103 @@
+{
+  "version": "phase1-quality-policy-v1",
+  "default_status": "REVIEW_REQUIRED",
+  "quarantine_flags": [
+    "boilerplate_signals",
+    "challenge_text",
+    "control_characters",
+    "empty_text",
+    "hex_or_asset_noise",
+    "html_contamination",
+    "navigation_heavy",
+    "repeated_template_content",
+    "unicode_replacement_character",
+    "very_short_text"
+  ],
+  "overrides": [
+    {
+      "doc_id": 1950332,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive menstrual-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1950458,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive pregnancy-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1952580,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1956968,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive sexual-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1957708,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive nutrition article; title is the only missing field."
+    },
+    {
+      "doc_id": 1957739,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive nutrition article; title is the only missing field."
+    },
+    {
+      "doc_id": 1961935,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive pregnancy-nutrition article; title is the only missing field."
+    },
+    {
+      "doc_id": 1968314,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive diabetes-and-breastfeeding article; title is the only missing field."
+    },
+    {
+      "doc_id": 1971222,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive environmental-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1971363,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive healthy-aging article; title is the only missing field."
+    },
+    {
+      "doc_id": 1972053,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive pregnancy-safety article; title is the only missing field."
+    },
+    {
+      "doc_id": 1974383,
+      "status": "QUARANTINED",
+      "reason": "Reviewed pilot row: short body is dominated by unrelated recommendation and site-navigation text."
+    },
+    {
+      "doc_id": 1974803,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive prenatal-mental-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1980931,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive healthy-aging nutrition article; title is the only missing field."
+    },
+    {
+      "doc_id": 1983544,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive prenatal-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 1986559,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: substantive menopause-health article; title is the only missing field."
+    },
+    {
+      "doc_id": 4069806,
+      "status": "PASS",
+      "reason": "Reviewed pilot row: mojibake is confined to one reference-author name; article body remains usable."
+    }
+  ]
+}

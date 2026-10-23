@@ -1,0 +1,11 @@
+{
+  "multilingual_expansion": {"enabled": false},
+  "taxonomy": {"enabled": false},
+  "advanced_intent": {"enabled": false},
+  "multiscale_evidence": {"enabled": false},
+  "learned_document_ranking": {"enabled": false},
+  "late_interaction": {"enabled": false},
+  "multihop": {"enabled": false},
+  "llm_query_planner": {"enabled": false}
+}
+

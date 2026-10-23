@@ -1,0 +1,62 @@
+{
+  "approval": "User approved deletion of exactly nine ZIP paths in CLEANUP_DUPLICATE_ZIPS.csv",
+  "deleted_count": 9,
+  "freed_bytes": 185091708,
+  "records": [
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_crawl_rerank80_20261008.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_crawl_rerank80_20261008/submission.zip",
+      "size_bytes": 22368759,
+      "sha256": "f6a7fe8c180fabe4b01b199e8bfa24e3917d83a0cf6c53a7e5c34e0bc6245cce"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_neg2_chunks2_docorder_20261008/vibiomir_threshold-neg2_nodelta_chunks2_docorder.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_neg2_chunks2_docorder_20261008/submission.zip",
+      "size_bytes": 20069134,
+      "sha256": "f4ab067109eeae33e38ae1641e76399144d82a54d0aca5e6b13a170491bcc5fa"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_20261008/vibiomir_threshold-neg2p5_nodelta_chunks1_docorder.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_20261008/submission.zip",
+      "size_bytes": 20821505,
+      "sha256": "886494b95fa8339b3afe26e56c432027dd3d7ddb89492e47deb51ee80929d7ed"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_neg2_chunks2_scoreorder_20261008/vibiomir_threshold-neg2_nodelta_chunks2_scoreorder.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_neg2_chunks2_scoreorder_20261008/submission.zip",
+      "size_bytes": 20337432,
+      "sha256": "6b0ea55e0ed48976dda8895083ba5dee9d178cbd6a84e4f25c90d4d80d55792f"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_delta6_20261008/vibiomir_threshold-neg2p5_delta6_chunks1_docorder.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_threshold_neg2p5_delta6_20261008/submission.zip",
+      "size_bytes": 19541931,
+      "sha256": "4929dc947fa9a4abf966edd810c1ceedfc80370cafe753e03a5ab82c2197b243"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/smoke_test/vibiomir_maxdocs200_threshold0_20261008.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/vibiomir_maxdocs200_threshold0_20261008/submission.zip",
+      "size_bytes": 14593293,
+      "sha256": "2aeba09d9f4498f2c2f2a28a634dd444b18d3f4fb76c15f6eb0754ee18f9fde5"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/smoke_test/vibiomir_maxdocs80_only_20261008.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/maxdocs_only_20261008/vibiomir_maxdocs80_only_20261008.zip",
+      "size_bytes": 22368759,
+      "sha256": "21f1a984c77fd971a131b726410684a1184ad22250d94265102a91b5eae8c990"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/smoke_test/vibiomir_maxdocs120_only_20261008.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/maxdocs_only_20261008/vibiomir_maxdocs120_only_20261008.zip",
+      "size_bytes": 22487312,
+      "sha256": "65ba4b7b77a522bebc50c4642263c785680ddf232269f40da45eb74d5697bec9"
+    },
+    {
+      "deleted_path": "/data_hdd_16t/trungnguyen12/smoke_test/vibiomir_maxdocs200_only_20261008.zip",
+      "retained_path": "/data_hdd_16t/trungnguyen12/medical-rag/medical-rag/outputs/submissions/maxdocs_only_20261008/vibiomir_maxdocs200_only_20261008.zip",
+      "size_bytes": 22503583,
+      "sha256": "15043401d1d50375e725860312d1680563f99de7bb541eb8b6b752eb7cf76d92"
+    }
+  ],
+  "retained_sha256_verified_after_deletion": true
+}

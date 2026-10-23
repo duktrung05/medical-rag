@@ -1,0 +1,77 @@
+{
+  "format": "vibiomir-phase2-retrieval-qrels-v1",
+  "label_policy": "manual_topic_relevance_with_exact_source_evidence",
+  "reviewed_by": "Codex manual inspection",
+  "queries": [
+    {
+      "query_id": 5,
+      "doc_id": 313055,
+      "relevance_grade": 2,
+      "evidence_text": "Để phòng lây lan bệnh lao phụ thuộc rất nhiều vào ý thức của người bệnh, ví dụ như mang khẩu trang khi đến những nơi đông người. Người mắc lao sau một tháng điều trị đúng cách thì không còn là nguồn lây nhiễm.",
+      "notes": "Directly supports prevention of tuberculosis transmission; not specific to every multidrug-resistant regimen."
+    },
+    {
+      "query_id": 62,
+      "doc_id": 26727,
+      "relevance_grade": 3,
+      "evidence_text": "Đại diện Cục Y tế dự phòng, Bộ Y tế khẳng định, tiêm vaccine AstraZeneca là an toàn và hiệu quả. Đến thời điểm hiện tại, người dân đã tiêm vaccine này, không cần thực hiện xét nghiệm D-dimer hay bất kỳ xét nghiệm đông máu nào.",
+      "notes": "Direct answer to whether coagulation testing is needed after AstraZeneca vaccination."
+    },
+    {
+      "query_id": 71,
+      "doc_id": 311495,
+      "relevance_grade": 2,
+      "evidence_text": "Táo bón rất dễ gây nên bệnh trĩ, nứt kẽ hậu môn cho nên mỗi lần đi ngoài NCT rất sợ vì phải rặn mạnh sẽ gây đau và chảy máu. Chính vì các lý do đó mà táo bón càng ngày càng nặng thêm gây đau quặn bụng, nhất là vùng bụng dưới và 2 hố chậu dễ nhầm lẫn với bệnh tiết niệu (viêm hoặc sỏi) hoặc viêm ruột thừa (hố chậu phải).",
+      "notes": "Explains the query's constipation, fissure, hemorrhoid, pain, and bleeding relationship."
+    },
+    {
+      "query_id": 245,
+      "doc_id": 161261,
+      "relevance_grade": 3,
+      "evidence_text": "Để phát hiện sớm biến chứng, cần theo dõi sát sao các triệu chứng của tình trạng nặng như: sốt cao liên tục, quấy khóc dai dẳng, giật mình, ngủ nhiều, nôn khan… Tốt nhất khi trẻ có dấu hiệu mắc bệnh cần đưa đến cơ sở y tế để được khám, tư vấn, điều trị kịp thời.",
+      "notes": "Direct warning-sign and escalation guidance for a child with hand-foot-mouth disease."
+    },
+    {
+      "query_id": 349,
+      "doc_id": 766288,
+      "relevance_grade": 2,
+      "evidence_text": "Không chỉ định xét nghiệm máu để chẩn đoán ung thư tuyến giáp. Xét nghiệm máu chỉ có thể cho biết chức năng hoạt động của tuyến giáp có bình thường không. Dựa vào kết quả này bác sĩ có thể quyết định các xét nghiệm khác để theo dõi một số bệnh ung thư. Trong đó có ung thư tuyến giáp.",
+      "notes": "Explains why normal T3/T4/TSH does not by itself resolve structural thyroid-nodule follow-up."
+    },
+    {
+      "query_id": 566,
+      "doc_id": 573260,
+      "relevance_grade": 2,
+      "evidence_text": "Và không chỉ dự trữ buồng trứng ‘thấp chạm đáy’, đáp ứng buồng trứng kém, buồng trứng đa nang, tử cung dị dạng mà kể cả các trường hợp không có tinh trùng, tinh trùng dị dạng 100%… đều có thể mang thai và sinh con khỏe mạnh bằng trứng/tinh trùng ‘chính chủ’.”, PGS.TS.BS Lê Hoàng tự tin nói.",
+      "notes": "Supports the possibility of pregnancy with PCOS under assisted-reproduction care; does not promise natural conception."
+    },
+    {
+      "query_id": 594,
+      "doc_id": 573260,
+      "relevance_grade": 3,
+      "evidence_text": "Vì thế, nếu vợ chồng sau một năm chung sống, quan hệ tình dục trung bình 2-3 lần/tuần, không sử dụng bất kỳ biện pháp tránh thai nào mà người vợ vẫn chưa có thai thì cả hai cần đi khám sớm tại các cơ sở uy tín để tìm ra nguyên nhân và điều trị kịp thời.",
+      "notes": "Directly supports evaluation after more than one year without conception."
+    },
+    {
+      "query_id": 653,
+      "doc_id": 573260,
+      "relevance_grade": 3,
+      "evidence_text": "Ở những nơi khác, khi bệnh nhân có chỉ số AMH quá thấp thì bác sĩ sẽ khuyên nên đi xin trứng. Tuy nhiên, tại BVĐK Tâm Anh, phác đồ mới kích thích nhẹ buồng trứng được áp dụng hiệu quả, mang đến cơ hội có con từ “trứng chính chủ” cho bệnh nhân có AMH thấp.",
+      "notes": "Directly addresses treatment options for low AMH while attempting conception with the patient's own oocytes."
+    },
+    {
+      "query_id": 918,
+      "doc_id": 125111,
+      "relevance_grade": 2,
+      "evidence_text": "Tuy nhiên, nếu ngực xuất hiện thêm những biểu hiện như dưới đây thì nên đến gặp bác sĩ để được thăm khám:\n- Chảy dịch đầu ti\n- Ngực có cảm giác đau, căng tức\n- Đầu ngực có hình dáng lạ thường\n- Tuyến vú xuất hiện các nốt u lạ",
+      "notes": "Supports examination when breast pain/tightness is present, though the article context is breastfeeding asymmetry."
+    },
+    {
+      "query_id": 1035,
+      "doc_id": 546970,
+      "relevance_grade": 2,
+      "evidence_text": "Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ cho biết, vaccine COVID-19 an toàn và hiệu quả trong thời kỳ mang thai.\nTheo khuyến cáo của Bộ Y tế, phụ nữ mang thai có thể được chỉ định tiêm chủng các loại vaccine COVID-19 được Bộ Y tế cấp phép là Astrazeneca, Modena, Pfizer BioNTech; chống chỉ định tiêm chủng đối với Sputnik V.",
+      "notes": "Supports the pregnancy-safety part of the query; it does not answer the male conception-timing subquestion."
+    }
+  ]
+}

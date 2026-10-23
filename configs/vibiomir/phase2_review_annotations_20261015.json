@@ -1,0 +1,252 @@
+{
+  "case-001": {
+    "A": ["complete", "good", "none", "useful", "The negated phrase and the full recommendation sentence remain intact."],
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "The target statement is intact, but the passage ends inside the following ingredient list."],
+    "C": ["complete", "acceptable", "none", "excessive", "The target is complete, but several neighboring skin-type sections reduce focus."]
+  },
+  "case-002": {
+    "A": ["complete", "good", "none", "none", "All three contraindicated food combinations and their explanations are intact."],
+    "B": ["complete", "good", "none", "none", "The whole short article is coherent."],
+    "C": ["complete", "good", "none", "none", "Same complete short article as B."]
+  },
+  "case-003": {
+    "A": ["incomplete", "poor", "major", "useful", "The passage starts at '963', splitting the value 5.963 and losing the start of the cohort statement."],
+    "B": ["mostly_complete", "poor", "minor", "useful", "Starts in the middle of a cardiovascular risk-factor list, although the negation and HPS design remain readable."],
+    "C": ["complete", "good", "none", "excessive", "Both study context and the negated subgroup condition are present; overlap is large."]
+  },
+  "case-004": {
+    "A": ["complete", "good", "none", "none", "Complete abstract body with the non-disclosure findings."],
+    "B": ["complete", "good", "none", "none", "Complete abstract body with the non-disclosure findings."],
+    "C": ["complete", "good", "none", "none", "Title and complete abstract body are retained."]
+  },
+  "case-005": {
+    "A": ["complete", "good", "none", "useful", "The timing restriction and contraindication transition are intact."],
+    "B": ["complete", "good", "none", "useful", "The vaccination timing condition is self-contained."],
+    "C": ["complete", "good", "none", "excessive", "The condition and detailed allergy precautions are complete but broadly overlapped."]
+  },
+  "case-006": {
+    "A": ["complete", "acceptable", "none", "useful", "The case history and causal warning are readable, though the next symptom list is outside."],
+    "B": ["complete", "good", "none", "useful", "Heading, case history, and clinical implication are retained."],
+    "C": ["complete", "acceptable", "none", "useful", "Broader symptom and case context is present; focus is weaker than B."]
+  },
+  "case-007": {
+    "A": ["complete", "good", "none", "useful", "The operative condition and standard shunt description are intact."],
+    "B": ["complete", "good", "none", "useful", "The abandoned procedures, standard method, and next heading are coherent."],
+    "C": ["complete", "good", "none", "useful", "Two related operative methods are preserved without sentence loss."]
+  },
+  "case-008": {
+    "A": ["complete", "good", "none", "none", "The failed treatment, findings, prescription, and response form a complete case segment."],
+    "B": ["complete", "good", "none", "useful", "Etiologic explanation and case prescription are both retained."],
+    "C": ["complete", "good", "none", "none", "The larger context remains coherent and ends at a complete prescription statement."]
+  },
+  "case-009": {
+    "A": ["complete", "good", "none", "none", "The 20-30 g dose and preparation are complete."],
+    "B": ["complete", "good", "none", "useful", "Multiple neighboring recipes are cleanly separated by labels."],
+    "C": ["complete", "acceptable", "none", "excessive", "The target recipe is intact, but the passage carries many unrelated remedies."]
+  },
+  "case-010": {
+    "A": ["complete", "good", "none", "none", "Dose, ingredients, schedule, and dental warning are intact."],
+    "B": ["complete", "good", "none", "useful", "The numbered indication and full recipe are retained."],
+    "C": ["complete", "acceptable", "none", "useful", "Several numbered remedies appear together but no target condition is lost."]
+  },
+  "case-011": {
+    "A": ["incomplete", "poor", "major", "none", "Source is a contaminated sequence of unrelated news teasers preceded by encoded noise; 1 mg is a recall headline, not a dosage instruction."],
+    "B": ["incomplete", "poor", "major", "none", "Unrelated teaser fragments are merged into one passage, so semantic evidence is not trustworthy."],
+    "C": ["incomplete", "poor", "major", "none", "Same contaminated teaser document as B; larger size does not restore a coherent source statement."]
+  },
+  "case-012": {
+    "A": ["mostly_complete", "acceptable", "minor", "none", "The 100 mg intervention is complete, but its monitored outcome is in the following passage."],
+    "B": ["complete", "good", "none", "none", "Intervention, placebo comparison, results, and conclusion are retained."],
+    "C": ["complete", "good", "none", "none", "Same complete abstract body as B."]
+  },
+  "case-013": {
+    "A": ["mostly_complete", "poor", "minor", "useful", "Starts at '12/mm3', splitting the leukocyte value 16.12/mm3; the AST and ALT results are intact."],
+    "B": ["complete", "good", "none", "useful", "Clinical examination and laboratory abnormalities are self-contained."],
+    "C": ["complete", "good", "none", "useful", "The broad case context and lab interpretation remain complete."]
+  },
+  "case-014": {
+    "A": ["complete", "good", "none", "useful", "The alcohol limit, sex-specific adjustment, and warning are retained."],
+    "B": ["complete", "good", "none", "useful", "Behavioral recommendations are coherent and complete."],
+    "C": ["complete", "acceptable", "none", "useful", "The target is complete but the passage includes a long surrounding advice list."]
+  },
+  "case-015": {
+    "A": ["mostly_complete", "acceptable", "minor", "none", "The 0.8 g/kg restriction is intact, but item 4 of the gout row is in the next passage."],
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "Same table-row split after item 3."],
+    "C": ["mostly_complete", "acceptable", "minor", "useful", "Additional preceding diet context is present, but the gout row still continues after the boundary."]
+  },
+  "case-016": {
+    "A": ["complete", "good", "none", "useful", "The prolactin result and clinical history are present; this is a lab value rather than a dosage."],
+    "B": ["complete", "poor", "none", "useful", "Target value is intact, but site navigation contaminates the latter half."],
+    "C": ["complete", "acceptable", "none", "none", "Question history and measurements are complete, followed by irrelevant navigation."]
+  },
+  "case-017": {
+    "A": ["complete", "good", "none", "useful", "The signal refers to staff who collect samples, not a patient lab result; the sentence itself is complete."],
+    "B": ["complete", "good", "none", "useful", "Vaccination context is complete, but this is a semantic-category mismatch."],
+    "C": ["complete", "acceptable", "none", "useful", "Broader policy context is coherent; the selected signal is not a lab finding."]
+  },
+  "case-018": {
+    "A": ["incomplete", "poor", "major", "useful", "The source is a dated list of truncated news teasers rather than a full clinical result."],
+    "B": ["incomplete", "poor", "major", "excessive", "Starts inside a domain name and preserves only teaser fragments."],
+    "C": ["incomplete", "poor", "major", "excessive", "The target teaser is isolated from its article and cannot serve as complete evidence."]
+  },
+  "case-019": {
+    "A": ["complete", "good", "none", "useful", "Turnaround time plus sensitivity and specificity figures are intact."],
+    "B": ["complete", "good", "none", "useful", "Specimen handling and performance metrics are self-contained."],
+    "C": ["complete", "acceptable", "none", "excessive", "Performance metrics are complete, but collection instructions add substantial unrelated context."]
+  },
+  "case-020": {
+    "A": ["complete", "good", "none", "none", "Study method and P value are complete."],
+    "B": ["complete", "good", "none", "none", "Title and complete abstract result are retained."],
+    "C": ["complete", "good", "none", "none", "Same complete short abstract as B."]
+  },
+  "case-021": {
+    "A": ["complete", "good", "none", "none", "Both stratification definitions and regression adjustment are intact."],
+    "B": ["complete", "good", "none", "none", "Same coherent methods section."],
+    "C": ["complete", "good", "none", "none", "Same coherent methods section."]
+  },
+  "case-022": {
+    "A": ["complete", "good", "none", "useful", "The glucose-control instruction and recurrence warning are complete."],
+    "B": ["complete", "good", "none", "useful", "Treatment effect and post-operative recommendations are linked."],
+    "C": ["complete", "acceptable", "none", "useful", "Full treatment course is coherent but broader than needed."]
+  },
+  "case-023": {
+    "A": ["incomplete", "poor", "major", "useful", "The passage is a sequence of truncated search-result abstracts marked 'view full text'."],
+    "B": ["incomplete", "poor", "major", "useful", "Multiple clipped summaries are concatenated and cannot support complete claims."],
+    "C": ["incomplete", "poor", "major", "excessive", "Larger chunk amplifies repeated truncated snippets rather than restoring context."]
+  },
+  "case-024": {
+    "A": ["complete", "good", "none", "useful", "CBC thresholds, counts, and complications remain together."],
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "The WBC result is intact, but the preceding hemoglobin ranges sit outside the passage."],
+    "C": ["complete", "good", "none", "useful", "Complication and laboratory sections are complete."]
+  },
+  "case-025": {
+    "A": ["complete", "good", "none", "none", "The no-case observation and vaccine program context are complete."],
+    "B": ["complete", "good", "none", "useful", "Disease counts and vaccination transition are coherent."],
+    "C": ["complete", "acceptable", "none", "excessive", "Complete policy context with substantial surrounding material."]
+  },
+  "case-026": {
+    "A": ["complete", "good", "none", "useful", "The cognitive-distortion explanation and recommendation are intact."],
+    "B": ["complete", "good", "none", "useful", "Example, mechanism, and recommendation are retained."],
+    "C": ["complete", "acceptable", "none", "useful", "Two adjacent cognitive distortions are included but remain coherent."]
+  },
+  "case-027": {
+    "A": ["complete", "good", "none", "useful", "The epidemic counts and conditional question are intact."],
+    "B": ["complete", "good", "none", "useful", "The trigger, counts, and causal question form a coherent unit."],
+    "C": ["mostly_complete", "poor", "minor", "excessive", "Starts at '272.256', splitting the preceding number 3.272.256, although the causal discussion is present."]
+  },
+  "case-028": {
+    "A": ["mostly_complete", "acceptable", "minor", "useful", "Begins in the middle of case 1 and contains case 2 without the article-level recommendation."],
+    "B": ["complete", "good", "none", "none", "Both cases and the recommendation for HIV testing are retained."],
+    "C": ["complete", "good", "none", "none", "Same complete abstract body as B."]
+  },
+  "case-029": {
+    "A": ["mostly_complete", "poor", "minor", "useful", "Starts at '9 to -24.7', cutting the confidence interval and its group label."],
+    "B": ["mostly_complete", "poor", "minor", "useful", "Core comparison is present, but the passage ends at '-7.' and splits a numeric result."],
+    "C": ["complete", "good", "none", "none", "Full results and comparison are retained without numeric boundary loss."]
+  },
+  "case-030": {
+    "A": ["mostly_complete", "acceptable", "minor", "useful", "Starts with a referential phrase whose symptom antecedent is in context_before."],
+    "B": ["complete", "acceptable", "none", "useful", "Symptoms are complete, but unrelated site navigation follows."],
+    "C": ["complete", "acceptable", "none", "none", "Full article body is retained, followed by navigation noise."]
+  },
+  "case-031": {
+    "A": ["incomplete", "poor", "major", "none", "This is a bibliography fragment, not a clinical treatment statement."],
+    "B": ["incomplete", "poor", "major", "useful", "Concatenated citations cannot serve as self-contained evidence."],
+    "C": ["incomplete", "poor", "major", "excessive", "A larger bibliography slice remains semantically unsuitable."]
+  },
+  "case-032": {
+    "A": ["complete", "good", "none", "useful", "Condition, risk claim, and recommended range are intact."],
+    "B": ["complete", "good", "none", "useful", "Red-meat and fish conditions are coherent."],
+    "C": ["complete", "good", "none", "useful", "Several related diet conditions are retained without sentence loss."]
+  },
+  "case-033": {
+    "A": ["complete", "good", "none", "useful", "The rhetorical question and claimed consequence remain together."],
+    "B": ["complete", "good", "none", "useful", "Preceding exposure statement supports the question."],
+    "C": ["complete", "acceptable", "none", "excessive", "The target is complete, but several additional claims broaden the passage considerably."]
+  },
+  "case-034": {
+    "A": ["mostly_complete", "acceptable", "minor", "useful", "Contains the full answer, but the patient's question is only in the previous overlapping passage."],
+    "B": ["complete", "good", "none", "none", "Question and answer are present together."],
+    "C": ["complete", "good", "none", "none", "Question and answer are present together."]
+  },
+  "case-035": {
+    "A": ["mostly_complete", "acceptable", "minor", "useful", "The question and initial eligibility statement are present, while the detailed family-risk signs continue afterward."],
+    "B": ["complete", "good", "none", "useful", "Question, eligibility signs, and testing recommendation are retained."],
+    "C": ["complete", "good", "none", "excessive", "Complete section with substantial overlapping follow-on material."]
+  },
+  "case-036": {
+    "A": ["incomplete", "poor", "major", "useful", "The question is an abstract title embedded in a conference table of contents with author names fused to titles."],
+    "B": ["incomplete", "poor", "major", "useful", "Conference titles are concatenated; no answer or study content is available."],
+    "C": ["incomplete", "poor", "major", "useful", "A larger table-of-contents slice does not restore semantic evidence."]
+  },
+  "case-037": {
+    "A": ["complete", "good", "none", "none", "Study question and summary answer are paired exactly."],
+    "B": ["complete", "good", "none", "none", "Study question and summary answer are paired exactly."],
+    "C": ["complete", "good", "none", "none", "Question, answer, rationale, and design are retained."]
+  },
+  "case-038": {
+    "A": ["mostly_complete", "acceptable", "minor", "none", "The question mark is rhetorical/grammatical rather than a Q&A structure; the mechanism continues next."],
+    "B": ["complete", "good", "none", "useful", "Mechanism and consequence are together, though this remains a category mismatch."],
+    "C": ["complete", "good", "none", "none", "Complete short article; not a true question-answer item."]
+  },
+  "case-039": {
+    "A": ["incomplete", "acceptable", "major", "useful", "Question 4 and options are present, but the confirmed diagnosis is in the following passage."],
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "Question 4 and its diagnostic confirmation are together, but later question 6 is cut."],
+    "C": ["incomplete", "acceptable", "major", "useful", "Question 4 and options are present; the answer/confirmation follows outside the chunk."]
+  },
+  "case-040": {
+    "A": ["incomplete", "poor", "major", "useful", "Selected questions are unrelated recommendation headlines with no answers."],
+    "B": ["incomplete", "poor", "major", "none", "Navigation and hospital listings dominate; no Q&A evidence exists."],
+    "C": ["incomplete", "poor", "major", "useful", "Same navigation-only content as B."]
+  },
+  "case-041": {
+    "A": ["complete", "good", "none", "useful", "The Alzheimer claim ends cleanly at the tested boundary."],
+    "B": ["complete", "good", "none", "useful", "The preceding claim and next kidney-stone section are both complete."],
+    "C": ["complete", "acceptable", "none", "excessive", "Several subsequent sections reduce focus despite complete boundaries."]
+  },
+  "case-042": {
+    "A": ["incomplete", "poor", "major", "useful", "A 22-token quote is isolated from both risk factors and the immediately following 5 mm treatment threshold."],
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "Risk-factor context is present, but the actionable 5 mm threshold starts in the next passage."],
+    "C": ["mostly_complete", "acceptable", "minor", "useful", "Same boundary and semantic limitation as B."]
+  },
+  "case-043": {
+    "A": ["complete", "good", "none", "useful", "Dose, intended effect, and hypertension contraindication are together."],
+    "B": ["complete", "good", "none", "useful", "Full remedy context and contraindication are retained."],
+    "C": ["complete", "acceptable", "none", "excessive", "Target is complete but many additional remedies dilute focus."]
+  },
+  "case-044": {
+    "A": ["complete", "good", "none", "none", "Complete short abstract body without the title."],
+    "B": ["complete", "good", "none", "none", "Title and complete abstract are retained."],
+    "C": ["complete", "good", "none", "none", "Same complete short document as B."]
+  },
+  "case-045": {
+    "A": ["incomplete", "acceptable", "minor", "useful", "Ends after announcing the five B-vitamin trials; dose details and effects continue next."],
+    "B": ["mostly_complete", "good", "minor", "useful", "Includes trial composition and doses, but not the effect conclusion."],
+    "C": ["complete", "good", "none", "excessive", "Methods, trial composition, and principal effect conclusion are together; overlap is large."]
+  },
+  "case-046": {
+    "A": ["mostly_complete", "good", "minor", "useful", "Non-varying risk factors are complete; pregnancy-varying associations continue next."],
+    "B": ["complete", "good", "none", "none", "The full results paragraph is retained."],
+    "C": ["complete", "good", "none", "none", "Same full results paragraph as B."]
+  },
+  "case-047": {
+    "A": ["incomplete", "acceptable", "minor", "useful", "Ends after introducing the bleeding outcome, before the result and heterogeneity explanation."],
+    "B": ["mostly_complete", "good", "minor", "none", "Contains the qualitative comparison but omits later quantitative estimates."],
+    "C": ["complete", "good", "none", "excessive", "Qualitative and quantitative bleeding results are retained with substantial overlap."]
+  },
+  "case-048": {
+    "A": ["complete", "good", "none", "none", "The full results paragraph is self-contained."],
+    "B": ["complete", "good", "none", "none", "Same full results paragraph as A."],
+    "C": ["complete", "good", "none", "none", "Results and conclusion are retained together."]
+  },
+  "case-049": {
+    "A": ["complete", "good", "none", "none", "Outcome definitions and primary endpoint are complete."],
+    "B": ["complete", "good", "none", "none", "Same complete outcome section as A."],
+    "C": ["complete", "good", "none", "none", "Intervention and outcome definitions are retained together."]
+  },
+  "case-050": {
+    "A": ["complete", "good", "none", "none", "Threshold, diagnostic work-up, and treatment statement form a complete section."],
+    "B": ["complete", "good", "none", "none", "Complete short article with definition and diagnostic context."],
+    "C": ["complete", "good", "none", "none", "Same complete short article as B."]
+  }
+}

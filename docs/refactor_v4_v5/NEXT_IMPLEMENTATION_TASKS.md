@@ -1,0 +1,9 @@
+# Remaining work before submission ZIP
+
+1. Install the declared Parquet and model dependencies in a usable environment. Verify the current official Hugging Face revision again; the pin here is the local audit's 2026-10-12 revision, not a live recheck in this session.
+2. Run the new bounded official Parquet preparation in a Python 3.11 environment with `pyarrow`, then inspect ID/URL match counts and representative extracted text. The code now checks both official and historical mappings, but this session could test it only with synthetic Parquet iterators. Mark the 240,000 absent PubMed URLs as uncrawled. Preserve all old corpus versions.
+3. Improve extraction quality with representative VI/EN/ZH fixtures, source lineage and derived metadata provenance. Add bounded streaming/checkpointed preparation; existing HTML and extracted files remain read only.
+4. Replace pilot in-memory BM25 with a disk-backed full-body document and passage index, tied to the corpus revision/hash. Build BGE-M3 dense index and BGE-reranker-v2-m3 only with approved compute resources and a new V4 namespace.
+5. Add query intent/constraints as soft ranking signals, multilingual query expansion behind tested V5 gates, within-document passage lookup, evidence selection limits and source verification at output time.
+6. Run a representative official-corpus multilingual pilot, including Vietnamese queries retrieving Chinese documents, late evidence, negation and drug dosage cases. Run existing regression suite and compare to historical scored baselines without claiming F2 gains prematurely.
+7. Implement official JSON ZIP writer and strict validator using the pinned official query/corpus Parquet. Produce a ZIP only after full query coverage, valid document IDs and exact-source evidence are established. Do not submit automatically.

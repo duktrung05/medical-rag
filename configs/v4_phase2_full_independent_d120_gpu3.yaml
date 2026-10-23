@@ -1,0 +1,45 @@
+{
+  "corpus_version": "official-71be0e1239a19dfd7a717e2bc13e3bec21bd0334",
+  "registry": "configs/v4_corpus_registry.json",
+  "index_namespace": "outputs/v4/task4/full_index_gpu3_20261019",
+  "lexical": {
+    "document": "bm25_full_body",
+    "passage": "bm25_vi_en_zh_bigrams"
+  },
+  "dense": {
+    "model": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "enabled": true,
+    "document_max_length": 512,
+    "query_max_length": 512,
+    "device": "cuda:0"
+  },
+  "reranker": {
+    "model": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "enabled": true,
+    "max_length": 512,
+    "device": "cuda:0"
+  },
+  "fusion": "rrf",
+  "retrieval": {
+    "document_candidate_limit": 400,
+    "passage_candidate_limit": 200,
+    "fused_candidate_limit": 400,
+    "rrf_k": 60,
+    "rerank_candidate_limit": 200,
+    "rerank_passages_per_document": 3,
+    "rerank_allocation": "parent_first"
+  },
+  "selection": {
+    "max_docs": 120,
+    "max_chunks": 60,
+    "chunks_per_doc": 1,
+    "document_selection": "independent"
+  },
+  "batch": {
+    "result_limit": 200,
+    "query_count": 1200,
+    "zip_max_bytes": 50000000
+  }
+}

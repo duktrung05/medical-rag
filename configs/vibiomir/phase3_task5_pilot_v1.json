@@ -1,0 +1,25 @@
+{
+  "format": "vibiomir-phase3-task5-pilot-config-v1",
+  "base_task4_part": "part-00000",
+  "supplemental_language_sampling": {
+    "vi": {
+      "target_passages": 1000,
+      "parts": ["part-00127", "part-00603", "part-00694", "part-00138"]
+    },
+    "zh": {
+      "target_passages": 1000,
+      "parts": ["part-00880", "part-00877", "part-00839", "part-00838"]
+    }
+  },
+  "selection_seed": "vibiomir-phase3-task5-pilot-v1",
+  "bands": 32,
+  "rows_per_band": 2,
+  "maximum_bucket_size": 100,
+  "maximum_candidates": 500000,
+  "minimum_shared_shingles": 5,
+  "jaccard_threshold": 0.45,
+  "containment_threshold": 0.75,
+  "containment_jaccard_floor": 0.2,
+  "batch_rows": 4096,
+  "auto_merge_allowed": false
+}

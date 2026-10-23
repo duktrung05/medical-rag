@@ -1,0 +1,17 @@
+{
+  "versions": {
+    "legacy-local-20261006": {
+      "revision": "local-baseline-115f78704769b4ca1389445a4ae65794a80889d7",
+      "path": "../data/raw/vibiomir/links_corpus.parquet",
+      "sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+      "rows": 4394718
+    },
+    "official-71be0e1239a19dfd7a717e2bc13e3bec21bd0334": {
+      "revision": "71be0e1239a19dfd7a717e2bc13e3bec21bd0334",
+      "path": "../outputs/vibiomir_official_verify_20261012/links_corpus_vi_en_zh.parquet",
+      "sha256": "87e44a792d7a99fb0fde5dff7f09f1a38a0a1fdf02ddd1ac93a005736e00b0a7",
+      "rows": 1220598
+    }
+  }
+}
+

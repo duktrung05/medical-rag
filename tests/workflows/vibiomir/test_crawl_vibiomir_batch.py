@@ -183,6 +183,24 @@ def test_retry_after_and_unknown_binary(tmp_path):
     assert _results(tmp_path)[0]["raw_file"] == "raw/unknown/4.bin"
 
 
+def test_retry_after_is_bounded_for_batch_workers(tmp_path):
+    sample = _sample(tmp_path, [(5, "https://a.test/limited")])
+    sleeps = []
+    calls = []
+
+    def handler(request):
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        calls.append(request.url.path)
+        return httpx.Response(429, headers={"retry-after": "86400"})
+
+    result = _run(tmp_path, sample, handler, sleep=sleeps.append)
+    assert result["status_counts"] == {"rate_limited": 1}
+    assert calls == ["/limited"]
+    assert sleeps == []
+    assert _results(tmp_path)[0]["error_type"] == "retry_after_deferred"
+
+
 def test_no_live_socket_in_mock_test(tmp_path, monkeypatch):
     monkeypatch.setattr(socket.socket, "connect", lambda *_: (_ for _ in ()).throw(
         AssertionError("Live network attempted")))
@@ -198,6 +216,40 @@ def test_interleaving_preserves_each_domain_order():
                [(1, "a"), (2, "a"), (3, "a"), (4, "b"), (5, "b"), (6, "c")]]
     ordered = interleave_by_domain(entries)
     assert [r["id"] for r in ordered] == [1, 4, 6, 2, 5, 3]
+
+
+def test_stops_after_repeated_access_blocks_and_keeps_checkpoint(tmp_path):
+    sample = _sample(tmp_path, [(i, f"https://a.test/page{i}") for i in range(1, 11)])
+    calls = []
+    def handler(request):
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        calls.append(request.url.path)
+        return httpx.Response(428)
+    summary = _run(tmp_path, sample, handler, concurrency=1,
+                   max_consecutive_blocked=3)
+    assert summary["processed_urls"] == 3
+    assert len(calls) == 3
+    assert "3 consecutive access blocks" in summary["stopped_reason"]
+
+
+def test_rate_limit_counts_toward_access_block_circuit(tmp_path):
+    sample = _sample(tmp_path, [(i, f"https://a.test/page{i}") for i in range(1, 8)])
+    calls = []
+
+    def handler(request):
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        calls.append(request.url.path)
+        return httpx.Response(429, headers={"retry-after": "0"})
+
+    summary = _run(tmp_path, sample, handler, concurrency=1,
+                   max_consecutive_blocked=3)
+    assert summary["processed_urls"] == 3
+    assert len(calls) == 6  # Each 429 is retried once before being checkpointed.
+    assert summary["status_counts"] == {"rate_limited": 3}
+    assert "3 consecutive access blocks" in summary["stopped_reason"]
+    assert len(_results(tmp_path)) == 3
 
 
 def test_resume_cleans_orphan_raw_without_fetching(tmp_path):

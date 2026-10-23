@@ -1,0 +1,30 @@
+{
+  "format": "vibiomir-phase3-task5-labels-v1",
+  "review_method": "manual side-by-side passage text inspection plus exact source-offset verification for intentional chunk overlap",
+  "reviewed_at": "2026-10-15",
+  "labels": [
+    {"pair_id": "pop_95a5f3264750a12bcd5d367312b13fe1c13688d785602c75afa4cdb9d8348338", "label": "true_overlap", "expected_overlap_type": "CROSS_DOCUMENT_OVERLAP", "notes": "Same hyperprolactinaemia abstract with minor typography differences."},
+    {"pair_id": "pop_e9151cefad7ff3ff240d71b733b4f8815dc9539d597e2556e606dfcba568e20f", "label": "true_overlap", "expected_overlap_type": "CROSS_DOCUMENT_OVERLAP", "notes": "Same systematic-review abstract wording across two documents."},
+
+    {"pair_id": "pop_732646bf3d869604b5c61cc4555b1595c88b04cb1ea900c4a987cb26e3eea6a8", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Repeated HCV nephritis content within one source document."},
+    {"pair_id": "pop_166e1a589beac60cff3b4f359215e7986a8ce62fc0be904cebdfd332e6a29517", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "One passage contains the dental-anomaly text of the other."},
+    {"pair_id": "pop_baea746468c49585748f9f1c0d6093196c0de3e1e1a1df69b720eb1ff210c0cc", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Repeated intellectual-disability grading content."},
+    {"pair_id": "pop_bce9a5d17af5739f8735c53b61596e2da22e0d6a208113f8fd28f0b8abeb9ba3", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "One passage contains the placental-abruption diagnostic section of the other."},
+    {"pair_id": "pop_ed17cd5f2695f2c590ffec9ef89f6e8ba155b813406145e7e51627122be6d1f4", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Short congenital-anomaly passage is contained in the longer passage."},
+    {"pair_id": "pop_e8be2dd47866dc779877a75ae170c20a70cd44b4b9fb0c5f5b5dfaa1d5c17df5", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Repeated liver-test and fibrosis section."},
+    {"pair_id": "pop_c3e431c41ca6f30cf400d3050bc0d19e95b0f5f15972ad596f898b35ffcb0c51", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Short lupus transmission explanation is contained in the longer passage."},
+    {"pair_id": "pop_433d1c0b18f373e68e84162baaea681bbbb824f23f3151361e1578a13d3f1e33", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Repeated treatment text with additional prevention context."},
+    {"pair_id": "pop_0dc9b71d38fefa6063821b4b59bfcb26e67cd0f9770fa798bf78a7b18734dd4f", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Corpus-callosum description is reused inside the longer passage."},
+    {"pair_id": "pop_3661d8c7fe802cc110acdeec5ddc3ab155374207e39209c2b464db3176fdeada", "label": "true_overlap", "expected_overlap_type": "PARTIAL_CONTENT_REUSE", "notes": "Repeated skin-care instructions with numbering changes."},
+
+    {"pair_id": "pop_000347760e4791473db3b860b218b8d4c0a20823ab708efd9874563266a49115", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "English adjacent passages share an exact source span."},
+    {"pair_id": "pop_0031a45d5a8a738e0d44dacd80832fd1fc47c76ceff09dd351e028a52f2b0af1", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "English adjacent passages share an exact source span."},
+    {"pair_id": "pop_00f200a2e29633abecc19c32858631a8b57f550262079cf098ced9f2d74e1a21", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "English adjacent passages share an exact source span."},
+    {"pair_id": "pop_003fb2393487a65fa633d1c86f13cd00586fcf72cf3b6f83f245572994b62633", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "Vietnamese adjacent passages share an exact source span."},
+    {"pair_id": "pop_01783382549903853d7c87bb2f373a36843fe8703ea6a6e3e6da23513c2405d1", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "Vietnamese adjacent passages share an exact source span."},
+    {"pair_id": "pop_01bfe7542f8762bccc0fb44df75b1de2d928519347cfd357df4ae337e7cf1b93", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "Vietnamese adjacent passages share an exact source span."},
+    {"pair_id": "pop_003855ec23a99510abe72f49b092e8fc995e589da4ea3b316a3c012cf6379dd8", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "Chinese adjacent passages share an exact source span."},
+    {"pair_id": "pop_007d120778f6af48d257103bb8c4f55fd407ac6e55b7c290532df664fe06cd16", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "Chinese adjacent passages share an exact source span."},
+    {"pair_id": "pop_00c0765cedf55362711a510592245ddfe2b58231f9f1047783c90a0eac79df18", "label": "true_overlap", "expected_overlap_type": "INTENTIONAL_CHUNK_OVERLAP", "notes": "Chinese adjacent passages share an exact source span."}
+  ]
+}

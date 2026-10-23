@@ -1,0 +1,27 @@
+[
+  {
+    "original": "outputs/audit_vibiomir_precision_20261007.py",
+    "archived": "archive/runtime_output_scripts_20261007/audit_vibiomir_precision_20261007.py",
+    "sha256": "9c60a2da866441fd342dee974b9aeb65e9d944269261ed5d320e1c754dffa618"
+  },
+  {
+    "original": "outputs/build_vibiomir_probes_20261007.py",
+    "archived": "archive/runtime_output_scripts_20261007/build_vibiomir_probes_20261007.py",
+    "sha256": "8726d143cb1665ed1c4180aa9d308ff018335e403abce408a3967dd57a8b11a9"
+  },
+  {
+    "original": "outputs/final_crawl_audit.py",
+    "archived": "archive/runtime_output_scripts_20261007/final_crawl_audit.py",
+    "sha256": "48fb675228a1efd3e86dd99afac3aae2084a713a3f9452fa3d25e8aba5aca330"
+  },
+  {
+    "original": "outputs/finalize_vibiomir_after_jobs.sh",
+    "archived": "archive/runtime_output_scripts_20261007/finalize_vibiomir_after_jobs.sh",
+    "sha256": "1e7383ab0426085cbb563ba730853ce7fcf069b854b0f08b89c91c1cf09a8947"
+  },
+  {
+    "original": "outputs/run_retrieval_crawl_20261007.sh",
+    "archived": "archive/runtime_output_scripts_20261007/run_retrieval_crawl_20261007.sh",
+    "sha256": "52e5ca5eb3d4d46483c18dff572ab87c7a6e587f6bb6cdd1ef1acb0f8a659f93"
+  }
+]

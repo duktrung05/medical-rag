@@ -1,0 +1,402 @@
+{
+  "base_head": "115f78704769b4ca1389445a4ae65794a80889d7",
+  "branch": "housekeeping/working-tree-20261023",
+  "backup_directory": "/data_hdd_16t/trungnguyen12/medical-rag/working-tree-backups/20261023_101105",
+  "inventory_path": "/data_hdd_16t/trungnguyen12/medical-rag/working-tree-backups/20261023_101105/outputs-inventory.jsonl.gz",
+  "inventory_sha256": "62d769373c9b1432e791877f06186f94bc09c1e002f2544f780f5625c791769c",
+  "runtime_file_count": 62380,
+  "runtime_logical_bytes": 113847431601,
+  "tracked_output_paths_before": 243,
+  "missing_tracked_outputs_before": [
+    "outputs/baseline_bm25_reproduced/dev_repeat/manifest.json",
+    "outputs/baseline_bm25_reproduced/dev_repeat/metrics.json",
+    "outputs/baseline_bm25_reproduced/dev_repeat/predictions_k1.jsonl",
+    "outputs/baseline_bm25_reproduced/dev_repeat/predictions_k10.jsonl",
+    "outputs/baseline_bm25_reproduced/dev_repeat/predictions_k100.jsonl",
+    "outputs/baseline_bm25_reproduced/dev_repeat/predictions_k3.jsonl",
+    "outputs/baseline_bm25_reproduced/dev_repeat/predictions_k5.jsonl",
+    "outputs/baseline_bm25_reproduced/dev_repeat/predictions_k50.jsonl",
+    "outputs/baseline_bm25_reproduced/dev_repeat/rankings.jsonl"
+  ],
+  "runtime_files_with_sha256": 338,
+  "source_files_with_sha256": 463,
+  "runtime_top_level": {
+    "audit_vibiomir_precision_20261007.py": [
+      1,
+      13839
+    ],
+    "baseline_bm25_reproduced": [
+      10,
+      48813273
+    ],
+    "baseline_reference": [
+      18,
+      87574318
+    ],
+    "build_vibiomir_probes_20261007.py": [
+      1,
+      9150
+    ],
+    "cleanup_review": [
+      1,
+      7357
+    ],
+    "crawl_audit_20261006.json": [
+      1,
+      11727
+    ],
+    "crawl_failure_recovery": [
+      52,
+      489798228
+    ],
+    "crawl_final_audit_20261006.json": [
+      1,
+      6107
+    ],
+    "crawl_final_audit_20261006.log": [
+      1,
+      6107
+    ],
+    "crawl_peer_audit_20261006.json": [
+      1,
+      1249
+    ],
+    "crawl_retry_easy_20261006.log": [
+      1,
+      2165
+    ],
+    "crawl_retry_easy_20261006.pid": [
+      1,
+      8
+    ],
+    "dense_fuse_crawl_20261007.lock": [
+      1,
+      0
+    ],
+    "dense_fuse_crawl_20261007.log": [
+      1,
+      2115329
+    ],
+    "dense_fuse_crawl_20261007.pid": [
+      1,
+      8
+    ],
+    "dense_fuse_crawl_20261007_watch.log": [
+      1,
+      53
+    ],
+    "error_analysis": [
+      29,
+      3877148
+    ],
+    "evidence": [
+      90,
+      454604037
+    ],
+    "final_crawl_audit.py": [
+      1,
+      5134
+    ],
+    "finalize_vibiomir_after_jobs.log": [
+      1,
+      26627
+    ],
+    "finalize_vibiomir_after_jobs.pid": [
+      1,
+      8
+    ],
+    "finalize_vibiomir_after_jobs.sh": [
+      1,
+      2246
+    ],
+    "fusion_ablation": [
+      14,
+      41695
+    ],
+    "hf_data_inventory_20261007.json": [
+      1,
+      346455
+    ],
+    "hf_med_rag_20261007": [
+      5,
+      420817
+    ],
+    "hf_resume_crawl_20261007": [
+      8,
+      10957
+    ],
+    "hf_snapshot_audit": [
+      7,
+      405623
+    ],
+    "medical_medquad_bm25": [
+      2,
+      1070478
+    ],
+    "medical_medquad_hybrid_smoke": [
+      11,
+      1251117
+    ],
+    "phase1_evidence_selector_optimization": [
+      20,
+      23578576
+    ],
+    "precision_review_20261007": [
+      1,
+      29322
+    ],
+    "presentation_demo": [
+      2,
+      406383
+    ],
+    "pubmed_240k_plan_2gpu_20261012": [
+      22,
+      2832727
+    ],
+    "pubmed_runtime_deps_20261012": [
+      29508,
+      5673799649
+    ],
+    "retrieval_error_analysis_20261008": [
+      25,
+      641626
+    ],
+    "retrieval_extract_20261007.log": [
+      1,
+      3448
+    ],
+    "retrieval_extract_20261007.pid": [
+      1,
+      7
+    ],
+    "retrieval_extract_20261007.workers24.log": [
+      1,
+      200
+    ],
+    "retrieval_pipeline_crawl_20261007.log": [
+      1,
+      537336
+    ],
+    "retrieval_pipeline_crawl_20261007.pid": [
+      1,
+      7
+    ],
+    "retrieval_pipeline_crawl_20261007.workers24.log": [
+      1,
+      695
+    ],
+    "root_cause_causal_20261008": [
+      79,
+      305645983
+    ],
+    "run_dense_fuse_crawl_20261007_limited.sh": [
+      1,
+      2903
+    ],
+    "run_retrieval_crawl_20261007.sh": [
+      1,
+      3127
+    ],
+    "scored_feedback_recheck_20261009": [
+      45,
+      128781791
+    ],
+    "selection_calibration": [
+      14,
+      1932678
+    ],
+    "submissions": [
+      54,
+      1079942906
+    ],
+    "taxonomy_pilot_v1": [
+      3,
+      81721
+    ],
+    "v4": [
+      831,
+      52208488159
+    ],
+    "vibiomir_icd10_reranking_final_20261016": [
+      7,
+      360345
+    ],
+    "vibiomir_icd10_retrieval_experiment_20261015": [
+      6,
+      433286
+    ],
+    "vibiomir_official_verify_20261012": [
+      17,
+      64810608
+    ],
+    "vibiomir_phase0_20261014": [
+      59,
+      39685938845
+    ],
+    "vibiomir_phase1_20261014_pilot_v1": [
+      4,
+      3673
+    ],
+    "vibiomir_phase1_20261014_pilot_v2": [
+      924,
+      660724
+    ],
+    "vibiomir_phase1_20261014_pilot_v3": [
+      924,
+      660509
+    ],
+    "vibiomir_phase1_20261014_pilot_v4": [
+      1846,
+      48479680
+    ],
+    "vibiomir_phase1_full_20261014_v1": [
+      4613,
+      2698195068
+    ],
+    "vibiomir_phase1_quality_20261014_v1": [
+      4,
+      971941
+    ],
+    "vibiomir_phase1_quality_20261014_v2": [
+      4,
+      1752283
+    ],
+    "vibiomir_phase1_quality_20261014_v2_1": [
+      4,
+      1749860
+    ],
+    "vibiomir_phase1_quality_20261014_v3": [
+      4,
+      1753392
+    ],
+    "vibiomir_phase1_quality_20261014_v4": [
+      6,
+      1919362
+    ],
+    "vibiomir_phase2_20261015_pilot_v1": [
+      18,
+      1160095
+    ],
+    "vibiomir_phase2_20261015_pilot_v2": [
+      12,
+      385567
+    ],
+    "vibiomir_phase2_20261015_pilot_v2_1": [
+      25,
+      12480220
+    ],
+    "vibiomir_phase2_20261015_retrieval_v2": [
+      19,
+      28111516
+    ],
+    "vibiomir_phase2_full_v2": [
+      4620,
+      3173048825
+    ],
+    "vibiomir_phase2_retrieval_benchmark_20261015": [
+      2,
+      79306
+    ],
+    "vibiomir_phase3_20261015_task1": [
+      1,
+      9976
+    ],
+    "vibiomir_phase3_20261015_task2_dry_run": [
+      4,
+      940804
+    ],
+    "vibiomir_phase3_20261015_task2_dry_run_v2": [
+      6,
+      942165
+    ],
+    "vibiomir_phase3_20261015_task2_full_v1": [
+      6,
+      214309456
+    ],
+    "vibiomir_phase3_20261015_task3_dry_run_v1": [
+      6,
+      11312
+    ],
+    "vibiomir_phase3_20261015_task3_full_v1": [
+      3,
+      3177176288
+    ],
+    "vibiomir_phase3_20261015_task4_dry_run_v1": [
+      6,
+      1519351
+    ],
+    "vibiomir_phase3_20261015_task4_dry_run_v2": [
+      6,
+      1519357
+    ],
+    "vibiomir_phase3_20261015_task5_pilot_v1": [
+      7,
+      18193082
+    ],
+    "vibiomir_phase3_20261015_task5_pilot_v2": [
+      7,
+      18184697
+    ],
+    "vibiomir_phase3_20261015_task5_pilot_v3": [
+      7,
+      18164200
+    ],
+    "vibiomir_phase3_20261015_task5_pilot_v4": [
+      7,
+      18155052
+    ],
+    "vibiomir_phase3_20261015_task5_pilot_v5": [
+      7,
+      18154350
+    ],
+    "vibiomir_phase3_20261015_task5_pilot_v6": [
+      7,
+      18153867
+    ],
+    "vibiomir_phase3_20261015_task6_pilot_v1": [
+      6,
+      17913
+    ],
+    "vibiomir_phase3_scalability_stress_20261015_v1": [
+      4,
+      13549914
+    ],
+    "vibiomir_retrieval_improvement_20261016": [
+      3,
+      74246
+    ],
+    "vibiomir_step1_20261013": [
+      13,
+      27018289
+    ],
+    "vibiomir_step2_20261013": [
+      15218,
+      3900375567
+    ],
+    "vibiomir_step2_runtime_deps_20261013": [
+      3022,
+      60952460
+    ],
+    "vimed_bm25": [
+      2,
+      12081765
+    ],
+    "vimed_dense_build": [
+      3,
+      3295
+    ],
+    "vimed_validation": [
+      22,
+      87784779
+    ],
+    "vimed_validation_reports": [
+      12,
+      52809
+    ],
+    "watch_dense_fuse_crawl_20261007.sh": [
+      1,
+      998
+    ]
+  },
+  "hash_scope": "Source/config/tests/resources and selected runtime provenance are SHA-256 hashed. Full outputs inventory records path/size/mtime only; this is not a full artifact backup or proof of historical producer revision."
+}

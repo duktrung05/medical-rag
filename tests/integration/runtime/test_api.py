@@ -1,4 +1,4 @@
-"""HTTP contract and startup checks for the optional API."""
+"""The default HTTP import must route to V4 and fail closed without a corpus."""
 
 import pytest
 
@@ -9,10 +9,8 @@ from fastapi.testclient import TestClient
 from src.api import create_app
 
 
-def test_search_api():
-    with TestClient(create_app("configs/demo.yaml")) as client:
-        assert client.get("/health").json() == {"status": "ok", "backend": "demo"}
-        response = client.post("/search", json={"id": "q1", "query": "y khoa"})
-        assert response.status_code == 200
-        assert set(response.json()) == {"id", "relevant_docs", "relevant_chunks"}
-        assert client.post("/search", json={"id": "q2", "query": "  "}).status_code == 422
+def test_default_api_requires_verified_v4_snapshot(monkeypatch):
+    monkeypatch.delenv("MEDRAG_PREPARED", raising=False)
+    with TestClient(create_app()) as client:
+        assert client.get("/health").status_code == 503
+        assert client.post("/search", json={"id": 1, "query": "y khoa"}).status_code == 503

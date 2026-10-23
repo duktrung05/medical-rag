@@ -1,0 +1,72 @@
+{
+  "accepted_scope": "Task 2-6 bounded pilots plus scalability-focused synthetic regression",
+  "checks": {
+    "all_pilot_validations_pass": true,
+    "focused_tests_pass": true,
+    "scalability_tests_present": true,
+    "task5_auto_merge_disabled": true,
+    "task5_labeled_false_positive_rate_zero": true,
+    "task6_full_corpus_not_started": true
+  },
+  "config_hashes": {
+    "task5_pilot": "cabccf6aa8580fa462955fd9d956153203b2d93a8326ab9b6a58f317843649cc"
+  },
+  "format": "vibiomir-phase3-pilot-acceptance-v1",
+  "input_fingerprints": {
+    "phase1_release_manifest": "483d7dd4e606ee1f6ed011e66d62116c97fb2db7bf6b75027e89b7be58198bae",
+    "phase2_release_manifest": "e1ecd3302dde6b705e2368daaf6c864a18a2831c08acfdbde8cac3c211e141f8",
+    "phase3_task1_audit": "9bc2a9575a4171bd1cc687bd883fbac82a8beaa104aff08800aee95cd7ea791a"
+  },
+  "limitations": [
+    "Acceptance does not establish exhaustive MinHash/LSH candidate recall.",
+    "Hot buckets filtered by the full runner must be reported as uncovered candidate space.",
+    "Near-document and passage-overlap relations remain review-only and never auto-merge."
+  ],
+  "module_versions": {
+    "canonical_selection": "vibiomir-phase3-canonical-selection-v1",
+    "disk_lsh": "vibiomir-phase3-disk-lsh-v1",
+    "exact_document": "vibiomir-phase3-exact-document-v1",
+    "near_document": "vibiomir-phase3-near-document-v1",
+    "passage_content": "vibiomir-phase3-passage-content-v1",
+    "passage_overlap": "vibiomir-phase3-passage-overlap-v1",
+    "shingling": "vibiomir-phase3-language-shingling-v1"
+  },
+  "phase": "phase3_pilot",
+  "pilot_artifact_refs": {
+    "task2": {
+      "root": "outputs/vibiomir_phase3_20261015_task2_dry_run_v2",
+      "validation": "validation/task2_exact_document_validation.json",
+      "validation_sha256": "fa96f210404a5099ff97267faec7a8f9859f80db8ab79c2df032207505439317"
+    },
+    "task3": {
+      "root": "outputs/vibiomir_phase3_20261015_task3_dry_run_v1",
+      "validation": "validation/task3_near_document_validation.json",
+      "validation_sha256": "8652c76081d0d91b7d3514e651aeb91626651948e9e5d9b47dde53de73285912"
+    },
+    "task4": {
+      "root": "outputs/vibiomir_phase3_20261015_task4_dry_run_v2",
+      "validation": "validation/task4_passage_content_validation.json",
+      "validation_sha256": "05737c5ec36778a8026cfb21490aaf89864cb304808d8c40092435a7b19b07eb"
+    },
+    "task5": {
+      "root": "outputs/vibiomir_phase3_20261015_task5_pilot_v6",
+      "validation": "validation/overlap_validation_report.json",
+      "validation_sha256": "1494a5cd507c8bad86fdbc89651fa8179636e52acf56334db5ffc350518942a3"
+    },
+    "task6": {
+      "root": "outputs/vibiomir_phase3_20261015_task6_pilot_v1",
+      "validation": "validation/task6_canonical_validation.json",
+      "validation_sha256": "b99afc255ba55da8ea23eb14d98ec533a0129bb5ac35d47c3e245915a4ed9416"
+    }
+  },
+  "status": "accepted",
+  "test_results": {
+    "command": ".venv-phase1/bin/python -m pytest -q tests/workflows/vibiomir/test_phase3_disk_lsh.py tests/workflows/vibiomir/test_phase3_exact_document_groups.py tests/workflows/vibiomir/test_phase3_near_document_pairs.py tests/workflows/vibiomir/test_phase3_passage_content_groups.py tests/workflows/vibiomir/test_phase3_passage_overlap_pairs.py tests/workflows/vibiomir/test_phase3_canonical_content.py",
+    "elapsed_seconds": 1.52,
+    "failed": 0,
+    "passed": 52,
+    "scalability_tests": 13,
+    "status": "pass",
+    "stress_result": "outputs/vibiomir_phase3_scalability_stress_20261015_v1/stress_result.json"
+  }
+}

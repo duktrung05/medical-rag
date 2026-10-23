@@ -1,0 +1,46 @@
+name: medical-rag
+services:
+  ui:
+    platform: linux/amd64
+    image: medical-rag:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${UI_PORT:-8001}:8001"
+    environment:
+      HF_HOME: /app/.cache/huggingface
+      HF_HUB_OFFLINE: "${HF_HUB_OFFLINE:-1}"
+      HF_HUB_DISABLE_PROGRESS_BARS: "1"
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./artifacts
+        target: /app/artifacts
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./outputs
+        target: /app/outputs
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./.cache/huggingface
+        target: /app/.cache/huggingface
+        bind:
+          create_host_path: false
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

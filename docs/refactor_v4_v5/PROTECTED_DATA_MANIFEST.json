@@ -1,0 +1,51 @@
+{
+  "baseline_commit": "115f78704769b4ca1389445a4ae65794a80889d7",
+  "branch": "master",
+  "scan_date": "2026-10-12",
+  "policy": "All remaining ViBioMIR data is protected. Nine exact duplicate ZIP copies were deleted after path-specific user approval; see CLEANUP_EXECUTION.json. No complete external backup is inferred.",
+  "protected_roots": [
+    {
+      "path": "data/vibiomir/",
+      "files": 3548836,
+      "size_estimate": "37 GB top-level plus raw HTML in crawl; total data/ 117 GB",
+      "contains": "raw HTML, extracted Parquet, indexes, embeddings, manifests, checkpoints"
+    },
+    {
+      "path": "data/raw/vibiomir/",
+      "contains": "legacy URL corpus and queries"
+    },
+    {
+      "path": "outputs/evidence/",
+      "contains": "rankings, submissions, scoring feedback, experimental artifacts"
+    },
+    {
+      "path": "outputs/vibiomir_official_verify_20261012/",
+      "contains": "pinned official corpus, ID-URL comparison and verification"
+    },
+    {
+      "path": "outputs/",
+      "contains": "other ViBioMIR artifacts may occur anywhere; treat unknown as protected pending provenance audit"
+    },
+    {
+      "path": "artifacts/",
+      "contains": "index/cache paths; inspect before any mutation"
+    }
+  ],
+  "raw_html_files": 3547708,
+  "verified_sha256": {
+    "data/raw/vibiomir/links_corpus.parquet": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+    "data/raw/vibiomir/query.parquet": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+    "outputs/vibiomir_official_verify_20261012/links_corpus_vi_en_zh.parquet": "87e44a792d7a99fb0fde5dff7f09f1a38a0a1fdf02ddd1ac93a005736e00b0a7",
+    "outputs/vibiomir_official_verify_20261012/query.parquet": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08"
+  },
+  "official_revision": "71be0e1239a19dfd7a717e2bc13e3bec21bd0334",
+  "verification_source": "outputs/vibiomir_official_verify_20261012/verification.json",
+  "unchecked_large_file_hashes": "Existing chunk/index/cache files were not rehashed; source files left untouched.",
+  "external_locations": [
+    "../.cache-huggingface-medical-rag",
+    "../.cache-evidence-hf",
+    "../smoke_test/vibiomir_* (submission ZIPs and scoring feedback; protected)"
+  ],
+  "symlinks_under_data_outputs_artifacts": [],
+  "authorized_deletion_log": "docs/refactor_v4_v5/CLEANUP_EXECUTION.json"
+}

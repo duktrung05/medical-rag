@@ -1,0 +1,97 @@
+{
+  "case-002": {
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "The selected negation is intact, but the opening 'therefore' refers to a food pair outside the passage."]
+  },
+  "case-003": {
+    "A": ["mostly_complete", "acceptable", "minor", "useful", "The 5.963 cohort value is no longer split; the passage starts in the preceding risk-factor list but preserves the target negation and study context."]
+  },
+  "case-004": {
+    "A": ["complete", "good", "none", "none", "The full non-disclosure result and secondary-prevention conclusion remain intact."]
+  },
+  "case-007": {
+    "A": ["complete", "acceptable", "none", "useful", "The abandoned procedures and standard shunt method are intact, although the passage begins with a connective to the preceding method list."],
+    "C": ["complete", "good", "none", "useful", "The abandoned, standard, and modified shunt descriptions end on complete statements."]
+  },
+  "case-011": {
+    "B": ["incomplete", "poor", "major", "none", "The passage remains a sequence of unrelated truncated news teasers; the 1 mg string is a recall headline, not usable dosage evidence."]
+  },
+  "case-012": {
+    "B": ["mostly_complete", "acceptable", "minor", "none", "The 100 mg intervention, placebo arm, and monitoring design are intact, but the outcome and conclusion are now in the following passage."],
+    "C": ["complete", "good", "none", "none", "The title, intervention, results, and conclusion are retained as one complete abstract."]
+  },
+  "case-013": {
+    "A": ["complete", "good", "none", "useful", "The passage now starts at a sentence boundary; 16.12/mm3 is not split and the AST, ALT, bilirubin, and follow-up laboratory findings are complete."]
+  },
+  "case-016": {
+    "B": ["complete", "good", "none", "useful", "The prolactin result and clinical history are intact and the prior navigation contamination is outside the passage; this remains a dosage-category false positive."],
+    "C": ["complete", "acceptable", "none", "none", "The full question history and measurements are retained, followed by irrelevant site navigation."]
+  },
+  "case-017": {
+    "B": ["complete", "good", "none", "useful", "The vaccination priority sentence is complete; 'xét nghiệm' still refers to sample-collection staff rather than a patient lab result."],
+    "C": ["complete", "acceptable", "none", "useful", "The broader vaccination policy is coherent, but the selected signal remains a semantic-category mismatch."]
+  },
+  "case-020": {
+    "A": ["complete", "good", "none", "none", "Testing uptake, prevalence, effect size, P value, and new-diagnosis rate are complete."]
+  },
+  "case-021": {
+    "A": ["complete", "acceptable", "none", "none", "The selected >15-day stratum and adjusted regression method are complete, although the passage starts at the tail of an earlier stratum."]
+  },
+  "case-024": {
+    "A": ["complete", "good", "none", "useful", "The full blood-count ranges, leukocyte thresholds, and complications are together."],
+    "B": ["complete", "good", "none", "useful", "The complete laboratory block and immediate result context are retained."],
+    "C": ["complete", "good", "none", "useful", "The complication and laboratory sections are complete without splitting numeric values."]
+  },
+  "case-025": {
+    "A": ["complete", "good", "none", "none", "The disease counts and no-case observation are self-contained and all dotted counts remain intact."],
+    "B": ["complete", "good", "none", "none", "The disease counts and no-case observation are self-contained and all dotted counts remain intact."]
+  },
+  "case-027": {
+    "A": ["complete", "good", "none", "useful", "The 3.272.256 value, epidemic counts, and causal question are intact."],
+    "C": ["complete", "good", "none", "excessive", "The dotted value is no longer split and the causal question and answer are paired, but the passage carries a second broad policy question."]
+  },
+  "case-028": {
+    "B": ["mostly_complete", "acceptable", "minor", "none", "Case 2 and the HIV-testing recommendation are complete, but the passage begins at the final result of case 1 rather than retaining both case histories."],
+    "C": ["complete", "good", "none", "none", "The title, both cases, and HIV-testing recommendation are retained as a complete abstract."]
+  },
+  "case-029": {
+    "A": ["complete", "good", "none", "useful", "The IUI and IVF comparisons and complete confidence intervals are retained; no decimal or CI is cut."],
+    "B": ["complete", "good", "none", "useful", "The cohort definition and principal adjusted comparisons end at a complete numeric result."],
+    "C": ["complete", "good", "none", "none", "The main and laboratory-process comparisons are complete with all confidence intervals intact."]
+  },
+  "case-030": {
+    "C": ["complete", "acceptable", "none", "none", "The target symptom list is coherent, although the seventh item continues with its explanation in the next passage."]
+  },
+  "case-034": {
+    "B": ["complete", "good", "none", "none", "The patient question, clinician attribution, and actionable answer remain paired."]
+  },
+  "case-035": {
+    "B": ["mostly_complete", "acceptable", "minor", "useful", "The question and initial eligibility statement are present, but the detailed family-risk signs begin after the boundary."]
+  },
+  "case-038": {
+    "C": ["complete", "good", "none", "none", "The complete article is retained; the punctuation remains rhetorical rather than a true Q&A structure."]
+  },
+  "case-039": {
+    "B": ["complete", "good", "none", "useful", "Question 4, every option, and the toxicology-confirmed diagnosis are now retained together and end cleanly."]
+  },
+  "case-040": {
+    "B": ["incomplete", "poor", "major", "none", "The source remains navigation headlines and hospital listings without answers or usable clinical evidence."]
+  },
+  "case-042": {
+    "A": ["complete", "good", "none", "useful", "Risk factors, the quoted risk relationship, the >5 mm treatment threshold, and intervention conditions are now together."]
+  },
+  "case-044": {
+    "A": ["complete", "good", "none", "none", "The title, disease spectrum, and non-progression qualification are self-contained; treatment options move to the next passage."]
+  },
+  "case-046": {
+    "B": ["mostly_complete", "acceptable", "minor", "none", "The selected adjusted risk ratios are complete, but the pregnancy-morbidity result list continues after the boundary."]
+  },
+  "case-047": {
+    "A": ["incomplete", "acceptable", "minor", "useful", "The bleeding outcome and heterogeneity explanation are retained, but the direction of the therapeutic-only strategy effect remains in the following passage."]
+  },
+  "case-049": {
+    "A": ["complete", "acceptable", "none", "none", "Outcome definitions and the primary endpoint are complete; the following results sentence starts but continues outside the passage."]
+  },
+  "case-050": {
+    "B": ["complete", "good", "none", "none", "Definition, causes, risk distinction, threshold, and diagnostic context are self-contained."]
+  }
+}

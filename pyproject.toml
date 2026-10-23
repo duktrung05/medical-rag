@@ -1,7 +1,7 @@
 [project]
-name = "r2ai-medical-retrieval"
-version = "0.1.0"
-description = "Multilingual Medical Information Retrieval System for R2AI Competition"
+name = "medical-rag"
+version = "4.0.0a0"
+description = "Versioned multilingual Medical-RAG V4 core with optional V5 extensions"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
@@ -21,6 +21,11 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+v4-models = [
+    "sentence-transformers>=3.0.0",
+    "FlagEmbedding>=1.2.0",
+    "faiss-cpu>=1.8.0",
+]
 api = [
     "fastapi>=0.115.0",
     "uvicorn>=0.30.0",
@@ -40,6 +45,10 @@ dev = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[project.scripts]
+medrag = "src.medrag.cli:main"
+medrag-v4 = "src.medrag.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]

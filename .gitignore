@@ -7,6 +7,7 @@ __pycache__/
 env/
 venv/
 .venv/
+.venv-*/
 build/
 develop-eggs/
 dist/
@@ -31,6 +32,8 @@ htmlcov/
 .ruff_cache/
 
 # Artifacts & Outputs
+# Runtime results stay local; curated audit reports and provenance live in docs/.
+/outputs/
 artifacts/sparse_index/*
 !artifacts/sparse_index/.gitkeep
 artifacts/dense_index/*
@@ -51,13 +54,6 @@ data/vimed/
 data/raw/vibiomir/*.parquet
 data/vibiomir/
 
-outputs/predictions/*
-!outputs/predictions/.gitkeep
-outputs/evaluations/*
-!outputs/evaluations/.gitkeep
-outputs/submissions/*
-!outputs/submissions/.gitkeep
-
 # Data (Keep directory structure and dev samples, ignore raw large files)
 # data/raw/*
 # !data/raw/.gitkeep
@@ -70,4 +66,3 @@ Thumbs.db
 .vscode/
 .idea/
 .cache/
-outputs/cleanup_review/

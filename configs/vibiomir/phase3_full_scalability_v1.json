@@ -1,0 +1,42 @@
+{
+  "format": "vibiomir-phase3-full-scalability-v1",
+  "disk_lsh_version": "vibiomir-phase3-disk-lsh-v1",
+  "shingling_version": "vibiomir-phase3-language-shingling-v1",
+  "resource_policy": {
+    "rss_limit_gib": 16,
+    "task3_temporary_disk_budget_gib": 256,
+    "task5_temporary_disk_budget_gib": 512,
+    "task6_temporary_disk_budget_gib": 128,
+    "automatic_cpu_saturation": false,
+    "fail_closed_on_budget_exceeded": true
+  },
+  "task3": {
+    "bands": 16,
+    "rows_per_band": 4,
+    "candidate_partitions": 256,
+    "maximum_bucket_size": 200,
+    "batch_rows": 512
+  },
+  "task5": {
+    "bands": 32,
+    "rows_per_band": 2,
+    "candidate_partitions": 512,
+    "maximum_bucket_size": 200,
+    "batch_rows": 512,
+    "pilot_maximum_candidates_applies_to_full": false
+  },
+  "hot_bucket_policy": {
+    "policy": "high_frequency_template_filtered",
+    "silent_truncation": false,
+    "report_bucket_size": true,
+    "report_potential_pairs": true,
+    "report_examined_pairs": true,
+    "candidate_recall_complete": false
+  },
+  "auto_merge": {
+    "near_document": false,
+    "partial_passage_overlap": false,
+    "intentional_chunk_overlap": false,
+    "medical_guard_pairs": false
+  }
+}

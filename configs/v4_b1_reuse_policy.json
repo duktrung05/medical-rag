@@ -1,0 +1,18 @@
+{
+  "policy": "breadth-preserving-dense-b0-intersection-v1",
+  "status": "PREPARATION_ONLY_BLOCKED_BY_EVALUATION",
+  "a0_config": "configs/v4_submission_p2_a0.yaml",
+  "a0_config_sha256": "bd944d1e986ed6bf5e25767454168b14bb82684d802ac7645d3f95b671f4cc03",
+  "candidate_parents": "exact A0 allocated parent identities and retrieval scores",
+  "pair_budget": 200,
+  "passages_per_parent": 1,
+  "b0_passage_fusion": {"branches": ["passage_bm25", "dense"], "rrf_k": 60, "fused_limit": 400, "pair_limit": 200},
+  "representative": "P2-A1 passage_choice: strongest dense score among A0 parent evidence; fused score then passage ID tie break; fused-only fallback",
+  "substitution": "use representative iff exact parent/passage is in B0 top200; otherwise keep A0",
+  "labels_used": false,
+  "reranker_scores_used_for_allocation": false,
+  "selection_and_export": "reuse frozen A0 finish_rerank, source validation and BTC exporter",
+  "score_policy": "sealed A0 T4 exact inputs/contracts only; missing pairs require same pinned T4 runtime/model/tokenizer snapshot",
+  "retrieval_allowed_in_adapter": false,
+  "inference_allowed_in_adapter": false
+}

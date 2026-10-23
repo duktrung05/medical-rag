@@ -1,0 +1,44 @@
+{
+  "format": "vibiomir-phase2-frozen-chunking-config-v2",
+  "status": "frozen_for_full_build",
+  "frozen_at": "2026-10-15",
+  "selected_strategy": {
+    "strategy_id": "C",
+    "target_tokens": 384,
+    "max_tokens": 512,
+    "min_chunk_tokens": 48,
+    "overlap_tokens": 64
+  },
+  "chunker_version": "vibiomir-hierarchical-chunker-v2",
+  "passage_schema_version": "vibiomir-phase2-passage-v1",
+  "tokenizer_name": "BAAI/bge-m3",
+  "phase1": {
+    "candidate": "outputs/vibiomir_phase1_full_20261014_v1",
+    "documents_to_chunk": 1073531,
+    "held_documents": 2068,
+    "mutation_allowed": false
+  },
+  "retrieval_policy": {
+    "adjacent_expansion_default": false,
+    "semantic_staging_excluded_from_primary_index": true,
+    "semantic_staging_documents": 6
+  },
+  "decision": {
+    "semantic_usable": "43/50",
+    "recall_at_10": 0.8130841121495327,
+    "mrr_at_100": 0.613974908496809,
+    "reason": "C tied B+adjacent on Recall@10 and had statistically indistinguishable MRR while using substantially less context and lower measured latency. C also retained acceptable semantic quality with no severe regression in the reviewed sample."
+  },
+  "evidence": {
+    "qrels": "configs/vibiomir/phase2_retrieval_qrels_v2_20261015.json",
+    "qrels_sha256": "dd198b8b992c4be436df0744a030efc95b9db7d8447eb01f619006c91896ffe1",
+    "retrieval_pilot_manifest_sha256": "9e6fe28dcdc5fab96c8f7b6b9d65b9dde546934311e5b1c6bd795c2be7c92565",
+    "retrieval_input_snapshot_sha256": "75a628e588916894ba05a33eed7df7620f3af9ee1081c4b32956ae5ea485e004",
+    "retrieval_result_sha256": "209a9914a194115cd77a2e798c5279075699669b0904b7d0d2010e9e6393ecb1"
+  },
+  "full_build": {
+    "approved_to_start": false,
+    "command_prepared": ".venv-phase1/bin/python scripts/workflows/vibiomir/build_phase2_passages.py --candidate outputs/vibiomir_phase1_full_20261014_v1 --output outputs/vibiomir_phase2_full_v2 --full --strategy C --frozen-config configs/vibiomir/phase2_chunking_production_v2.json --run-id phase2_full_v2",
+    "resume_flag": "--resume"
+  }
+}

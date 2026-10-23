@@ -1,177 +1,67 @@
-# R2AI Medical Retrieval
+# Medical-RAG
 
-Hệ thống truy xuất thông tin y khoa cho câu hỏi tiếng Việt. Pipeline kết hợp **BM25**, **BGE-M3 dense retrieval**, **RRF fusion** và **BGE reranker**, sau đó trả về danh sách document/chunk liên quan. Dự án không sinh câu trả lời y khoa.
+Medical-RAG V4 is the project's **main architecture** on `master`. V5 features extend the same pipeline through disabled-by-default interfaces. The default CLI, HTTP API and Docker service all enter `src/medrag/`; they never fall back to V1/V2.
 
-> Dự án phục vụ nghiên cứu retrieval. Kết quả không phải chẩn đoán, chỉ định điều trị hoặc tư vấn y khoa.
+The corpus registry pins the current locally verified ViBioMIR revision in [v4_corpus_registry.json](configs/v4_corpus_registry.json). Existing raw HTML, Parquet, indexes, scoring feedback and unique submissions remain preserved. The V4 runtime is currently validated on bounded CPU snapshots. A corpus-scale sparse backend, BGE-M3/BGE-reranker runs and official submission ZIP validation are still required before a full competition run. See the [status report](docs/refactor_v4_v5/FINAL_REFACTOR_REPORT.md).
 
-## Tổng quan
+## Run V4 locally
 
-```text
-Dữ liệu thô → chuẩn hóa corpus → BM25 index + dense index
-                                      ↓
-Query → BM25 + dense → RRF → reranker → chunk/document selection
-                                      ↓
-                         JSONL / API / Inspector UI
-```
-
-Tính năng chính:
-
-- BM25, exact/FAISS dense retrieval và hybrid RRF.
-- BGE cross-encoder reranking.
-- Scoring và selection ở cấp chunk/document.
-- Parent consistency và submission validator.
-- Batch CLI, JSON API và giao diện phân tích retrieval.
-- Recall@K, MRR, Precision, Recall và Macro F2.
-- Manifest, checksum và model revision để tái lập thí nghiệm.
-
-## Cấu trúc dự án
-
-```text
-configs/      Cấu hình pipeline
-data/         Dữ liệu thô và dữ liệu đã chuẩn hóa
-artifacts/    BM25/dense indexes
-outputs/      Predictions, metrics và benchmark
-scripts/
-  workflows/vibiomir/       Dataset chính thức
-  workflows/vimedqa/        Benchmark lịch sử/regression
-  workflows/medquad/        Regression tiếng Anh
-  experiments/vimedqa/      Ablation và analysis
-  runtime/                  Build index, retrieve, evaluate
-  tooling/                  Submission và helpers
-src/          Pipeline, API và Inspector UI
-tests/
-  unit/                     Data, retrieval và ranking dùng chung
-  integration/              Runtime, API và tooling
-  workflows/vibiomir/       Dataset chính thức
-  workflows/vimedqa/        Benchmark lịch sử/regression
-  workflows/medquad/        Regression tiếng Anh
-  repository/               Kiểm tra cấu trúc repository
-docs/         Thiết kế và báo cáo kỹ thuật
-```
-
-**Dataset chính thức:** ViBioMIR. ViMedQA và MedQuAD được giữ làm benchmark regression/đối chứng.
-
-## Chạy nhanh không cần GPU
-
-Demo dùng dữ liệu nhỏ trong `data/dev/` và không tải model.
+Use Python 3.11 or newer with the project dependencies:
 
 ```bash
-cd medical-rag
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e ".[api,dev]"
-
-R2AI_CONFIG=configs/demo.yaml \
-python -m uvicorn src.api:create_app --factory --host 127.0.0.1 --port 8000
+python3.11 -m pip install -e '.[api]'
+python3.11 -m src.cli check-config
+python3.11 -m src.cli prepare --output outputs/v4/prepared.jsonl --limit 100
+python3.11 -m src.cli search --prepared outputs/v4/prepared.jsonl --query 'triệu chứng tăng huyết áp'
 ```
 
-Windows PowerShell dùng `.venv\Scripts\Activate.ps1` và:
+`prepare` reads the pinned official URL Parquet, reuses available raw HTML only when the official ID and URL match, and writes a new V4 snapshot and manifest. It never changes existing source data. The current in-memory backend accepts at most 1,000 sources; `--limit` defaults to 100. If `pyarrow` or matching raw HTML is unavailable, preparation fails explicitly.
 
-```powershell
-$env:HF_HOME = Join-Path (Get-Location) '.cache/huggingface'
-$env:HF_HUB_OFFLINE = '1'
-.venv/Scripts/python.exe -m uvicorn src.inspector:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
-```
-
-Open **http://localhost:8001**. The UI compares BM25, dense, hybrid and hybrid + reranker; supports benchmark replay, live GPU queries, source-context labels, miss filters and human relevance labels.
-
-Human labels are stored in `outputs/vimed_validation/human_labels.jsonl`.
-
-## Docker
-
-Docker hiện dành cho **NVIDIA GPU**, CUDA 12.8 và `linux/amd64`. Máy ARM hoặc máy không có NVIDIA không chạy được cấu hình này nếu không điều chỉnh.
-
-Compose mount các thư mục `data/`, `artifacts/`, `outputs/` và `.cache/huggingface/`. Các thư mục và artifact ViMed cần được chuẩn bị trước.
+For a locked Phase 2 subset, `prepare-phase2` loads the release's existing passages and exact normalized-text offsets into the same V4 `Pipeline`; it does not rechunk the source. Supply explicit ID lists and a new output path:
 
 ```bash
-mkdir -p data artifacts outputs .cache/huggingface
-HF_HUB_OFFLINE=1 docker compose up -d --build
-
-docker compose logs -f ui
-curl http://127.0.0.1:8001/health
+python3.11 -m src.cli prepare-phase2 \
+  --doc-ids outputs/v4/phase2_batch_subset/20261016/selection_seed20261016/doc_ids.json \
+  --query-ids outputs/v4/phase2_batch_subset/20261016/selection_seed20261016/query_ids.json \
+  --output outputs/v4/phase2_subset/20261016/selection_seed20261016
+python3.11 -m src.cli search \
+  --prepared outputs/v4/phase2_subset/20261016/selection_seed20261016 \
+  --query 'triệu chứng tăng huyết áp'
 ```
 
-Cho phép tải model ở lần đầu:
+The Phase 2 V4 snapshot also has a 1,000-source in-memory limit. This wires the release data into V4's current lexical workflow; it does not yet enable the BGE models or provide a full-corpus index.
+
+For a bounded real-model V4 run, pass `--config configs/v4_phase2_subset.yaml`; it enables the pinned BGE-M3 encoder and BGE reranker under the same `src/medrag` pipeline. The API accepts the same config path via `MEDRAG_CONFIG`. Dense and reranker remain disabled in `v4_core.yaml` until a scalable backend and full-corpus runtime are ready.
+
+The read-only three-document smoke can run without Parquet:
 
 ```bash
-HF_HUB_OFFLINE=0 docker compose up -d --build
+python3 -m src.cli pilot
+python3 -m unittest discover -s tests/v4 -v
 ```
 
-Đổi cổng hoặc dừng service:
+That smoke uses the **historical local corpus version**. It does not establish full coverage or a leaderboard score for the pinned official corpus.
+
+## HTTP and Docker
+
+After preparing either `outputs/v4/prepared.jsonl` or a Phase 2 V4 snapshot directory:
 
 ```bash
-UI_PORT=8002 docker compose up -d
-docker compose down
+MEDRAG_PREPARED=outputs/v4/prepared.jsonl python3.11 -m uvicorn src.medrag.api:create_app --factory --host 127.0.0.1 --port 8000
 ```
 
-## Batch retrieval và evaluation
+`GET /health` returns 503 until a verified V4 snapshot is loaded. `POST /search` accepts `{"id": 1, "query": "..."}` and returns ViBioMIR-style document IDs and exact-source evidence. `docker compose up --build` serves the same API, mounting `data/` and `outputs/` read-only. Its health check also fails closed until the prepared snapshot exists.
 
-```bash
-python -m scripts.runtime.retrieve \
-  --config configs/vimed_selected_validation.yaml \
-  --queries data/vimed/validation/queries.jsonl \
-  --output outputs/predictions/vimed.jsonl
+For the real-model Phase 2 subset path, set `MEDRAG_CONFIG=configs/v4_phase2_subset.yaml` and point `MEDRAG_PREPARED` to the snapshot directory. The default core config keeps model stages disabled.
 
-python -m scripts.runtime.evaluate \
-  --prediction outputs/predictions/vimed.jsonl \
-  --ground-truth data/vimed/validation/ground_truth.jsonl \
-  --corpus-chunks data/vimed/chunks.jsonl
-```
+## Structure
 
-Tạo và kiểm tra submission:
+The [working-tree checkpoint and artifact inventory](docs/repository_hygiene/README.md) describe the preserved 2026-10-23 research state, validation limits and recovery files.
 
-```bash
-python -m scripts.tooling.make_submission \
-  --predictions outputs/predictions/vimed.jsonl \
-  --chunks data/vimed/chunks.jsonl \
-  --queries data/vimed/validation/queries.jsonl \
-  --output outputs/submissions/submission.jsonl
+- `src/medrag/`: V4 data contracts, versioned loader, extraction, exact-offset chunking, retrieval, fusion, evidence verification, API and optional model adapters.
+- `configs/v4_core.yaml`: active V4 configuration; `configs/v5_extensions.yaml`: optional features, all disabled.
+- `scripts/v4/`, `tests/v4/`: V4 smoke and contract checks.
+- `docs/refactor_v4_v5/`: audit, protected-data manifest, migration and remaining tasks.
+- `archive/docs_pre_v4/`, `archive/legacy_runtime/`: historical references. Older `r2ai/`, `scripts/runtime/` and `src/service.py` remain for reproducibility and are not imported by the default V4 entrypoints.
 
-python -m src.cli validate outputs/submissions/submission.jsonl \
-  --corpus-chunks data/vimed/chunks.jsonl \
-  --test-queries data/vimed/validation/queries.jsonl
-```
-
-## Cấu hình chính
-
-| Cấu hình | Pipeline |
-|---|---|
-| `configs/demo.yaml` | Demo CPU không cần model |
-| `configs/vimed_bm25.yaml` | BM25 |
-| `configs/vimed_dense_bge_m3.yaml` | BGE-M3 dense |
-| `configs/vimed_hybrid.yaml` | BM25 + dense + RRF |
-| `configs/vimed_hybrid_rerank.yaml` | Hybrid + BGE reranker |
-| `configs/vimed_selected_validation.yaml` | Cấu hình được chọn trên validation |
-
-## Kết quả validation
-
-Benchmark gồm 2.210 câu và 17.955 context tiếng Việt:
-
-| Pipeline | Recall@5 | Recall@10 | Recall@100 |
-|---|---:|---:|---:|
-| BM25 | 69,19% | 75,25% | 88,37% |
-| BGE-M3 dense | 76,61% | 81,63% | 92,22% |
-| Hybrid RRF | 77,19% | 82,26% | 92,49% |
-| Hybrid + reranker | 88,64% | 90,63% | 92,49% |
-
-Ground truth là context nguồn suy ra từ dữ liệu QA, chưa phải relevance judgment đầy đủ. Kết quả dùng để so sánh nội bộ và không chứng minh độ an toàn lâm sàng hay khả năng retrieval đa ngôn ngữ.
-
-## Kiểm thử
-
-```powershell
-python -m pytest -q tests/workflows/vibiomir
-python -m pytest -q tests/unit
-python -m pytest -q tests/integration
-python -m pytest -q tests/workflows/vimedqa tests/workflows/medquad
-python -m pytest -q tests
-make lint
-```
-
-Chi tiết từng luồng: [`tests/README.md`](tests/README.md).
-
-## Tài liệu
-
-- [Đánh giá dự án hiện tại](docs/tong-quat.md)
-- [Review workflow](docs/workflow_review_vi.md)
-- [Review ViMed retrieval](docs/vimed_retrieval_review_vi.md)
-- [Cấu trúc scripts](scripts/README.md)
+No full-corpus index build, large embedding job, Git push or leaderboard submission is performed by these commands.

@@ -298,9 +298,13 @@ def crawl_batch(input_file: Path = DEFAULT_INPUT, output_dir: Path = DEFAULT_OUT
                 retry_failed: bool = False, force: bool = False,
                 retry_status: set[str] | None = None,
                 expected_retry_count: int | None = None,
-                client_factory=None, sleep=time.sleep, progress=print) -> dict:
+                max_consecutive_blocked: int = 0,
+                client_factory=None, sleep=time.sleep, progress=print,
+                request_guard=None, fetcher_class=BatchFetcher) -> dict:
     if not 1 <= limit <= 500 or not 1 <= concurrency <= 4:
         raise ValueError("Pilot limit must be 1..500 and concurrency 1..4")
+    if max_consecutive_blocked < 0:
+        raise ValueError("max_consecutive_blocked must be nonnegative")
     if retry_status and (force or retry_failed):
         raise ValueError("--retry-status cannot be combined with --force or --retry-failed")
     input_file, output_dir = Path(input_file), Path(output_dir)
@@ -381,12 +385,14 @@ def crawl_batch(input_file: Path = DEFAULT_INPUT, output_dir: Path = DEFAULT_OUT
     worker_guard = threading.Lock()
 
     def fetch_one(entry: dict) -> dict:
+        if request_guard is not None:
+            request_guard(entry)
         if not hasattr(local, "fetcher"):
             client = client_factory() if client_factory is not None else None
-            local.fetcher = BatchFetcher(output_dir, state=state,
-                                         timeout_seconds=timeout_seconds,
-                                         max_bytes=max_bytes, delay_seconds=delay_seconds,
-                                         user_agent=user_agent, client=client, sleep=sleep)
+            local.fetcher = fetcher_class(output_dir, state=state,
+                                          timeout_seconds=timeout_seconds,
+                                          max_bytes=max_bytes, delay_seconds=delay_seconds,
+                                          user_agent=user_agent, client=client, sleep=sleep)
             with worker_guard:
                 workers.append((local.fetcher, client))
         probe = local.fetcher.fetch({"id": int(entry["id"]), "url": entry["url"],
@@ -394,6 +400,8 @@ def crawl_batch(input_file: Path = DEFAULT_INPUT, output_dir: Path = DEFAULT_OUT
         return _convert(probe, output_dir)
 
     new_count = 0
+    blocked_streak = defaultdict(int)
+    stopped_reason = None
     try:
         with ThreadPoolExecutor(max_workers=concurrency) as executor:
             iterator = iter(todo)
@@ -416,17 +424,27 @@ def crawl_batch(input_file: Path = DEFAULT_INPUT, output_dir: Path = DEFAULT_OUT
                             stale.unlink(missing_ok=True)
                     existing[entry["id"]] = row
                     new_count += 1
+                    domain = entry["domain"]
+                    blocked = ((row["status"] in {"http_error", "rate_limited"}
+                                and row["http_status"] in {403, 428, 429})
+                               or row["error_type"] == "access_challenge")
+                    blocked_streak[domain] = blocked_streak[domain] + 1 if blocked else 0
+                    if (max_consecutive_blocked and
+                            blocked_streak[domain] >= max_consecutive_blocked):
+                        stopped_reason = (f"{domain}: {blocked_streak[domain]} consecutive "
+                                          "access blocks")
                     summary = _checkpoint(output_dir, selected, existing, started=started,
                                           skipped=skipped, new_count=new_count,
                                           started_at=started_at)
                     progress(f"{summary['processed_urls']}/{len(selected)} "
                              f"id={row['id']} {row['domain']} -> {row['status']} "
                              f"HTTP={row['http_status']} bytes={row['bytes_downloaded']}")
-                    try:
-                        item = next(iterator)
-                    except StopIteration:
-                        continue
-                    pending[executor.submit(fetch_one, item)] = item
+                    if stopped_reason is None:
+                        try:
+                            item = next(iterator)
+                        except StopIteration:
+                            continue
+                        pending[executor.submit(fetch_one, item)] = item
     finally:
         for fetcher, client in workers:
             fetcher.close()
@@ -443,6 +461,13 @@ def crawl_batch(input_file: Path = DEFAULT_INPUT, output_dir: Path = DEFAULT_OUT
                    })]
         if changed:
             raise ValueError(f"Protected success raw changed: {changed[:10]}")
+    if stopped_reason is not None:
+        summary["stopped_reason"] = stopped_reason
+        _write_atomic(output_dir / "crawl_summary.json",
+                      lambda path: path.write_text(json.dumps(summary, ensure_ascii=False,
+                                                              indent=2, sort_keys=True) + "\n",
+                                                   encoding="utf-8"))
+        progress(f"Stopped early: {stopped_reason}")
     return summary
 
 
@@ -459,6 +484,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--retry-failed", action="store_true")
     parser.add_argument("--retry-status", action="append", choices=sorted(FAILURE_STATUSES))
     parser.add_argument("--expected-retry-count", type=int)
+    parser.add_argument("--max-consecutive-blocked", type=int, default=0)
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args(argv)
     try:
@@ -470,6 +496,7 @@ def main(argv: list[str] | None = None) -> int:
                               retry_failed=args.retry_failed, force=args.force,
                               retry_status=set(args.retry_status or []),
                               expected_retry_count=args.expected_retry_count,
+                              max_consecutive_blocked=args.max_consecutive_blocked,
                               progress=lambda line: print(line, flush=True))
     except (OSError, ValueError, KeyError, httpx.HTTPError, pa.ArrowException) as exc:
         print(f"Batch crawl failed: {exc}", file=sys.stderr)

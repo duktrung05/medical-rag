@@ -4,6 +4,7 @@ from pathlib import Path
 import yaml
 from src.config import load_config
 from scripts.runtime.run_dense_smoke import SmokeConfig
+from src.medrag.core.config import load_config as load_v4_config
 
 
 def test_sources_parse_on_supported_python311_and_local_imports_resolve():
@@ -20,6 +21,11 @@ def test_sources_parse_on_supported_python311_and_local_imports_resolve():
 def test_configs_use_their_own_runtime_or_smoke_schema():
     for path in Path('configs').glob('*.yaml'):
         raw=yaml.safe_load(path.read_text(encoding='utf-8'))
+        if path.name == 'v5_extensions.yaml':
+            continue
+        if path.name == 'v4_core.yaml':
+            load_v4_config(path)
+            continue
         if 'model_name' in raw and 'retrieval' not in raw:SmokeConfig.model_validate(raw)
         else:load_config(path)
 

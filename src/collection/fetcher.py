@@ -2,6 +2,7 @@
 
 import hashlib
 import os
+import random
 import re
 import threading
 import time
@@ -15,6 +16,14 @@ from urllib.parse import urljoin, urlsplit
 from urllib.robotparser import RobotFileParser
 
 import httpx
+
+
+class RetryDeferred(Exception):
+    """A server-requested cooldown is too long to hold a batch worker open."""
+
+    def __init__(self, seconds: float):
+        self.seconds = seconds
+        super().__init__(f"Retry deferred for {seconds:.3f} seconds")
 
 
 @dataclass
@@ -144,7 +153,14 @@ class PoliteFetcher:
                     if status == 429 or status >= 500:
                         if retries < 1:
                             retries += 1
-                            self._backoff(retries, response.headers.get("retry-after"))
+                            try:
+                                self._backoff(retries, response.headers.get("retry-after"))
+                            except RetryDeferred as error:
+                                policy = RobotPolicy(
+                                    current, status, error_type="robots_retry_after",
+                                    error_message=str(error), policy_status="unreachable",
+                                    redirect_count=redirects)
+                                break
                             visited.discard(current)
                             continue
                         policy = RobotPolicy(current, status, error_type="robots_http_error",
@@ -302,7 +318,11 @@ class PoliteFetcher:
                     if status == 429 or status >= 500:
                         if retries < 1:
                             retries += 1
-                            self._backoff(retries, response.headers.get("retry-after"))
+                            try:
+                                self._backoff(retries, response.headers.get("retry-after"))
+                            except RetryDeferred as error:
+                                return finish("rate_limited" if status == 429 else "http_error",
+                                              "retry_after_deferred", str(error))
                             visited.discard(current)
                             continue
                         return finish("http_error", f"http_{status}", f"HTTP {status}")
@@ -372,6 +392,8 @@ class BatchFetchState:
 class BatchFetcher(PoliteFetcher):
     """Reuse probe fetch/robots logic with per-origin locks and batch retry policy."""
 
+    MAX_BACKOFF_SECONDS = 10.0
+
     def __init__(self, output_dir: Path, *, state: BatchFetchState,
                  timeout_seconds: float = 30, max_bytes: int = 15_728_640,
                  delay_seconds: float = 1, user_agent: str = "medical-rag-vibiomir-pilot/0.1",
@@ -418,14 +440,23 @@ class BatchFetcher(PoliteFetcher):
 
     def _backoff(self, retry_number: int, retry_after: str | None = None) -> None:
         delay = float(2 ** (retry_number - 1))
+        server_delay = None
         if retry_after:
             try:
-                delay = max(delay, float(retry_after))
+                server_delay = float(retry_after)
             except ValueError:
                 try:
                     when = parsedate_to_datetime(retry_after)
                     if when.tzinfo is not None:
-                        delay = max(delay, (when - datetime.now(UTC)).total_seconds())
+                        server_delay = (when - datetime.now(UTC)).total_seconds()
                 except (TypeError, ValueError, OverflowError):
                     pass
-        self.sleep(max(0.0, delay))
+        if server_delay is not None:
+            delay = max(delay, server_delay)
+            if delay > self.MAX_BACKOFF_SECONDS:
+                # Persist a hold result instead of retrying earlier than the
+                # server requested or sleeping with the origin lock held.
+                raise RetryDeferred(delay)
+        delay = max(0.0, delay)
+        jitter = random.uniform(0.0, min(1.0, delay * 0.1)) if delay else 0.0
+        self.sleep(delay + jitter)

@@ -1,0 +1,13 @@
+{
+  "format": "vibiomir-phase2-semantic-staging-v1",
+  "policy": "exclude_from_staging_retrieval_only",
+  "phase1_mutation_allowed": false,
+  "documents": [
+    {"doc_id": 91625, "review_case": "case-011", "reason": "unrelated_news_teasers_and_encoded_noise"},
+    {"doc_id": 80658, "review_case": "case-018", "reason": "dated_truncated_news_listing"},
+    {"doc_id": 3914805, "review_case": "case-023", "reason": "concatenated_view_full_text_snippets"},
+    {"doc_id": 3011188, "review_case": "case-031", "reason": "bibliography_only"},
+    {"doc_id": 6269502, "review_case": "case-036", "reason": "conference_table_of_contents_without_abstracts"},
+    {"doc_id": 781853, "review_case": "case-040", "reason": "navigation_questions_without_answers"}
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "format": "medrag-phase2-batch-migration-v1",
+  "scope": "explicit_subset_only",
+  "max_documents": 1000,
+  "phase1_root": "outputs/vibiomir_phase1_full_20261014_v1",
+  "phase2_root": "outputs/vibiomir_phase2_full_v2",
+  "official_corpus": "outputs/vibiomir_official_verify_20261012/links_corpus_vi_en_zh.parquet",
+  "official_corpus_sha256": "87e44a792d7a99fb0fde5dff7f09f1a38a0a1fdf02ddd1ac93a005736e00b0a7",
+  "official_queries": "outputs/vibiomir_official_verify_20261012/query.parquet",
+  "official_queries_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+  "semantic_staging": "configs/vibiomir/phase2_semantic_staging_20261015.json",
+  "phase2_frozen_config": "configs/vibiomir/phase2_chunking_production_v2.json",
+  "retrieval": {
+    "bm25_document_passages": 6,
+    "dense_document_passages": 2,
+    "dense_document_max_length": 256,
+    "document_branch_top_k": 400,
+    "rrf_k": 60,
+    "bm25_weight": 1.0,
+    "dense_weight": 1.0,
+    "fused_document_top_k": 400,
+    "passage_top_k": 200
+  },
+  "models": {
+    "embedding_model": "BAAI/bge-m3",
+    "embedding_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "passage_max_length": 512,
+    "passage_title_prefix": true,
+    "normalize_embeddings": true,
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "reranker_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "reranker_max_length": 512,
+    "reranker_batch_size": 16,
+    "rerank_top": 0
+  },
+  "selection": {
+    "mode": "threshold",
+    "max_docs": 200,
+    "max_chunks": 60,
+    "chunks_per_doc": 1,
+    "chunk_threshold": -2.0,
+    "document_mode": "parents",
+    "chunk_order": "document"
+  },
+  "output_root": "outputs/v4/phase2_batch_subset"
+}
