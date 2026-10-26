@@ -1,4 +1,4 @@
-# Medical-RAG V4
+# Medical-RAG 
 
 The active implementation is `src/medrag/`. The current competition champion is **S2**, with user-reported BTC FINAL **0.2318**. The CLI/API demo and competition submission pipeline use different configurations.
 
