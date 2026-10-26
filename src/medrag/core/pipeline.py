@@ -6,13 +6,14 @@ from src.medrag.core.contracts import Passage, Source
 from src.medrag.evidence.context import apply_chunk_context
 from src.medrag.evidence.selector import SelectionPolicy, select_results
 from src.medrag.evidence.verifier import verify
-from src.medrag.retrieval.core import Dense, Encoder, build_lexical, fuse
+from src.medrag.retrieval.core import Dense, Encoder, build_lexical, fuse, fuse_with_parent_floor
 
 
 class Pipeline:
     def __init__(self, sources: list[Source], passages: list[Passage], encoder: Encoder | None = None,
                  reranker=None, *, document_candidate_limit: int = 400,
                  passage_candidate_limit: int = 200, fused_candidate_limit: int = 400,
+                 fused_parent_limit: int | None = None,
                  rrf_k: int = 60, rerank_candidate_limit: int = 200,
                  rerank_passages_per_document: int = 3,
                  rerank_allocation: str = "document_order",
@@ -38,6 +39,7 @@ class Pipeline:
         self.document_candidate_limit = document_candidate_limit
         self.passage_candidate_limit = passage_candidate_limit
         self.fused_candidate_limit = fused_candidate_limit
+        self.fused_parent_limit = fused_parent_limit
         self.rrf_k = rrf_k
         self.rerank_candidate_limit = rerank_candidate_limit
         self.rerank_passages_per_document = rerank_passages_per_document
@@ -69,7 +71,12 @@ class Pipeline:
                     self.passage_bm25.search(query, self.passage_candidate_limit)]
         if self.dense:
             rankings.append(self.dense.search(query, self.passage_candidate_limit))
-        fused = fuse(rankings, k=self.rrf_k, limit=self.fused_candidate_limit)
+        parent_limit = getattr(self, "fused_parent_limit", None)
+        fused = (fuse(rankings, k=self.rrf_k, limit=self.fused_candidate_limit)
+                 if parent_limit is None else
+                 fuse_with_parent_floor(rankings, k=self.rrf_k,
+                                        item_limit=self.fused_candidate_limit,
+                                        parent_limit=parent_limit))
         by_doc: dict[int, dict] = {}
         for item in fused:
             doc = by_doc.setdefault(item.official_id, {"official_id": item.official_id, "score": 0.0,

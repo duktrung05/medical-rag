@@ -78,6 +78,8 @@ class DiskPipeline(Pipeline):
         self.document_candidate_limit = int(retrieval.get("document_candidate_limit", 400))
         self.passage_candidate_limit = int(retrieval.get("passage_candidate_limit", 200))
         self.fused_candidate_limit = int(retrieval.get("fused_candidate_limit", 400))
+        parent_limit = retrieval.get("fused_parent_limit")
+        self.fused_parent_limit = int(parent_limit) if parent_limit is not None else None
         self.rrf_k = int(retrieval.get("rrf_k", 60))
         self.rerank_candidate_limit = int(retrieval.get("rerank_candidate_limit", 200))
         self.rerank_passages_per_document = int(retrieval.get("rerank_passages_per_document", 3))
@@ -95,5 +97,7 @@ class DiskPipeline(Pipeline):
                self.fused_candidate_limit, self.rrf_k, self.rerank_candidate_limit,
                self.rerank_passages_per_document) <= 0:
             raise ValueError("V4 retrieval budgets must be positive")
+        if self.fused_parent_limit is not None and self.fused_parent_limit <= 0:
+            raise ValueError("V4 fused parent limit must be positive")
         if self.rerank_allocation not in {"document_order", "parent_first"}:
             raise ValueError("Unsupported rerank allocation")

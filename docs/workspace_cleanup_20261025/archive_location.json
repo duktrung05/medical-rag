@@ -1,0 +1,10 @@
+{
+  "archive": "/data_hdd_16t/trungnguyen12/medical-rag/project-archives/v4_cleanup_20261025T090704Z",
+  "restore_command": "python3 scripts/tooling/cleanup_v4_workspace.py restore",
+  "summary": {
+    "move_entries": 279,
+    "files": 12511,
+    "logical_bytes": 16903075359,
+    "retained_candidates": 2
+  }
+}

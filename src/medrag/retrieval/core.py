@@ -100,6 +100,33 @@ def fuse(rankings: list[list[Hit]], k: int = 60, limit: int = 100) -> list[Fused
             sorted(scores.items(), key=lambda item: (-item[1], item[0][0], str(item[0][1])))[:limit]]
 
 
+def fuse_with_parent_floor(rankings: list[list[Hit]], *, k: int = 60,
+                           item_limit: int = 100, parent_limit: int = 100) -> list[Fused]:
+    """Keep the frozen mixed-item prefix, then add one item for unseen parents.
+
+    RRF ranks passages and document hits as separate items. Cutting that list
+    before grouping can leave far fewer parent candidates than the configured
+    item limit. This opt-in policy preserves every original item and its order,
+    then supplements the pool until it contains ``parent_limit`` unique parents.
+    """
+    if min(k, item_limit, parent_limit) <= 0:
+        raise ValueError("Fusion limits and k must be positive")
+    available = sum(len(ranking) for ranking in rankings)
+    full = fuse(rankings, k=k, limit=max(item_limit, available))
+    output = list(full[:item_limit])
+    parents = {item.official_id for item in output}
+    if len(parents) >= parent_limit:
+        return output
+    for item in full[item_limit:]:
+        if item.official_id in parents:
+            continue
+        output.append(item)
+        parents.add(item.official_id)
+        if len(parents) >= parent_limit:
+            break
+    return output
+
+
 def build_lexical(sources: list[Source], passages: list[Passage]) -> tuple[BM25, BM25]:
     return (BM25([(s.official_id, None, f"{s.title} {s.text}") for s in sources], "document_bm25"),
             BM25([(p.official_id, p.passage_id, p.text) for p in passages], "passage_bm25"))
