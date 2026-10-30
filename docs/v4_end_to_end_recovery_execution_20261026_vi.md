@@ -26,24 +26,32 @@ Ba query canary `53, 130, 380`:
   `7.11e-14`.
 - Dense FP32 và FP64 có cùng thứ tự 800 identities trên cả ba query.
 - Prefix parity/fusion với frozen S2 khớp trên ba query theo canary R11.
-- Contract test policy: **1 passed**.
+- Contract tests policy, allocator và batched dense: **3 passed**.
 
 Chi tiết từng branch nằm trong
 `outputs/v4/end_to_end_recovery_20261026/technical_preflight.json`.
 
-## Trạng thái dừng
+## Trạng thái thực thi hiện tại
 
-Artifact hiện ở `WAITING_FOR_PINNED_GPU`. `nvidia-smi` không kết nối được
-driver; pinned scorer environment báo `torch.cuda.is_available() == false` và
-0 thiết bị. Vì vậy chưa chạy 1.200-query inference, chưa tạo reranker score,
-candidate ZIP hoặc BTC receipt. Kế hoạch yêu cầu giữ cache FP16 tách biệt và
-không trộn CPU logits vào score đó; trạng thái host này vì thế không thể mở
-score gate an toàn.
+Runner của candidate đã được viết tại
+`scripts/v4/run_end_to_end_evidence_recovery.py`. Nó có ba stage `retrieve`,
+`score`, `export`, checkpoint theo query và xuất ZIP sau khi source/slot/ZIP
+validation PASS. `notebooks/v4_end_to_end_evidence_recovery_colab.ipynb` là
+launcher cho Colab với GPU CUDA tương thích. Candidate chấm lại toàn bộ
+seed/window trên GPU mới, không so logits với A6000 cũ và không dùng ngưỡng
+manual trước khi xuất ZIP.
+
+Host hiện tại vẫn không có CUDA: `nvidia-smi` không kết nối được driver và
+`torch.cuda.is_available() == false`. Lệnh `retrieve --start 1 --stop 1` đã
+được thử và dừng trước khi tạo retrieval shard. Vì vậy chưa có full inference,
+reranker score, candidate ZIP hoặc BTC receipt. Không có API phiên Colab đang
+kết nối trong workspace này; notebook cần được mở trong Colab và Drive phải
+có repository, index backing files khoảng 40 GB và cap-10 artifacts.
 
 R11 đã đo raw retrieval CPU cho 94 query dự kiến khoảng 22.793 giây CPU, cao
 hơn budget 14.400 giây. Batch dense GPU path ở 1.200 query chưa được thực thi
-hoặc validate trên host này. Candidate full chỉ nên mở trên host có GPU đúng
-runtime đã khóa; tiếp tục CPU retrieval toàn cohort sẽ vượt ngân sách.
+hoặc benchmark trên host này. Thời gian chạy và khả năng giữ phiên Colab đủ
+lâu chưa được xác nhận; CPU retrieval toàn cohort sẽ vượt ngân sách.
 
 Stage trước của lượt này đã tạo pool diagnostic 87/87 manual spans tại
 `outputs/v4/manual87_parent_recovery_20261026/`. Pool đó dùng depth 4.000 cho
@@ -53,6 +61,9 @@ depth 800.
 ## Mã và artifacts
 
 - Lock/preflight runner: `scripts/v4/prepare_end_to_end_evidence_recovery.py`.
-- Contract: `tests/v4/test_end_to_end_recovery_policy.py`.
+- Full runner: `scripts/v4/run_end_to_end_evidence_recovery.py`.
+- Colab launcher: `notebooks/v4_end_to_end_evidence_recovery_colab.ipynb`.
+- Contracts: `tests/v4/test_end_to_end_recovery_policy.py` và
+  `tests/v4/test_end_to_end_recovery_runner.py`.
 - Status/runtime/preflight artifacts: `outputs/v4/end_to_end_recovery_20261026/`.
 - Candidate output chính thức chưa được tạo; cap-10 vẫn là champion.

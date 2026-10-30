@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-30",
+  "evidence_cutoff": "2026-10-26",
+  "champion_zip_sha256": "e422b9076bf59f9a93d4819776026e789e7cf3f407b3befee8738fc5abb270f8",
+  "champion_zip_hash_matches_receipt": true,
+  "metrics_provenance": "USER_REPORTED_OFFICIAL_SCORE",
+  "manual87_flags": {
+    "source_contains": 87,
+    "indexed_passage_contains": 87,
+    "candidate_parent_present": 76,
+    "candidate_passage_contains": 71,
+    "document_selected": 76,
+    "available_context_contains": 75,
+    "fixed_context_contains": 73,
+    "chunk_allocated": 67,
+    "final_contains": 65
+  },
+  "manual22_loss_groups": {
+    "parent_absent_from_candidate": 11,
+    "no_chunk_slot": 9,
+    "wrong_context": 2
+  },
+  "logical_pages": 17,
+  "new_training_or_inference": false,
+  "new_btc_scoring": false,
+  "outputs": [
+    "Bao_cao_tong_ket_Medical_RAG_20261030.docx",
+    "Bao_cao_tong_ket_Medical_RAG_20261030.md",
+    "Bao_cao_tong_ket_Medical_RAG_20261030.pdf"
+  ],
+  "pdf_pages": 17,
+  "pdf_text_numbers_checked": true,
+  "docx_zip_and_xml_valid": true,
+  "manual87_recovery_flags_all_true": [
+    "all_parent_passages_in_pool",
+    "base_cap10_documents_preserved",
+    "candidate_parent_in_pool",
+    "manual_span_in_candidate_passage"
+  ],
+  "layout_reviewed_pages": [
+    1,
+    5,
+    8,
+    12
+  ],
+  "file_sha256": {
+    "Bao_cao_tong_ket_Medical_RAG_20261030.pdf": "889b1a2d6456bbe5e4e8ba033026143d3a1048549b4b5f2d96ecc0d3ead4d2db",
+    "Bao_cao_tong_ket_Medical_RAG_20261030.md": "191c8bb8cf606ca3d8c5b785536a73720c18ce24ab68255a163f526227054db5",
+    "Bao_cao_tong_ket_Medical_RAG_20261030.docx": "d69fdec6b49ed85fb76fef4024183657af4622abd2e69192727a49936f310e8f"
+  }
+}

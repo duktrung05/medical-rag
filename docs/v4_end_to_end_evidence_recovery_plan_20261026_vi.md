@@ -1,6 +1,6 @@
 # Kế hoạch một candidate phục hồi document và evidence
 
-Trạng thái: **PLAN — chưa chạy inference hoặc tạo submission mới**. Mốc so sánh
+Trạng thái: **IMPLEMENTED, chờ GPU để chạy inference và xuất submission**. Mốc so sánh
 là cap-10: BTC FINAL `0,2324`, DOCS_F2 `0,2788`, CHUNKS_F2 `0,1860`;
 1.200 queries, 140.095 documents và 72.000 chunks. Mục tiêu của vòng này là
 **một candidate hoàn chỉnh trên 1.200 queries và một lần chấm BTC**, không
@@ -68,10 +68,10 @@ chọn được parent và source span phù hợp hơn.
   trên chính FP32 matrix hiện có; dùng GPU khi runtime sẵn sàng. Preflight
   **kỹ thuật** trên q53/130/380 phải khớp frozen branch prefixes và S2 fusion.
   Sai parity thì sửa backend, không chuyển sang một retrieval policy khác.
-- Lập manifest và trần số pairs trước khi chấm BGE. Dùng pinned CUDA FP16
-  runtime và exact-batch anchors như cap-10; checkpoint per query/worker.
-  GPU chưa sẵn sàng trên host hiện tại thì giữ package ở trạng thái ready;
-  không dùng CPU logits để trộn với cached FP16 scores.
+- Chấm lại seed và evidence windows trên GPU hiện có bằng pinned model/revision
+  CUDA FP16, không trộn cached A6000 logits và không yêu cầu GPU cùng tên A6000.
+  Checkpoint theo query. Host hiện tại không có CUDA; Colab có thể chạy khi đã
+  mount đủ repository/index và model snapshots.
 - Tạo đúng một ZIP cho 1.200 queries. Validate source substring, parent
   membership, 60 chunks/query, max 200 documents/query, duplicate policy,
   full query coverage, CRC và ZIP dưới 100 MB. Nếu context mở rộng làm ZIP
@@ -80,14 +80,10 @@ chọn được parent và source span phù hợp hơn.
 
 ## Một lần kiểm kết quả, không mở vòng pilot mới
 
-Sau khi có full candidate, đối chiếu 87 manual pairs và 10 retained controls
-với cap-10 theo query-parent identity. Báo gross gains/losses tại document,
-slot và exact-context levels; không biến historical preservation thành gold.
-**Chỉ submit khi** ZIP/grounding PASS, giữ toàn bộ 10 controls trong documents,
-final manual containment đạt ít nhất `70/87` (cap-10 là `65/87`) và mất tối đa
-`2/65` evidence manual đang được giữ. Các ngưỡng này là điều kiện tiết kiệm
-một lượt BTC, không phải ước lượng F2. Nếu fail, kết thúc candidate với
-nguyên nhân cụ thể; không tự mở policy thứ hai.
+Theo quyết định mới của người dùng, sau khi có full candidate thì xuất ZIP
+ngay khi kiểm tra cấu trúc và grounding PASS. Không chặn xuất ZIP bằng so sánh
+manual containment, controls hoặc parity score với GPU cũ. Có thể báo các
+chỉ số đó sau chạy để giải thích kết quả, nhưng không dùng để chọn policy.
 
 Nếu đủ điều kiện, chấm **đúng một lần** cùng BTC phase với cap-10. Lưu receipt
 gắn SHA-256 ZIP. Quyết định giữ candidate dựa trên FINAL và riêng DOCS_F2,
